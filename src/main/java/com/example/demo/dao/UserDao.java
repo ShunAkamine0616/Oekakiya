@@ -1,5 +1,5 @@
 package com.example.demo.dao;
 
-public interface User {
+public interface UserDao {
 
 }
