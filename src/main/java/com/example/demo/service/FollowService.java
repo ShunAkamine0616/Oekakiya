@@ -2,8 +2,6 @@ package com.example.demo.service;
 
 import java.util.List;
 
-import com.example.demo.entity.User;
-
 public interface FollowService {
 
 	public List<User> findByUserId(Integer userId);
