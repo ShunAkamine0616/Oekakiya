@@ -5,6 +5,11 @@ body {
   background-color: #F5F0E9;
 }
 
+/* ファイル選択ボタンを非表示 */
+#file_upload{
+	display: none;
+}
+
 fieldset {
   border: none;
 }
