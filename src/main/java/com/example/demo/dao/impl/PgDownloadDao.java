@@ -1,5 +1,6 @@
 package com.example.demo.dao.impl;
 
+<<<<<<< HEAD
 import java.awt.Image;
 import java.util.List;
 
@@ -82,3 +83,8 @@ public int insert(Integer userId,Integer imageId) {
 //ログインは一個しかないから
 //
 //例　：　ログインするとき→　SQL_LOGIN
+=======
+public class PgDownloadDao {
+
+}
+>>>>>>> 6d8862ead9c2bfc867efc7e2c7ead3775b290134
