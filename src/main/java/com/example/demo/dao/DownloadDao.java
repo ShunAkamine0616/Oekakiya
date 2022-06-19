@@ -1,7 +1,9 @@
 package com.example.demo.dao;
 
-import java.awt.Image;
+
 import java.util.List;
+
+import com.example.demo.entity.Image;
 
 //dawnloadテーブル用DAO
 public interface DownloadDao {
