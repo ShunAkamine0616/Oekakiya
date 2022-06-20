@@ -1,10 +1,5 @@
 package com.example.demo.dao.impl;
 
-<<<<<<< HEAD
-public class PgDownloadDao {
-
-}
-=======
 
 import java.util.List;
 
@@ -60,6 +55,7 @@ public class PgDownloadDao implements DownloadDao {
 		return jdbcTemplate.update(sql, param);
 
 	}
+
 }
 
 
@@ -88,4 +84,4 @@ public class PgDownloadDao implements DownloadDao {
 //ログインは一個しかないから
 //
 //例　：　ログインするとき→　SQL_LOGIN
->>>>>>> origin/higa
+
