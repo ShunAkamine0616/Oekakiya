@@ -40,14 +40,10 @@
         </div>
         <div class="category">
             <label>カテゴリ</label>
-            <form:select path="categoryid">
-                <option value="1">かっこいい</option>
-                <option value="2">かわいい</option>
-                <option value="3">きれい</option>
-                <option value="4">車</option>
-                <option value="5">人物</option>
-                <option value="6">その他</option>
+            <form:select path="category">
+            <form:options items="${categoryid}" itemLabel="categoryName" itemValue="id"/>
             </form:select>
+			
         </div>
         <div class="comment">
             <label>コメント</label>
