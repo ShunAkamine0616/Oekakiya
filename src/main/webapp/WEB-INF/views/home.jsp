@@ -64,11 +64,15 @@
 			<!--   チェックボックス   -->
 			<div class="checkboxes">
 				カテゴリを選択してください 
+				<input name="category" type="hidden" value=" ">
 				<label> 
-					<input type="checkbox"> <span>checkbox1</span>
+					<input type="checkbox" name="category" value=1> <span>checkbox1</span>
 				</label> 
 				<label> 
-					<input type="checkbox"> <span>checkbox2</span>
+					<input type="checkbox" name="category" value=2> <span>checkbox2</span>
+				</label>
+				<label> 
+					<input type="checkbox" name="category" value=3> <span>checkbox3</span>
 				</label>
 			</div>
 
