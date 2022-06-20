@@ -63,16 +63,13 @@
 			<div class="checkbox-toggle">カテゴリ▼</div>
 			<!--   チェックボックス   -->
 			<div class="checkboxes">
-				カテゴリを選択してください 
-				<input name="category" type="hidden" value=" ">
-				<label> 
-					<input type="checkbox" name="category" value=1> <span>checkbox1</span>
-				</label> 
-				<label> 
-					<input type="checkbox" name="category" value=2> <span>checkbox2</span>
-				</label>
-				<label> 
-					<input type="checkbox" name="category" value=3> <span>checkbox3</span>
+				カテゴリを選択してください <input name="category" type="hidden" value=" ">
+				<label> <input type="checkbox" name="category" value=1>
+					<span>checkbox1</span>
+				</label> <label> <input type="checkbox" name="category" value=2>
+					<span>checkbox2</span>
+				</label> <label> <input type="checkbox" name="category" value=3>
+					<span>checkbox3</span>
 				</label>
 			</div>
 
@@ -93,12 +90,15 @@
 		<div class="container">
 			<c:forEach var="image" items="${imageList}">
 				<div class="box">
-					<img src=${ image.getImagePath() }>
+					<a href="detail&id=${ image.getId() }"> 
+						<img src=${ image.getImagePath() }>
+					</a>
 					<p>${ image.getImageTitle() }</p>
+
 				</div>
 			</c:forEach>
 		</div>
-		
+
 	</div>
 	<footer></footer>
 
