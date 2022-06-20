@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.example.demo.dao.FavoriteDao;
 import com.example.demo.entity.Favorite;
+import com.example.demo.entity.Image;
 
 @Repository
 public class PgFavoriteDao implements FavoriteDao{
@@ -55,13 +56,13 @@ public class PgFavoriteDao implements FavoriteDao{
 		return jdbcTemplate.update(sql, param);
 	}
 	
-	public List<Images> findByUserId(Integer userId) {
-		List<Images> images = new ArrayList<>();
+	public List<Image> findByUserId(Integer userId) {
+		List<Image> image = new ArrayList<>();
 		String sql = SQL_SELECT_IMAGES;
 		MapSqlParameterSource param = new MapSqlParameterSource();
 	    param.addValue("userId", userId);
-	    images =  jdbcTemplate.query(sql,param, new BeanPropertyRowMapper<Images>(Images.class));
-	    return images;
+	    image =  jdbcTemplate.query(sql,param, new BeanPropertyRowMapper<Image>(Image.class));
+	    return image;
 	}
 
 }

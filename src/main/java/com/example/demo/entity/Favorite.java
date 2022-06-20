@@ -6,7 +6,7 @@ public class Favorite{
 	private Integer id;
 	private Integer userId;
 	private Integer imageId;
-	private Images images;
+	private Image image;
 	
 	public Favorite() {
 		
@@ -32,58 +32,58 @@ public class Favorite{
 	}
 	
 	public Integer getImagesId() {
-		return images.getId;
+		return image.getId();
 	}
 	public void setImagesId(Integer id) {
-		if(this.images == null) {
-			this.images = new Images();
+		if(this.image == null) {
+			this.image = new Image();
 		}
-		images.setId(id);
+		image.setId(id);
 	}
-	public Integer getImageTitle() {
-		return images.getImageTitle;
+	public String getImageTitle() {
+		return image.getImageTitle();
 	}
 	public void setImageTitle(String title) {
-		if(this.images == null) {
-			this.images = new Images();
+		if(this.image == null) {
+			this.image = new Image();
 		}
-		images.ImageTitle(title);
+		image.setImageTitle(title);
 	}
-	public Integer getImagePath() {
-		return images.getImagePath;
+	public String getImagePath() {
+		return image.getImagePath();
 	}
 	public void setImagePath(String path) {
-		if(this.images == null) {
-			this.images = new Images();
+		if(this.image == null) {
+			this.image = new Image();
 		}
-		images.setImagePath(path);
+		image.setImagePath(path);
 	}
 	public Integer getImageUserId() {
-		return images.getUserId;
+		return image.getUserId();
 	}
 	public void setImageUserId(Integer userid) {
-		if(this.images == null) {
-			this.images = new Images();
+		if(this.image == null) {
+			this.image = new Image();
 		}
-		images.setUserId(userid);
+		image.setUserId(userid);
 	}
 	public Integer getCreatedAt() {
-		return images.getCreatedAt;
+		return image.getCreatedAt;
 	}
 	public void setCreatedAt(Timestamp create) {
-		if(this.images == null) {
-			this.images = new Images();
+		if(this.image == null) {
+			this.image = new Image();
 		}
-		images.setCreatedAt(create);
+		image.setCreatedAt(create);
 	}
 	public Integer getUpdatedAt() {
-		return images.getUpdatedAt;
+		return image.getUpdatedAt;
 	}
 	public void setUpdatedAt(Timestamp update) {
-		if(this.images == null) {
-			this.images = new Images();
+		if(this.image == null) {
+			this.image = new Image();
 		}
-		images.setUpdatedAt(update);
+		image.setUpdatedAt(update);
 	}
 
 }
