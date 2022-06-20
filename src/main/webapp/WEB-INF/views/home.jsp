@@ -63,16 +63,13 @@
 			<div class="checkbox-toggle">カテゴリ▼</div>
 			<!--   チェックボックス   -->
 			<div class="checkboxes">
-				カテゴリを選択してください 
-				<input name="category" type="hidden" value=" ">
-				<label> 
-					<input type="checkbox" name="category" value=1> <span>checkbox1</span>
-				</label> 
-				<label> 
-					<input type="checkbox" name="category" value=2> <span>checkbox2</span>
-				</label>
-				<label> 
-					<input type="checkbox" name="category" value=3> <span>checkbox3</span>
+				カテゴリを選択してください <input name="category" type="hidden" value=" ">
+				<label> <input type="checkbox" name="category" value=1>
+					<span>checkbox1</span>
+				</label> <label> <input type="checkbox" name="category" value=2>
+					<span>checkbox2</span>
+				</label> <label> <input type="checkbox" name="category" value=3>
+					<span>checkbox3</span>
 				</label>
 			</div>
 
@@ -91,44 +88,17 @@
 		</form>
 
 		<div class="container">
-			<div class="box">
-				<img src="images/campus.png" alt="title">
-				<p>title</p>
-			</div>
-			<div class="box">
-				<img src="images/logo.png">
-				<p>title2</p>
-			</div>
-			<div class="box">
-				<img src="images/粘土.png">
-				<p>title3</p>
-			</div>
-			<div class="box">
-				<img src="images/カドケシ.png">
-				<p>title4</p>
-			</div>
-			<div class="box">
-				<img src="images/クルトガ.png">
-				<p>title5</p>
-			</div>
-			<div class="box">
-				<img src="images/注意.png">
-				<p>title6</p>
-			</div>
-			<div class="box">
-				<img src="images/ホッチキス芯.png">
-				<p>title7</p>
-			</div>
-			<div class="box">
-				<img src="images/マッキー.png">
-				<p>title8</p>
-			</div>
-			<div class="box">
-				<img src="images/レジスター.png">
-				<p>title9</p>
-			</div>
+			<c:forEach var="image" items="${imageList}">
+				<div class="box">
+					<a href="detail&id=${ image.getId() }"> 
+						<img src=${ image.getImagePath() }>
+					</a>
+					<p>${ image.getImageTitle() }</p>
 
+				</div>
+			</c:forEach>
 		</div>
+
 	</div>
 	<footer></footer>
 

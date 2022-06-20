@@ -1,7 +1,6 @@
 package com.example.demo.dao.impl;
 
 import java.util.List;
-import java.util.Locale.Category;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -11,6 +10,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.dao.CategoryDao;
+import com.example.demo.entity.Category;
 @Repository
 public class PgCategoryDao implements CategoryDao {
 	private static final String SQL_INSERT_CATEGORY = "insert into categories(category_name) values(:categoryName)";
