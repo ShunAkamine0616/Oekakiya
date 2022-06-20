@@ -40,8 +40,8 @@
         </div>
         <div class="category">
             <label>カテゴリ</label>
-            <form:select path="category">
-            <form:options items="${categoryid}" itemLabel="categoryName" itemValue="id"/>
+            <form:select path="categoryId">
+            <form:options items="${category}" itemLabel="categoryName" itemValue="id"/>
             </form:select>
 			
         </div>

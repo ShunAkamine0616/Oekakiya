@@ -35,13 +35,12 @@ public class postingEditController{
 		int imageid = 5;
 		session.setAttribute("imageid",imageid);
 		//渡されたイメージIDをもとに情報を取得
-		System.out.println(imageservice.findByImageId(imageid).getCategoryId());
-//		from.setCategoryid(imageservice.findByImageId(imageid).getCategoryId());
+		from.setCategoryId(imageservice.findByImageId(imageid).getCategoryId());
 		from.setComment(imageservice.findByImageId(imageid).getComment());
 		Image image= imageservice.findByImageId(imageid);
+		//categoryを全権取得
 		List<Category> category = new ArrayList<>();
 		category = categoryservice.findAll();
-		System.out.println(category.get(0).getCategoryName());
 		session.setAttribute("category",category);
 		session.setAttribute("image",image);
 		return "postingEdit";
@@ -51,7 +50,7 @@ public class postingEditController{
 		Image image =new Image();
 		image.setImageTitle(form.getTitle());
 		image.setComment(form.getComment());
-		image.setCategoryId(form.getCategoryid());
+		image.setCategoryId(form.getCategoryId());
 		int imageid = (int)session.getAttribute("imageid");  
 		image.setId(imageid);		
 		imageservice.update(image);
