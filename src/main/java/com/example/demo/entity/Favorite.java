@@ -7,7 +7,16 @@ public class Favorite{
 	private Integer userId;
 	private Integer imageId;
 	private Image image;
+	private Integer count;
 	
+	public Integer getCount() {
+		return count;
+	}
+
+	public void setCount(Integer count) {
+		this.count = count;
+	}
+
 	public Favorite() {
 		
 	}
@@ -67,8 +76,8 @@ public class Favorite{
 		}
 		image.setUserId(userid);
 	}
-	public Integer getCreatedAt() {
-		return image.getCreatedAt;
+	public Timestamp getCreatedAt() {
+		return image.getCreatedAt();
 	}
 	public void setCreatedAt(Timestamp create) {
 		if(this.image == null) {
@@ -76,8 +85,8 @@ public class Favorite{
 		}
 		image.setCreatedAt(create);
 	}
-	public Integer getUpdatedAt() {
-		return image.getUpdatedAt;
+	public Timestamp getUpdatedAt() {
+		return image.getUpdatedAt();
 	}
 	public void setUpdatedAt(Timestamp update) {
 		if(this.image == null) {

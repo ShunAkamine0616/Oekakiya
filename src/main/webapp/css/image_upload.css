@@ -1,0 +1,68 @@
+@charset "UTF-8";
+
+.upload_form {
+	display: flex;
+	margin: 10%;
+}
+
+.upload_form div {
+	margin: 30px;
+}
+
+textarea {
+	width: 400px;
+	height: 200px;
+}
+
+.image_preview {
+	/* 空の要素なので、高さの定義が必要です。 */
+	/* 	width:1000px; */
+	background-color: white;
+	/* 	background-image: */
+	/* 		url("/images/icon_001050_256.png"); */
+	/* 	background-size: 40px; */
+	/* 	background-repeat: no-repeat; */
+	/* 	background-position: 20% 30%; */
+	/*     margin: 0 auto; */
+	/* 	background-color:red; */
+}
+
+.icon {
+	/* 空の要素なので、高さの定義が必要です。 */
+	/* 	width:1000px; */
+	background-color: white;
+	
+	/* 	background-image: */
+	/* 		url("/images/icon_001050_256.png"); */
+	/* 	background-size: 40px; */
+	/* 	background-repeat: no-repeat; */
+	/* 	background-position: 20% 30%; */
+	/*     margin: 0 auto; */
+	/* 	background-color:red; */
+}
+
+.iconAdd {
+	position: relative;
+	top: 130px;
+	right: 55px
+}
+
+
+#icon {
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	object-fit: cover;
+}
+
+div.image_border {
+  width: 100px;
+  padding: 5px;
+  border-radius:50%;
+  background: linear-gradient(to right bottom, #c71585, #ffc0cb);
+}
+
+body {
+	background-image: url("images\\icon_001050_256.png");
+	background-size: cover;
+}
