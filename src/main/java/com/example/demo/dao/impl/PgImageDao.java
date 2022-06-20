@@ -18,7 +18,7 @@ public class PgImageDao implements ImageDao {
 	private static final String SQL_INSERT_IMAGE = "INSERT INTO images(image_title, image_path, comment, category_id, user_id, created_at, updated_at) VALUES(:image_title, :image_path, :comment, :category_id, :user_id, current_timestamp, current_timestamp)";
 	private static final String SQL_DELETE_IMAGE = "DELETE FROM images WHERE id = :id";
 	private static final String SQL_DELETE_IMAGE_BY_USERID = "DELETE FROM images WHERE user_id = :user_id";
-	private static final String SQL_UPDATE_IMAGE = "UPDATE images SET image_title = :image_title, image_path = :image_path, comment = :comment, category_id = :category_id, user_id = :user_id, updated_at = current_timestamp WHERE id = :id";
+	private static final String SQL_UPDATE_IMAGE = "UPDATE images SET image_title = :image_title,comment = :comment, category_id = :category_id, updated_at = current_timestamp WHERE id = :id;";
 
 	@Autowired
 	private NamedParameterJdbcTemplate jdbcTemplate;
@@ -71,10 +71,8 @@ public class PgImageDao implements ImageDao {
 		String sql = SQL_UPDATE_IMAGE;
         MapSqlParameterSource param = new MapSqlParameterSource();
         param.addValue("image_title", image.getImageTitle());
-        param.addValue("image_path", image.getImagePath());
         param.addValue("comment", image.getComment());
         param.addValue("category_id", image.getCategoryId());
-        param.addValue("user_id", image.getUserId());
         param.addValue("id", image.getId());
         
         return jdbcTemplate.update(sql, param);

@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.demo.form.EditForm;
-import com.example.demo.service.FavoriteService;
+import com.example.demo.service.ImageService;
 
 @Controller
 public class postingEditController{
 	
 	@Autowired
-	private FavoriteService favoriteservice;
+	private ImageService imageservice;
 	
 	@RequestMapping("/index")
 	public String index(@ModelAttribute("postingEdit") EditForm from, Model model) {
@@ -22,12 +22,15 @@ public class postingEditController{
 		return "postingEdit";
 	}
 	@RequestMapping(value="/edit",params = "param1", method = RequestMethod.POST)
-	public String edit(@ModelAttribute("postingEdit") EditForm from, Model model) {
+	public String edit(@ModelAttribute("postingEdit") EditForm form, Model model) {
+		
+
 		return "postingEdit";
 	}
 	
 	@RequestMapping(value="/edit",params = "param2", method = RequestMethod.POST)
 	public String delete(@ModelAttribute("postingEdit") EditForm from, Model model) {
+		imageservice.delete(4);
 		return "postingEdit";
 	}
 	

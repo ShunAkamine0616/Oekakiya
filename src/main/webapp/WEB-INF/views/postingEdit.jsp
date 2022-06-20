@@ -21,7 +21,7 @@
 
 <div class="item">
 <div class="container2">
-    <form:form action="" class="form" method="post" modelAttribute="postingEdit">
+    <form:form action="edit" class="form" method="post" modelAttribute="postingEdit">
         <div class="item2">
             <label>タイトル</label>
             <form:input type="text" path="title"/>
