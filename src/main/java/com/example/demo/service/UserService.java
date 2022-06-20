@@ -1,10 +1,10 @@
-package com.example.demo.dao;
+package com.example.demo.service;
 
 import java.util.List;
 
 import com.example.demo.entity.User;
 
-public interface UserDao {
+public interface UserService {
 	
 	//ユーザー検索　nullで全検索
 	public List<User> findByKeyword(String keyword);
