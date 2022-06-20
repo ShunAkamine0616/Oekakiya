@@ -1,7 +1,9 @@
 package com.example.demo.service;
 
 import java.util.List;
-import java.util.Locale.Category;
+
+import com.example.demo.entity.Category;
+
 
 public interface CategoryService {
 	public int insert(String categoryName);
