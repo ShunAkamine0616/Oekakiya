@@ -56,7 +56,7 @@ public class PgImageDao implements ImageDao {
 		return resultList.isEmpty() ? null : resultList;
 	}
 	public Image findByImageId(Integer imageId) {
-		String SQL_SELECT_IMAGE_BY_IMAGEID = "SELECT * FROM images WHERE image_id = " + imageId;
+		String SQL_SELECT_IMAGE_BY_IMAGEID = "SELECT * FROM images WHERE id = " + imageId;
 		String sql = SQL_SELECT_IMAGE_BY_IMAGEID;
 		List<Image> resultList = jdbcTemplate2.query(sql, new BeanPropertyRowMapper<Image>(Image.class));
 		return resultList.isEmpty() ? null : resultList.get(0);
