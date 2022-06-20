@@ -91,44 +91,14 @@
 		</form>
 
 		<div class="container">
-			<div class="box">
-				<img src=${ imageList(0).getImagePath() }>
-				<p>${ imageList.get(0).getImageTitle() }</p>
-			</div>
-			<div class="box">
-				<img src="images/logo.png">
-				<p>title2</p>
-			</div>
-			<div class="box">
-				<img src="images/粘土.png">
-				<p>title3</p>
-			</div>
-			<div class="box">
-				<img src="images/カドケシ.png">
-				<p>title4</p>
-			</div>
-			<div class="box">
-				<img src="images/クルトガ.png">
-				<p>title5</p>
-			</div>
-			<div class="box">
-				<img src="images/注意.png">
-				<p>title6</p>
-			</div>
-			<div class="box">
-				<img src="images/ホッチキス芯.png">
-				<p>title7</p>
-			</div>
-			<div class="box">
-				<img src="images/マッキー.png">
-				<p>title8</p>
-			</div>
-			<div class="box">
-				<img src="images/レジスター.png">
-				<p>title9</p>
-			</div>
-
+			<c:forEach var="image" items="${imageList}">
+				<div class="box">
+					<img src=${ image.getImagePath() }>
+					<p>${ image.getImageTitle() }</p>
+				</div>
+			</c:forEach>
 		</div>
+		
 	</div>
 	<footer></footer>
 
