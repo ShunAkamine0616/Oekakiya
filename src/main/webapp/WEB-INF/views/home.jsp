@@ -92,8 +92,8 @@
 
 		<div class="container">
 			<div class="box">
-				<img src="images/campus.png" alt="title">
-				<p>title</p>
+				<img src=${ imageList(0).getImagePath() }>
+				<p>${ imageList.get(0).getImageTitle() }</p>
 			</div>
 			<div class="box">
 				<img src="images/logo.png">
