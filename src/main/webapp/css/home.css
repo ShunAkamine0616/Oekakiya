@@ -1,0 +1,45 @@
+/* チェックボックスの表示切替ボタン */
+.checkbox-toggle {
+	margin: auto;
+	width: 362px;
+	padding: 1em;
+	text-align: center;
+	cursor: pointer;
+	background-color: skyblue;
+	width: 362px;
+}
+
+/* チェックボックス */
+.checkboxes {
+	margin: auto;
+	display: flex;
+	flex-direction: column;
+	width: 360px;
+	padding: 1em;
+	border: 1px solid skyblue;
+}
+
+div img {
+	max-width: 250px;
+	max-hight: 250px;
+	min-width: 125px;
+	min-hight: 125px;
+	margin: 25px;
+	margin-top: 80px;
+	border: 1px #000000 solid;
+}
+
+.container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: center;
+	align-content: space-around;
+	align-self: center;
+	flex-wrap: wrap;
+}
+
+.box {
+	display: flex;
+	flex-direction: column;
+}
