@@ -27,27 +27,27 @@ public class PgImageDao implements ImageDao {
 
 
 	public List<Image> findByKeyword(String keyword, String categoryId, String sort) {
-		String SQL_SELECT_IMAGE_BY_KEYWORD = "SELECT * FROM images im JOIN categories c ON im.category_id = c.category_id) "
-				+ "WHERE image_title LIKE :keyword OR comment LIKE :keyword"
+		String SQL_SELECT_IMAGE_BY_KEYWORD = "SELECT * FROM images im JOIN categories c ON im.category_id = " + categoryId + ") "
+				+ "WHERE image_title LIKE" + keyword + "OR comment LIKE " + keyword 
 				+ " ORDER BY " + sort;
 		String sql = SQL_SELECT_IMAGE_BY_KEYWORD;
-		List<Image> resultList = jdbcTemplate2.query(sql, new BeanPropertyRowMapper<Image>(Image.class));
+		List<Image> resultList = jdbcTemplate.query(sql, new BeanPropertyRowMapper<Image>(Image.class));
 
 		return resultList.isEmpty() ? null : resultList;
 	}
 	public List<Image> findFollow(String keyword, String categoryId, String sort, Integer userId) {
-		String SQL_SELECT_IMAGE_BY_FOLLOW = "SELECT * FROM images im JOIN categories c ON im.category_id = c.category_id) "
-				+ "WHERE image_title LIKE :keyword OR comment LIKE :keyword AND user_id IN "
+		String SQL_SELECT_IMAGE_BY_FOLLOW = "SELECT * FROM images im JOIN categories c ON im.category_id ="+ categoryId +") "
+				+ "WHERE image_title LIKE "+ keyword + " OR comment LIKE "+ keyword + " AND user_id IN "
 				+ "(SELECT follow_user_id FROM follow WHERE user_id = "+ userId + ")"
 				+ " ORDER BY " + sort;
 		String sql = SQL_SELECT_IMAGE_BY_FOLLOW;
-		List<Image> resultList = jdbcTemplate2.query(sql, new BeanPropertyRowMapper<Image>(Image.class));
+		List<Image> resultList = jdbcTemplate.query(sql, new BeanPropertyRowMapper<Image>(Image.class));
 		return resultList.isEmpty() ? null : resultList;
 	}
 	public List<Image> findByUserId(Integer userId) {
 		String SQL_SELECT_IMAGE_BY_USERID = "SELECT * FROM images WHERE user_id = " + userId;
 		String sql = SQL_SELECT_IMAGE_BY_USERID;
-		List<Image> resultList = jdbcTemplate2.query(sql, new BeanPropertyRowMapper<Image>(Image.class));
+		List<Image> resultList = jdbcTemplate.query(sql, new BeanPropertyRowMapper<Image>(Image.class));
 		return resultList.isEmpty() ? null : resultList;
 	}
 	public Image findByImageId(Integer imageId) {
