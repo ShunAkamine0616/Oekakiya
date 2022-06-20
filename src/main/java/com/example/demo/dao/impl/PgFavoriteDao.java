@@ -21,7 +21,7 @@ public class PgFavoriteDao implements FavoriteDao{
     
     private static final String SELECT_FAVORITE_COUNT = "select count(image_id) from favorite where image_id = :imageId group by image_id;";
     private static final String SQL_INSERT = "insert into favorite(user_id,image_id) values(:userId,:imageId);";
-    private static final String SQL_DELETE = "delete from favorite where user_id = :userId and image_id = imageId;";
+    private static final String SQL_DELETE = "delete from favorite where user_id = :userId and image_id = :imageId;";
     private static final String SQL_DELETE_USER = "delete from favorite where user_id = :userId;";
     private static final String SQL_SELECT_IMAGES = "select i.id as images_id,image_title,image_path,i.user_id as image_user_id,created_at,updated_at from images as i inner join favorite as f on i.user_id = f.user_id where f.user_id =:userId;";
     
@@ -30,7 +30,7 @@ public class PgFavoriteDao implements FavoriteDao{
         MapSqlParameterSource param = new MapSqlParameterSource();
 	    param.addValue("imageId", imageId);
 	    List<Favorite> list =  jdbcTemplate.query(sql,param, new BeanPropertyRowMapper<Favorite>(Favorite.class));
-	    return list.isEmpty() ? null : list.get(0).getImageId();
+	    return list.isEmpty() ? 0 : list.get(0).getCount();
     }
     
 	public int insert(Integer userId,Integer imageId) {

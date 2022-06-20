@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+        <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +24,7 @@
     <form:form action="" class="form" method="post" modelAttribute="postingEdit">
         <div class="item2">
             <label>タイトル</label>
-            <form:input type="text" path="title" />
+            <form:input type="text" path="title"/>
         </div>
         <div class="item2">
             <label>カテゴリ</label>
