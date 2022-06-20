@@ -57,7 +57,7 @@ public class ImageController {
 		String filename = uploadForm.getImageTitle() + DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS").format(LocalDateTime.now());
 		
 		//画像インスタンス生成
-		Image image = new Image(uploadForm.getImageTitle(), "images/" + filename, uploadForm.getComment(), uploadForm.getCategoryId(), 1);
+		Image image = new Image(uploadForm.getImageTitle(), "images/" + filename + "." + extention, uploadForm.getComment(), uploadForm.getCategoryId(), 1);
 		if(imageService.insert(image) == 0) {
 			session.setAttribute("imgErrMsg", "投稿できませんでした。");
 			return "imagePosting";
