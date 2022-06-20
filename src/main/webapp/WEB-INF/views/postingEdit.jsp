@@ -14,11 +14,7 @@
 <div class="item">
 
     <div class="background-img"></div>
-    <div class="button">
-        <button>編集</button>
-        <button>消去</button>
-        <button>編集取消</button>
-    </div>
+
 </div>
 
 <div class="item">
@@ -41,8 +37,13 @@
         </div>
         <div class="item2">
             <label>コメント</label>
-            <form:textarea path="description"></form:textarea>
+            <form:textarea path="comment"></form:textarea>
         </div>
+<div class="button">
+	<form:button name="param1">編集</form:button>
+	<form:button name="param2">消去</form:button>
+	<form:button name="param3">編集取消</form:button>
+</div>
     </form:form>
 </div>
 </div>

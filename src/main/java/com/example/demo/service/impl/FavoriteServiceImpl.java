@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.FavoriteDao;
-import com.example.demo.dao.impl.Images;
+import com.example.demo.entity.Image;
 import com.example.demo.service.FavoriteService;
 
 @Service
@@ -26,7 +26,7 @@ public class FavoriteServiceImpl implements FavoriteService{
 	public int deleteUser(Integer userId) {
 		return favoritedao.deleteUser(userId);
 	}
-	public List<Images> findByUserId(Integer userId){
+	public List<Image> findByUserId(Integer userId){
 		return favoritedao.findByUserId(userId);
 	}
 }

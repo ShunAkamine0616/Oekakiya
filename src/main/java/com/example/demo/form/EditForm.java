@@ -1,5 +1,9 @@
 package com.example.demo.form;
+
+import javax.validation.constraints.NotBlank;
+
 public class EditForm{
+	@NotBlank(message="画像のタイトルは必須です。  ")
 	private String title;
 	private Integer categoryid;
 	private String comment;
