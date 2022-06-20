@@ -25,7 +25,7 @@
 				<div id="modal">
 					<p class="modal_message">消去しますか？</p>
 					<div class="btns">
-						<button type="button" onclick="location.href='./delete'"class="basic_btn">削除</button>
+						<button type="button" onclick="location.href='/delete'"class="basic_btn">削除</button>
 						<button type="button" onclick="closeModal()" class="cancel_btn">キャンセル</button>
 					</div>
 				</div>
