@@ -10,6 +10,50 @@ body {
 	display: none;
 }
 
+/* 削除ボタン */
+.delete_btn {
+  border: none;
+  border-radius: 5px;
+  border: 2px solid;
+  border-color:red;
+  background-color: #FF8686;
+  padding: auto;
+  line-height: 2;
+  padding: 10px;
+  cursor: pointer;
+  color: black;
+  margin: 10px;
+}
+/* 水色ボタン */
+.light_blue_btn {
+  border: none;
+  border-radius: 5px;
+  border: 2px solid;
+  border-color: blue;
+  background-color: #8ED0FF;
+  padding: auto;
+  line-height: 2;
+  padding: 10px;
+  cursor: pointer;
+  color: black;
+  margin: 10px;
+}
+
+/* 灰色ボタン*/
+.gray_btn {
+  border: none;
+  border-radius: 5px;
+  border: 2px solid;
+  border-color: gray;
+  background-color: #D5CECE;
+  padding: auto;
+  line-height: 2;
+  padding: 10px;
+  cursor: pointer;
+  color: black;
+  margin: 10px;
+}
+
 fieldset {
   border: none;
 }
