@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,32 +17,44 @@ import com.example.demo.service.ImageService;
 public class postingEditController{
 	
 	@Autowired
+	HttpSession session;
+	
+	@Autowired
 	private ImageService imageservice;
 	
 	@RequestMapping("/index")
 	public String index(@ModelAttribute("postingEdit") EditForm from, Model model) {
-		
+		//後からイメージ愛ディー入れる
+		int imageid = 5;
+		session.setAttribute("imageid",imageid);
+		//渡されたイメージIDをもとに情報を取得
+		System.out.println(imageservice.findByImageId(imageid).getImageTitle());
+		Image image= imageservice.findByImageId(imageid);
+		session.setAttribute("image",image);
 		return "postingEdit";
 	}
-	@RequestMapping(value="/edit",params = "param1", method = RequestMethod.POST)
+	@RequestMapping(value="/edit", method = RequestMethod.POST)
 	public String edit(@ModelAttribute("postingEdit") EditForm form, Model model) {
 		Image image =new Image();
 		image.setImageTitle(form.getTitle());
 		image.setComment(form.getComment());
 		image.setCategoryId(form.getCategoryid());
-		image.setId(2);		
+		int imageid = (int)session.getAttribute("imageid");  
+		image.setId(imageid);		
 		imageservice.update(image);
 		return "postingEdit";
 	}
 	
-	@RequestMapping(value="/edit",params = "param2", method = RequestMethod.POST)
+	@RequestMapping(value="/delete",method = RequestMethod.GET)
 	public String delete(@ModelAttribute("postingEdit") EditForm from, Model model) {
-		imageservice.delete(2);
+		int imageid = (int)session.getAttribute("image");  
+		imageservice.delete(imageid);
 		return "postingEdit";
 	}
 	
-	@RequestMapping(value="/edit",params = "param3", method = RequestMethod.POST)
+	@RequestMapping(value="/back",method = RequestMethod.GET)
 	public String cancel(@ModelAttribute("postingEdit") EditForm from, Model model) {
+		//まいぺーじができたら遷移先を決める。
 		return "postingEdit";
 	}
 	
