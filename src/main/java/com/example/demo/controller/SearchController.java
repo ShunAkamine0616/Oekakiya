@@ -29,12 +29,14 @@ public class SearchController {
 	
 	@RequestMapping("/search")
     public String search(@RequestParam("keyword") String key, @RequestParam("category") String category, @RequestParam("user") String user, @RequestParam("order") String order, Model model) {
-        System.out.println(key);
-        System.out.println(category);
-        category = category.replace(" ,", "");
-        System.out.println(category);
-        System.out.println(user);
-        System.out.println(order);
+		ArrayList<Image> imageList = null;
+		category = category.replace(" ,", "");
+        if("all".equals(user)) {
+        	imageList = (ArrayList<Image>) imageService.findByKeyword(key, category, "id");
+        }else {
+        	imageList = (ArrayList<Image>) imageService.findByKeyword(key, category, "id");
+        }
+		model.addAttribute("imageList",imageList);
 		return "home";
     }
 }
