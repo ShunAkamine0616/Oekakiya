@@ -2,9 +2,11 @@ package com.example.demo.dao;
 
 import java.util.List;
 
+import com.example.demo.entity.Follow;
+
 public interface FollowDao {
 
-	public List<User> findByUserId(Integer userId);
+	public List<Follow> findByUserId(Integer userId);
 	
 	public int countFollow(Integer userFollowId);
 

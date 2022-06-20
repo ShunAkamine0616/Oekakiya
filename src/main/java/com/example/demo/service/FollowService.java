@@ -2,9 +2,11 @@ package com.example.demo.service;
 
 import java.util.List;
 
+import com.example.demo.entity.Follow;
+
 public interface FollowService {
 
-	public List<User> findByUserId(Integer userId);
+	public List<Follow> findByUserId(Integer userId);
 	
 	public int countFollow(Integer userFollowId);
 
