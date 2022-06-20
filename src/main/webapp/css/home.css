@@ -19,14 +19,14 @@
 	border: 1px solid skyblue;
 }
 
-div img {
+.box img {
 	max-width: 250px;
 	max-hight: 250px;
 	min-width: 125px;
 	min-hight: 125px;
 	margin: 25px;
 	margin-top: 80px;
-	border: 1px #000000 solid;
+	border: 5px #FFFFFF solid;
 }
 
 .container {

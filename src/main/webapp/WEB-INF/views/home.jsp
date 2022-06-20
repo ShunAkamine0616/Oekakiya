@@ -96,7 +96,7 @@
 				<p>title2</p>
 			</div>
 			<div class="box">
-				<img src="images/縦長.png">
+				<img src="images/粘土.png">
 				<p>title3</p>
 			</div>
 			<div class="box">
