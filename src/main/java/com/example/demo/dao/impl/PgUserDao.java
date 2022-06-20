@@ -19,9 +19,9 @@ public class PgUserDao implements UserDao {
 			+ "WHERE f.user_id = :userId AND account_id LIKE :keyword OR name LIKE :keyword ";
 	private static final String SQL_SELECT_USER = "SELECT * FROM users WHERE id = :id";
 	private static final String SQL_INSERT_USER = "INSERT INTO users(account_id, password, name, role) VALUES(:accountId, :password, :name, 2)";
-	private static final String SQL_UPDATE_USER = "UPDATE users SET account_id = :accountId, password = :passwprd, name = :name, "
-			+ "icon_path = :iconPath, mail = :mail, introduction = :introduction";
-	private static final String SQL_ROLE_UPDATE = "UPDATE users SET role = :role";
+	private static final String SQL_UPDATE_USER = "UPDATE users SET account_id = :accountId, password = :password, name = :name, "
+			+ "icon_path = :iconPath, mail = :mail, introduction = :introduction WHERE id = :id";
+	private static final String SQL_ROLE_UPDATE = "UPDATE users SET role = :role WHERE id = :id";
 	private static final String SQL_USER_DELETE = "DELETE FROM users WHERE id = :id";
 	
 	@Autowired
@@ -82,11 +82,11 @@ public class PgUserDao implements UserDao {
 		param.addValue("password", user.getPassword());
 		param.addValue("name", user.getName());
 		//画像パス
-		param.addValue("icon_path", null);
+		param.addValue("iconPath", user.getIconPath());
 		
 		param.addValue("mail", user.getMail());
 		param.addValue("introduction", user.getIntroduction());
-		
+		param.addValue("id", user.getId());
 		return jdbcTemplate.update(sql, param);
 	}
 	
@@ -100,6 +100,7 @@ public class PgUserDao implements UserDao {
 		}else{
 			param.addValue("role", 2);
 		}
+		param.addValue("id", user.getId());
 		return jdbcTemplate.update(sql, param);
 	}
 	
