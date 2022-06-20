@@ -4,6 +4,8 @@ public class Follow {
 	private Integer id;
 	private Integer userId;
 	private Integer followUserId;
+	private Integer followCount;
+	
 	
 	public Integer getId() {
 		return id;
@@ -22,5 +24,11 @@ public class Follow {
 	}
 	public void setFollowUserId(Integer followUserId) {
 		this.followUserId = followUserId;
+	}
+	public Integer getFollowCount() {
+		return followCount;
+	}
+	public void setFollowCount(Integer followCount) {
+		this.followCount = followCount;
 	}
 }
