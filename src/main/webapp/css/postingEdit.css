@@ -4,10 +4,10 @@
     height: 400px;
     width: 650px;
     margin-top: 150px;
-    margin-left: 200px;
+
 }
 .item{
-
+margin:50px;
 }
 .container{
     display:flex;
@@ -32,4 +32,13 @@ margin-top: 80px;
 button{
     margin: 20px;
     padding: 30px 50px 30px 50px;
+}
+.title{
+	margin-top:70px;
+}
+.category{
+	margin-top:70px;
+}
+.comment{
+	margin-top:70px;
 }
