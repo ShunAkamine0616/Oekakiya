@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.example.demo.form.EditForm;
+import com.example.demo.controller.form.EditForm;
+import com.example.demo.entity.Image;
 import com.example.demo.service.ImageService;
 
 @Controller
@@ -23,14 +24,18 @@ public class postingEditController{
 	}
 	@RequestMapping(value="/edit",params = "param1", method = RequestMethod.POST)
 	public String edit(@ModelAttribute("postingEdit") EditForm form, Model model) {
-		
-
+		Image image =new Image();
+		image.setImageTitle(form.getTitle());
+		image.setComment(form.getComment());
+		image.setCategoryId(form.getCategoryid());
+		image.setId(2);		
+		imageservice.update(image);
 		return "postingEdit";
 	}
 	
 	@RequestMapping(value="/edit",params = "param2", method = RequestMethod.POST)
 	public String delete(@ModelAttribute("postingEdit") EditForm from, Model model) {
-		imageservice.delete(4);
+		imageservice.delete(2);
 		return "postingEdit";
 	}
 	

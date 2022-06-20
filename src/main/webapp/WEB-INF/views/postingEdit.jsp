@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>画像編集画面</title>
-<link href="css.css" rel="stylesheet">
+<link href="css/postingEdit.css" rel="stylesheet">
 </head>
 
 <body style="background-color:rgb(255, 245, 233);">
