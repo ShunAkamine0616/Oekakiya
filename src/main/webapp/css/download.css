@@ -1,0 +1,18 @@
+@charset "UTF-8";
+.downloadInfo{
+	 display: flex;
+    justify-content: flex-end;
+}
+.Lavel{
+	border: none;
+  border-radius: 5px;
+  border: 2px solid;
+  border-color:red;
+	background-color:white;
+}
+/* .iconAdd { */
+/* 	position: relative; */
+/* 	top: 130px; */
+/* 	right: 55px */
+/* } */
+
