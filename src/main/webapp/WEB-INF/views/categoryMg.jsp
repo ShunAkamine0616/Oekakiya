@@ -20,21 +20,23 @@
     </form>
     </div>
     <div class="margin">
-        <div class="item">
-            <form action="">
+        
+            <form action="categoryEdit">
                 <div class="categoryedit">
                    
                     
             <c:forEach var="category" items="${category}">
-		            <input type="text" value="${category.getCategoryName()}">
-                    <button type="submit" class="">✏</button>
-                    <button type="submit" class="">🔄</button>
-                    <button type="submit" class="">🚮</button>
+            <div class="item">
+		            <input type="text" value="${category.getCategoryName()}" name ="${category.getId()}">
+                    <button type="button"class="">✏</button>
+                    <button type="submit" value="${category.getId()}" name="id" class="">🔄</button>
+                    <button type="button" class="">🚮</button>
+            </div>
 			</c:forEach>
                     
                 </div>
             </form>
-        </div>
+  
     </div>
     </div>
 </div>    
