@@ -22,8 +22,10 @@ public class SearchController {
 	@RequestMapping({ "/", "/home" })
     public String index( Model model) {
 		ArrayList<Image> imageList = (ArrayList<Image>) imageService.findByKeyword("", " ", "created_at");
-		model.addAttribute("imageList",imageList);
-		System.out.println(imageList.get(0).getImagePath());
+		if(imageList != null) {
+			model.addAttribute("imageList",imageList);
+			System.out.println(imageList.get(0).getImagePath());
+		}
         return "home";
     }
 	

@@ -11,21 +11,39 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link href="css/commons.css" rel="stylesheet">
 <link href="css/image_upload.css" rel="stylesheet">
+<link href="css/header.css" rel="stylesheet">
 </head>
 <body>
-	<div class="header">
-		<h1 class="site_logo">
-			<a href="menu.jsp">おえかきや</a>
-		</h1>
-		<div class="user">
-			<p class="user_name">${user.name}さん、こんにちは</p>
-			<form class="logout_form" action="logout" method="get">
-				<button class="logout_btn" type="submit">
-					<img src="images/ドアアイコン.png">ログアウト
-				</button>
-			</form>
+	<header>
+		<div class="header">
+			<h1>
+				<a href="./home" class="page-title">おえかきや</a>
+			</h1>
+
+			<div class="btn-wrap">
+				<c:choose>
+					<c:when test="${empty user}">
+        ゲスト
+            <button type="button" onclick="location.href='login'"
+							class="login_btn">ログイン</button>
+					</c:when>
+					<c:when test="${not empty user}">
+
+						<label> <a href="./inputEditMyPage"> <img id="iconAdd"
+								class="iconAdd" src="${user.iconPath}" style="max-width: 30px;">
+						</a> ${user.name}
+
+						</label>
+						<button type="button" onclick="location.href='login'"
+							class="logout_btn">ログアウト</button>
+
+					</c:when>
+
+				</c:choose>
+			</div>
 		</div>
-	</div>
+
+	</header>
 	<hr>
 	<input id="iconPath" type="hidden" value="${user.iconPath}"></input>
 	<div class="insert">
@@ -60,7 +78,8 @@
 						パスワード：
 
 						<form:input type="password" path="password" id="Pas"
-							oninput="CheckPassword(this)" value="${fn:escapeXml(user.password)}"/>
+							oninput="CheckPassword(this)"
+							value="${fn:escapeXml(user.password)}" />
 						<span onclick="ChangeVisibleStatus()" class="ViewPoint">👁</span>
 						<form:errors path="password" cssStyle="color: red" />
 					</p>
@@ -70,7 +89,8 @@
 						パスワード確認用：
 
 						<form:input type="password" path="passConfirmation" id="Pas2"
-							oninput="CheckPassword(this)" value="${fn:escapeXml(user.password)}"/>
+							oninput="CheckPassword(this)"
+							value="${fn:escapeXml(user.password)}" />
 						<span onclick="ChangeVisibleStatus2()" class="ViewPoint">👁</span>
 						<form:errors path="passConfirmation" cssStyle="color: red" />
 					</p>
