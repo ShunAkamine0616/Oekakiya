@@ -1,11 +1,11 @@
 package com.example.demo.entity;
 
 public class User {
-	private int id;
+	private Integer id;
 	private String accountId;
 	private String password;
 	private String name;
-	private int role;
+	private Integer role;
 	private String iconPath;
 	private String mail;
 	private String introduction;
@@ -25,7 +25,7 @@ public class User {
 	public int getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	
@@ -53,7 +53,7 @@ public class User {
 	public int getRole() {
 		return role;
 	}
-	public void setRole(int role) {
+	public void setRole(Integer role) {
 		this.role = role;
 	}
 	

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.demo.controller.form.EditForm;
 import com.example.demo.entity.Category;
 import com.example.demo.entity.Image;
+import com.example.demo.entity.User;
 import com.example.demo.service.CategoryService;
 import com.example.demo.service.ImageService;
 
@@ -33,8 +34,13 @@ public class ImageDetailController {
 	
 	@RequestMapping(path="/detail", method = RequestMethod.GET)
     public String detail(@RequestParam("id") Integer imageId,@ModelAttribute("postingEdit") EditForm form, Model model) {
-		//仮のユーザーIDを保存
-		session.setAttribute("UserId", 2);
+		
+		
+		//ユーザー情報を取得
+		User user = (User) session.getAttribute("user");
+		Integer users = user.getId();
+		//ユーザーIDを保存
+		session.setAttribute("UserId", users);
 		
 		
 		//セッションに保存されたuserIdを取得
@@ -57,7 +63,7 @@ public class ImageDetailController {
 			session.setAttribute("images",images);
 			return "postingEdit";
 		}else{
-			Image DlImages =imageService.findByImageId(1);
+			Image DlImages =imageService.findByImageId(imageId);
 	    	session.setAttribute("downloadImg",DlImages);
 			return"download";
 			//投稿詳細画面へ

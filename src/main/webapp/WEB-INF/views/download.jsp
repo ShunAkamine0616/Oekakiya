@@ -11,6 +11,7 @@
 <link href="css/commons.css" rel="stylesheet">
 <link rel="stylesheet" href="css/header.css">
 <link href="css/download.css" rel="stylesheet">
+<link href="css/postingEdit.css" rel="stylesheet">
 <title>Insert title here</title>
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -66,10 +67,16 @@
 	<div class="downloadImg">
 		<img src="${downloadImg.imagePath}">
 	</div>
-	<div class="downloadInfo">
-		タイトル <span class=Lavel>${downloadImg.imageTitle}</span><br> カテゴリ<span
-			class=Lavel>${downloadImg.categoryId}</span><br>
+	<div class="item">
+ 	<div class="rightitem">
+        
+		タイトル <div class="title">${downloadImg.imageTitle}</div><br>
+		 カテゴリ<div
+			class="category">${downloadImg.categoryId}</div><br>
+		 <div class="comment">
 		${downloadImg.comment}
+		</div>
+	</div>
 	</div>
 	<c:if test="${user.role == 2}">
 		<button class="light_blue_btn">
