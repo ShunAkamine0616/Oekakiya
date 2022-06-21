@@ -362,9 +362,13 @@ hr {
 	-moz-appearance: none;
 	-webkit-appearance: none;
 	appearance: none;
-	background-color: transparent;
+/* 	background-color: transparent; */
+/* 	変更↓ */
+	background-color: white; 
 	background-image: none;
-	border: 1px solid rgba(0, 0, 0, 0.16);
+/* 	border: 1px solid rgba(0, 0, 0, 0.16); */
+	/* 	変更↓ */
+	border: 1px solid black;
 	border-radius: 0;
 	color: inherit;
 	font-family: inherit;
