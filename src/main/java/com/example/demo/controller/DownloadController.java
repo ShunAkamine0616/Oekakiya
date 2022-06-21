@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.demo.controller.form.DownloadForm;
+import com.example.demo.controller.form.LoginForm;
 import com.example.demo.service.DownloadService;
 import com.example.demo.service.ImageService;
 

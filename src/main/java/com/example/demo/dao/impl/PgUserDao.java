@@ -18,6 +18,7 @@ public class PgUserDao implements UserDao {
 	private static final String SQL_SELECT_FOLLOW_USER = "SELECT * FROM users u JOIN follow f ON u.id = f.user_id "
 			+ "WHERE f.user_id = :userId AND account_id LIKE :keyword OR name LIKE :keyword ";
 	private static final String SQL_SELECT_USER = "SELECT * FROM users WHERE id = :id";
+	private static final String SQL_LOGIN_USER = "SELECT * FROM users WHERE account_id = :account_id AND password = :password";
 	private static final String SQL_INSERT_USER = "INSERT INTO users(account_id, password, name, role) VALUES(:accountId, :password, :name, 2)";
 	private static final String SQL_UPDATE_USER = "UPDATE users SET account_id = :accountId, password = :passwprd, name = :name, "
 			+ "icon_path = :iconPath, mail = :mail, introduction = :introduction";
@@ -57,6 +58,17 @@ public class PgUserDao implements UserDao {
 		MapSqlParameterSource param = new MapSqlParameterSource();
 		param.addValue("id", id);
 		
+		List<User> userList = jdbcTemplate.query(sql, param, new BeanPropertyRowMapper<User>(User.class));
+		return userList.isEmpty() ? null : userList.get(0);
+	}
+	
+	//ログイン
+	@Override
+	public User login(String accountid, String password) {
+		String sql = SQL_LOGIN_USER;
+		MapSqlParameterSource param = new MapSqlParameterSource();
+		param.addValue("account_id", accountid);
+		param.addValue("password", password);
 		List<User> userList = jdbcTemplate.query(sql, param, new BeanPropertyRowMapper<User>(User.class));
 		return userList.isEmpty() ? null : userList.get(0);
 	}
