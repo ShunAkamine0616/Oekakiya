@@ -11,6 +11,10 @@ public class Image {
 	private Integer userId;
 	private Timestamp createdAt;
 	private Timestamp updatedAt;
+	private Integer favorite;
+	private Integer download;
+
+	
 
 	public Image() {
 
@@ -78,5 +82,21 @@ public class Image {
 	}
 	public void setUpdatedAt(Timestamp updatedAt) {
 		this.updatedAt = updatedAt;
+	}
+	
+	public Integer getFavorite() {
+		return favorite;
+	}
+
+	public void setFavorite(Integer favorite) {
+		this.favorite = favorite;
+	}
+
+	public Integer getDownload() {
+		return download;
+	}
+
+	public void setDownload(Integer download) {
+		this.download = download;
 	}
 }

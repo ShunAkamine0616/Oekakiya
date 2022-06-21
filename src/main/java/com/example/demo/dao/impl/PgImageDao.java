@@ -15,8 +15,13 @@ import com.example.demo.entity.Image;
 @Repository
 public class PgImageDao implements ImageDao {
 
-	String SQL_SELECT_IMAGE_BY_KEYWORD = "SELECT * FROM images WHERE (image_title LIKE :keyword OR comment LIKE :keyword) ";
-	
+	String SQL_SELECT_IMAGE_BY_KEYWORD = "SELECT im.id, im.image_title, im.image_path, im.comment, im.category_id, im.user_id, im.created_at, im.updated_at, COALESCE(f.favorite,0) AS favorite, COALESCE(dl.download,0) AS download FROM images im "
+			+ "LEFT JOIN (SELECT image_id, count(*) favorite FROM favorite GROUP BY image_id) f "
+			+ "ON im.id = f.image_id "
+			+ "LEFT JOIN (SELECT image_id, count(*) download FROM downloads GROUP BY image_id) dl "
+			+ "ON im.id = dl.image_id "
+			+ "WHERE (im.image_title LIKE :keyword OR im.comment LIKE :keyword) ";
+
 	private static final String SQL_INSERT_IMAGE = "INSERT INTO images(image_title, image_path, comment, category_id, user_id, created_at, updated_at) VALUES(:image_title, :image_path, :comment, :category_id, :user_id, current_timestamp, current_timestamp)";
 	private static final String SQL_DELETE_IMAGE = "DELETE FROM images WHERE id = :id";
 	private static final String SQL_DELETE_IMAGE_BY_USERID = "DELETE FROM images WHERE user_id = :user_id";
@@ -32,7 +37,7 @@ public class PgImageDao implements ImageDao {
 		String sql = SQL_SELECT_IMAGE_BY_KEYWORD;
 		MapSqlParameterSource param = new MapSqlParameterSource();
 		if(!" ".equals(categoryId)) {
-			sql += "AND category_id IN ("+categoryId+") ORDER BY "+ sort;
+			sql += "AND im.category_id IN ("+categoryId+") ORDER BY "+ sort;
 		}else {
 			sql += "ORDER BY "+ sort;
 		}
@@ -42,12 +47,17 @@ public class PgImageDao implements ImageDao {
 		return resultList.isEmpty() ? null : resultList;
 	}
 	public List<Image> findFollow(String keyword, String categoryId, String sort, Integer userId) {
-		String SQL_SELECT_IMAGE_BY_FOLLOW = "SELECT * FROM images im JOIN categories c ON im.category_id ="+ categoryId +") "
-				+ "WHERE image_title LIKE "+ keyword + " OR comment LIKE "+ keyword + " AND user_id IN "
-				+ "(SELECT follow_user_id FROM follow WHERE user_id = "+ userId + ")"
-				+ " ORDER BY " + sort;
-		String sql = SQL_SELECT_IMAGE_BY_FOLLOW;
-		List<Image> resultList = jdbcTemplate.query(sql, new BeanPropertyRowMapper<Image>(Image.class));
+		String sql = SQL_SELECT_IMAGE_BY_KEYWORD;
+		MapSqlParameterSource param = new MapSqlParameterSource();
+		if(!" ".equals(categoryId)) {
+			sql += "AND im.category_id IN ("+categoryId+") AND im.user_id IN (select follow_user_id from follow where user_id = :userId) ORDER BY "+ sort;
+		}else {
+			sql += "AND im.user_id IN (select follow_user_id from follow where user_id = :userId) ORDER BY "+ sort;
+		}
+		param.addValue("keyword", "%"+keyword+"%");
+		param.addValue("userId", userId);
+		List<Image> resultList = jdbcTemplate.query(sql, param, new BeanPropertyRowMapper<Image>(Image.class));
+
 		return resultList.isEmpty() ? null : resultList;
 	}
 	public List<Image> findByUserId(Integer userId) {
