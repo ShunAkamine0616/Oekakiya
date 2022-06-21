@@ -44,17 +44,17 @@
 			</div>
 		</c:if>
 		<p>${ msg }</p>
-		<form method="get" action="/search">
+		<form method="get" action="/search" id = "target">
 			<div class="search_container">
-				<input type="text" size="25" name="keyword" placeholder="キーワード検索">
+				<input type="text" size="25" name="keyword" id="keyword" placeholder="キーワード検索">
 				<input type="submit" value="&#xf002">
 			</div>
 			<input type="button" value="ユーザー"> <input type="button"
 				value="イラスト"> <br> <br>
 			<div>
-				<label>検索対象：</label> <label> <input type="radio" name="user"
+				<label>検索対象：</label> <label> <input type="radio" name="user" id="user"
 					value="all" checked>すべて
-				</label> <label> <input type="radio" name="user" value="follow">フォロー
+				</label> <label> <input type="radio" name="user" id="user" value="follow">フォロー
 				</label>
 			</div>
 			<br>
@@ -64,19 +64,29 @@
 			<!--   チェックボックス   -->
 			<div class="checkboxes">
 				カテゴリを選択してください <input name="category" type="hidden" value=" ">
-				<label> <input type="checkbox" name="category" value=1>
-					<span>checkbox1</span>
-				</label> <label> <input type="checkbox" name="category" value=2>
+				<c:forEach var="category" items="${category}">
+				<label> 
+					<input type="checkbox" name="category" value=${ category.getId() }>
+					<span>${ category.getCategoryName() }</span>
+				</label> 
+				</c:forEach>
+				<!-- <label> 
+					<input type="checkbox" name="category" value=2>
 					<span>checkbox2</span>
-				</label> <label> <input type="checkbox" name="category" value=3>
+				</label> 
+				<label> 
+					<input type="checkbox" name="category" value=3>
 					<span>checkbox3</span>
-				</label>
+				</label> -->
 			</div>
-
-
+			<script>
+				var element = document.getElementById
+				var radioNodeList = element.user;
+			</script>
 			<div class="order">
 				<label for="sort">並び替え</label>
-				<select class="base-text center" id="sort" name="order" style="background-color: white;">
+				<select class="base-text center" id="sort" name="order" style="background-color: white;" 
+				onChange="location.href='search?keyword='+document.getElementById('keyword').value+'&user='+document.getElementById('keyword').value+'&category=+&order='+value">
 					<option value="created_at" selected>投稿日</option>
 					<option value="updated_at">更新日</option>
 					<option value="download DESC">ダウンロード数</option>
