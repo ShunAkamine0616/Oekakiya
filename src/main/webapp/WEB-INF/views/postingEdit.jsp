@@ -18,8 +18,8 @@
 <form:form action="edit" class="form" method="post" modelAttribute="postingEdit">
  <div class="container">
     <div class="item">
-        <div class="background-img"></div>
-    		<div class="">
+    	<div class="leftitem">
+           <div class="background-img"></div>
 				<form:button type="submit">編集</form:button>
 				<button type="button" onclick="openModal()">消去</button>
 				<div id="modal">
@@ -30,12 +30,13 @@
 					</div>
 				</div>
 				<button type="button" onclick="location.href='./back'">編集取消</button>
-			</div>
+		</div>
 	</div>
  <div class="item">
+ 	<div class="rightitem">
         <div class="title">
             <label>タイトル</label>
-            <form:input type="text" value="${image.getImageTitle()}" path="title"/>
+            <form:input type="text" value="${images.getImageTitle()}" path="title"/>
             
         </div>
         <div class="category">
@@ -49,6 +50,7 @@
             <label>コメント</label>
             <form:textarea path="comment"></form:textarea>
         </div>
+   </div>
 </div>
 
  </div>

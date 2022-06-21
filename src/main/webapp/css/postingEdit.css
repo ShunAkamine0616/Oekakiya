@@ -8,11 +8,13 @@
 }
 .item{
 margin:50px;
+
 }
 .container{
     display:flex;
     align-items: center;
     height: 80vh;
+
 }
 .container2{
     display: flex;
@@ -22,9 +24,7 @@ margin:50px;
 padding: 50px;
 margin-top: 80px;
 }
-.form{
-    margin-left: 200px;
-}
+
 .button{
     margin-left:350px;
     margin-top: 100px;
@@ -42,3 +42,5 @@ button{
 .comment{
 	margin-top:70px;
 }
+
+

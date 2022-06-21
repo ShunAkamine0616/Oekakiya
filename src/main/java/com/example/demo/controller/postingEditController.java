@@ -51,23 +51,23 @@ public class postingEditController{
 		image.setImageTitle(form.getTitle());
 		image.setComment(form.getComment());
 		image.setCategoryId(form.getCategoryId());
-		int imageid = (int)session.getAttribute("imageid");  
-		image.setId(imageid);		
+		int imageId = (int)session.getAttribute("imageId");  
+		image.setId(imageId);		
 		imageservice.update(image);
 		return "postingEdit";
 	}
 	
 	@RequestMapping(value="/delete",method = RequestMethod.GET)
 	public String delete(@ModelAttribute("postingEdit") EditForm from, Model model) {
-		int imageid = (int)session.getAttribute("imageid"); 
-		imageservice.delete(imageid);
+		int imageId = (int)session.getAttribute("imageId"); 
+		imageservice.delete(imageId);
 		return "postingEdit";
 	}
 	
 	@RequestMapping(value="/mypegeBack",method = RequestMethod.GET)
-	public String cancel(@ModelAttribute("postingEdit") EditForm from, Model model) {
+	public String cancel(@ModelAttribute("postingEdit") EditForm form, Model model) {
 		//まいぺーじができたら遷移先を決める。
-		return "postingEdit";
+		return "";
 	}
 	
 	
