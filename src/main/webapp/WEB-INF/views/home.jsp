@@ -79,8 +79,8 @@
 				<select class="base-text center" id="sort" name="order" style="background-color: white;">
 					<option value="created_at" selected>投稿日</option>
 					<option value="updated_at">更新日</option>
-					<option value="download">ダウンロード数</option>
-					<option value="favorite">いいね数</option>
+					<option value="download DESC">ダウンロード数</option>
+					<option value="favorite DESC">いいね数</option>
 				</select>
 			</div>
 		</form>
@@ -92,7 +92,7 @@
 						<img src=${ image.getImagePath() }>
 					</a>
 					<p>${ image.getImageTitle() }</p>
-
+					<p>いいね：${ image.getFavorite() }   DL：${ image.getDownload() }</p>
 				</div>
 			</c:forEach>
 		</div>
