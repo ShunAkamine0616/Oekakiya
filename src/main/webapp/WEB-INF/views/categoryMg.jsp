@@ -27,7 +27,7 @@
                     
             <c:forEach var="category" items="${category}">
             <div class="item">
-		            <input type="text" value="${category.getCategoryName()}" name ="name">
+		            <input type="text" value="${category.getCategoryName()}" name ="${category.getId()}">
                     <button type="button"class="">✏</button>
                     <button type="submit" value="${category.getId()}" name="id" class="">🔄</button>
                     <button type="button" class="">🚮</button>
