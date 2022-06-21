@@ -14,7 +14,7 @@ import com.example.demo.entity.Category;
 @Repository
 public class PgCategoryDao implements CategoryDao {
 	private static final String SQL_INSERT_CATEGORY = "insert into categories(category_name) values(:categoryName)";
-	private static final String SQL_UPDATE_CATEGORY = "UPDATE categories SET category_name = :category_name WHERE id = :id";
+	private static final String SQL_UPDATE_CATEGORY = "UPDATE categories SET category_name = :categoryName WHERE id = :id";
 	private static final String SQL_DELETE_CATEGORY = "DELETE FROM categories WHERE id = :id";
 	
 	@Autowired
@@ -37,6 +37,7 @@ public class PgCategoryDao implements CategoryDao {
 		String sql = SQL_UPDATE_CATEGORY;
         MapSqlParameterSource param = new MapSqlParameterSource();
         param.addValue("categoryName", categoryName);
+        param.addValue("id", id);
         
         return jdbcTemplate.update(sql, param);
 	}
