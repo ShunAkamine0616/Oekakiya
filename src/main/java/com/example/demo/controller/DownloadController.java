@@ -34,7 +34,7 @@ public class DownloadController {
     }
  // ログイン画面遷移
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String insert(@ModelAttribute("login") DownloadForm downloadform, Model model) {
+    public String insert(@ModelAttribute("login") LoginForm loginform, Model model) {
         return "login";
     }
     
