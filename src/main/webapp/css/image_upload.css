@@ -17,7 +17,9 @@ textarea {
 .image_preview {
 	/* 空の要素なので、高さの定義が必要です。 */
 	/* 	width:1000px; */
-	background-color: white;
+	min-width: 100px;
+	max-width: 300px;
+	background-color: transparent;
 	/* 	background-image: */
 	/* 		url("/images/icon_001050_256.png"); */
 	/* 	background-size: 40px; */

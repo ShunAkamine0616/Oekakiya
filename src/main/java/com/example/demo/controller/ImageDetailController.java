@@ -30,10 +30,13 @@ public class ImageDetailController {
 	@Autowired
 	private CategoryService categoryService;
 	
+	
 	@RequestMapping(path="/detail", method = RequestMethod.GET)
     public String detail(@RequestParam("id") Integer imageId,@ModelAttribute("postingEdit") EditForm form, Model model) {
 		//仮のユーザーIDを保存
-		session.setAttribute("UserId", 1);
+		session.setAttribute("UserId", 2);
+		
+		
 		//セッションに保存されたuserIdを取得
 		int userId = (int) session.getAttribute("UserId");
 		//imageIdから投稿情報を取得
@@ -53,10 +56,13 @@ public class ImageDetailController {
 			session.setAttribute("category",category);
 			session.setAttribute("images",images);
 			return "postingEdit";
-		}else {
+		}else{
+			Image DlImages =imageService.findByImageId(1);
+	    	session.setAttribute("downloadImg",DlImages);
+			return"download";
 			//投稿詳細画面へ
 		}
 		
-        return "";
+      
     }
 }

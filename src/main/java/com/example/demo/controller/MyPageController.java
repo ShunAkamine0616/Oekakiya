@@ -31,11 +31,13 @@ public class MyPageController {
 	HttpSession session;
 	@Autowired
 	UserService userService;
+	//マイページ編集遷移
 	@RequestMapping(path = "inputEditMyPage", method = RequestMethod.GET)
 	String uploadview(@ModelAttribute("editMyPage") EditMyPageForm editMyPageForm, Model model) {
 
 		return "editMyPage";
 	}
+	//マイページ編集処理
 	@RequestMapping(path = "editMyPage", method = RequestMethod.POST)
 	String editMyPage(@Validated @ModelAttribute("editMyPage") EditMyPageForm editMyPageFrom, BindingResult bindingResult, Model model, HttpServletRequest req) {
 		// 入力チェック
@@ -45,7 +47,7 @@ public class MyPageController {
 		if (editMyPageFrom.getFile().isEmpty()) {
 			return "editMyPage";
 		}
-
+		User user = (User) session.getAttribute("user");
 		int dot = editMyPageFrom.getFile().getOriginalFilename().lastIndexOf(".");
 		//拡張子
 		String extention = "";
@@ -56,10 +58,10 @@ public class MyPageController {
 		String filename = editMyPageFrom.getName() + DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS").format(LocalDateTime.now());
 		System.out.println("filename = " + filename);
 		//画像インスタンス生成
-		User user = new User(editMyPageFrom.getAccountId(), editMyPageFrom.getPassword(), editMyPageFrom.getName(), "images/" + filename + extention, editMyPageFrom.getMail(), editMyPageFrom.getIntroduction());
-		user.setId(4);
-		if(userService.update(user) == 0) {
-			session.setAttribute("imgErrMsg", "編集できませんでした。");
+		User newUser = new User(editMyPageFrom.getAccountId(), editMyPageFrom.getPassword(), editMyPageFrom.getName(), "images/" + filename + extention, editMyPageFrom.getMail(), editMyPageFrom.getIntroduction());
+		newUser.setId(user.getId());
+		if(userService.update(newUser) == 0) {
+			model.addAttribute("imgErrMsg", "編集できませんでした。");
 			return "editMyPage";
 		}
 
@@ -91,7 +93,7 @@ public class MyPageController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		session.setAttribute("user", userService.findById(user.getId()));
 		return "editMyPage";
 	}
 }

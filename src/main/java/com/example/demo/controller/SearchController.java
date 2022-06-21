@@ -22,19 +22,25 @@ public class SearchController {
 	@RequestMapping({ "/", "/home" })
     public String index( Model model) {
 		ArrayList<Image> imageList = (ArrayList<Image>) imageService.findByKeyword("", " ", "created_at");
-		model.addAttribute("imageList",imageList);
-		System.out.println(imageList.get(0).getImagePath());
+		if(imageList != null) {
+			model.addAttribute("imageList",imageList);
+			System.out.println(imageList.get(0).getImagePath());
+		}
         return "home";
     }
 	
 	@RequestMapping("/search")
     public String search(@RequestParam("keyword") String key, @RequestParam("category") String category, @RequestParam("user") String user, @RequestParam("order") String order, Model model) {
+		//sessionからUserIdを取得
+		int userId = 3;
 		ArrayList<Image> imageList = null;
 		category = category.replace(" ,", "");
         if("all".equals(user)) {
-        	imageList = (ArrayList<Image>) imageService.findByKeyword(key, category, "id");
+        	System.out.println("all");
+        	imageList = (ArrayList<Image>) imageService.findByKeyword(key, category, order);
         }else {
-        	imageList = (ArrayList<Image>) imageService.findByKeyword(key, category, "id");
+        	System.out.println("follow");
+        	imageList = (ArrayList<Image>) imageService.findFollow(key, category, order, userId);
         }
 		model.addAttribute("imageList",imageList);
 		return "home";
