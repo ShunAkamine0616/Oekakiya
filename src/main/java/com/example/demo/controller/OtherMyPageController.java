@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -31,7 +31,7 @@ public class OtherMyPageController {
 	@RequestMapping({"/other"})
 	public String other(Model model) {
 		User userMe = userService.findById(1);
-		model.addAttribute("userMe", userMe);
+		model.addAttribute("user", userMe);
 		
 		User userOther = userService.findById(2);
 		model.addAttribute("userOther", userOther);
@@ -41,7 +41,7 @@ public class OtherMyPageController {
 		model.addAttribute("followCnt", follow);
 		
 		
-		ArrayList<Image> imageList = (ArrayList<Image>) imageService.findByUserId(userOther.getId());
+		List<Image> imageList = (List<Image>) imageService.findByUserId(userOther.getId());
 		if(imageList != null) {
 			model.addAttribute("imageList",imageList);
 			System.out.println(imageList.get(0).getImagePath());

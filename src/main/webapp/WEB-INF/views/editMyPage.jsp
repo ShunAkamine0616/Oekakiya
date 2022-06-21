@@ -30,7 +30,7 @@
 					<c:when test="${not empty user}">
 
 						<label> <a href="./inputEditMyPage"> <img id="iconAdd"
-								class="iconAdd" src="${user.iconPath}" style="max-width: 30px;">
+								class="image_circle" src="${user.iconPath}">
 						</a> ${user.name}
 
 						</label>

@@ -14,3 +14,9 @@ header{
 .header_icon{
 	display:flex;
 }
+.image_circle{
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+}

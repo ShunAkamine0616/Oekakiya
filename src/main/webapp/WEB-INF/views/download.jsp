@@ -26,37 +26,36 @@
 			<div class="item">
 			
 
-				<header>
-					<div class="header">
-						<h1>
-							<a href="./home" class="page-title">おえかきや</a>
-						</h1>
+			<header>
+		<div class="header">
+			<h1>
+				<a href="./home" class="page-title">おえかきや</a>
+			</h1>
 
-						<div class="btn-wrap">
-							<c:choose>
-								<c:when test="${empty user}">
+			<div class="btn-wrap">
+				<c:choose>
+					<c:when test="${empty user}">
         ゲスト
             <button type="button" onclick="location.href='login'"
-										class="login_btn">ログイン</button>
-								</c:when>
-								<c:when test="${not empty user}">
+							class="login_btn">ログイン</button>
+					</c:when>
+					<c:when test="${not empty user}">
 
-									<div class="header_icon"><label> <a href="./inputEditMyPage"> <img
-											id="iconAdd" class="iconAdd" src="${user.iconPath}"
-											style="max-width: 30px;">
-									</a> ${user.name}
+						<label> <a href="./inputEditMyPage"> <img id="iconAdd"
+								class="image_circle" src="${user.iconPath}">
+						</a> ${user.name}
 
-									</label></div>
-									<button type="button" onclick="location.href='login'"
-										class="logout_btn">ログアウト</button>
+						</label>
+						<button type="button" onclick="location.href='login'"
+							class="logout_btn">ログアウト</button>
 
-								</c:when>
+					</c:when>
 
-							</c:choose>
-						</div>
-					</div>
+				</c:choose>
+			</div>
+		</div>
 
-				</header>
+	</header>
 
 				<br> <br>
 				<!--     <hr width=auto class ="header_line"> -->
