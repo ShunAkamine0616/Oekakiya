@@ -55,20 +55,7 @@
 			<div class="container">
 				${ user.getIconPath() }
 				<br>
-				
 			</div>
-			<div>
-				フォロワー：${followCnt.getFollowCount()}人
-			</div>
-			<c:if test="${ user.getRole() eq '1' }">
-				<div class="right">
-					
-					<div class="btn" style="text-align: right">
-						<a class="basic_btn regist" href="/other">アカウント削除</a>
-						<a class="basic_btn regist" href="/other">管理者権限を付与</a>
-					</div>
-				</div>
-			</c:if>
 			
 			<div class="container">
 				<c:forEach var="image" items="${imageList}">
