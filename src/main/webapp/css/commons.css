@@ -52,10 +52,37 @@ body {
   cursor: pointer;
   color: black;
   margin: 10px;
+  text-color:white;
 }
-
-fieldset {
+/* ログインボタン(紫色)*/
+.login_btn {
   border: none;
+  border-radius: 5px;
+  border: 2px solid;
+  border-color: #9747FF;
+  background-color: #9747FF;
+  padding: auto;
+  line-height: 2;
+  padding: 10px;
+  cursor: pointer;
+  color: black;
+  margin: 10px;
+  text-color:white;
+}
+/* ログアウトボタン(茶色)*/
+.logout_btn {
+  border: none;
+  border-radius: 5px;
+  border: 2px solid;
+  border-color: #AA7B7B;
+  background-color: #AA7B7B;
+  padding: auto;
+  line-height: 2;
+  padding: 10px;
+  cursor: pointer;
+  color: black;
+  margin: 10px;
+  text-color:white;
 }
 
 fieldset label {

@@ -10,6 +10,18 @@ public class User {
 	private String mail;
 	private String introduction;
 	
+	public User() {
+		
+	}
+	
+	public User(String accountId, String password, String name, String iconPath, String mail, String introduction){
+		this.accountId = accountId;
+		this.password = password;
+		this.name = name;
+		this.iconPath = iconPath;
+		this.mail = mail;
+		this.introduction = introduction;
+	}
 	public int getId() {
 		return id;
 	}
