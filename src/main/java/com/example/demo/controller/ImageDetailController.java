@@ -39,7 +39,7 @@ public class ImageDetailController {
 		//ユーザー情報を取得
 		User user = (User) session.getAttribute("user");
 		Integer users = user.getId();
-		//仮のユーザーIDを保存
+		//ユーザーIDを保存
 		session.setAttribute("UserId", users);
 		
 		
