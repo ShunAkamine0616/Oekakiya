@@ -79,10 +79,7 @@
 					<span>checkbox3</span>
 				</label> -->
 			</div>
-			<script>
-				var element = document.getElementById
-				var radioNodeList = element.user;
-			</script>
+			
 			<div class="order">
 				<label for="sort">並び替え</label>
 				<select class="base-text center" id="sort" name="order" style="background-color: white;" 

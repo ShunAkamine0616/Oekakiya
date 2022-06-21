@@ -2,13 +2,17 @@ package com.example.demo.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.entity.Category;
 import com.example.demo.entity.Image;
+import com.example.demo.service.CategoryService;
 import com.example.demo.service.FollowService;
 import com.example.demo.service.ImageService;
 @Controller
@@ -18,9 +22,15 @@ public class SearchController {
 	ImageService imageService;
 	@Autowired
 	FollowService followService;
+	@Autowired
+	CategoryService categoryService;
+	@Autowired
+	HttpSession session;
 	
 	@RequestMapping({ "/", "/home" })
     public String index( Model model) {
+		ArrayList<Category> categoryList = (ArrayList<Category>) categoryService.findAll();
+		session.setAttribute("category",categoryList);
 		ArrayList<Image> imageList = (ArrayList<Image>) imageService.findByKeyword("", " ", "created_at");
 		if(imageList != null) {
 			model.addAttribute("imageList",imageList);
