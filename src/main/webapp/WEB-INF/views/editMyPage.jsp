@@ -26,9 +26,14 @@
 			</form>
 		</div>
 	</div>
-
 	<hr>
+	<input id="iconPath" type="hidden" value="${user.iconPath}"></input>
 	<div class="insert">
+		<p class="error">
+			<c:if test="${not empty imgErrMsg}">
+				<span>${fn:escapeXml(imgErrMsg)}</span>
+			</c:if>
+		</p>
 		<form:form method="post" enctype="multipart/form-data"
 			action="editMyPage" modelAttribute="editMyPage" class="upload_form">
 			<%-- 		<div>名前：<form:input path="name" /><form:errors path="name" cssStyle="color: red"/></div> --%>
@@ -37,7 +42,7 @@
 				<div>
 					<p>
 						名前：
-						<form:input path="name" />
+						<form:input path="name" value="${fn:escapeXml(user.name)}" />
 						<form:errors path="name" cssStyle="color: red" />
 					</p>
 				</div>
@@ -45,7 +50,8 @@
 					<p>
 						アカウントID：
 
-						<form:input path="accountId" />
+						<form:input path="accountId"
+							value="${fn:escapeXml(user.accountId)}" />
 						<form:errors path="accountId" cssStyle="color: red" />
 					</p>
 				</div>
@@ -54,7 +60,7 @@
 						パスワード：
 
 						<form:input type="password" path="password" id="Pas"
-							oninput="CheckPassword(this)" />
+							oninput="CheckPassword(this)" value="${fn:escapeXml(user.password)}"/>
 						<span onclick="ChangeVisibleStatus()" class="ViewPoint">👁</span>
 						<form:errors path="password" cssStyle="color: red" />
 					</p>
@@ -64,7 +70,7 @@
 						パスワード確認用：
 
 						<form:input type="password" path="passConfirmation" id="Pas2"
-							oninput="CheckPassword(this)" />
+							oninput="CheckPassword(this)" value="${fn:escapeXml(user.password)}"/>
 						<span onclick="ChangeVisibleStatus2()" class="ViewPoint">👁</span>
 						<form:errors path="passConfirmation" cssStyle="color: red" />
 					</p>
@@ -72,14 +78,16 @@
 				<div>
 					<p>
 						メールアドレス：
-						<form:input type="email" path="mail" />
+						<form:input type="email" path="mail"
+							value="${fn:escapeXml(user.mail)}" />
 						<form:errors path="mail" cssStyle="color: red" />
 					</p>
 				</div>
 				<div>
 					<div>自己紹介：</div>
 					<textarea name="introduction"
-						placeholder="例&#13;&#10;画像サイズ：367×400&#13;&#10;用途：アイコン&#13;&#10;かわいい感じで書いてみました。アイコンなどに自由に使ってください。"></textarea>
+						placeholder="例&#13;&#10;画像サイズ：367×400&#13;&#10;用途：アイコン&#13;&#10;かわいい感じで書いてみました。アイコンなどに自由に使ってください。"
+						value="${fn:escapeXml(user.introduction)}"></textarea>
 					<form:errors path="introduction" cssStyle="color: red" />
 				</div>
 				<p>
@@ -107,12 +115,10 @@
 			<div id="modal">
 				<p class="modal_message">アカウントを削除しますか？</p>
 				<div class="btns">
-<!-- 					<button type="submit" class="basic_btn"> -->
-<!-- 						はい -->
-<!-- 					</button> -->
-					<a href="/home" class="basic_btn">
-						はい
-					</a>
+					<!-- 					<button type="submit" class="basic_btn"> -->
+					<!-- 						はい -->
+					<!-- 					</button> -->
+					<a href="/home" class="basic_btn"> はい </a>
 					<button type="button" onclick="closeModal()" class="cancel_btn">キャンセル</button>
 				</div>
 			</div>
@@ -121,11 +127,16 @@
 	</div>
 	<div id="fadeLayer"></div>
 	<script>
+		var iconPath = document.getElementById("iconPath").value;
 		window
 				.addEventListener(
 						'load',
 						function() {
-							document.getElementById('icon').src = "/images/汎用的な人のシルエットアイコン.png";
+							if (iconPath === null || iconPath === "") {
+								document.getElementById('icon').src = "/images/汎用的な人のシルエットアイコン.png";
+							} else {
+								document.getElementById('icon').src = iconPath;
+							}
 						});
 		function iconImage(obj) {
 			var fileReader = new FileReader();
@@ -174,7 +185,7 @@
 		function CheckPassword(confirm) {
 			// 入力値取得
 			document.getElementById("Pas").setCustomValidity('');
-// 			preConfirm = confirm;
+			// 			preConfirm = confirm;
 			document.getElementById("Pas2").setCustomValidity('');
 			var input1 = Pas.value;
 			var input2 = Pas2.value;
