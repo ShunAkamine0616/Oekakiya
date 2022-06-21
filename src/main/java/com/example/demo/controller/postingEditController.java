@@ -32,7 +32,7 @@ public class postingEditController{
 	@RequestMapping("/index")
 	public String index(@ModelAttribute("postingEdit") EditForm from, Model model) {
 		//後からイメージ愛ディー入れる
-		int imageid = 5;
+		int imageid = 11;
 		session.setAttribute("imageid",imageid);
 		//渡されたイメージIDをもとに情報を取得
 		from.setCategoryId(imageservice.findByImageId(imageid).getCategoryId());
@@ -59,12 +59,12 @@ public class postingEditController{
 	
 	@RequestMapping(value="/delete",method = RequestMethod.GET)
 	public String delete(@ModelAttribute("postingEdit") EditForm from, Model model) {
-		int imageid = (int)session.getAttribute("image");  
+		int imageid = (int)session.getAttribute("imageid"); 
 		imageservice.delete(imageid);
 		return "postingEdit";
 	}
 	
-	@RequestMapping(value="/back",method = RequestMethod.GET)
+	@RequestMapping(value="/mypegeBack",method = RequestMethod.GET)
 	public String cancel(@ModelAttribute("postingEdit") EditForm from, Model model) {
 		//まいぺーじができたら遷移先を決める。
 		return "postingEdit";

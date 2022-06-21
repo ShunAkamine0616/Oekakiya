@@ -21,8 +21,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.demo.controller.form.EditMyPageForm;
-import com.example.demo.entity.Image;
-import com.example.demo.service.ImageService;
+import com.example.demo.entity.User;
+import com.example.demo.service.UserService;
 
 @Controller
 @MultipartConfig
@@ -30,7 +30,7 @@ public class MyPageController {
 	@Autowired
 	HttpSession session;
 	@Autowired
-	ImageService imageService;
+	UserService userService;
 	@RequestMapping(path = "inputEditMyPage", method = RequestMethod.GET)
 	String uploadview(@ModelAttribute("editMyPage") EditMyPageForm editMyPageForm, Model model) {
 
@@ -54,12 +54,13 @@ public class MyPageController {
 		}
 		// ファイル名
 		String filename = editMyPageFrom.getName() + DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS").format(LocalDateTime.now());
-
+		System.out.println("filename = " + filename);
 		//画像インスタンス生成
-		Image image = new Image(editMyPageFrom.getName(), "/images/" + filename, "", 0, 1);
-		if(imageService.insert(image) == 0) {
-			session.setAttribute("imgErrMsg", "投稿できませんでした。");
-			return "imagePosting";
+		User user = new User(editMyPageFrom.getAccountId(), editMyPageFrom.getPassword(), editMyPageFrom.getName(), "images/" + filename + extention, editMyPageFrom.getMail(), editMyPageFrom.getIntroduction());
+		user.setId(4);
+		if(userService.update(user) == 0) {
+			session.setAttribute("imgErrMsg", "編集できませんでした。");
+			return "editMyPage";
 		}
 
 		try (BufferedInputStream bis = new BufferedInputStream(editMyPageFrom.getFile().getInputStream());
@@ -71,7 +72,6 @@ public class MyPageController {
 
 			//read(byte[] b)メソッドで返ってくる、読み取ったバイト配列の長さを格納するためのint型変数を宣言します。
 			int len;
-
 			//read(byte[] b)メソッドはバイト配列に読み取ったバイトの情報をコピーしますが、
 			//読み取ったバイト配列の長さをint型で返し、ファイルの終わりに達した場合は-1を返します。
 			//そのため、bis.read(data)が-1を返すまでwhileループさせるとファイル全体を読み込むことができます。
@@ -85,6 +85,7 @@ public class MyPageController {
 				//バイト配列dataの内容をsample3.jpgに書き込みます。
 				bos.write(data, 0, len);
 				bos.flush();
+				System.out.println("filename = " + filename);
 				//				bos.close();
 			}
 		} catch (Exception e) {

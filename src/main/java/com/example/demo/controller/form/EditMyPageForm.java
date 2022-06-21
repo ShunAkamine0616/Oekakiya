@@ -1,33 +1,35 @@
 package com.example.demo.controller.form;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.web.multipart.MultipartFile;
 
 public class EditMyPageForm {
-	@NotNull(message="名前は必須です。")
+	@NotBlank(message="名前は必須です。")
 	private String name;
-	@NotNull(message="アカウントIDは必須です。")
-	private Integer accountId;
-	@NotNull(message="パスワードは必須です。")
+	@NotBlank(message="アカウントIDは必須です。")
+	private String accountId;
+	@NotBlank(message="パスワードは必須です。")
 	private String password;
-	@NotNull(message="パスワード確認用は必須です。")
+	@NotBlank(message="パスワード確認用は必須です。")
 	private String passConfirmation;
 	private String mail;
 	private String introduction;
 	@NotNull(message="画像ファイルが選択されていません。  ")
 	private MultipartFile file;
-	
+
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Integer getAccountId() {
+
+	public String getAccountId() {
 		return accountId;
 	}
-	public void setAccountId(Integer accountId) {
+	public void setAccountId(String accountId) {
 		this.accountId = accountId;
 	}
 	public String getPassword() {
@@ -60,6 +62,6 @@ public class EditMyPageForm {
 	public void setFile(MultipartFile file) {
 		this.file = file;
 	} 
-	
-	
+
+
 }

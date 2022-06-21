@@ -85,12 +85,12 @@
 				<p>
 					<input name="file" type="file" id="file_upload"
 						onchange="iconImage(this);"> <input type="submit"
-						value="編集完了" class="light_blue_btn" id="editEnd" /> 
-						<input
-						type="button" onclick="location.href='back'" value="削除"
-						class="delete_btn">
-						<input
-						type="button" onclick="location.href='back'" value="編集取消"
+						value="編集完了" class="light_blue_btn" id="editEnd" /> <input
+						type="button" onclick="openModal()" value="削除" class="delete_btn">
+					<!-- 						<input -->
+					<!-- 						type="button" onclick="location.href='home'" value="削除" -->
+					<!-- 						class="delete_btn"> -->
+					<input type="button" onclick="location.href='home'" value="編集取消"
 						class="gray_btn">
 				</p>
 			</div>
@@ -104,8 +104,22 @@
 			<label for="file_upload"> <img id="iconAdd" class="iconAdd"
 				src="/images/icon_001050_256.png" style="max-width: 30px;">
 			</label>
+			<div id="modal">
+				<p class="modal_message">アカウントを削除しますか？</p>
+				<div class="btns">
+<!-- 					<button type="submit" class="basic_btn"> -->
+<!-- 						はい -->
+<!-- 					</button> -->
+					<a href="/home" class="basic_btn">
+						はい
+					</a>
+					<button type="button" onclick="closeModal()" class="cancel_btn">キャンセル</button>
+				</div>
+			</div>
 		</form:form>
 	</div>
+	</div>
+	<div id="fadeLayer"></div>
 	<script>
 		window
 				.addEventListener(
@@ -179,3 +193,4 @@
 	</script>
 </body>
 </html>
+<script src="./js/commons.js"></script>
