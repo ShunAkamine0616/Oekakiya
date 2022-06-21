@@ -27,7 +27,7 @@ public class DownloadController {
 	// 登録画面遷移
     @RequestMapping(value = "/download", method = RequestMethod.GET)
     public String download(@ModelAttribute("download") DownloadForm downloadform, Model model) {
-    	session.setAttribute("downloadImg",imageService.findByImageId(3));
+    	session.setAttribute("downloadImg",imageService.findByImageId(4));
     	
         return "download";
     }
