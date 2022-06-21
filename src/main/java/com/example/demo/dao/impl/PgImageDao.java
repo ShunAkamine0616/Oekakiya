@@ -26,7 +26,13 @@ public class PgImageDao implements ImageDao {
 	private static final String SQL_DELETE_IMAGE = "DELETE FROM images WHERE id = :id";
 	private static final String SQL_DELETE_IMAGE_BY_USERID = "DELETE FROM images WHERE user_id = :user_id";
 	private static final String SQL_UPDATE_IMAGE = "UPDATE images SET image_title = :image_title,comment = :comment, category_id = :category_id, updated_at = current_timestamp WHERE id = :id;";
-
+	private static final String SQL_COUNT_SELECT_ID ="SELECT COALESCE(f.favorite,0) AS favorite, COALESCE(dl.download,0) AS download FROM images im \r\n"
+			+ "			LEFT JOIN (SELECT image_id, count(*) favorite FROM favorite GROUP BY image_id) f \r\n"
+			+ "			ON im.id = f.image_id \r\n"
+			+ "			LEFT JOIN (SELECT image_id, count(*) download FROM downloads GROUP BY image_id) dl \r\n"
+			+ "			ON im.id = dl.image_id \r\n"
+			+ "			WHERE (im.id = :imageId);";
+	
 	@Autowired
 	private NamedParameterJdbcTemplate jdbcTemplate;
 	@Autowired
@@ -44,6 +50,13 @@ public class PgImageDao implements ImageDao {
 		param.addValue("keyword", "%"+keyword+"%");
 		List<Image> resultList = jdbcTemplate.query(sql, param, new BeanPropertyRowMapper<Image>(Image.class));
 
+		return resultList.isEmpty() ? null : resultList;
+	}
+	public List<Image> findByIdCount(Integer imageId){
+		String sql = SQL_COUNT_SELECT_ID;
+		MapSqlParameterSource param = new MapSqlParameterSource();
+		 param.addValue("imageId", imageId);
+		List<Image> resultList = jdbcTemplate.query(sql, new BeanPropertyRowMapper<Image>(Image.class));
 		return resultList.isEmpty() ? null : resultList;
 	}
 	public List<Image> findFollow(String keyword, String categoryId, String sort, Integer userId) {
