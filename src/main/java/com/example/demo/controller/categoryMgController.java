@@ -35,7 +35,7 @@ public class categoryMgController{
 		return "categoryMg";
 	}
 	@RequestMapping("/categoryEdit")
-	public String edit(@RequestParam("id") int id,@RequestParam("name") String name,Model model) {
+	public String edit(@RequestParam("id") int id,@RequestParam("1") String name,Model model) {
 		//categoryを全権取得
 		System.out.println(id);
 		System.out.println(name);
