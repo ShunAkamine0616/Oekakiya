@@ -15,3 +15,16 @@ function addClass() {
     let modal = document.getElementById('modal');
     modal.classList.add('is-show');
 }
+
+function edit(id){
+	
+	if (document.getElementById(id).readOnly === true){
+		document.getElementById(id).removeAttribute("readOnly");
+		document.getElementById(id).style.background = "white";
+		document.getElementById(id).style.color = "black";
+	}else{
+		document.getElementById(id).setAttribute("readOnly", true);
+		document.getElementById(id).style.background = 'rgb(211,211,211)';
+		document.getElementById(id).style.color = "black";
+	}
+}

@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,8 @@ public class categoryMgController{
 	
 	@Autowired
 	HttpSession session;
-	
+	@Autowired
+    private HttpServletRequest req;
 	@Autowired
 	private ImageService imageservice;
 	@Autowired
@@ -34,13 +36,35 @@ public class categoryMgController{
 		session.setAttribute("category",category);
 		return "categoryMg";
 	}
-	@RequestMapping("/categoryEdit")
-	public String edit(@RequestParam("id") int id,@RequestParam("1") String name,Model model) {
+	@RequestMapping(value = "/categoryEdit",params ="editId")
+	public String edit(@RequestParam("editId") Integer id,Model model) {
 		//categoryを全権取得
-		System.out.println(id);
-		System.out.println(name);
+		String name = req.getParameter(id.toString());
 		int update = categoryservice.update(id,name);
-		System.out.println(update);
+		List<Category> category = new ArrayList<>();
+		category = categoryservice.findAll();
+		session.setAttribute("category",category);
+		return "categoryMg";
+	}
+	@RequestMapping(value = "/categoryEdit",params ="deleteId")
+	public String delete(@RequestParam("deleteId") Integer[] id,Model model) {
+		System.out.println(id.length);
+		for(Integer i :id) {
+			int delete = categoryservice.delete(i);
+			System.out.println(delete);
+		}
+		
+		List<Category> category = new ArrayList<>();
+		category = categoryservice.findAll();
+		session.setAttribute("category",category);
+		return "categoryMg";
+	}
+
+	@RequestMapping("/categoryinsert")
+	public String insert(@RequestParam("name") String name,Model model) {
+
+		int insert = categoryservice.insert(name);
+		System.out.println(insert);
 		List<Category> category = new ArrayList<>();
 		category = categoryservice.findAll();
 		session.setAttribute("category",category);
