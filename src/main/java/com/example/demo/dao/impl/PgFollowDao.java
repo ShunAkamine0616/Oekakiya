@@ -16,7 +16,7 @@ import com.example.demo.entity.Follow;
 public class PgFollowDao implements FollowDao {
 	
 	private static final String SQL_SELECT = "SELECT * FROM follow WHERE user_id = :userId";
-	private static final String SQL_FOLLOW_COUNT = "SELECT follow_user_id, count(*) follow_count FROM follow WHERE follow_user_id = :userId GROUP BY follow_user_id";
+	private static final String SQL_FOLLOW_COUNT = "SELECT COALESCE(count(*)) AS follow_count FROM follow WHERE follow_user_id = :userId";
 	private static final String SQL_INSERT = "INSERT INTO follow(user_id, follow_user_id) VALUES(:userId, :followUserId)";
 	private static final String SQL_DELETE = "DELETE FROM follow WHERE user_id = :userId AND follow_user_id = :followUserId";
 	private static final String SQL_DELETE_USERID = "DELETE FROM follow WHERE user_id = :userId";
@@ -36,7 +36,7 @@ public class PgFollowDao implements FollowDao {
     	String sql = SQL_FOLLOW_COUNT;
     	MapSqlParameterSource param = new MapSqlParameterSource();
     	param.addValue("userId", userFollowId);
-    	ArrayList<Follow> followCnt = (ArrayList<Follow>) jdbcTemplate.query(sql, param, new BeanPropertyRowMapper<Follow>(Follow.class));
+    	List<Follow> followCnt = jdbcTemplate.query(sql, param, new BeanPropertyRowMapper<Follow>(Follow.class));
     	return followCnt.isEmpty() ? null : followCnt.get(0);
     };
 

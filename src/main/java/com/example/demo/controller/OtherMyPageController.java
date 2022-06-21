@@ -37,7 +37,9 @@ public class OtherMyPageController {
 		model.addAttribute("userOther", userOther);
 		
 		Follow follow  = followService.countFollow(userOther.getId());
-		model.addAttribute("follow", follow);
+		
+		model.addAttribute("followCnt", follow);
+		
 		
 		ArrayList<Image> imageList = (ArrayList<Image>) imageService.findByUserId(userOther.getId());
 		if(imageList != null) {

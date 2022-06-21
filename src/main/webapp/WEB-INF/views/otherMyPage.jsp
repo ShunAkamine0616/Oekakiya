@@ -40,7 +40,7 @@
 				${ userOther.getMail() }<br>
 			</div>
 			<div>
-				フォロワー${follow.getFollow1count}人
+				フォロワー：${followCnt.getFollowCount()}人
 			</div>
 			<c:if test="${ userMe.getRole() eq '1' }">
 				<div class="btn">
