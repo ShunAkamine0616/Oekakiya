@@ -23,26 +23,39 @@
 <body>
 	<div id="app">
 
-		<div class="header">
-			<h1 class="site_logo">
-				<a href="back">商品管理システム</a>
-			</h1>
-			<div class="user">
-				<p class="user_name">${ userInfo.getName() }さん、こんにちは</p>
-				<form class="logout_form" action="logout" method="get">
-					<button class="logout_btn" type="submit">
-						<img src="images/ドアアイコン.png">ログアウト
-					</button>
-				</form>
-			</div>
-		</div>
+		<header>
+      <div class="header">
+      <h1><a href="./home" class="page-title">おえかきや</a></h1>
+     
+      <div class="btn-wrap">
+        <c:choose>
+          <c:when test="${empty user}">
+        ゲスト
+            <button type="button" onclick="location.href='login'" class="login_btn">ログイン</button>
+          </c:when>
+          <c:when test="${not empty user}">
+         
+          <label>
+          <a href="./inputEditMyPage">
+          <img id="iconAdd" class="iconAdd"
+				src="${user.iconPath}" style="max-width: 30px;">
+				  </a>
+          ${user.name}
+        
+          </label>
+          <button type="button" onclick="location.href='login'"  class="logout_btn">ログアウト</button>
+       
+          </c:when>
+          
+        </c:choose>
+      </div>
+    </div>
+    
+    </header>
 
 		<hr>
-		<c:if test="${ userInfo.getRole() eq '1' }">
-			<div class="btn">
-				<a class="basic_btn regist" href="/insert">新規登録</a>
-			</div>
-		</c:if>
+		<a href="upload" style="color: black;">投稿</a>
+		<a href="categoryMg" style="color: black;">カテゴリ管理</a>
 		<p>${ msg }</p>
 		<form method="get" action="/search" id = "target">
 			<div class="search_container">
@@ -51,6 +64,7 @@
 			</div>
 			<input type="button" value="ユーザー"> <input type="button"
 				value="イラスト"> <br> <br>
+			
 			<div>
 				<label>検索対象：</label> <label> <input type="radio" name="user" id="user"
 					value="all" checked>すべて

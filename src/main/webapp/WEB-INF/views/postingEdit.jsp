@@ -10,6 +10,7 @@
 <title>画像編集画面</title>
 <link href="css/postingEdit.css" rel="stylesheet">
 <link href="css/commons.css" rel="stylesheet">
+
 </head>
 
 <body style="background-color:#F5F0E9;">
@@ -19,8 +20,8 @@
  <div class="container">
     <div class="item">
     	<div class="leftitem">
-           <div class="background-img"></div>
-				<form:button type="submit">編集</form:button>
+           <div class="background-img"><div class="box"><img src=${ images.getImagePath() }></div></div>
+				<form:button type="submit" class="light_blue_btn">編集</form:button>
 				<button type="button" onclick="openModal()">消去</button>
 				<div id="modal">
 					<p class="modal_message">消去しますか？</p>
