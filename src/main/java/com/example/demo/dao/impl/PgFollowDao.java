@@ -32,12 +32,12 @@ public class PgFollowDao implements FollowDao {
     	return followList.isEmpty() ? null : followList;
     }
 	
-    public int countFollow(Integer userFollowId) {
+    public Follow countFollow(Integer userFollowId) {
     	String sql = SQL_FOLLOW_COUNT;
     	MapSqlParameterSource param = new MapSqlParameterSource();
     	param.addValue("userId", userFollowId);
     	ArrayList<Follow> followCnt = (ArrayList<Follow>) jdbcTemplate.query(sql, param, new BeanPropertyRowMapper<Follow>(Follow.class));
-    	return followCnt.isEmpty() ? null : followCnt.get(0).getFollowCount();
+    	return followCnt.isEmpty() ? null : followCnt.get(0);
     };
 
 	public int insert(Integer userId, Integer followUserId) {

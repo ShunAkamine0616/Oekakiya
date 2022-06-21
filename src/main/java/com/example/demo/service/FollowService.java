@@ -8,7 +8,7 @@ public interface FollowService {
 
 	public List<Follow> findByUserId(Integer userId);
 	
-	public int countFollow(Integer userFollowId);
+	public Follow countFollow(Integer userFollowId);
 
 	public int insert(Integer userId, Integer followUserId);
 	
