@@ -32,7 +32,9 @@ public class PgImageDao implements ImageDao {
 		String sql = SQL_SELECT_IMAGE_BY_KEYWORD;
 		MapSqlParameterSource param = new MapSqlParameterSource();
 		if(!" ".equals(categoryId)) {
-			sql += "AND category_id IN ("+categoryId+") ORDER BY id";
+			sql += "AND category_id IN ("+categoryId+") ORDER BY "+ sort;
+		}else {
+			sql += "ORDER BY "+ sort;
 		}
 		param.addValue("keyword", "%"+keyword+"%");
 		List<Image> resultList = jdbcTemplate.query(sql, param, new BeanPropertyRowMapper<Image>(Image.class));
