@@ -11,7 +11,7 @@ import com.example.demo.service.UserService;
 
 @Service
 public class UserServiceImpl implements UserService{
-	
+
 	@Autowired
 	private UserDao userDao;
 
@@ -29,7 +29,10 @@ public class UserServiceImpl implements UserService{
 	public User findById(Integer id) {
 		return userDao.findById(id);
 	}
-
+	@Override
+	public User login(String accountid, String password) {
+		return userDao.login(accountid, password);
+	}
 	@Override
 	public int insert(User user) {
 		return userDao.insert(user);
