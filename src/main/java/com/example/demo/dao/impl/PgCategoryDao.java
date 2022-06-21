@@ -44,7 +44,7 @@ public class PgCategoryDao implements CategoryDao {
 	public Integer delete(Integer categoryId) {
 		String sql = SQL_DELETE_CATEGORY;
         MapSqlParameterSource param = new MapSqlParameterSource();
-        param.addValue("categoryId", categoryId);
+        param.addValue("id", categoryId);
         
         return jdbcTemplate.update(sql, param);
 	}
