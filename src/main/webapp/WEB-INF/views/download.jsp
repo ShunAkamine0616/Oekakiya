@@ -10,6 +10,7 @@
 <meta charset="UTF-8">
 <link href="css/commons.css" rel="stylesheet">
 <link rel="stylesheet" href="css/header.css">
+<link href="css/download.css" rel="stylesheet">
 <title>Insert title here</title>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -74,7 +75,15 @@
             <button type="button" onclick="location.href='login'" class="login_btn">ログイン</button>
           </c:when>
           <c:when test="${not empty user}">
-         <${user.userIcon}>
+         
+          <label>
+          <a href="./inputEditMyPage">
+          <img id="iconAdd" class="iconAdd"
+				src="${user.iconPath}" style="max-width: 30px;">
+				  </a>
+          ${user.name}
+        
+          </label>
           <button type="button" onclick="location.href='login'"  class="logout_btn">ログアウト</button>
        
           </c:when>
@@ -82,13 +91,21 @@
         </c:choose>
       </div>
     </div>
+    
     </header>
+   
     <br>
     <br>
 <!--     <hr width=auto class ="header_line"> -->
     
       </div>
     </div>
+</div>
+<div class="downloadImg"><img src="${downloadImg.imagePath}"></div>
+<div class="downloadInfo">
+タイトル <span class=Lavel>${downloadImg.imageTitle}</span><br>
+カテゴリ<span class=Lavel>${downloadImg.categoryId}</span><br>
+${downloadImg.comment}
 </div>
 <c:if test="${user.role == 2}">
 <button class="light_blue_btn">
