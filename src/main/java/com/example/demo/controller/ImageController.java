@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.demo.controller.form.UploadForm;
 import com.example.demo.entity.Image;
+import com.example.demo.entity.User;
+import com.example.demo.service.CategoryService;
 import com.example.demo.service.ImageService;
 
 @Controller
@@ -31,9 +33,11 @@ public class ImageController {
 	HttpSession session;
 	@Autowired
 	ImageService imageService;
+	@Autowired
+	CategoryService categoryService;
 	@RequestMapping(path = "upload", method = RequestMethod.GET)
 	String uploadview(@ModelAttribute("upload") UploadForm uploadForm, Model model) {
-
+		session.setAttribute("categoryList", categoryService.findAll());
 		return "imagePosting";
 	}
 
@@ -46,7 +50,7 @@ public class ImageController {
 		if (uploadForm.getFile().isEmpty()) {
 			return "imagePosting";
 		}
-
+		User user = (User) session.getAttribute("user");
 		int dot = uploadForm.getFile().getOriginalFilename().lastIndexOf(".");
 		//拡張子
 		String extention = "";
@@ -57,7 +61,7 @@ public class ImageController {
 		String filename = uploadForm.getImageTitle() + DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS").format(LocalDateTime.now());
 		
 		//画像インスタンス生成
-		Image image = new Image(uploadForm.getImageTitle(), "images/" + filename + extention, uploadForm.getComment(), uploadForm.getCategoryId(), 1);
+		Image image = new Image(uploadForm.getImageTitle(), "images/" + filename + extention, uploadForm.getComment(), uploadForm.getCategoryId(), user.getId());
 		if(imageService.insert(image) == 0) {
 			session.setAttribute("imgErrMsg", "投稿できませんでした。");
 			return "imagePosting";
