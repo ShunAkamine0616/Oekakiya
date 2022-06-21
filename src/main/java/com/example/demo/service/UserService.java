@@ -15,6 +15,9 @@ public interface UserService {
 	//ユーザーをIDで検索
 	public User findById(Integer id);
 	
+	//ログイン
+	public User login(String accountid, String password);
+		
 	//ユーザーの新規登録
 	public int insert(User user);
 	

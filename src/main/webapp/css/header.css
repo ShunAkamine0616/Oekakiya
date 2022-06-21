@@ -1,12 +1,12 @@
 @charset "UTF-8";
 header{
 	position:sticky;
-	
+
 }
 
 .header_line{
-	border:solid 5px #6a6565ae  
-
+	border:solid 15px #6a6565ae  
+  　
 /* 	border: none; */
 /* 	border-top: solid 1px red; */
 /* 	border-bottom: solid 1px red; */

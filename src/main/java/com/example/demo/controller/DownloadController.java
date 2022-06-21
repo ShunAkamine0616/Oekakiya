@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.demo.controller.form.DownloadForm;
+import com.example.demo.controller.form.LoginForm;
 import com.example.demo.service.DownloadService;
 import com.example.demo.service.ImageService;
 
@@ -27,7 +28,7 @@ public class DownloadController {
 	// 登録画面遷移
     @RequestMapping(value = "/download", method = RequestMethod.GET)
     public String download(@ModelAttribute("download") DownloadForm downloadform, Model model) {
-    	session.setAttribute("downloadImg",imageService.findByImageId(3));
+    	session.setAttribute("downloadImg",imageService.findByImageId(4));
     	
         return "download";
     }

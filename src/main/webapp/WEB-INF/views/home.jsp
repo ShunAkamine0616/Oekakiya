@@ -75,14 +75,12 @@
 
 
 			<div class="order">
-				<select class="base-text" name="order">
-					<option value="" selected>並び替え</option>
-					<option value="product_id">商品ID</option>
-					<option value="c.name">カテゴリ</option>
-					<option value="price">単価：安い順</option>
-					<option value="price DESC">単価：高い順</option>
-					<option value="p.created_at">登録日：古い順</option>
-					<option value="p.created_at DESC">登録日：新しい順</option>
+				<label for="sort">並び替え</label>
+				<select class="base-text center" id="sort" name="order" style="background-color: white;">
+					<option value="created_at" selected>投稿日</option>
+					<option value="updated_at">更新日</option>
+					<option value="download">ダウンロード数</option>
+					<option value="favorite">いいね数</option>
 				</select>
 			</div>
 		</form>
