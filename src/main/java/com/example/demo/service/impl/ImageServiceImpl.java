@@ -37,4 +37,7 @@ public class ImageServiceImpl implements ImageService {
 	public int deleteByUserId(Integer userId) {
 		return imageDao.deleteByUserId(userId);
 	}
+	public Image findByIdCount(Integer imageId){
+		return imageDao.findByIdCount(imageId);
+	}
 }

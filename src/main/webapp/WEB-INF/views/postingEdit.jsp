@@ -49,6 +49,7 @@
     <div class="item">
     	<div class="leftitem">
            <div class=""><div class="box"><img src=${ images.getImagePath() }></div></div>
+             <p>💛${count.getFavorite()}</p><p>⇩${count.getDownload()}</p>
 				<form:button type="submit" class="light_blue_btn">編集</form:button>
 				<button type="button" onclick="openModal()"class="delete_btn">消去</button>
 				<div id="modal">
@@ -65,7 +66,7 @@
  	<div class="rightitem">
         <div class="title">
             <label>タイトル</label>
-            <form:input type="text" value="${images.getImageTitle()}" path="title"/>
+            <form:input type="text" value="${images.getImageTitle()}" path="title"/><form:errors path="title" cssStyle="color: red" />
             
         </div>
         <div class="category">

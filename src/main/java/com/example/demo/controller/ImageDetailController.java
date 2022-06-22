@@ -54,6 +54,9 @@ public class ImageDetailController {
 			form.setCategoryId(imageService.findByImageId(imageId).getCategoryId());
 			form.setComment(imageService.findByImageId(imageId).getComment());
 			Image images= imageService.findByImageId(imageId);
+			Image count = new Image();
+			count = imageService.findByIdCount(imageId);
+			session.setAttribute("count", count);
 			//イメージ愛ディーを保存
 			session.setAttribute("imageId",imageId);
 			//categoryを全権取得
