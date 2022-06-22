@@ -43,8 +43,6 @@
     
 	<body>
 		<div id="app">
-			<hr>
-			
 			<div  class="site_logo">
 				<h1>
 					${ user.getName() }
@@ -61,14 +59,15 @@
 			
 			<div class="container">
 				<br>
-				<c:forEach var="image" items="${imageList}">
-					<div class="box">
-						<a href="detail?id=${ image.getId() }"> 
-							<img src=${ image.getImagePath() }>
-						</a>
-						<p>${ image.getImageTitle() }</p>
-					</div>
-				</c:forEach>
+				
+					<c:forEach var="image" items="${imageList}">
+						<div class="box">
+							<a href="detail?id=${ image.getId() }"> 
+								<img src=${ image.getImagePath() }>
+							</a>
+							<p>${ image.getImageTitle() }</p>
+						</div>
+					</c:forEach>
 			</div>
 		</div>
 	</body>
