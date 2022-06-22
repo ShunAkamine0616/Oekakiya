@@ -40,15 +40,19 @@ public class categoryMgController{
 	public String edit(@RequestParam("editId") Integer id,Model model) {
 		//categoryを全権取得
 		String name = req.getParameter(id.toString());
+		if(name.equals("")) {
+			model.addAttribute("nullmsg", "カテゴリ名は必須入力項目です。");
+			return "categoryMg";
+		}else {
 		int update = categoryservice.update(id,name);
 		List<Category> category = new ArrayList<>();
 		category = categoryservice.findAll();
 		session.setAttribute("category",category);
 		return "categoryMg";
+		}
 	}
 	@RequestMapping(value = "/categoryEdit",params ="deleteId")
 	public String delete(@RequestParam("deleteId") Integer[] id,Model model) {
-		System.out.println(id.length);
 		for(Integer i :id) {
 			int delete = categoryservice.delete(i);
 			System.out.println(delete);
