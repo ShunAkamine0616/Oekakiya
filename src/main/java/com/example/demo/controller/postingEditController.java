@@ -67,7 +67,7 @@ public class postingEditController{
 	@RequestMapping(value="/mypegeBack",method = RequestMethod.GET)
 	public String cancel(@ModelAttribute("postingEdit") EditForm form, Model model) {
 		//まいぺーじができたら遷移先を決める。
-		return "";
+		return "home";
 	}
 	
 	

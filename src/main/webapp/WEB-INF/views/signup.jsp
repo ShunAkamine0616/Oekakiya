@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title><fmt:message key="page.insert.title" /></title>
+<title>おえかきや｜新規登録</title>
 <link href="css/commons.css" rel="stylesheet">
 
 </head>
@@ -16,7 +16,7 @@
 
 	<div class="header">
 		<h1 class="site_logo">
-			<a href="menu"><fmt:message key="site_logo" /></a>
+			<a href="menu">おえかきや</a>
 		</h1>
 	</div>
 
@@ -36,26 +36,31 @@
 				</c:if>
 			</p>
 
-			<form:form action="register" method="post" modelAttribute="register">
+			<form:form action="register" method="post" modelAttribute="signup">
 				<fieldset class="label-130">
 					<div>
-						<label class="required"><fmt:message
-								key="form.lbl.loginId" /></label>
-						<form:input type="text" path="loginId" class="base-text"
-							value="${loginId}" />
-						<span class="error"><form:errors path="loginId"
+						<label class="required">アカウントID</label>
+						<form:input type="text" path="accountId" class="base-text"
+							value="${accountId}" />
+						<span class="error"><form:errors path="accountId"
 								cssStyle="color: red" /> </span>
 					</div>
 					<div>
-						<label class="required"><fmt:message
-								key="form.lbl.password" /></label>
+						<label class="required">パスワード</label>
 						<form:input type="password" path="password" class="base-text"
 							value="${password}" />
 						<span class="error"><form:errors path="password"
 								cssStyle="color: red" /></span>
 					</div>
 					<div>
-						<label class="required"><fmt:message key="form.lbl.name" /></label>
+						<label class="required">パスワード再入力</label>
+						<form:input type="password" path="repassword" class="base-text"
+							value="${repassword}" />
+						<span class="error"><form:errors path="repassword"
+								cssStyle="color: red" /></span>
+					</div>
+					<div>
+						<label class="required">名前</label>
 						<form:input type="text" path="name" class="base-text"
 							value="${name}" />
 						<span class="error"><form:errors path="name"
@@ -63,28 +68,16 @@
 					</div>
 				</fieldset>
 				<div class="btns">
-					<button type="button" onclick="openModal()" name="insert"
+					<button type="submit"  name="insert"
 						class="basic_btn">
-						<fmt:message key="btn.insert" />
+						登録
 					</button>
-					<input type="button" onclick="location.href='back'" value="戻る"
+					<input type="button" onclick="location.href='login'" value="キャンセル"
 						class="cancel_btn">
 				</div>
-				<div id="modal">
-					<p class="modal_message">
-						<fmt:message key="modal.message.insert" />
-					</p>
-					<div class="btns">
-						<form:button type="submit" name="insert" class="basic_btn">
-							<fmt:message key="btn.insert" />
-						</form:button>
-						<button type="button" name="cancel" onclick="closeModal()"
-							class="cancel_btn">
-							<fmt:message key="btn.cancel" />
-						</button>
-					</div>
-				</div>
+				
 			</form:form>
+			
 		</div>
 	</div>
 	<div id="fadeLayer"></div>

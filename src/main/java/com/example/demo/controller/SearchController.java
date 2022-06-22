@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.Category;
 import com.example.demo.entity.Image;
+import com.example.demo.entity.User;
 import com.example.demo.service.CategoryService;
 import com.example.demo.service.FollowService;
 import com.example.demo.service.ImageService;
@@ -41,16 +42,16 @@ public class SearchController {
 	
 	@RequestMapping("/search")
     public String search(@RequestParam("keyword") String key, @RequestParam("category") String category, @RequestParam("user") String user, @RequestParam("order") String order, Model model) {
-		//sessionからUserIdを取得
-		int userId = 3;
+		
 		ArrayList<Image> imageList = null;
 		category = category.replace(" ,", "");
         if("all".equals(user)) {
         	System.out.println("all");
         	imageList = (ArrayList<Image>) imageService.findByKeyword(key, category, order);
         }else {
+        	User userInfo = (User) session.getAttribute("user");
         	System.out.println("follow");
-        	imageList = (ArrayList<Image>) imageService.findFollow(key, category, order, userId);
+        	imageList = (ArrayList<Image>) imageService.findFollow(key, category, order, userInfo.getId());
         }
 		model.addAttribute("imageList",imageList);
 		return "home";
