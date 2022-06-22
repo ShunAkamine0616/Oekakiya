@@ -57,7 +57,7 @@
 			
 				<!--     <hr width=auto class ="header_line"> -->
 
-	<span>いいね数:</span><span id="favoriteNum">${image.getFavorite()}</span><span>ダウンロード数:</span><span id="downloadNum">${ image.getDownload() }</span>
+	<span>いいね数:</span><span id="favoriteNum">${count.getFavorite()}</span><span>ダウンロード数:</span><span id="downloadNum">${ count.getDownload() }</span>
 	<div class="downloadImg">
 		<img src="${image.imagePath}">
 	</div>
@@ -92,4 +92,6 @@
 
 </html>
 <script src="./js/commons.js">
+</script>
+<script src="./js/download.js">
 </script>
