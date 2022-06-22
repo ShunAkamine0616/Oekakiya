@@ -50,7 +50,7 @@
 <div class="category">
     <div class="container">
     <div class="item">
-    <form action="categoryinsert">
+    <form action="categoryinsert" method="post">
     <div class="container2">
        <div class="item2"><input type="text"name="name" style="height: 25px;"></div>
         <div class="item2"><button type="submit" class="light_blue_btn2"><div class="pulus"><img src="images/プラス.png"></div></button></div>
@@ -58,7 +58,7 @@
     </form>
     </div>
     <div class="margin">
-            <form action="categoryEdit">
+            <form action="categoryEdit"  method="post">
                 <div class="categoryedit">
                    <div class="item">
                    <div class="msg">  <p>${msg}</p></div>
@@ -66,8 +66,8 @@
                     </div>
             <c:forEach var="category" items="${category}">
             <div class="item">
-                    <input type="checkbox" value="${category.getId()}"name ="deleteId">  
-		            <input type="text" value="${category.getCategoryName()}" name ="${category.getId()}" id="${category.getId()}" readOnly>
+                    <input type="checkbox" value="${category.getId()}"name ="deleteId">
+		            <input type="text" value="${fn:escapeXml(category.getCategoryName())}" name ="${category.getId()}" id="${category.getId()}" readOnly>
                     <button type="button" onclick="edit(${category.getId()})" class=""><div class="rogo"><img src="images/pen.png"></div></button>
                     <button type="submit" value="${category.getId()}" name="editId" class=""><div class="rogo"><img src="images/Road.png"></div></button>
              <!--   <button type="button" onclick="openModal()" value="${category.getId()}"name ="deleteId">🚮</button>--> 
@@ -92,7 +92,7 @@
 	<script src="./js/commons.js"></script>
 	<script>
 	if(document.getElementById("deleteFlag").value === "1") {
-		Snackbar.show({text: '削除しました。'});
+		Snackbar.show({text: 'カテゴリを削除しました。'});
 	}
 	</script>
 </body>

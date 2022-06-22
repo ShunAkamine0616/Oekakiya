@@ -9,8 +9,8 @@
 <head>
 <meta charset="UTF-8">
 <link href="css/commons.css" rel="stylesheet">
-<!-- <link href="css/download.css" rel="stylesheet"> -->
-<!-- <link href="css/postingEdit.css" rel="stylesheet"> -->
+<link href="css/download.css" rel="stylesheet">
+<link href="css/postingEdit.css" rel="stylesheet">
 <link href="css/header.css" rel="stylesheet">
 <title>Insert title here</title>
 <meta charset="UTF-8" />
@@ -21,96 +21,158 @@
 <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
 </head>
 
-	
+
 
 <header>
-		<div class="header">
-			<h1>
-				<a href="./home" class="page-title">おえかきや</a>
-			</h1>
+	<div class="header">
+		<h1>
+			<a href="./home" class="page-title">おえかきや</a>
+		</h1>
 
-			<div class="btn-wrap">
-				<c:choose>
-					<c:when test="${empty user}">
+		<div class="btn-wrap">
+			<c:choose>
+				<c:when test="${empty user}">
         ゲスト
             <button type="button" onclick="location.href='login'"
-							class="login_btn">ログイン</button>
-					</c:when>
-					<c:when test="${not empty user}">
+						class="login_btn">ログイン</button>
+				</c:when>
+				<c:when test="${not empty user}">
 
-						<label> <a href="./mypage"> <img id="iconAdd"
-								class="image_circle" src="${user.iconPath}">
-						</a> ${user.name}
+					<label> <a href="./mypage"> <img id="iconAdd"
+							class="image_circle" src="${user.iconPath}">
+					</a> ${user.name}
 
-						</label>
-						<button type="button" onclick="location.href='logout'"
-							class="logout_btn">ログアウト</button>
+					</label>
+					<button type="button" onclick="location.href='logout'"
+						class="logout_btn">ログアウト</button>
 
-					</c:when>
+				</c:when>
 
-				</c:choose>
-			</div>
+			</c:choose>
 		</div>
-		<hr>
-	</header>
+	</div>
+	<hr>
+</header>
+<!--  <div class="container"> -->
+<!--    <div class="item"> -->
+<!--     	<div class="leftitem">			 -->
+<!-- 				    <hr width=auto class ="header_line"> -->
 
-			
-				<!--     <hr width=auto class ="header_line"> -->
+<%-- 	<span><img src="./images/images_yesHurt.png" width="3%" height="3%">いいね数:</span><span id="favoriteNum">${count.getFavorite()}</span><span>ダウンロード数:</span><span id="downloadNum">${ count.getDownload() }</span> --%>
+<!-- 	<div class="downloadImg"> -->
+<%-- 		<img src="${image.imagePath}"> --%>
+<!-- 	</div> -->
 
-	<span><img src="./images/images_yesHurt.png" width="3%" height="3%">いいね数:</span><span id="favoriteNum">${count.getFavorite()}</span><span>ダウンロード数:</span><span id="downloadNum">${ count.getDownload() }</span>
-	<div class="downloadImg">
-		<img src="${image.imagePath}">
+
+<!-- 			タイトル -->
+<%-- 			<div class="title">${image.imageTitle}</div> --%>
+<!-- 			<br> カテゴリ -->
+<%-- 			<div class="category">${image.categoryId}</div> --%>
+<!-- 			<br> -->
+<%-- 			<div class="comment">${image.comment}</div> --%>
+<!-- 	</div> -->
+<%-- 	<c:if test="${user.role == 2}"> --%>
+<!-- 		<button type="button" onclick="openModal()">削除</button> -->
+<!-- 		<div id="modal"> -->
+<!-- 			<p class="modal_message">削除しますか？</p> -->
+<!-- 			<div class="btns"> -->
+<!-- 				<button type="button" onclick="location.href='/adminsDelete'" -->
+<!-- 					class="basic_btn">削除</button> -->
+<!-- 				<button type="button" onclick="closeModal()" class="cancel_btn">キャンセル</button> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<%-- 	</c:if> --%>
+
+<!-- 	<label> -->
+<!-- 		<button  id="iineBtn"> -->
+<!-- <!-- 			<img src="./images/images_yesHurt.png" id="">いいね -->
+<!-- 			<img src="./images/images_nonHurt.png"> -->
+<!-- 		</button> -->
+<!-- 	</label> -->
+
+
+<!-- 	<label> -->
+<!-- 		<button  id="onIineBtn"> -->
+<!-- 			<img src="./images/images_yesHurt.png" > -->
+<!-- <!-- 			<img src="./images/images_nonHurt.png"> -->
+<!-- 		</button> -->
+<!-- 	</label> -->
+<!-- 	<label> -->
+
+<!-- 		<button class="light_blue_btn" id="download_btn"> -->
+<%-- 			<a href="${image.imagePath}" download="${image.imageTitle}">ダウンロード</a> --%>
+<!-- 		</button> -->
+<!-- 	</label> -->
+<div class="container">
+	<div class="item">
+		<div class="leftitem">
+			<div class="">
+				<div class="box">
+					<img src="${image.imagePath}">
+				</div>
+			</div>
+			<span><img src="./images/images_yesHurt.png" width="3%"
+				height="3%">いいね数:</span><span id="favoriteNum">${count.getFavorite()}</span><span>ダウンロード数:</span><span
+				id="downloadNum">${ count.getDownload() }</span>
+
+
+			<c:if test="${not empty user}">
+				<!--  最初のボタン -->
+				<label> <img src="./images/ハート透過.png" id="nonHurt"
+					class=null>
+
+				</label>
+
+				<!--  いいね状態のボタン -->
+				<img src="./images/images_yesHurt.png" id="yesHurt" class="hidden">
+			</c:if>
+			<c:if test="${user.role == 1}">
+				<button type="button" class="delete_btn" onclick="openModal()">削除</button>
+				<div id="modal">
+					<p class="modal_message">削除しますか？</p>
+					<div class="btns">
+						<button type="button" onclick="location.href='/adminsDelete'"
+							class="basic_btn">削除</button>
+						<button type="button" onclick="closeModal()" class="cancel_btn">キャンセル</button>
+					</div>
+				</div>
+			</c:if>
+
+			<button class="light_blue_btn" id="download_btn">
+				<a href="${image.imagePath}" download="${image.imageTitle}">ダウンロード</a>
+			</button>
+
+
+		</div>
 	</div>
 
+	<div class="item">
+		<div class="rightitem">
+			<div class="title">
+				<label>タイトル</label> ${image.imageTitle}
 
-			タイトル
-			<div class="title">${image.imageTitle}</div>
-			<br> カテゴリ
-			<div class="category">${image.categoryId}</div>
-			<br>
-			<div class="comment">${image.comment}</div>
-	
-	<c:if test="${user.role == 2}">
-		<button type="button" onclick="openModal()">削除</button>
-		<div id="modal">
-			<p class="modal_message">削除しますか？</p>
-			<div class="btns">
-				<button type="button" onclick="location.href='/adminsDelete'"
-					class="basic_btn">削除</button>
-				<button type="button" onclick="closeModal()" class="cancel_btn">キャンセル</button>
+
 			</div>
-		</div>
-	</c:if>
-	<c:choose><c:when test="${FavoriteInsertInfo == null}">
-	<label>
-		<button  id="iineBtn">
-<!-- 			<img src="./images/images_yesHurt.png" id="">いいね -->
-			<img src="./images/images_nonHurt.png">
-		</button>
-	</label>
-	</c:when>
-	<c:otherwise>
-	<label>
-		<button  id="onIineBtn">
-			<img src="./images/images_yesHurt.png" id="">
-<!-- 			<img src="./images/images_nonHurt.png"> -->
-		</button>
-	</label>
-	</c:otherwise>
-	</c:choose>
-	<label>
+			<div class="category">
+				<label>カテゴリ</label> ${image.categoryId}
 
-		<button class="light_blue_btn" id="download_btn">
-			<a href="${image.imagePath}" download="${image.imageTitle}">ダウンロード</a>
-		</button>
-	</label>
-	<div id="fadeLayer"></div>
+
+			</div>
+			<div class="comment">${image.comment}</div>
+		</div>
+	</div>
+
+</div>
+<div id="fadeLayer"></div>
 </body>
 
 </html>
 <script src="./js/commons.js">
+	
 </script>
 <script src="./js/download.js">
+	
 </script>
 <script src="./js/favorite.js">
+	
 </script>
