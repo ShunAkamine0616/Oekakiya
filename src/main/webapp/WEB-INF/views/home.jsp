@@ -24,38 +24,37 @@
 	<div id="app">
 
 		<header>
-      <div class="header">
-      <h1><a href="./home" class="page-title">おえかきや</a></h1>
-     
-      <div class="btn-wrap">
-        <c:choose>
-          <c:when test="${empty user}">
-        ゲスト
-            <button type="button" onclick="location.href='login'" class="login_btn">ログイン</button>
-          </c:when>
-          <c:when test="${not empty user}">
-         
-          <label>
-          <a href="./inputEditMyPage">
-          <img id="iconAdd" class="iconAdd"
-				src="${user.iconPath}" style="max-width: 30px;">
-				  </a>
-          ${user.name}
-        
-          </label>
-          <button type="button" onclick="location.href='login'"  class="logout_btn">ログアウト</button>
-       
-          </c:when>
-          
-        </c:choose>
-      </div>
-    </div>
-    
-    </header>
+		<div class="header">
+			<h1>
+				<a href="./home" class="page-title">おえかきや</a>
+			</h1>
 
+			<div class="btn-wrap">
+				<c:choose>
+					<c:when test="${empty user}">
+        ゲスト
+            <button type="button" onclick="location.href='login'"
+							class="login_btn">ログイン</button>
+					</c:when>
+					<c:when test="${not empty user}">
+
+						<label> <a href="./inputEditMyPage"> <img id="iconAdd"
+								class="image_circle" src="${user.iconPath}">
+						</a> ${user.name}
+
+						</label>
+						<button type="button" onclick="location.href='login'"
+							class="logout_btn">ログアウト</button>
+
+					</c:when>
+
+				</c:choose>
+			</div>
+		</div>
 		<hr>
+	</header>
 		<c:if test="${ user ne null }"><a href="upload" style="color: black;">投稿</a></c:if>
-		<a href="categoryMg" style="color: black;">カテゴリ管理</a>
+		<c:if test="${ user.getRole() eq 1 }"><a href="categoryMg" style="color: black;">カテゴリ管理</a></c:if>
 		<p>${ msg }</p>
 		<form method="get" action="/search" id = "target">
 			<div class="search_container">
@@ -94,15 +93,15 @@
 					<span>checkbox3</span>
 				</label> -->
 			</div>
-			
+			<!-- +'&user='+${ userHistory }+'&category='+${ categoryHistory }+'+&order='+value -->
 			<div class="order">
 				<label for="sort">並び替え</label>
 				<select class="base-text center" id="sort" name="order" style="background-color: white;" 
-				onChange="location.href='search?keyword='+document.getElementById('keyword').value+'&user='+document.getElementById('keyword').value+'&category=+&order='+value">
-					<option value="created_at" selected>投稿日</option>
-					<option value="updated_at">更新日</option>
-					<option value="download DESC">ダウンロード数</option>
-					<option value="favorite DESC">いいね数</option>
+				onChange="location.href='search?keyword=${ keywordHistory }&user=${ userHistory }&category=${ categoryHistory }&order='+value">
+					<option value="created_at DESC" <c:if test="${ orderHistory eq 'created_at DESC' }">selected</c:if>>投稿日</option>
+					<option value="updated_at DESC" <c:if test="${ orderHistory eq 'updated_at DESC' }">selected</c:if>>更新日</option>
+					<option value="download DESC" <c:if test="${ orderHistory eq 'download DESC' }">selected</c:if>>ダウンロード数</option>
+					<option value="favorite DESC" <c:if test="${ orderHistory eq 'favorite DESC' }">selected</c:if>>いいね数</option>
 				</select>
 			</div>
 		</form>
