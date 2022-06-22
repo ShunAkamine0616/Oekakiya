@@ -36,7 +36,7 @@ public class MyPageController {
 	UserService userService;
 	@Autowired
 	ImageService imageService;
-	
+
 	//マイページ遷移
 	@RequestMapping({"/mypage"})
 	public String mypage(Model model) {
@@ -47,13 +47,27 @@ public class MyPageController {
 		System.out.println(imageList);
 		return "MyPage";
 	}
-	
-	//マイページ編集遷移
+
+	// マイページ編集遷移
 	@RequestMapping(path = "inputEditMyPage", method = RequestMethod.GET)
 	String uploadview(@ModelAttribute("editMyPage") EditMyPageForm editMyPageForm, Model model) {
 
 		return "editMyPage";
 	}
+
+	// 自分のアカウント削除してホームに遷移
+	@RequestMapping(path = "deleteMyAccount", method = RequestMethod.GET)
+	String deleteMyAccount(Model model) {
+		User user = (User) session.getAttribute("user");
+		if(userService.delete(user.getId()) == 0) {
+			model.addAttribute("editMyPageErrMsg", "編集できませんでした。");
+			return "editMyPage";
+		}
+		// userのセッションを破棄
+		session.removeAttribute("user");
+		return "home";
+	}
+
 	//マイページ編集処理
 	@RequestMapping(path = "editMyPage", method = RequestMethod.POST)
 	String editMyPage(@Validated @ModelAttribute("editMyPage") EditMyPageForm editMyPageFrom, BindingResult bindingResult, Model model, HttpServletRequest req) {
@@ -78,7 +92,7 @@ public class MyPageController {
 			// 新しいアイコンのファイル名
 			String filename = editMyPageFrom.getName().replaceAll(" ","").replaceAll("　","") + DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS").format(LocalDateTime.now());
 			newUser = new User(editMyPageFrom.getAccountId(), editMyPageFrom.getPassword(), editMyPageFrom.getName(), "images/" + filename + extention, editMyPageFrom.getMail(), editMyPageFrom.getIntroduction());
-			
+
 			try (BufferedInputStream bis = new BufferedInputStream(editMyPageFrom.getFile().getInputStream());
 					BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream("C:\\Users\\axiz\\git\\Oekakiya\\src\\main\\webapp\\images\\" + filename + extention))) {
 
@@ -108,7 +122,7 @@ public class MyPageController {
 				e.printStackTrace();
 			}
 		}
-		
+
 		// ユーザーのidをセット
 		newUser.setId(user.getId());
 		// データベースのユーザー情報をアップデート
@@ -117,7 +131,7 @@ public class MyPageController {
 			return "editMyPage";
 		}
 
-		
+
 		session.setAttribute("user", userService.findById(user.getId()));
 		return "editMyPage";
 	}

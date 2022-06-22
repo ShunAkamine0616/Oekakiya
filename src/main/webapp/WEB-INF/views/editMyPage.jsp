@@ -48,8 +48,8 @@
 	<input id="iconPath" type="hidden" value="${user.iconPath}"></input>
 	<div class="insert">
 		<p class="error">
-			<c:if test="${not empty imgErrMsg}">
-				<span>${fn:escapeXml(imgErrMsg)}</span>
+			<c:if test="${not empty editMyPageErrMsg}">
+				<span>${fn:escapeXml(editMyPageErrMsg)}</span>
 			</c:if>
 		</p>
 		<form:form method="post" enctype="multipart/form-data"
@@ -138,7 +138,7 @@
 					<!-- 					<button type="submit" class="basic_btn"> -->
 					<!-- 						はい -->
 					<!-- 					</button> -->
-					<a href="/home" class="basic_btn"> はい </a>
+					<a href="/deleteMyAccount" class="basic_btn"> はい </a>
 					<button type="button" onclick="closeModal()" class="cancel_btn">キャンセル</button>
 				</div>
 			</div>
