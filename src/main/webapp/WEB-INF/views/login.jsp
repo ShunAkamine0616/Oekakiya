@@ -10,13 +10,17 @@
 <meta charset="UTF-8">
 <title>おえかきや｜ログイン</title>
 <link href="css/commons.css" rel="stylesheet">
+<link href="css/header.css" rel="stylesheet">
 </head>
 <body>
-	<div class="header">
-		<h1 class="site_logo">
-			おえかきや
-		</h1>
-	</div>
+	<header>
+		<div class="header">
+			<h1>
+				<a href="./home" class="page-title">おえかきや</a>
+			</h1>
+		</div>
+	</header>
+	<hr>
 
 	<div class="login_form">
 		<img src="./images/logo.png" class="login_logo">
@@ -27,26 +31,26 @@
 		</p>
 
 		<form:form action="home" modelAttribute="login" method="post">
-<!-- 			<fieldset> -->
-				<div class="cp_iptxt">
-					<form:input class="base_input" path="accountId" placeholder="ID" />
-					<i class="fa fa-user fa-lg fa-fw" aria-hidden="true"></i>
-					<div class="error">
-						<form:errors path="accountId" cssStyle="color: red" />
-					</div>
+			<!-- 			<fieldset> -->
+			<div class="cp_iptxt">
+				<form:input class="base_input" path="accountId" placeholder="ID" />
+				<i class="fa fa-user fa-lg fa-fw" aria-hidden="true"></i>
+				<div class="error">
+					<form:errors path="accountId" cssStyle="color: red" />
 				</div>
+			</div>
 
-				<div class="cp_iptxt">
-					<form:input class="base_input" type="password" path="password"
-						placeholder="PASS" />
-					<div class="error">
-						<form:errors path="password" cssStyle="color: red" />
-					</div>
+			<div class="cp_iptxt">
+				<form:input class="base_input" type="password" path="password"
+					placeholder="PASS" />
+				<div class="error">
+					<form:errors path="password" cssStyle="color: red" />
 				</div>
-<!-- 			</fieldset> -->
+			</div>
+			<!-- 			</fieldset> -->
 			<form:button name="login">ログイン</form:button>
 		</form:form>
-		
+
 		<form action="termsOfService" method="get">
 			<button class="basic_btn regist" name="register">新規登録</button>
 		</form>

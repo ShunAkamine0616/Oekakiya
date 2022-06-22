@@ -39,7 +39,42 @@
 	flex-wrap: wrap;
 }
 
+.userContainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
 .box {
 	display: flex;
 	flex-direction: column;
+}
+
+.select_btn {
+  font-size: 15px;
+  border: none;
+  border-radius: 5px;
+  border: 2px solid skyblue;
+  border-color: blue;
+  padding: auto;
+  line-height: 2;
+  padding: 5px;
+  cursor: pointer;
+  color: black;
+  margin: 10px;
+}
+
+.not_select_btn {
+  font-size: 15px;
+  background-color: yellow;
+  border: none;
+  border-radius: 5px;
+  border: 2px solid skyblue;
+  border-color: blue;
+  padding: auto;
+  line-height: 2;
+  padding: 1px;
+  cursor: pointer;
+  color: black;
+  margin: 10px;
 }

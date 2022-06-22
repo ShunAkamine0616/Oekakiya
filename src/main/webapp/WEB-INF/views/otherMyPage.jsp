@@ -55,7 +55,7 @@
 						</c:when>
 						<c:when test="${not empty user}">
 							<label>
-								<a href="./inputEditMyPage"> <img id="iconAdd"
+								<a href="./mypage"> <img id="iconAdd"
 									class="image_circle" src="${user.iconPath}">
 								</a> ${user.name}
 							</label>
@@ -83,8 +83,12 @@
 				<br>
 				
 			</div>
-			<div>
-				フォロワー：${followCnt.getFollowCount()}人
+			<div class="container">
+				<div class="btn" style="text-align: center">
+							<a class="basic_btn regist" href="/other">フォローする</a>
+							<br>
+							フォロワー：${followCnt.getFollowCount()}人
+				</div>
 			</div>
 			<c:if test="${ user.getRole() eq '1' }">
 				<div class="right">

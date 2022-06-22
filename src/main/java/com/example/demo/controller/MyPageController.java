@@ -43,10 +43,8 @@ public class MyPageController {
 		User user = (User) session.getAttribute("user");
 		model.addAttribute("user", user);
 		List<Image> imageList = (List<Image>) imageService.findByUserId(user.getId());
-		if(imageList != null) {
-			model.addAttribute("imageList",imageList);
-			System.out.println(imageList.get(0).getImagePath());
-		}
+		model.addAttribute("imageList",imageList);
+		System.out.println(imageList);
 		return "MyPage";
 	}
 	

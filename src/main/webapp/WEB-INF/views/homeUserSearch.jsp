@@ -59,9 +59,9 @@
 				<input type="text" size="25" name="keyword" id="keyword"
 					placeholder="キーワード検索"> <input type="submit" value="&#xf002">
 			</div>
-			<input type="button" value="ユーザー" style="background-color: yellow;"> 
-			<input type="button" value="イラスト"> <br> <br>
-
+			<input type="submit" value="ユーザー" class="not_select_btn">
+			<a href="home" class="select_btn">イラスト</a> <br> <br>
+			
 			<div>
 				<label>検索対象：</label> 
 				<label> <input type="radio" name="user"
@@ -77,17 +77,13 @@
 			
 		</form>
 
-		<div class="container">
-			<c:forEach var="image" items="${imageList}">
-				<div class="box">
-					<a href="detail?id=${ image.getId() }"> <img
-						src=${ image.getImagePath() }>
-					</a>
-					<p>${ image.getImageTitle() }</p>
-					<p>いいね：${ image.getFavorite() } DL：${ image.getDownload() }</p>
-				</div>
-			</c:forEach>
-		</div>
+		
+		<c:forEach var="userList" items="${userList}">
+			<c:if test="${ user.id ne userList.getId() }">
+				<div class="userContainer"><a href="other?id=${ userList.getId() }"><img id="iconAdd" class="image_circle" src="${ userList.getIconPath() }"></a><span>${ userList.getName() }<br> ${ userList.getAccountId() }</span></div>
+			</c:if>
+		</c:forEach>
+		
 
 	</div>
 	<footer></footer>

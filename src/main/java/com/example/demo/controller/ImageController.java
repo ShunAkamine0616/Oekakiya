@@ -96,6 +96,6 @@ public class ImageController {
 			e.printStackTrace();
 		}
 
-		return "imagePosting";
+		return "postingCompleted";
 	}
 }

@@ -12,6 +12,7 @@
 	<link
 		href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
 		rel="stylesheet">
+	<link href="css/header.css" rel="stylesheet">
 	</head>
 	<header>
 			<div class="header">
@@ -43,8 +44,6 @@
     
 	<body>
 		<div id="app">
-			<hr>
-			
 			<div  class="site_logo">
 				<h1>
 					${ user.getName() }
@@ -61,14 +60,15 @@
 			
 			<div class="container">
 				<br>
-				<c:forEach var="image" items="${imageList}">
-					<div class="box">
-						<a href="detail?id=${ image.getId() }"> 
-							<img src=${ image.getImagePath() }>
-						</a>
-						<p>${ image.getImageTitle() }</p>
-					</div>
-				</c:forEach>
+				
+					<c:forEach var="image" items="${imageList}">
+						<div class="box">
+							<a href="detail?id=${ image.getId() }"> 
+								<img src=${ image.getImagePath() }>
+							</a>
+							<p>${ image.getImageTitle() }</p>
+						</div>
+					</c:forEach>
 			</div>
 		</div>
 	</body>

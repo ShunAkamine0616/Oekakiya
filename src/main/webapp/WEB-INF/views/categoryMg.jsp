@@ -3,6 +3,7 @@
     <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
         <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +12,7 @@
 <link href="css/categoryMg.css" rel="stylesheet">
 <link href="css/commons.css" rel="stylesheet">
 <link href="css/header.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="dist/snackbar.min.css" />
 </head>
 <body>
 <header>
@@ -43,23 +45,24 @@
 		</div>
 		<hr>
 	</header>
-
+<input type ="hidden" value="${delete}" id="deleteFlag"></input>
 <h1>カテゴリ管理</h1>
 <div class="category">
     <div class="container">
     <div class="item">
     <form action="categoryinsert">
-    
-        <input type="text"name="name" style="height: 30px;">
-        <button type="submit" class="light_blue_btn2"><div class="pulus"><img src="images/プラス.png"></div></button>
+    <div class="container2">
+       <div class="item2"><input type="text"name="name" style="height: 25px;"></div>
+        <div class="item2"><button type="submit" class="light_blue_btn2"><div class="pulus"><img src="images/プラス.png"></div></button></div>
+    </div>
     </form>
     </div>
     <div class="margin">
             <form action="categoryEdit">
                 <div class="categoryedit">
                    <div class="item">
-                   <div class="msg">  <p>${nullmsg} </p></div>
-                   <button type="button" onclick="openModal()" id="submitButton"><div class="rogo"><img src="images/dust.png"></div></button> 
+                   <div class="msg">  <p>${msg}</p></div>
+                   <button type="button" onclick="categoryopenModal()" id="submitButton"><div class="rogo"><img src="images/dust.png"></div></button> 
                     </div>
             <c:forEach var="category" items="${category}">
             <div class="item">
@@ -76,7 +79,7 @@
                <div id="modal">
 					<p class="modal_message">消去しますか？</p>
 					<div class="btns">
-						<button type="submit" name="delete" class="basic_btn">削除</button>
+						<button type="submit" name="delete" class="basic_btn" id="bar">削除</button>
 						<button type="button" onclick="closeModal()" class="cancel_btn">キャンセル</button>
 					</div>
 				</div>
@@ -85,8 +88,14 @@
     </div>
 </div> 
 	<div id="fadeLayer"></div>   
+	<script src="./dist/snackbar.min.js"></script>
+	<script src="./js/commons.js"></script>
+	<script>
+	if(document.getElementById("deleteFlag").value === "1") {
+		Snackbar.show({text: '削除しました。'});
+	}
+	</script>
 </body>
 </html>
-<script src="./js/commons.js">
 
-</script>
+

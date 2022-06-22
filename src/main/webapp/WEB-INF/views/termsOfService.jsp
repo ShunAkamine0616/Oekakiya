@@ -14,11 +14,13 @@
 </head>
 <body>
 
-	<div class="header">
-		<h1 class="site_logo">
-			<a href="menu">おえかきや</a>
-		</h1>
-	</div>
+	<header>
+		<div class="header">
+			<h1>
+				<a href="./home" class="page-title">おえかきや</a>
+			</h1>
+		</div>
+	</header>
 
 	<hr>
 	<div class="center">
@@ -30,13 +32,6 @@
 		</div>
 		<br><br>
 		
-<%-- 	<form action="signup" method="get"> --%>
-<!-- 		<button class="basic_btn regist" name="agree">同意する</button> -->
-<%-- 	</form> --%>
-<%-- 	<form:form action="home" method="post"> --%>
-<!-- 		<button class="basic_btn regist" name="register">同意しない</button> -->
-<%-- 	</form:form> --%>
-
 	</div>
 </body>
 </html>
