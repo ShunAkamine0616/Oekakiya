@@ -28,3 +28,23 @@ function edit(id){
 		document.getElementById(id).style.color = "black";
 	}
 }
+
+document.addEventListener('DOMContentLoaded', function(event) {
+  const targetButton = document.getElementById('submitButton');
+  const triggerCheckbox = document.querySelector('input[name="deleteId"]');
+
+  targetButton.disabled = true;
+  targetButton.classList.add('is-inactive');
+
+  triggerCheckbox.addEventListener('change', function() {
+    if (this.checked) {
+      targetButton.disabled = false;
+      targetButton.classList.remove('is-inactive');
+      targetButton.classList.add('is-active');
+    } else {
+      targetButton.disabled = true;
+      targetButton.classList.remove('is-active');
+      targetButton.classList.add('is-inactive');
+    }
+  }, false);
+}, false);

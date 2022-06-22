@@ -49,23 +49,24 @@
     <div class="container">
     <div class="item">
     <form action="categoryinsert">
-        <input type="text"name="name">
-        <button type="submit" class="">＋</button>
+    
+        <input type="text"name="name" style="height: 30px;">
+        <button type="submit" class="light_blue_btn2"><div class="pulus"><img src="images/プラス.png"></div></button>
     </form>
     </div>
     <div class="margin">
             <form action="categoryEdit">
                 <div class="categoryedit">
                    <div class="item">
-                   <button type="button" onclick="openModal()">🚮</button> 
+                   <div class="msg">  <p>${nullmsg} </p></div>
+                   <button type="button" onclick="openModal()" id="submitButton"><div class="rogo"><img src="images/dust.png"></div></button> 
                     </div>
-                    
             <c:forEach var="category" items="${category}">
             <div class="item">
                     <input type="checkbox" value="${category.getId()}"name ="deleteId">  
 		            <input type="text" value="${category.getCategoryName()}" name ="${category.getId()}" id="${category.getId()}" readOnly>
-                    <button type="button" onclick="edit(${category.getId()})" class="">✏</button>
-                    <button type="submit" value="${category.getId()}" name="editId" class="">🔄</button>
+                    <button type="button" onclick="edit(${category.getId()})" class=""><div class="rogo"><img src="images/pen.png"></div></button>
+                    <button type="submit" value="${category.getId()}" name="editId" class=""><div class="rogo"><img src="images/Road.png"></div></button>
              <!--   <button type="button" onclick="openModal()" value="${category.getId()}"name ="deleteId">🚮</button>--> 
             </div>
 			</c:forEach>

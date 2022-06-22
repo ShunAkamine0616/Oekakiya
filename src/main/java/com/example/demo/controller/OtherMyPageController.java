@@ -30,7 +30,7 @@ public class OtherMyPageController {
 	
 	@RequestMapping({"/other"})
 	public String other(Model model) {
-		User userMe = userService.findById(1);
+		User userMe = (User) session.getAttribute("user");
 		model.addAttribute("user", userMe);
 		
 		User userOther = userService.findById(2);

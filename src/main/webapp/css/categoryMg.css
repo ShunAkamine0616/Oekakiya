@@ -19,3 +19,32 @@ border-radius: 40px 40px 40px 40px;
 .item{
 padding:5px;
 }
+.rogo img{
+	max-width: 12px;
+	max-hight: 15px;
+	margin-top:3px;
+}
+.pulus img{
+	max-width: 30px;
+	max-hight: 30px;
+}
+/* 水色ボタン */
+.light_blue_btn2 {
+  border: none;
+  border-radius: 5px;
+  border: 2px solid;
+  border-color: blue;
+  background-color: #8ED0FF;
+
+
+
+  cursor: pointer;
+  color: black;
+
+}
+button{
+	text-align:center;
+}
+.msg{
+	color:red;
+}
