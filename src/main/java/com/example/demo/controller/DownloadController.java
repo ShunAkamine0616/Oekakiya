@@ -45,7 +45,6 @@ public class DownloadController {
  // ログイン画面遷移
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String insert(@ModelAttribute("login") LoginForm loginform, Model model) {
-    	System.out.println("logout");
         return "login";
     }
     // ログアウト処理
@@ -54,7 +53,6 @@ public class DownloadController {
     	session.invalidate();
     	ArrayList<Category> categoryList = (ArrayList<Category>) categoryService.findAll();
 		session.setAttribute("category",categoryList);
-    	System.out.println("logout");
         return "home";
     }
     //管理者権限で画像を削除
@@ -64,4 +62,5 @@ public class DownloadController {
 		imageService.delete(image.getId());
 		return "home";
 	}
+  
 }
