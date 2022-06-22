@@ -24,52 +24,56 @@
 	<div id="app">
 
 		<header>
-		<div class="header">
-			<h1>
-				<a href="./home" class="page-title">おえかきや</a>
-			</h1>
+			<div class="header">
+				<h1>
+					<a href="./home" class="page-title">おえかきや</a>
+				</h1>
 
-			<div class="btn-wrap">
-				<c:choose>
-					<c:when test="${empty user}">
-        ゲスト
-            <button type="button" onclick="location.href='login'"
-							class="login_btn">ログイン</button>
-					</c:when>
-					<c:when test="${not empty user}">
-
-						<label> <a href="./inputEditMyPage"> <img id="iconAdd"
-								class="image_circle" src="${user.iconPath}">
-						</a> ${user.name}
-
-						</label>
-						<button type="button" onclick="location.href='login'"
-							class="logout_btn">ログアウト</button>
-
-					</c:when>
-
-				</c:choose>
+				<div class="btn-wrap">
+					<c:choose>
+						<c:when test="${empty user}">
+							ゲスト
+            				<button type="button" onclick="location.href='login'"class="login_btn">ログイン</button>
+						</c:when>
+						<c:when test="${not empty user}">
+							<label>
+								<a href="./inputEditMyPage"> 
+									<img id="iconAdd" class="image_circle" src="${user.iconPath}">
+								</a> ${user.name}
+							</label>
+							<button type="button" onclick="location.href='login'"
+								class="logout_btn">ログアウト</button>
+						</c:when>
+					</c:choose>
+				</div>
 			</div>
-		</div>
-		<hr>
-	</header>
-		<c:if test="${ user ne null }"><a href="upload" style="color: black;">投稿</a></c:if>
-		<c:if test="${ user.getRole() eq 1 }"><a href="categoryMg" style="color: black;">カテゴリ管理</a></c:if>
+			<hr>
+		</header>
+		<c:if test="${ user ne null }">
+			<a href="upload" style="color: black;">投稿</a>
+		</c:if>
+		<c:if test="${ user.getRole() eq 1 }">
+			<a href="categoryMg" style="color: black;">カテゴリ管理</a>
+		</c:if>
 		<p>${ msg }</p>
-		<form method="get" action="/search" id = "target">
+		<form method="get" action="/search" id="target">
 			<div class="search_container">
-				<input type="text" size="25" name="keyword" id="keyword" placeholder="キーワード検索">
-				<input type="submit" value="&#xf002">
+				<input type="text" size="25" name="keyword" id="keyword"
+					placeholder="キーワード検索"> <input type="submit" value="&#xf002">
 			</div>
-			<input type="button" value="ユーザー"> <input type="button"
-				value="イラスト"> <br> <br>
-			
+			<input type="button" value="ユーザー"> 
+			<input type="button" value="イラスト"> <br> <br>
+
 			<div>
-				<label>検索対象：</label> <label> <input type="radio" name="user" id="user"
-					value="all" checked>すべて
-				</label> <c:if test="${ user ne null }"><label> <input type="radio" name="user" id="user" value="follow">フォロー
+				<label>検索対象：</label> 
+				<label> <input type="radio" name="user"
+					id="user" value="all" checked onChange="location.href='search?keyword=${ keywordHistory }&user=all&category=${ categoryHistory }&order=${ orderHistory }'">すべて
 				</label>
-			</c:if>
+				<c:if test="${ user ne null }">
+					<label> <input type="radio" name="user" id="user"
+						value="follow"<c:if test="${ userHistory eq 'follow' }"> checked </c:if>onChange="location.href='search?keyword=${ keywordHistory }&user=follow&category=${ categoryHistory }&order=${ orderHistory }'">フォロー
+					</label>
+				</c:if>
 			</div>
 			<br>
 
@@ -79,29 +83,23 @@
 			<div class="checkboxes">
 				カテゴリを選択してください <input name="category" type="hidden" value=" ">
 				<c:forEach var="category" items="${category}">
-				<label> 
-					<input type="checkbox" name="category" value=${ category.getId() }>
-					<span>${ category.getCategoryName() }</span>
-				</label> 
+					<label> <input type="checkbox" name="category"
+						value=${ category.getId() }> <span>${ category.getCategoryName() }</span>
+					</label>
 				</c:forEach>
-				<!-- <label> 
-					<input type="checkbox" name="category" value=2>
-					<span>checkbox2</span>
-				</label> 
-				<label> 
-					<input type="checkbox" name="category" value=3>
-					<span>checkbox3</span>
-				</label> -->
 			</div>
-			<!-- +'&user='+${ userHistory }+'&category='+${ categoryHistory }+'+&order='+value -->
 			<div class="order">
-				<label for="sort">並び替え</label>
-				<select class="base-text center" id="sort" name="order" style="background-color: white;" 
-				onChange="location.href='search?keyword=${ keywordHistory }&user=${ userHistory }&category=${ categoryHistory }&order='+value">
-					<option value="created_at DESC" <c:if test="${ orderHistory eq 'created_at DESC' }">selected</c:if>>投稿日</option>
-					<option value="updated_at DESC" <c:if test="${ orderHistory eq 'updated_at DESC' }">selected</c:if>>更新日</option>
-					<option value="download DESC" <c:if test="${ orderHistory eq 'download DESC' }">selected</c:if>>ダウンロード数</option>
-					<option value="favorite DESC" <c:if test="${ orderHistory eq 'favorite DESC' }">selected</c:if>>いいね数</option>
+				<label for="sort">並び替え</label> <select class="base-text center"
+					id="sort" name="order" style="background-color: white;"
+					onChange="location.href='search?keyword=${ keywordHistory }&user=${ userHistory }&category=${ categoryHistory }&order='+value">
+					<option value="created_at DESC"
+						<c:if test="${ orderHistory eq 'created_at DESC' }">selected</c:if>>投稿日</option>
+					<option value="updated_at DESC"
+						<c:if test="${ orderHistory eq 'updated_at DESC' }">selected</c:if>>更新日</option>
+					<option value="download DESC"
+						<c:if test="${ orderHistory eq 'download DESC' }">selected</c:if>>ダウンロード数</option>
+					<option value="favorite DESC"
+						<c:if test="${ orderHistory eq 'favorite DESC' }">selected</c:if>>いいね数</option>
 				</select>
 			</div>
 		</form>
@@ -109,11 +107,11 @@
 		<div class="container">
 			<c:forEach var="image" items="${imageList}">
 				<div class="box">
-					<a href="detail?id=${ image.getId() }"> 
-						<img src=${ image.getImagePath() }>
+					<a href="detail?id=${ image.getId() }"> <img
+						src=${ image.getImagePath() }>
 					</a>
 					<p>${ image.getImageTitle() }</p>
-					<p>いいね：${ image.getFavorite() }   DL：${ image.getDownload() }</p>
+					<p>いいね：${ image.getFavorite() } DL：${ image.getDownload() }</p>
 				</div>
 			</c:forEach>
 		</div>
