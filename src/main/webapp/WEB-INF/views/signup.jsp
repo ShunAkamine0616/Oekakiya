@@ -10,15 +10,17 @@
 <meta charset="UTF-8">
 <title>おえかきや｜新規登録</title>
 <link href="css/commons.css" rel="stylesheet">
-
+<link href="css/header.css" rel="stylesheet">
 </head>
 <body>
 
-	<div class="header">
-		<h1 class="site_logo">
-			<a href="menu">おえかきや</a>
-		</h1>
-	</div>
+		<header>
+		<div class="header">
+			<h1>
+				<a href="./home" class="page-title">おえかきや</a>
+			</h1>
+		</div>
+	</header>
 
 	<hr>
 
@@ -48,14 +50,16 @@
 					<div>
 						<label class="required">パスワード</label>
 						<form:input type="password" path="password" class="base-text"
-							value="${password}" />
+							value="${password}" id="Pas" oninput="CheckPassword(this)"/>
+							<span onclick="ChangeVisibleStatus()" class="ViewPoint">👁️</span>
 						<span class="error"><form:errors path="password"
 								cssStyle="color: red" /></span>
 					</div>
 					<div>
 						<label class="required">パスワード再入力</label>
 						<form:input type="password" path="repassword" class="base-text"
-							value="${repassword}" />
+							value="${repassword}" id="Pas2" oninput="CheckPassword(this)"/>
+							<span onclick="ChangeVisibleStatus2()" class="ViewPoint">👁️</span>
 						<span class="error"><form:errors path="repassword"
 								cssStyle="color: red" /></span>
 					</div>
@@ -81,6 +85,47 @@
 		</div>
 	</div>
 	<div id="fadeLayer"></div>
+	<script language="javascript" type="text/javascript">
+		function ChangeVisibleStatus() {
+			var PassType = document.getElementById("Pas");
+			if (PassType.type === "password") {
+				PassType.type = "text"
+			} else if (PassType.type === "text") {
+				PassType.type = "password";
+			}
+		}
+	</script>
+	<!-- 目のマーク（パスワードの表示/非表示）の処理2 -->
+	<script language="javascript" type="text/javascript">
+		function ChangeVisibleStatus2() {
+			var PassType2 = document.getElementById("Pas2");
+			if (PassType2.type === "password") {
+				PassType2.type = "text"
+			} else if (PassType2.type === "text") {
+				PassType2.type = "password";
+			}
+		}
+	</script>
+	<!-- パスワードとパスワード確認が一致しているか確認する処理 -->
+	<script>
+	
+		var preConfirm = null;
+		function CheckPassword(confirm) {
+			// 入力値取得
+			document.getElementById("Pas").setCustomValidity('');
+			// 			preConfirm = confirm;
+			document.getElementById("Pas2").setCustomValidity('');
+			var input1 = Pas.value;
+			var input2 = Pas2.value;
+			
+			if (input1 != input2) {
+				confirm.setCustomValidity("入力値が一致しません。");
+				// 				preConfirm = confirm;
+			} else {
+				confirm.setCustomValidity('');
+			}
+		}
+	</script>
 </body>
 </html>
 <script src="./js/commons.js"></script>

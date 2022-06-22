@@ -44,11 +44,11 @@ public class SignupController {
 	public String register(@Validated @ModelAttribute("signup") SignupForm signupform, BindingResult bindingResult, Model model) {
 		// 入力チェック
 		if (bindingResult.hasErrors()) {
-			return "imagePosting";
+			return "signup";
 		}
 		if(userService.findByAccountId(signupform.getAccountId()) != null) {
 			model.addAttribute("registerErrMsg", "そのアカウントIDは既に存在します。");
-			return "userRegistration";
+			return "signup";
 		}
 		User user = new User(signupform.getAccountId(), signupform.getPassword(),signupform.getName());
 		
@@ -58,6 +58,8 @@ public class SignupController {
 			model.addAttribute("registerErrMsg", errMsg);
 			return "signup";
 		} else {
+			user = userService.findByAccountId(signupform.getAccountId());
+			user.setIconPath("images/汎用的な人のシルエットアイコン.png");
 			session.setAttribute("user", user);
 			return "home";
 		}
