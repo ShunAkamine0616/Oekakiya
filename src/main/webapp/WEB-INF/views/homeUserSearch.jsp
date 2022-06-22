@@ -77,17 +77,14 @@
 			
 		</form>
 
-		<div class="container">
-			<c:forEach var="image" items="${imageList}">
-				<div class="box">
-					<a href="detail?id=${ image.getId() }"> <img
-						src=${ image.getImagePath() }>
-					</a>
-					<p>${ image.getImageTitle() }</p>
-					<p>いいね：${ image.getFavorite() } DL：${ image.getDownload() }</p>
-				</div>
-			</c:forEach>
-		</div>
+		
+		<c:forEach var="user" items="${userList}">
+			
+			
+			<div class="userContainer"><a href="other?id=${ user.getId() }"><img id="iconAdd" class="image_circle" src="${ user.getIconPath() }"></a><span>${ user.getName() }<br> ${ user.getAccountId() }</span></div>
+			
+		</c:forEach>
+		
 
 	</div>
 	<footer></footer>

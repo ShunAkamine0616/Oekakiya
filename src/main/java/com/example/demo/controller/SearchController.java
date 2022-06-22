@@ -84,8 +84,7 @@ public class SearchController {
 			userList = (ArrayList<User>) userService.findFollow(key,userInfo.getId());
 		}
 		if(userList != null) {
-			System.out.println(userList.get(0).getName());
-			model.addAttribute("UserList",userList);
+			model.addAttribute("userList",userList);
 		}
 		return "homeUserSearch";
 	}
