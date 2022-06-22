@@ -105,19 +105,20 @@
 				</select>
 			</div>
 		</form>
-
-		<div class="container">
-			<c:forEach var="image" items="${imageList}">
-				<div class="box">
-					<a href="detail?id=${ image.getId() }"> <img
-						src=${ image.getImagePath() }>
-					</a>
-					<p>${ image.getImageTitle() }</p>
-					<p>いいね：${ image.getFavorite() } DL：${ image.getDownload() }</p>
-				</div>
-			</c:forEach>
-		</div>
-
+		
+		<c:if test="${ imageList ne null }">
+			<div class="container">
+				<c:forEach var="image" items="${imageList}">
+					<div class="box">
+						<a href="detail?id=${ image.getId() }"> <img
+							src=${ image.getImagePath() }>
+						</a>
+						<p>${ image.getImageTitle() }</p>
+						<p>いいね：${ image.getFavorite() } DL：${ image.getDownload() }</p>
+					</div>
+				</c:forEach>
+			</div>
+		</c:if>
 	</div>
 	<footer></footer>
 

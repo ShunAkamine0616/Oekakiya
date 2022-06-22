@@ -65,11 +65,11 @@
 			<div>
 				<label>検索対象：</label> 
 				<label> <input type="radio" name="user"
-					id="user" value="all" checked onChange="location.href='search?keyword=${ keywordHistory }&user=all&category=${ categoryHistory }&order=${ orderHistory }'">すべて
+					id="user" value="all" checked onChange="location.href='searchUser?keyword=${ keywordHistory }&user=all'">すべて
 				</label>
 				<c:if test="${ user ne null }">
 					<label> <input type="radio" name="user" id="user"
-						value="follow"<c:if test="${ userHistory eq 'follow' }"> checked </c:if>onChange="location.href='search?keyword=${ keywordHistory }&user=follow&category=${ categoryHistory }&order=${ orderHistory }'">フォロー
+						value="follow"<c:if test="${ userHistory eq 'follow' }"> checked </c:if>onChange="location.href='searchUser?keyword=${ keywordHistory }&user=follow'">フォロー
 					</label>
 				</c:if>
 			</div>

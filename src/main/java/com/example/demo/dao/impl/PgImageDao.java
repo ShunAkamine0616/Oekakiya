@@ -65,7 +65,6 @@ public class PgImageDao implements ImageDao {
 		param.addValue("keyword", "%"+keyword+"%");
 		param.addValue("userId", userId);
 		List<Image> resultList = jdbcTemplate.query(sql, param, new BeanPropertyRowMapper<Image>(Image.class));
-
 		return resultList.isEmpty() ? null : resultList;
 	}
 	public List<Image> findByUserId(Integer userId) {
