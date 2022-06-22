@@ -1,8 +1,5 @@
 package com.example.demo.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.demo.controller.form.EditForm;
-import com.example.demo.entity.Category;
 import com.example.demo.entity.Image;
 import com.example.demo.service.CategoryService;
 import com.example.demo.service.ImageService;
@@ -29,22 +25,6 @@ public class postingEditController{
 	@Autowired
 	private CategoryService categoryservice;
 	
-	@RequestMapping("/index")
-	public String index(@ModelAttribute("postingEdit") EditForm from, Model model) {
-		//後からイメージ愛ディー入れる
-		int imageid = 11;
-		session.setAttribute("imageid",imageid);
-		//渡されたイメージIDをもとに情報を取得
-		from.setCategoryId(imageservice.findByImageId(imageid).getCategoryId());
-		from.setComment(imageservice.findByImageId(imageid).getComment());
-		Image image= imageservice.findByImageId(imageid);
-		//categoryを全権取得
-		List<Category> category = new ArrayList<>();
-		category = categoryservice.findAll();
-		session.setAttribute("category",category);
-		session.setAttribute("image",image);
-		return "postingEdit";
-	}
 	@RequestMapping(value="/edit", method = RequestMethod.POST)
 	public String edit(@ModelAttribute("postingEdit") EditForm form, Model model) {
 		Image image =new Image();

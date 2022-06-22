@@ -13,4 +13,5 @@ public interface ImageDao {
 	public int update(Image image);
 	public int delete(Integer id);
 	public int deleteByUserId(Integer userId);
+	public Image findByIdCount(Integer imageId);
 }

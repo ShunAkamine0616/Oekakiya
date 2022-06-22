@@ -10,8 +10,40 @@
 <title>カテゴリ管理画面</title>
 <link href="css/categoryMg.css" rel="stylesheet">
 <link href="css/commons.css" rel="stylesheet">
+<link href="css/header.css" rel="stylesheet">
 </head>
 <body>
+<header>
+		<div class="header">
+			<h1>
+				<a href="./home" class="page-title">おえかきや</a>
+			</h1>
+
+			<div class="btn-wrap">
+				<c:choose>
+					<c:when test="${empty user}">
+        ゲスト
+            <button type="button" onclick="location.href='login'"
+							class="login_btn">ログイン</button>
+					</c:when>
+					<c:when test="${not empty user}">
+
+						<label> <a href="./inputEditMyPage"> <img id="iconAdd"
+								class="image_circle" src="${user.iconPath}">
+						</a> ${user.name}
+
+						</label>
+						<button type="button" onclick="location.href='logout'"
+							class="logout_btn">ログアウト</button>
+
+					</c:when>
+
+				</c:choose>
+			</div>
+		</div>
+		<hr>
+	</header>
+
 <h1>カテゴリ管理</h1>
 <div class="category">
     <div class="container">
