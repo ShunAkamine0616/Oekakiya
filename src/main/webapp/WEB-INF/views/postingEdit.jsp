@@ -68,7 +68,8 @@
  	<div class="rightitem">
         <div class="title">
             <label>タイトル</label>
-            <form:input type="text" value="${images.getImageTitle()}" path="title"/><form:errors path="title" cssStyle="color: red" />
+            <form:input type="text" value="${images.getImageTitle()}" path="title"/>
+            <form:errors path="title" cssStyle="color: red"/>
             
         </div>
         <div class="category">

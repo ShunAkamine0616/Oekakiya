@@ -3,6 +3,7 @@ package com.example.demo.controller.form;
 import javax.validation.constraints.NotBlank;
 
 public class EditForm{
+	
 	@NotBlank(message="画像のタイトルは必須です。  ")
 	private String title;
 	
