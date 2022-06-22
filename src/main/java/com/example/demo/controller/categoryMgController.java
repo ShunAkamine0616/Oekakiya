@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.Category;
@@ -36,7 +37,7 @@ public class categoryMgController{
 		session.setAttribute("category",category);
 		return "categoryMg";
 	}
-	@RequestMapping(value = "/categoryEdit",params ="editId")
+	@RequestMapping(value = "/categoryEdit",params ="editId" ,method = RequestMethod.POST)
 	public String edit(@RequestParam("editId") Integer id,Model model) {
 		//categoryを全権取得
 		String name = req.getParameter(id.toString());
@@ -51,7 +52,7 @@ public class categoryMgController{
 		return "categoryMg";
 		}
 	}
-	@RequestMapping(value = "/categoryEdit",params ="deleteId")
+	@RequestMapping(value = "/categoryEdit",params ="deleteId",method = RequestMethod.POST)
 	public String delete(@RequestParam("deleteId") Integer[] id,Model model) {
 		for(Integer i :id) {
 			int delete = categoryservice.delete(i);
@@ -65,7 +66,7 @@ public class categoryMgController{
 		return "categoryMg";
 	}
 
-	@RequestMapping("/categoryinsert")
+	@RequestMapping(value="/categoryinsert",method = RequestMethod.POST)
 	public String insert(@RequestParam("name") String name,Model model) {
 		if(name.equals("")) {
 			model.addAttribute("msg", "カテゴリ名は必須入力項目です。");
