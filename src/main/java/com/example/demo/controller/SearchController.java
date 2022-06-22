@@ -16,6 +16,7 @@ import com.example.demo.entity.User;
 import com.example.demo.service.CategoryService;
 import com.example.demo.service.FollowService;
 import com.example.demo.service.ImageService;
+import com.example.demo.service.UserService;
 @Controller
 public class SearchController {
 	
@@ -25,6 +26,8 @@ public class SearchController {
 	FollowService followService;
 	@Autowired
 	CategoryService categoryService;
+	@Autowired
+	UserService userService;
 	@Autowired
 	HttpSession session;
 	
@@ -63,4 +66,18 @@ public class SearchController {
 		model.addAttribute("imageList",imageList);
 		return "home";
     }
+	
+	@RequestMapping("/userSearch")
+    public String userSearch( Model model) {
+		return "homeUserSearch";
+	}
+	
+	@RequestMapping("/searchUser")
+    public String searchUser(@RequestParam("keyword") String key, @RequestParam("user") String user, Model model) {
+		ArrayList<User> UserList = (ArrayList<User>) userService.findByKeyword(key);
+		for(User u : UserList) {
+			System.out.println(u.getName());
+		}
+		return "homeUserSearch";
+	}
 }
