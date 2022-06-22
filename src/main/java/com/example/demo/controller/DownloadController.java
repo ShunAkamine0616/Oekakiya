@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.demo.controller.form.DownloadForm;
 import com.example.demo.controller.form.LoginForm;
+import com.example.demo.entity.Category;
 import com.example.demo.entity.Image;
+import com.example.demo.service.CategoryService;
 import com.example.demo.service.DownloadService;
 import com.example.demo.service.ImageService;
 
@@ -26,6 +30,8 @@ public class DownloadController {
 	DownloadService downloadService;
 	@Autowired
 	ImageService imageService;
+	@Autowired
+	CategoryService categoryService;
 	// 登録画面遷移
     @RequestMapping(value = "/download", method = RequestMethod.GET)
     public String download(@ModelAttribute("download") DownloadForm downloadform, Model model) {
@@ -46,6 +52,8 @@ public class DownloadController {
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public String logout(Model model) {
     	session.invalidate();
+    	ArrayList<Category> categoryList = (ArrayList<Category>) categoryService.findAll();
+		session.setAttribute("category",categoryList);
     	System.out.println("logout");
         return "home";
     }
