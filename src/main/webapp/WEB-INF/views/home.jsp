@@ -54,7 +54,7 @@
     </header>
 
 		<hr>
-		<a href="upload" style="color: black;">投稿</a>
+		<c:if test="${ user ne null }"><a href="upload" style="color: black;">投稿</a></c:if>
 		<a href="categoryMg" style="color: black;">カテゴリ管理</a>
 		<p>${ msg }</p>
 		<form method="get" action="/search" id = "target">
@@ -68,8 +68,9 @@
 			<div>
 				<label>検索対象：</label> <label> <input type="radio" name="user" id="user"
 					value="all" checked>すべて
-				</label> <label> <input type="radio" name="user" id="user" value="follow">フォロー
+				</label> <c:if test="${ user ne null }"><label> <input type="radio" name="user" id="user" value="follow">フォロー
 				</label>
+			</c:if>
 			</div>
 			<br>
 
