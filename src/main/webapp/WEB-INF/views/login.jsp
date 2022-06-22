@@ -8,10 +8,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title><fmt:message key="page.index.title" /></title>
+<title>おえかきや｜ログイン</title>
 <link href="css/commons.css" rel="stylesheet">
 </head>
-<body class="login_body">
+<body>
 	<div class="header">
 		<h1 class="site_logo">
 			おえかきや
@@ -27,7 +27,7 @@
 		</p>
 
 		<form:form action="home" modelAttribute="login" method="post">
-			<fieldset>
+<!-- 			<fieldset> -->
 				<div class="cp_iptxt">
 					<form:input class="base_input" path="accountId" placeholder="ID" />
 					<i class="fa fa-user fa-lg fa-fw" aria-hidden="true"></i>
@@ -36,16 +36,20 @@
 					</div>
 				</div>
 
-				<div>
+				<div class="cp_iptxt">
 					<form:input class="base_input" type="password" path="password"
 						placeholder="PASS" />
 					<div class="error">
 						<form:errors path="password" cssStyle="color: red" />
 					</div>
 				</div>
-			</fieldset>
+<!-- 			</fieldset> -->
 			<form:button name="login">ログイン</form:button>
 		</form:form>
+		
+		<form action="termsOfService" method="get">
+			<button class="basic_btn regist" name="register">新規登録</button>
+		</form>
 	</div>
 </body>
 </html>
