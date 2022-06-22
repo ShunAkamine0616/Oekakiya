@@ -78,11 +78,10 @@
 		</form>
 
 		
-		<c:forEach var="user" items="${userList}">
-			
-			
-			<div class="userContainer"><a href="other?id=${ user.getId() }"><img id="iconAdd" class="image_circle" src="${ user.getIconPath() }"></a><span>${ user.getName() }<br> ${ user.getAccountId() }</span></div>
-			
+		<c:forEach var="userList" items="${userList}">
+			<c:if test="${ user.id ne userList.getId() }">
+				<div class="userContainer"><a href="other?id=${ userList.getId() }"><img id="iconAdd" class="image_circle" src="${ userList.getIconPath() }"></a><span>${ userList.getName() }<br> ${ userList.getAccountId() }</span></div>
+			</c:if>
 		</c:forEach>
 		
 
