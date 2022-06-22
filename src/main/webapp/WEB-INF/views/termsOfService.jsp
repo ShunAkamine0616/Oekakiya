@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>おえかきや｜新規登録</title>
+<title>おえかきや｜利用規約</title>
 <link href="css/commons.css" rel="stylesheet">
 
 </head>
@@ -21,8 +21,23 @@
 	</div>
 
 	<hr>
+	<div class="center">
+		<iframe src="html/termsOfService.html" width="700" height="1000"></iframe>
+		<br><br>
+		<div class="btn"style="text-align: center">
+			<a class="basic_btn" href="/signup">同意する</a>
+			<a class="basic_btn" href="/login">同意しない</a>
+		</div>
+		<br><br>
+		
+<%-- 	<form action="signup" method="get"> --%>
+<!-- 		<button class="basic_btn regist" name="agree">同意する</button> -->
+<%-- 	</form> --%>
+<%-- 	<form:form action="home" method="post"> --%>
+<!-- 		<button class="basic_btn regist" name="register">同意しない</button> -->
+<%-- 	</form:form> --%>
 
-	
+	</div>
 </body>
 </html>
 <!-- <script src="./js/commons.js"></script> -->

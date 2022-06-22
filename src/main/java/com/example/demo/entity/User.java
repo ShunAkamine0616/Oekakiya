@@ -14,6 +14,12 @@ public class User {
 		
 	}
 	
+	public User(String accountId, String password, String name){
+		this.accountId = accountId;
+		this.password = password;
+		this.name = name;
+	}
+	
 	public User(String accountId, String password, String name, String iconPath, String mail, String introduction){
 		this.accountId = accountId;
 		this.password = password;

@@ -39,7 +39,21 @@ public class DownloadController {
  // ログイン画面遷移
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String insert(@ModelAttribute("login") LoginForm loginform, Model model) {
+    	System.out.println("logout");
         return "login";
     }
-    
+    // ログアウト処理
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logout(Model model) {
+    	session.invalidate();
+    	System.out.println("logout");
+        return "home";
+    }
+    //管理者権限で画像を削除
+    @RequestMapping(value="/adminsDelete",method = RequestMethod.GET)
+	public String delete(@ModelAttribute("download") DownloadForm downloadform, Model model) {
+		Image image = (Image)session.getAttribute("image"); 
+		imageService.delete(image.getId());
+		return "home";
+	}
 }

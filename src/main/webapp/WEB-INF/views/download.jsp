@@ -24,38 +24,30 @@
 	<div class="category">
 		<div class="container">
 			<div class="item">
-			
 
-			<header>
-		<div class="header">
-			<h1>
-				<a href="./home" class="page-title">おえかきや</a>
-			</h1>
 
-			<div class="btn-wrap">
-				<c:choose>
-					<c:when test="${empty user}">
-        ゲスト
-            <button type="button" onclick="location.href='login'"
-							class="login_btn">ログイン</button>
-					</c:when>
-					<c:when test="${not empty user}">
+				package com.example.controller;
 
-						<label> <a href="./inputEditMyPage"> <img id="iconAdd"
-								class="image_circle" src="${user.iconPath}">
-						</a> ${user.name}
+import javax.servlet.http.HttpSession;
 
-						</label>
-						<button type="button" onclick="location.href='login'"
-							class="logout_btn">ログアウト</button>
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-					</c:when>
+import com.example.controller.form.LoginForm;
 
-				</c:choose>
-			</div>
-		</div>
-
-	</header>
+@Controller
+public class LogoutController {
+	@Autowired
+	HttpSession session;
+	@RequestMapping("/logout")
+	public String index(@ModelAttribute("index") LoginForm loginform, Model model) {
+		session.invalidate();
+		return "logout";
+	}
+}
 
 				<br> <br>
 				<!--     <hr width=auto class ="header_line"> -->
@@ -64,32 +56,39 @@
 		</div>
 	</div>
 	<div class="downloadImg">
-		<img src="${downloadImg.imagePath}">
+		<img src="${image.imagePath}">
 	</div>
 	<div class="item">
- 	<div class="rightitem">
-        
-		タイトル <div class="title">${downloadImg.imageTitle}</div><br>
-		 カテゴリ<div
-			class="category">${downloadImg.categoryId}</div><br>
-		 <div class="comment">
-		${downloadImg.comment}
+		<div class="rightitem">
+
+			タイトル
+			<div class="title">${image.imageTitle}</div>
+			<br> カテゴリ
+			<div class="category">${image.categoryId}</div>
+			<br>
+			<div class="comment">${image.comment}</div>
 		</div>
 	</div>
-	</div>
 	<c:if test="${user.role == 2}">
-		<button class="light_blue_btn">
-			<a href="${downloadImg.imagePath}"
-				download="${downloadImg.imageTitle}">削除</a>
-		</button>
+		<button type="button" onclick="openModal()">削除</button>
+		<div id="modal">
+			<p class="modal_message">削除しますか？</p>
+			<div class="btns">
+				<button type="button" onclick="location.href='/adminsDelete'"
+					class="basic_btn">削除</button>
+				<button type="button" onclick="closeModal()" class="cancel_btn">キャンセル</button>
+			</div>
+		</div>
 	</c:if>
 	<label>
 
 		<button class="light_blue_btn">
-			<a href="${downloadImg.imagePath}"
-				download="${downloadImg.imageTitle}">ダウンロード</a>
+			<a href="${imageId.imagePath}" download="${imageId.imageTitle}">ダウンロード</a>
 		</button>
 	</label>
-
+	<div id="fadeLayer"></div>
 </body>
+
 </html>
+<script src="./js/commons.js">
+</script>

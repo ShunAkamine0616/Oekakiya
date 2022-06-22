@@ -64,7 +64,7 @@ public class ImageDetailController {
 			return "postingEdit";
 		}else{
 			Image DlImages =imageService.findByImageId(imageId);
-	    	session.setAttribute("downloadImg",DlImages);
+	    	session.setAttribute("image",DlImages);
 			return"download";
 			//投稿詳細画面へ
 		}
