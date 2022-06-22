@@ -12,37 +12,38 @@
 	<link
 		href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
 		rel="stylesheet">
+	<link href="css/header.css" rel="stylesheet">
 	</head>
 	<header>
-		<div class="header">
-			<h1><a href="./home" class="page-title">おえかきや</a></h1>
-			
-			<div class="btn-wrap">
-				<c:choose>
-					<c:when test="${empty user}">
-						ゲスト
-						<button type="button" onclick="location.href='login'" class="login_btn">ログイン</button>
-					</c:when>
-					
-					<c:when test="${not empty user}">
-						<label>
-							<a href="./inputEditMyPage">
-								<img id="iconAdd" class="iconAdd"
-								src="${user.iconPath}" style="max-width: 30px;">
-							</a>
-							${user.name}
-						</label>
-						<button type="button" onclick="location.href='login'"  class="logout_btn">ログアウト</button>
-					</c:when>
-				</c:choose>
+			<div class="header">
+				<h1>
+					<a href="./home" class="page-title">おえかきや</a>
+				</h1>
+				
+				<div class="btn-wrap">
+					<c:choose>
+						<c:when test="${empty user}">
+							ゲスト
+							<button type="button" onclick="location.href='login'"
+							class="login_btn">ログイン</button>
+						</c:when>
+						<c:when test="${not empty user}">
+							<label>
+								<a href="./mypage"> <img id="iconAdd"
+									class="image_circle" src="${user.iconPath}">
+								</a> ${user.name}
+							</label>
+							<button type="button" onclick="location.href='logout'"
+							class="logout_btn">ログアウト</button>
+						</c:when>
+					</c:choose>
+				</div>
 			</div>
-		</div>
+		<hr>
 	</header>
     
 	<body>
 		<div id="app">
-			<hr>
-			
 			<div  class="site_logo">
 				<h1>
 					${ user.getName() }
@@ -58,14 +59,16 @@
 			</div>
 			
 			<div class="container">
-				<c:forEach var="image" items="${imageList}">
-					<div class="box">
-						<a href="detail?id=${ image.getId() }"> 
-							<img src=${ image.getImagePath() }>
-						</a>
-						<p>${ image.getImageTitle() }</p>
-					</div>
-				</c:forEach>
+				<br>
+				
+					<c:forEach var="image" items="${imageList}">
+						<div class="box">
+							<a href="detail?id=${ image.getId() }"> 
+								<img src=${ image.getImagePath() }>
+							</a>
+							<p>${ image.getImageTitle() }</p>
+						</div>
+					</c:forEach>
 			</div>
 		</div>
 	</body>

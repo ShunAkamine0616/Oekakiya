@@ -42,7 +42,6 @@ public class SearchController {
 		session.setAttribute("orderHistory", "created_at");
 		if(imageList != null) {
 			model.addAttribute("imageList",imageList);
-			System.out.println(imageList.get(0).getImagePath());
 		}
         return "home";
     }
@@ -56,14 +55,15 @@ public class SearchController {
 		ArrayList<Image> imageList = null;
 		category = category.replace(" ,", "");
         if("all".equals(user)) {
-        	System.out.println("all");
         	imageList = (ArrayList<Image>) imageService.findByKeyword(key, category, order);
+        	System.out.println("user");
         }else {
         	User userInfo = (User) session.getAttribute("user");
-        	System.out.println("follow");
         	imageList = (ArrayList<Image>) imageService.findFollow(key, category, order, userInfo.getId());
+        	System.out.println("follow");
         }
-		model.addAttribute("imageList",imageList);
+        System.out.println(imageList);
+        model.addAttribute("imageList",imageList);
 		return "home";
     }
 	
@@ -74,9 +74,17 @@ public class SearchController {
 	
 	@RequestMapping("/searchUser")
     public String searchUser(@RequestParam("keyword") String key, @RequestParam("user") String user, Model model) {
-		ArrayList<User> UserList = (ArrayList<User>) userService.findByKeyword(key);
-		for(User u : UserList) {
-			System.out.println(u.getName());
+		session.setAttribute("keywordHistory", key);
+		session.setAttribute("userHistory", user);
+		ArrayList<User> userList = null;
+		if("all".equals(user)) {
+			userList = (ArrayList<User>) userService.findByKeyword(key);
+		}else {
+			User userInfo = (User) session.getAttribute("user");
+			userList = (ArrayList<User>) userService.findFollow(key,userInfo.getId());
+		}
+		if(userList != null) {
+			model.addAttribute("userList",userList);
 		}
 		return "homeUserSearch";
 	}

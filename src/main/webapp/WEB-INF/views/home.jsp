@@ -62,9 +62,8 @@
 				<input type="text" size="25" name="keyword" id="keyword"
 					placeholder="キーワード検索"> <input type="submit" value="&#xf002">
 			</div>
-			<a href="userSearch">ユーザー</a>
-			<input type="button" value="ユーザー"> 
-			<input type="button" value="イラスト" style="background-color: yellow;"> <br> <br>
+			<a href="userSearch" class="select_btn">ユーザー</a>
+			<input type="submit" value="イラスト" class="not_select_btn"> <br> <br>
 
 			<div>
 				<label>検索対象：</label> 
@@ -84,11 +83,13 @@
 			<!--   チェックボックス   -->
 			<div class="checkboxes">
 				カテゴリを選択してください <input name="category" type="hidden" value=" ">
+				
 				<c:forEach var="category" items="${category}">
 					<label> <input type="checkbox" name="category"
-						value=${ category.getId() }> <span>${ category.getCategoryName() }</span>
+						value=${ category.getId() }> ${ category.getCategoryName() }
 					</label>
 				</c:forEach>
+	
 			</div>
 			<div class="order">
 				<label for="sort">並び替え</label> <select class="base-text center"
@@ -105,19 +106,20 @@
 				</select>
 			</div>
 		</form>
-
-		<div class="container">
-			<c:forEach var="image" items="${imageList}">
-				<div class="box">
-					<a href="detail?id=${ image.getId() }"> <img
-						src=${ image.getImagePath() }>
-					</a>
-					<p>${ image.getImageTitle() }</p>
-					<p>いいね：${ image.getFavorite() } DL：${ image.getDownload() }</p>
-				</div>
-			</c:forEach>
-		</div>
-
+		
+		<c:if test="${ imageList ne null }">
+			<div class="container">
+				<c:forEach var="image" items="${imageList}">
+					<div class="box">
+						<a href="detail?id=${ image.getId() }"> <img
+							src=${ image.getImagePath() }>
+						</a>
+						<p>${ image.getImageTitle() }</p>
+						<p>いいね：${ image.getFavorite() } DL：${ image.getDownload() }</p>
+					</div>
+				</c:forEach>
+			</div>
+		</c:if>
 	</div>
 	<footer></footer>
 

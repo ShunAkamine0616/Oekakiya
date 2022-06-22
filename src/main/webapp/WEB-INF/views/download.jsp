@@ -9,9 +9,9 @@
 <head>
 <meta charset="UTF-8">
 <link href="css/commons.css" rel="stylesheet">
-<link rel="stylesheet" href="css/header.css">
-<link href="css/download.css" rel="stylesheet">
-<link href="css/postingEdit.css" rel="stylesheet">
+<!-- <link href="css/download.css" rel="stylesheet"> -->
+<!-- <link href="css/postingEdit.css" rel="stylesheet"> -->
+<link href="css/header.css" rel="stylesheet">
 <title>Insert title here</title>
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -20,46 +20,48 @@
 
 <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
 </head>
-<body style="background-color: rgb(255, 245, 233);">
-	<div class="category">
-		<div class="container">
-			<div class="item">
 
+	
 
-				package com.example.controller;
+<header>
+		<div class="header">
+			<h1>
+				<a href="./home" class="page-title">おえかきや</a>
+			</h1>
 
-import javax.servlet.http.HttpSession;
+			<div class="btn-wrap">
+				<c:choose>
+					<c:when test="${empty user}">
+        ゲスト
+            <button type="button" onclick="location.href='login'"
+							class="login_btn">ログイン</button>
+					</c:when>
+					<c:when test="${not empty user}">
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
+						<label> <a href="./inputEditMyPage"> <img id="iconAdd"
+								class="image_circle" src="${user.iconPath}">
+						</a> ${user.name}
 
-import com.example.controller.form.LoginForm;
+						</label>
+						<button type="button" onclick="location.href='logout'"
+							class="logout_btn">ログアウト</button>
 
-@Controller
-public class LogoutController {
-	@Autowired
-	HttpSession session;
-	@RequestMapping("/logout")
-	public String index(@ModelAttribute("index") LoginForm loginform, Model model) {
-		session.invalidate();
-		return "logout";
-	}
-}
+					</c:when>
 
-				<br> <br>
-				<!--     <hr width=auto class ="header_line"> -->
-
+				</c:choose>
 			</div>
 		</div>
-	</div>
+		<hr>
+	</header>
+
+			
+				<!--     <hr width=auto class ="header_line"> -->
+
+	<span>いいね数:</span><span id="favoriteNum">${count.getFavorite()}</span><span>ダウンロード数:</span><span id="downloadNum">${ count.getDownload() }</span>
 	<div class="downloadImg">
 		<img src="${image.imagePath}">
 	</div>
-	<div class="item">
-		<div class="rightitem">
+
 
 			タイトル
 			<div class="title">${image.imageTitle}</div>
@@ -67,8 +69,7 @@ public class LogoutController {
 			<div class="category">${image.categoryId}</div>
 			<br>
 			<div class="comment">${image.comment}</div>
-		</div>
-	</div>
+	
 	<c:if test="${user.role == 2}">
 		<button type="button" onclick="openModal()">削除</button>
 		<div id="modal">
@@ -82,8 +83,8 @@ public class LogoutController {
 	</c:if>
 	<label>
 
-		<button class="light_blue_btn">
-			<a href="${imageId.imagePath}" download="${imageId.imageTitle}">ダウンロード</a>
+		<button class="light_blue_btn" id="download_btn">
+			<a href="${image.imagePath}" download="${image.imageTitle}">ダウンロード</a>
 		</button>
 	</label>
 	<div id="fadeLayer"></div>
@@ -91,4 +92,6 @@ public class LogoutController {
 
 </html>
 <script src="./js/commons.js">
+</script>
+<script src="./js/download.js">
 </script>

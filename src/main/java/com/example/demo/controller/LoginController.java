@@ -42,7 +42,7 @@ public class LoginController {
 		} else {
 			ArrayList<Image> imageList = (ArrayList<Image>) imageService.findByKeyword("", " ", "created_at");
 			session.setAttribute("user",user);
-			session.setAttribute("imageList", imageList);
+			model.addAttribute("imageList", imageList);
 			return "home";
 		}
 	}

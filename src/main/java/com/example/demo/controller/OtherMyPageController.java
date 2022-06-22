@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.Follow;
 import com.example.demo.entity.Image;
@@ -29,11 +30,11 @@ public class OtherMyPageController {
 	private ImageService imageService;
 	
 	@RequestMapping({"/other"})
-	public String other(Model model) {
-		User userMe = userService.findById(1);
+	public String other(@RequestParam("id") Integer userId, Model model) {
+		User userMe = (User) session.getAttribute("user");
 		model.addAttribute("user", userMe);
 		
-		User userOther = userService.findById(2);
+		User userOther = userService.findById(userId);
 		model.addAttribute("userOther", userOther);
 		
 		Follow follow  = followService.countFollow(userOther.getId());

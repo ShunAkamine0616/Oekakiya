@@ -1,7 +1,5 @@
 package com.example.demo.controller;
 
-import java.util.ArrayList;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.demo.controller.form.DownloadForm;
 import com.example.demo.controller.form.LoginForm;
-import com.example.demo.entity.Category;
 import com.example.demo.entity.Image;
 import com.example.demo.service.CategoryService;
 import com.example.demo.service.DownloadService;
@@ -45,16 +42,21 @@ public class DownloadController {
  // ログイン画面遷移
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String insert(@ModelAttribute("login") LoginForm loginform, Model model) {
-    	System.out.println("logout");
         return "login";
     }
     // ログアウト処理
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public String logout(Model model) {
-    	session.invalidate();
-    	ArrayList<Category> categoryList = (ArrayList<Category>) categoryService.findAll();
-		session.setAttribute("category",categoryList);
-    	System.out.println("logout");
+    	//ユーザのセッションを破棄
+    	session.removeAttribute("user");
+//    	//カテゴリのセッションを保持
+//    	ArrayList<Category> categoryList = (ArrayList<Category>) categoryService.findAll();
+//		session.setAttribute("category",categoryList);
+//		//ダウンロード、いいねカウントのセッションを保持
+//		Integer imageId = session.getAtribute("image",);
+//		Image count = new Image();
+//		count = imageService.findByIdCount(imageId);
+//		session.setAttribute("count", count);
         return "home";
     }
     //管理者権限で画像を削除
@@ -64,4 +66,5 @@ public class DownloadController {
 		imageService.delete(image.getId());
 		return "home";
 	}
+  
 }

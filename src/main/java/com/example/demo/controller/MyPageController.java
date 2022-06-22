@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
+import java.util.List;
 
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +22,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.demo.controller.form.EditMyPageForm;
+import com.example.demo.entity.Image;
 import com.example.demo.entity.User;
+import com.example.demo.service.ImageService;
 import com.example.demo.service.UserService;
 
 @Controller
@@ -31,6 +34,20 @@ public class MyPageController {
 	HttpSession session;
 	@Autowired
 	UserService userService;
+	@Autowired
+	ImageService imageService;
+	
+	//マイページ遷移
+	@RequestMapping({"/mypage"})
+	public String mypage(Model model) {
+		User user = (User) session.getAttribute("user");
+		model.addAttribute("user", user);
+		List<Image> imageList = (List<Image>) imageService.findByUserId(user.getId());
+		model.addAttribute("imageList",imageList);
+		System.out.println(imageList);
+		return "MyPage";
+	}
+	
 	//マイページ編集遷移
 	@RequestMapping(path = "inputEditMyPage", method = RequestMethod.GET)
 	String uploadview(@ModelAttribute("editMyPage") EditMyPageForm editMyPageForm, Model model) {
