@@ -36,12 +36,12 @@ public class PgDownloadDao implements DownloadDao {
 	}
 	//userID指定
 	@Override
-	public int countDownload(Integer imageId) {
+	public Integer countDownload(Integer imageId) {
 		String sql = SQL_SELECT_DOWNLOADS_COUNT_IMAGEID;
 		MapSqlParameterSource param = new MapSqlParameterSource();
 		param.addValue("imageId",imageId);
-
-		return jdbcTemplate.update(sql, param);
+		Integer count = jdbcTemplate.queryForObject(sql, param, Integer.class);
+		return count;
 
 	}
 	public int insert(Integer userId,Integer imageId) {
