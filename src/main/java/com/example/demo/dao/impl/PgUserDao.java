@@ -34,7 +34,7 @@ public class PgUserDao implements UserDao {
 	public List<User> findByKeyword(String keyword) {
 		String sql = SQL_SELECT_USER_BY_KEYWORD;
 		MapSqlParameterSource param = new MapSqlParameterSource();
-		param.addValue("keyword", keyword);
+		param.addValue("keyword", "%"+keyword+"%");
 		
 		List<User> userList = jdbcTemplate.query(sql, param, new BeanPropertyRowMapper<User>(User.class));
 		return userList.isEmpty() ? null : userList;
