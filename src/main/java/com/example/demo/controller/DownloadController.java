@@ -44,10 +44,10 @@ public class DownloadController {
     }
     // ログアウト処理
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
-    public String logout(@ModelAttribute("logout") Model model) {
+    public String logout(Model model) {
     	session.invalidate();
     	System.out.println("logout");
-        return "login";
+        return "home";
     }
     //管理者権限で画像を削除
     @RequestMapping(value="/adminsDelete",method = RequestMethod.GET)
