@@ -46,7 +46,7 @@ public class postingEditController{
 	public String delete(@ModelAttribute("postingEdit") EditForm from, Model model) {
 		int imageId = (int)session.getAttribute("imageId"); 
 		imageservice.delete(imageId);
-		return "postingEdit";
+		return "home";
 	}
 	
 	@RequestMapping(value="/mypegeBack",method = RequestMethod.GET)
