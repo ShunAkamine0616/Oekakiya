@@ -49,3 +49,29 @@
 	display: flex;
 	flex-direction: column;
 }
+
+.select_btn {
+  border: none;
+  border-radius: 5px;
+  border: 2px solid skyblue;
+  border-color: blue;
+  padding: auto;
+  line-height: 2;
+  padding: 3px;
+  cursor: pointer;
+  color: black;
+  margin: 10px;
+}
+
+.not_select_btn {
+  border: none;
+  border-radius: 5px;
+  border: 2px solid skyblue;
+  border-color: blue;
+  padding: auto;
+  line-height: 2;
+  padding: 3px;
+  cursor: pointer;
+  color: black;
+  margin: 10px;
+}

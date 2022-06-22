@@ -62,8 +62,7 @@
 				<input type="text" size="25" name="keyword" id="keyword"
 					placeholder="キーワード検索"> <input type="submit" value="&#xf002">
 			</div>
-			<a href="userSearch">ユーザー</a>
-			<input type="button" value="ユーザー"> 
+			<a href="userSearch" class="select_btn">ユーザー</a>
 			<input type="button" value="イラスト" style="background-color: yellow;"> <br> <br>
 
 			<div>
