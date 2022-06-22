@@ -78,3 +78,33 @@
   color: black;
   margin: 10px;
 }
+
+.post_btn {
+  border: none;
+  border-radius: 5px;
+  border: 2px solid;
+  border-color: #9747FF;
+  background-color: #9747FF;
+  padding: auto;
+  line-height: 2;
+  padding: 10px;
+  cursor: pointer;
+  color: black;
+  margin-left: -800px;
+  text-color: white;
+}
+
+.categoryMg_btn {
+  border: none;
+  border-radius: 5px;
+  border: 2px solid;
+  border-color: #9747FF;
+  background-color: #9747FF;
+  padding: auto;
+  line-height: 2;
+  padding: 10px;
+  cursor: pointer;
+  color: black;
+  margin-left: 550px;
+  text-color: white;
+}

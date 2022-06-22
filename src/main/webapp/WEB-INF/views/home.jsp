@@ -51,11 +51,9 @@
 			<hr>
 		</header>
 		<c:if test="${ user ne null }">
-			<a href="upload" style="color: black;">投稿</a>
+			<a href="upload" class="post_btn">　投稿　</a>
 		</c:if>
-		<c:if test="${ user.getRole() eq 1 }">
-			<a href="categoryMg" style="color: black;">カテゴリ管理</a>
-		</c:if>
+		
 		<p>${ msg }</p>
 		<form method="get" action="/search" id="target">
 			<div class="search_container">
@@ -77,7 +75,9 @@
 				</c:if>
 			</div>
 			<br>
-
+<c:if test="${ user.getRole() eq 1 }">
+			<a href="categoryMg" class="categoryMg_btn">カテゴリ管理</a>
+		</c:if>
 			<!--   チェックボックスの表示切替ボタン   -->
 			<div class="checkbox-toggle">カテゴリ▼</div>
 			<!--   チェックボックス   -->
