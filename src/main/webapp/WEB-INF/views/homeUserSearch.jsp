@@ -53,18 +53,14 @@
 		<c:if test="${ user ne null }">
 			<a href="upload" style="color: black;">投稿</a>
 		</c:if>
-		<c:if test="${ user.getRole() eq 1 }">
-			<a href="categoryMg" style="color: black;">カテゴリ管理</a>
-		</c:if>
 		<p>${ msg }</p>
-		<form method="get" action="/search" id="target">
+		<form method="get" action="/searchUser" id="target">
 			<div class="search_container">
 				<input type="text" size="25" name="keyword" id="keyword"
 					placeholder="キーワード検索"> <input type="submit" value="&#xf002">
 			</div>
-			<a href="userSearch">ユーザー</a>
-			<input type="button" value="ユーザー"> 
-			<input type="button" value="イラスト" style="background-color: yellow;"> <br> <br>
+			<input type="button" value="ユーザー" style="background-color: yellow;"> 
+			<input type="button" value="イラスト"> <br> <br>
 
 			<div>
 				<label>検索対象：</label> 
@@ -78,32 +74,7 @@
 				</c:if>
 			</div>
 			<br>
-
-			<!--   チェックボックスの表示切替ボタン   -->
-			<div class="checkbox-toggle">カテゴリ▼</div>
-			<!--   チェックボックス   -->
-			<div class="checkboxes">
-				カテゴリを選択してください <input name="category" type="hidden" value=" ">
-				<c:forEach var="category" items="${category}">
-					<label> <input type="checkbox" name="category"
-						value=${ category.getId() }> <span>${ category.getCategoryName() }</span>
-					</label>
-				</c:forEach>
-			</div>
-			<div class="order">
-				<label for="sort">並び替え</label> <select class="base-text center"
-					id="sort" name="order" style="background-color: white;"
-					onChange="location.href='search?keyword=${ keywordHistory }&user=${ userHistory }&category=${ categoryHistory }&order='+value">
-					<option value="created_at DESC"
-						<c:if test="${ orderHistory eq 'created_at DESC' }">selected</c:if>>投稿日</option>
-					<option value="updated_at DESC"
-						<c:if test="${ orderHistory eq 'updated_at DESC' }">selected</c:if>>更新日</option>
-					<option value="download DESC"
-						<c:if test="${ orderHistory eq 'download DESC' }">selected</c:if>>ダウンロード数</option>
-					<option value="favorite DESC"
-						<c:if test="${ orderHistory eq 'favorite DESC' }">selected</c:if>>いいね数</option>
-				</select>
-			</div>
+			
 		</form>
 
 		<div class="container">
