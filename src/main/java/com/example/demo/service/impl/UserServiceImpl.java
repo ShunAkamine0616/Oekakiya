@@ -53,4 +53,9 @@ public class UserServiceImpl implements UserService{
 		return userDao.delete(id);
 	}
 
+	@Override
+	public User findByAccountId(String accountId) {
+		return userDao.findByAccountId(accountId);
+	}
+
 }

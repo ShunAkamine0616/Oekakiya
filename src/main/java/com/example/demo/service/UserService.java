@@ -18,6 +18,9 @@ public interface UserService {
 	//ログイン
 	public User login(String accountid, String password);
 		
+	//ユーザーをIDで検索
+	public User findByAccountId(String accountId);
+	
 	//ユーザーの新規登録
 	public int insert(User user);
 	

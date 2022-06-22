@@ -24,6 +24,7 @@ public class PgUserDao implements UserDao {
 			+ "icon_path = :iconPath, mail = :mail, introduction = :introduction WHERE id = :id";
 	private static final String SQL_ROLE_UPDATE = "UPDATE users SET role = :role WHERE id = :id";
 	private static final String SQL_USER_DELETE = "DELETE FROM users WHERE id = :id";
+	private static final String SQL_MATCH_ACCOUNTID = "SELECT * FROM users WHERE account_id = :accountId";
 	
 	@Autowired
 	private NamedParameterJdbcTemplate jdbcTemplate;
@@ -124,6 +125,16 @@ public class PgUserDao implements UserDao {
 		param.addValue("id", id);
 		
 		return jdbcTemplate.update(sql, param);
+	}
+
+	@Override
+	public User findByAccountId(String accountId) {
+		String sql = SQL_MATCH_ACCOUNTID;
+		MapSqlParameterSource param = new MapSqlParameterSource();
+		param.addValue("accountId", accountId);
+		
+		List<User> userList = jdbcTemplate.query(sql, param, new BeanPropertyRowMapper<User>(User.class));
+		return userList.isEmpty() ? null : userList.get(0);
 	}
 
 }
