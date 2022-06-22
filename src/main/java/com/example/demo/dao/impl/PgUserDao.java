@@ -15,8 +15,7 @@ import com.example.demo.entity.User;
 public class PgUserDao implements UserDao {
 	
 	private static final String SQL_SELECT_USER_BY_KEYWORD = "SELECT * FROM users WHERE account_id LIKE :keyword OR name LIKE :keyword";
-	private static final String SQL_SELECT_FOLLOW_USER = "SELECT * FROM users u JOIN follow f ON u.id = f.user_id "
-			+ "WHERE f.user_id = :userId AND account_id LIKE :keyword OR name LIKE :keyword ";
+	private static final String SQL_SELECT_FOLLOW_USER = "SELECT * FROM users WHERE (account_id LIKE :keyword OR name LIKE :keyword) AND id IN (select follow_user_id from follow where user_id = :userId)";
 	private static final String SQL_SELECT_USER = "SELECT * FROM users WHERE id = :id";
 	private static final String SQL_LOGIN_USER = "SELECT * FROM users WHERE account_id = :account_id AND password = :password";
 	private static final String SQL_INSERT_USER = "INSERT INTO users(account_id, password, name, role) VALUES(:accountId, :password, :name, 2)";
@@ -46,7 +45,7 @@ public class PgUserDao implements UserDao {
 		String sql = SQL_SELECT_FOLLOW_USER;
 		MapSqlParameterSource param = new MapSqlParameterSource();
 		param.addValue("userId", userId);
-		param.addValue("keyword", keyword);
+		param.addValue("keyword", "%"+keyword+"%");
 		
 		List<User> userList = jdbcTemplate.query(sql, param, new BeanPropertyRowMapper<User>(User.class));
 		return userList.isEmpty() ? null : userList;
