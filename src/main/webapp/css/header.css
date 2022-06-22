@@ -1,22 +1,27 @@
 @charset "UTF-8";
-header{
-	position:sticky;
 
+header {
+	position: sticky;
+	position: -webkit-sticky; /*Safari用ベンダープレフィックス*/
+	top: 0; /*ブラウザの上からの距離はゼロ*/
+	background-color: #F5F0E9;
+	z-index: 10;
 }
 
-.header_line{
-	border:solid 15px #6a6565ae  
-  　
-/* 	border: none; */
-/* 	border-top: solid 1px red; */
-/* 	border-bottom: solid 1px red; */
+.header_line {
+	border: solid 15px #6a6565ae 　 /* 	border: none; */ 
+		/* 	border-top: solid 1px red; */ 
+		/* 	border-bottom: solid 1px red; */
 }
-.header_icon{
-	display:flex;
+
+.header_icon {
+	display: flex;
 }
-.image_circle{
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  object-fit: cover;
+
+.image_circle {
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	object-fit: cover;
+	border: solid 3px #6a6565ae
 }

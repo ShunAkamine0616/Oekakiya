@@ -26,37 +26,28 @@
 			<div class="item">
 
 
-				<header>
-					<div class="header">
-						<h1>
-							<a href="./home" class="page-title">おえかきや</a>
-						</h1>
+				package com.example.controller;
 
-						<div class="btn-wrap">
-							<c:choose>
-								<c:when test="${empty user}">
-        ゲスト
-            <button type="button" onclick="location.href='login'"
-										class="login_btn">ログイン</button>
-								</c:when>
-								<c:when test="${not empty user}">
+import javax.servlet.http.HttpSession;
 
-									<label> <a href="./inputEditMyPage"> <img
-											id="iconAdd" class="image_circle" src="${user.iconPath}">
-									</a> ${user.name}
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-									</label>
+import com.example.controller.form.LoginForm;
 
-									<button type="button" onclick="location.href='logout'"
-										class="logout_btn">ログアウト</button>
-
-								</c:when>
-
-							</c:choose>
-						</div>
-					</div>
-
-				</header>
+@Controller
+public class LogoutController {
+	@Autowired
+	HttpSession session;
+	@RequestMapping("/logout")
+	public String index(@ModelAttribute("index") LoginForm loginform, Model model) {
+		session.invalidate();
+		return "logout";
+	}
+}
 
 				<br> <br>
 				<!--     <hr width=auto class ="header_line"> -->

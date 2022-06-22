@@ -42,9 +42,9 @@
 				</c:choose>
 			</div>
 		</div>
-
+		<hr>
 	</header>
-	<hr>
+
 	<input id="iconPath" type="hidden" value="${user.iconPath}"></input>
 	<div class="insert">
 		<p class="error">
@@ -106,7 +106,7 @@
 				<div>
 					<div>自己紹介：</div>
 					<textarea name="introduction"
-						placeholder="例&#13;&#10;画像サイズ：367×400&#13;&#10;用途：アイコン&#13;&#10;かわいい感じで書いてみました。アイコンなどに自由に使ってください。"
+						placeholder="ここに自己紹介を書いてください。"
 						value="${fn:escapeXml(user.introduction)}"></textarea>
 					<form:errors path="introduction" cssStyle="color: red" />
 				</div>
