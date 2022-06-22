@@ -59,9 +59,9 @@
 				<input type="text" size="25" name="keyword" id="keyword"
 					placeholder="キーワード検索"> <input type="submit" value="&#xf002">
 			</div>
-			<input type="button" value="ユーザー" style="background-color: yellow;"> 
-			<input type="button" value="イラスト"> <br> <br>
-
+			<input type="submit" value="ユーザー" class="not_select_btn">
+			<a href="home" class="select_btn">イラスト</a> <br> <br>
+			
 			<div>
 				<label>検索対象：</label> 
 				<label> <input type="radio" name="user"

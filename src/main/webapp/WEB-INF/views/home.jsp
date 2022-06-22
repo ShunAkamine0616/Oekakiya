@@ -63,7 +63,7 @@
 					placeholder="キーワード検索"> <input type="submit" value="&#xf002">
 			</div>
 			<a href="userSearch" class="select_btn">ユーザー</a>
-			<input type="button" value="イラスト" style="background-color: yellow;"> <br> <br>
+			<input type="submit" value="イラスト" class="not_select_btn"> <br> <br>
 
 			<div>
 				<label>検索対象：</label> 
@@ -83,11 +83,13 @@
 			<!--   チェックボックス   -->
 			<div class="checkboxes">
 				カテゴリを選択してください <input name="category" type="hidden" value=" ">
+				
 				<c:forEach var="category" items="${category}">
 					<label> <input type="checkbox" name="category"
-						value=${ category.getId() }> <span>${ category.getCategoryName() }</span>
+						value=${ category.getId() }> ${ category.getCategoryName() }
 					</label>
 				</c:forEach>
+	
 			</div>
 			<div class="order">
 				<label for="sort">並び替え</label> <select class="base-text center"
