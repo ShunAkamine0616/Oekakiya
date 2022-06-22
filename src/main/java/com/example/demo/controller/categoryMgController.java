@@ -41,7 +41,7 @@ public class categoryMgController{
 		//categoryを全権取得
 		String name = req.getParameter(id.toString());
 		if(name.equals("")) {
-			model.addAttribute("nullmsg", "カテゴリ名は必須入力項目です。");
+			model.addAttribute("msg", "カテゴリ名は必須入力項目です。");
 			return "categoryMg";
 		}else {
 		int update = categoryservice.update(id,name);
@@ -56,7 +56,8 @@ public class categoryMgController{
 		for(Integer i :id) {
 			int delete = categoryservice.delete(i);
 			System.out.println(delete);
-		}
+			model.addAttribute("delete", delete);
+			}
 		
 		List<Category> category = new ArrayList<>();
 		category = categoryservice.findAll();
@@ -66,13 +67,17 @@ public class categoryMgController{
 
 	@RequestMapping("/categoryinsert")
 	public String insert(@RequestParam("name") String name,Model model) {
-
+		if(name.equals("")) {
+			model.addAttribute("msg", "カテゴリ名は必須入力項目です。");
+			return "categoryMg";
+		}else {
 		int insert = categoryservice.insert(name);
 		System.out.println(insert);
 		List<Category> category = new ArrayList<>();
 		category = categoryservice.findAll();
 		session.setAttribute("category",category);
 		return "categoryMg";
+		}
 	}
 
 	

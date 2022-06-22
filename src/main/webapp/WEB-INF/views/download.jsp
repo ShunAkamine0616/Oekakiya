@@ -38,7 +38,7 @@
 					</c:when>
 					<c:when test="${not empty user}">
 
-						<label> <a href="./inputEditMyPage"> <img id="iconAdd"
+						<label> <a href="./mypage"> <img id="iconAdd"
 								class="image_circle" src="${user.iconPath}">
 						</a> ${user.name}
 
@@ -57,7 +57,7 @@
 			
 				<!--     <hr width=auto class ="header_line"> -->
 
-	<span>いいね数:</span><span id="favoriteNum">${count.getFavorite()}</span><span>ダウンロード数:</span><span id="downloadNum">${ count.getDownload() }</span>
+	<span><img src="./images/images_yesHurt.png" width="3%" height="3%">いいね数:</span><span id="favoriteNum">${count.getFavorite()}</span><span>ダウンロード数:</span><span id="downloadNum">${ count.getDownload() }</span>
 	<div class="downloadImg">
 		<img src="${image.imagePath}">
 	</div>
@@ -81,6 +81,23 @@
 			</div>
 		</div>
 	</c:if>
+	<c:choose><c:when test="${FavoriteInsertInfo == null}">
+	<label>
+		<button  id="iineBtn">
+<!-- 			<img src="./images/images_yesHurt.png" id="">いいね -->
+			<img src="./images/images_nonHurt.png">
+		</button>
+	</label>
+	</c:when>
+	<c:otherwise>
+	<label>
+		<button  id="onIineBtn">
+			<img src="./images/images_yesHurt.png" id="">
+<!-- 			<img src="./images/images_nonHurt.png"> -->
+		</button>
+	</label>
+	</c:otherwise>
+	</c:choose>
 	<label>
 
 		<button class="light_blue_btn" id="download_btn">
@@ -94,4 +111,6 @@
 <script src="./js/commons.js">
 </script>
 <script src="./js/download.js">
+</script>
+<script src="./js/favorite.js">
 </script>
