@@ -207,17 +207,17 @@ a {
   margin: 10px 100px 30px 100px;
 }
 
-.logout_btn {
-  border: none;
-  border-radius: 5px;
-  background-color: #004a94;
-  padding: auto;
-  line-height: 2;
-  padding: 10px;
-  cursor: pointer;
-  color: white;
-  margin: 10px;
-}
+/* .logout_btn { */
+/*   border: none; */
+/*   border-radius: 5px; */
+/*   background-color: #004a94; */
+/*   padding: auto; */
+/*   line-height: 2; */
+/*   padding: 10px; */
+/*   cursor: pointer; */
+/*   color: white; */
+/*   margin: 10px; */
+/* } */
 
 .logout_btn:hover {
   background-color:#417ebb;
