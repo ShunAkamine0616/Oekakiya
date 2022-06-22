@@ -59,7 +59,7 @@
                 <div class="categoryedit">
                    <div class="item">
                    <div class="msg">  <p>${nullmsg} </p></div>
-                   <button type="button" onclick="openModal()"><div class="rogo"><img src="images/dust.png"></div></button> 
+                   <button type="button" onclick="openModal()" id="submitButton"><div class="rogo"><img src="images/dust.png"></div></button> 
                     </div>
             <c:forEach var="category" items="${category}">
             <div class="item">
