@@ -79,7 +79,7 @@
 
 						<form:input type="password" path="password" id="Pas"
 							oninput="CheckPassword(this)"
-							value="${fn:escapeXml(user.password)}" />
+							value="${fn:escapeXml(user.password)}" pattern="^[0-9a-zA-Z]+$"/>
 						<span onclick="ChangeVisibleStatus()" class="ViewPoint">👁</span>
 						<form:errors path="password" cssStyle="color: red" />
 					</p>
@@ -90,7 +90,7 @@
 
 						<form:input type="password" path="passConfirmation" id="Pas2"
 							oninput="CheckPassword(this)"
-							value="${fn:escapeXml(user.password)}" />
+							value="${fn:escapeXml(user.password)}" pattern="^[0-9a-zA-Z]+$"/>
 						<span onclick="ChangeVisibleStatus2()" class="ViewPoint">👁</span>
 						<form:errors path="passConfirmation" cssStyle="color: red" />
 					</p>

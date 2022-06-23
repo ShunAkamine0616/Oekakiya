@@ -38,7 +38,7 @@
 						</c:when>
 						<c:when test="${not empty user}">
 							<label>
-								<a href="./inputEditMyPage"> 
+								<a href="./mypage"> 
 									<img id="iconAdd" class="image_circle" src="${user.iconPath}">
 								</a> ${user.name}
 							</label>
@@ -51,7 +51,7 @@
 			<hr>
 		</header>
 		<c:if test="${ user ne null }">
-			<a href="upload" style="color: black;">投稿</a>
+			<a href="upload" class="post_btn">　投稿　</a>
 		</c:if>
 		<p>${ msg }</p>
 		<form method="get" action="/searchUser" id="target">
@@ -80,7 +80,7 @@
 		
 		<c:forEach var="userList" items="${userList}">
 			<c:if test="${ user.id ne userList.getId() }">
-				<div class="userContainer"><a href="other?id=${ userList.getId() }"><img id="iconAdd" class="image_circle" src="${ userList.getIconPath() }"></a><span>${ userList.getName() }<br> ${ userList.getAccountId() }</span></div>
+				<div class="userContainer"><a href="other?id=${ userList.getId() }"><img id="iconAdd" class="image_circle" src="${ userList.getIconPath() }"></a><span class="user_name"><b>${ userList.getName() }</b><br> ${ userList.getAccountId() }</span></div>
 			</c:if>
 		</c:forEach>
 		

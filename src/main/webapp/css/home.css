@@ -12,21 +12,33 @@
 /* チェックボックス */
 .checkboxes {
 	margin: auto;
-	display: flex;
+	display: none;
 	flex-direction: column;
 	width: 360px;
 	padding: 1em;
 	border: 1px solid skyblue;
 }
 
+.checkboxes label {
+	margin-left: 35%;
+	text-align: left;
+	display: inline-block;
+}
+
 .box img {
+	//min-width: 125px;
+	//min-height: 125px;
 	max-width: 250px;
-	max-hight: 250px;
-	min-width: 125px;
-	min-hight: 125px;
+	max-height: 250px;
+	width: auto;
+	height: auto;
 	margin: 25px;
 	margin-top: 80px;
 	border: 5px #FFFFFF solid;
+}
+
+.search_con {
+	display: flex;
 }
 
 .container {
@@ -74,6 +86,8 @@
   padding: auto;
   line-height: 2;
   padding: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
   cursor: pointer;
   color: black;
   margin: 10px;
@@ -89,8 +103,8 @@
   line-height: 2;
   padding: 10px;
   cursor: pointer;
-  color: black;
-  margin-left: -800px;
+  color: white;
+  margin-left: -900px;
   text-color: white;
 }
 
@@ -104,7 +118,12 @@
   line-height: 2;
   padding: 10px;
   cursor: pointer;
-  color: black;
-  margin-left: 550px;
+  color: white;
+  margin-left: -550px;
   text-color: white;
+}
+
+.user_name {
+	font-size: 20px;
+	margin-left: 10px;
 }

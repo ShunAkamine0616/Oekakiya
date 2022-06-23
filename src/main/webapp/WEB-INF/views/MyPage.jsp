@@ -53,9 +53,17 @@
 				${ user.getAccountId() }<br>
 				${ user.getMail() }<br>
 			</div>
-			<div class="container">
-				${ user.getIconPath() }
+			
+			<div class="">
+				<img src="${user.iconPath}">
 				<br>
+			</div>
+			
+			<div class="right">
+				<div class="btn" style="text-align: right">
+					<a class="basic_btn regist" href="upload">投稿</a>
+					<a class="basic_btn regist" href="./inputEditMyPage">プロフィール編集</a>
+				</div>
 			</div>
 			
 			<div class="container">
@@ -73,3 +81,4 @@
 		</div>
 	</body>
 </html>
+<script src="./js/commons.js"></script>
