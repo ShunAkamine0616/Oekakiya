@@ -9,6 +9,7 @@
 	<title>マイページ</title>
 	<link href="css/commons.css" rel="stylesheet">
 	<link href="css/home.css" rel="stylesheet">
+	<link href="css/mypage.css" rel="stylesheet">
 	<link
 		href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
 		rel="stylesheet">
@@ -43,29 +44,41 @@
 	</header>
     
 	<body>
-		<div id="app">
+<div class="flexbox">
+	  <div class="item">
+	  <div class="flexbox2">
+	    <div class="item2">
+
 			<div  class="site_logo">
 				<h1>
 					${ user.getName() }
 					
 				</h1>
-				<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">${ user.getIntroduction() }</div>
+				
 				${ user.getAccountId() }<br>
 				${ user.getMail() }<br>
 			</div>
-			
-			<div class="">
-				<img src="${user.iconPath}">
+			</div>
+			<div class="item2">
+				<img class="icon" src="${user.iconPath}">
 				<br>
 			</div>
-			
-			<div class="right">
-				<div class="btn" style="text-align: right">
-					<a class="basic_btn regist" href="upload">投稿</a>
-					<a class="basic_btn regist" href="./inputEditMyPage">プロフィール編集</a>
+			<div class="item2">
+			 <div class="flexbox3">
+				<div class="btns">
+					<div class="item3"><a class="basic_btn regist" href="upload">投稿</a></div>
+					<div class="item3"><a class="basic_btn regist" href="./inputEditMyPage">プロフィール編集</a></div>
 				</div>
+			 </div>	
 			</div>
-			
+			<div class="item2">
+		　　　　<p>フォロワー500000人</p>
+            <div class="comment">${ user.getIntroduction() }</div>
+			</div>
+
+		</div>
+	    </div>
+		<div class="item">
 			<div class="container">
 				<br>
 				
@@ -78,7 +91,8 @@
 						</div>
 					</c:forEach>
 			</div>
-		</div>
+        </div>
+</div>	
 	</body>
 </html>
 <script src="./js/commons.js"></script>
