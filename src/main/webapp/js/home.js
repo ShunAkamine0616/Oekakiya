@@ -3,5 +3,6 @@ jQuery(function(){
   jQuery('.checkbox-toggle').on('click', function(){
     // チェックボックスの表示をslideToggleで切り替える
     jQuery('.checkboxes').slideToggle();
+    jQuery('.checkboxes').css('display', 'flex'); 
   });
 });

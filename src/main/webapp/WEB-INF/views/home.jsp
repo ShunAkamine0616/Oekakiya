@@ -53,7 +53,7 @@
 		</header>
 		<input type ="hidden" value="${delete}" id="deleteFlag"></input>
 		<c:if test="${ user ne null }">
-			<a href="upload" class="post_btn"> 投稿 </a>
+			<a href="upload" class="post_btn">　投稿　</a>
 		</c:if>
 
 		<p>${ msg }</p>
@@ -63,9 +63,11 @@
 					placeholder="キーワード検索"> <input type="submit" value="&#xf002">
 			</div>
 			<a href="userSearch" class="select_btn">ユーザー</a> <input type="submit"
-				value="イラスト" class="not_select_btn"> <br> <br>
+				value="イラスト" class="not_select_btn"> <br>
 
-			<div>
+			
+			<div class="search_con">
+			<div style="margin: auto; margin-left: 40%;">
 				<label>検索対象：</label> <label> <input type="radio" name="user"
 					id="user" value="all" checked
 					onChange="location.href='search?keyword=${ keywordHistory }&user=all&category=${ categoryHistory }&order=${ orderHistory }'">すべて
@@ -78,25 +80,9 @@
 					</label>
 				</c:if>
 			</div>
-			<br>
-			<c:if test="${ user.getRole() eq 1 }">
-				<a href="categoryMg" class="categoryMg_btn">カテゴリ管理</a>
-			</c:if>
-			<!--   チェックボックスの表示切替ボタン   -->
-			<div class="checkbox-toggle">カテゴリ▼</div>
-			<!--   チェックボックス   -->
-			<div class="checkboxes">
-				カテゴリを選択してください <input name="category" type="hidden" value=" ">
-
-				<c:forEach var="category" items="${category}">
-					<label> <input type="checkbox" name="category"
-						value=${ category.getId() }> ${ category.getCategoryName() }
-					</label>
-				</c:forEach>
-
-			</div>
+			
 			<div class="order">
-				<label for="sort">並び替え</label> <select class="base-text center"
+				<label for="sort" style="margin-left: 50px;">並び替え</label> <select class="base-text center"
 					id="sort" name="order" style="background-color: white;"
 					onChange="location.href='search?keyword=${ keywordHistory }&user=${ userHistory }&category=${ categoryHistory }&order='+value">
 					<option value="created_at DESC"
@@ -109,6 +95,27 @@
 						<c:if test="${ orderHistory eq 'favorite DESC' }">selected</c:if>>いいね数</option>
 				</select>
 			</div>
+			</div>
+			
+			<br>
+			<c:if test="${ user.getRole() eq 1 }">
+				<a href="categoryMg" class="categoryMg_btn">カテゴリ管理</a>
+			</c:if>
+			<!--   チェックボックスの表示切替ボタン   -->
+			<div class="checkbox-toggle">カテゴリ▼</div>
+			
+			<!--   チェックボックス   -->
+			<div class="checkboxes">
+				<input name="category" type="hidden" value=" ">
+
+				<c:forEach var="category" items="${category}">
+					<label> <input type="checkbox" name="category"
+						value=${ category.getId() }> ${ category.getCategoryName() }
+					</label>
+				</c:forEach>
+
+			</div>
+			
 		</form>
 
 		<c:if test="${ imageList ne null }">
