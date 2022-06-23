@@ -24,4 +24,7 @@ public class DownloadServiceImpl implements DownloadService{
 	public int insert(Integer userId, Integer imageId) {
 		return downloadDao.insert(userId, imageId);
 	}
+	public List<Image> usersJoinImages(Integer imageId) {
+		return downloadDao.usersJoinImages(imageId);
+	}
 }
