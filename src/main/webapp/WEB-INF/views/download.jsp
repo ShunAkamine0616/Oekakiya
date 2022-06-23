@@ -112,7 +112,7 @@
 				</div>
 			</div>
 			<span><img src="./images/images_yesHurt.png" width="3%"
-				height="3%">いいね数:</span><span id="favoriteNum">${fn:escapeXml(favoritecount}</span><span>ダウンロード数:</span><span
+				height="3%">いいね数:</span><span id="favoriteNum">${fn:escapeXml(favoritecount)}</span><span>ダウンロード数:</span><span
 				id="downloadNum">${fn:escapeXml(downloadcount) }</span>
 
 
@@ -135,7 +135,8 @@
 					</div>
 				</div>
 			</c:if>
-			<a href="${fn:escapeXml(image.imagePath)}" download="${fn:escapeXml(image.imageTitle)}">
+			<a href="${fn:escapeXml(image.imagePath)}"
+				download="${fn:escapeXml(image.imageTitle)}">
 				<button class="light_blue_btn" id="download_btn">ダウンロード</button>
 			</a>
 
@@ -152,8 +153,9 @@
 			</div>
 
 			<div class="title">
-				<label>投稿者</label><a href="./other?id=${fn:escapeXml(imageUser.id)}"> <img src="${fn:escapeXml(imageUser.iconPath)}"
-					class="image_circle"></a>${fn:escapeXml(imageUser.name)}
+				<label>投稿者</label><a href="./other?id=${fn:escapeXml(imageUser.id)}">
+					<img src="${fn:escapeXml(imageUser.iconPath)}" class="image_circle">
+				</a>${fn:escapeXml(imageUser.name)}
 
 				<div class="category">
 					<label>カテゴリ</label> ${fn:escapeXml(categoryName.categoryName)}
