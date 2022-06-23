@@ -9,7 +9,6 @@ body {
 #file_upload{
 	display: none;
 }
-
 /* 削除ボタン */
 .delete_btn {
   border: none;
@@ -235,7 +234,6 @@ hr {
 
 .form {
   width: 70%;
-  background-color: #F7EFE3;
   border-radius: 10px;
   margin: auto;
   padding: 10px;

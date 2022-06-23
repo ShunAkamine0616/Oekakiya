@@ -16,3 +16,12 @@
 /* 	right: 55px */
 /* } */
 
+.iineMoji{
+	font-size:15px;
+}
+.iineBtn{
+	border: none;
+}
+.hidden{
+	display: none;
+}
