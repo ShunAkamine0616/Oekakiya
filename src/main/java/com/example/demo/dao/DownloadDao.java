@@ -17,5 +17,7 @@ public interface DownloadDao {
 	
 	// ダウンロードされたときユーザーと画像をダウンロードしたことを処理
 	public int insert(Integer userId, Integer imageId);
-
+	
+//ユーザーテーブルと画像テーブルを結合して画像IDで指定
+	public List<Image> usersJoinImages(Integer imageId);
 }
