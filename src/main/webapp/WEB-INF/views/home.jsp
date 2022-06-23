@@ -10,6 +10,7 @@
 <link href="css/commons.css" rel="stylesheet">
 <link href="css/home.css" rel="stylesheet">
 <link href="css/header.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="dist/snackbar.min.css" />
 <link
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
 	rel="stylesheet">
@@ -34,13 +35,13 @@
 					<c:choose>
 						<c:when test="${empty user}">
 							ゲスト
-            				<button type="button" onclick="location.href='login'"class="login_btn">ログイン</button>
+            				<button type="button" onclick="location.href='login'"
+								class="login_btn">ログイン</button>
 						</c:when>
 						<c:when test="${not empty user}">
-							<label>
-								<a href="./inputEditMyPage"> 
-									<img id="iconAdd" class="image_circle" src="${user.iconPath}">
-								</a> ${user.name}
+							<label> <a href="./mypage"> <img
+									id="iconAdd" class="image_circle" src="${user.iconPath}">
+							</a> ${user.name}
 							</label>
 							<button type="button" onclick="location.href='logout'"
 								class="logout_btn">ログアウト</button>
@@ -50,46 +51,49 @@
 			</div>
 			<hr>
 		</header>
+		<input type ="hidden" value="${delete}" id="deleteFlag"></input>
 		<c:if test="${ user ne null }">
-			<a href="upload" class="post_btn">　投稿　</a>
+			<a href="upload" class="post_btn"> 投稿 </a>
 		</c:if>
-		
+
 		<p>${ msg }</p>
 		<form method="get" action="/search" id="target">
 			<div class="search_container">
 				<input type="text" size="25" name="keyword" id="keyword"
 					placeholder="キーワード検索"> <input type="submit" value="&#xf002">
 			</div>
-			<a href="userSearch" class="select_btn">ユーザー</a>
-			<input type="submit" value="イラスト" class="not_select_btn"> <br> <br>
+			<a href="userSearch" class="select_btn">ユーザー</a> <input type="submit"
+				value="イラスト" class="not_select_btn"> <br> <br>
 
 			<div>
-				<label>検索対象：</label> 
-				<label> <input type="radio" name="user"
-					id="user" value="all" checked onChange="location.href='search?keyword=${ keywordHistory }&user=all&category=${ categoryHistory }&order=${ orderHistory }'">すべて
+				<label>検索対象：</label> <label> <input type="radio" name="user"
+					id="user" value="all" checked
+					onChange="location.href='search?keyword=${ keywordHistory }&user=all&category=${ categoryHistory }&order=${ orderHistory }'">すべて
 				</label>
 				<c:if test="${ user ne null }">
 					<label> <input type="radio" name="user" id="user"
-						value="follow"<c:if test="${ userHistory eq 'follow' }"> checked </c:if>onChange="location.href='search?keyword=${ keywordHistory }&user=follow&category=${ categoryHistory }&order=${ orderHistory }'">フォロー
+						value="follow"
+						<c:if test="${ userHistory eq 'follow' }"> checked </c:if>
+						onChange="location.href='search?keyword=${ keywordHistory }&user=follow&category=${ categoryHistory }&order=${ orderHistory }'">フォロー
 					</label>
 				</c:if>
 			</div>
 			<br>
-<c:if test="${ user.getRole() eq 1 }">
-			<a href="categoryMg" class="categoryMg_btn">カテゴリ管理</a>
-		</c:if>
+			<c:if test="${ user.getRole() eq 1 }">
+				<a href="categoryMg" class="categoryMg_btn">カテゴリ管理</a>
+			</c:if>
 			<!--   チェックボックスの表示切替ボタン   -->
 			<div class="checkbox-toggle">カテゴリ▼</div>
 			<!--   チェックボックス   -->
 			<div class="checkboxes">
 				カテゴリを選択してください <input name="category" type="hidden" value=" ">
-				
+
 				<c:forEach var="category" items="${category}">
 					<label> <input type="checkbox" name="category"
 						value=${ category.getId() }> ${ category.getCategoryName() }
 					</label>
 				</c:forEach>
-	
+
 			</div>
 			<div class="order">
 				<label for="sort">並び替え</label> <select class="base-text center"
@@ -106,7 +110,7 @@
 				</select>
 			</div>
 		</form>
-		
+
 		<c:if test="${ imageList ne null }">
 			<div class="container">
 				<c:forEach var="image" items="${imageList}">
@@ -124,5 +128,11 @@
 	<footer></footer>
 
 	<script src="js/home.js"></script>
+	<script src="./dist/snackbar.min.js"></script>
+	<script>
+	if(document.getElementById("deleteFlag").value === "1") {
+		Snackbar.show({text: 'アカウント削除しました。'});
+	}
+	</script>
 </body>
 </html>

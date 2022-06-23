@@ -35,7 +35,7 @@ public class SearchController {
     public String index( Model model) {
 		ArrayList<Category> categoryList = (ArrayList<Category>) categoryService.findAll();
 		session.setAttribute("category",categoryList);
-		ArrayList<Image> imageList = (ArrayList<Image>) imageService.findByKeyword("", " ", "created_at");
+		ArrayList<Image> imageList = (ArrayList<Image>) imageService.findByKeyword("", " ", "created_at DESC");
 		session.setAttribute("keywordHistory", "");
 		session.setAttribute("categoryHistory", " ");
 		session.setAttribute("userHistory", "all");
@@ -43,6 +43,7 @@ public class SearchController {
 		if(imageList != null) {
 			model.addAttribute("imageList",imageList);
 		}
+		//model.addAttribute("delete",1);
         return "home";
     }
 	
