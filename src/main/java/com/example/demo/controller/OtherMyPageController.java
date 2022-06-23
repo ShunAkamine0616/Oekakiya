@@ -40,7 +40,7 @@ public class OtherMyPageController {
 		model.addAttribute("user", userMe);
 		
 		User userOther = userService.findById(userId);
-		model.addAttribute("userOther", userOther);
+		session.setAttribute("userOther", userOther);
 		
 		Follow follow  = followService.countFollow(userOther.getId());
 		

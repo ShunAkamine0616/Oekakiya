@@ -66,14 +66,14 @@
 			<div class="item2">
 			 <div class="flexbox3">
 				<div class="btns">
-					<div class="item3"><a class="basic_btn regist" href="upload">投稿</a></div>
+					<div class="item3"><a class="basic_btn regist" href="upload1">投稿</a></div>
 					<div class="item3"><a class="basic_btn regist" href="./inputEditMyPage">プロフィール編集</a></div>
 				</div>
 			 </div>	
 			</div>
 			<div class="item2">
 		　　　　<p>フォロワー500000人</p>
-            <div class="comment">${ user.getIntroduction() }</div>
+            	<textarea readonly>${ user.getIntroduction() }</textarea>
 			</div>
 
 		</div>

@@ -33,4 +33,10 @@ public class FollowServiceImpl implements FollowService {
 	public int deleteByUserId(Integer userId) {
 		return followDao.deleteByUserId(userId);
 	}
+
+	@Override
+	public Follow checkFollow(Integer userId, Integer otherId) {
+		// TODO 自動生成されたメソッド・スタブ
+		return followDao.checkFollow(userId, otherId);
+	}
 }

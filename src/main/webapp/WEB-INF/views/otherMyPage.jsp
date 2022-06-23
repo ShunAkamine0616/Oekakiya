@@ -84,8 +84,8 @@
 			</div>
 			<div class="container">
 				<div class="btn" style="text-align: center">
-							<a class="basic_btn regist" href="/other">フォローする</a>
-							<br>
+							<a id="follow" class="basic_btn regist hidden">フォローする</a>
+							<a id="lift" class="basic_btn regist hidden">フォロー解除</a>
 							フォロワー：${followCnt.getFollowCount()}人
 				</div>
 			</div>
@@ -94,7 +94,7 @@
 					
 					<div class="btn" style="text-align: right">
 						<!-- <a class="basic_btn regist" href="openModal()">アカウント削除</a>-->
-						<input type="button" onclick="openModal()" value="削除" class="delete_btn">
+						<input type="button" onclick="openModal()" value="アカウント消去" class="delete_btn">
 						<a class="basic_btn regist" href="/other">管理者権限を付与</a>
 					</div>
 					<div id="modal">
