@@ -45,10 +45,3 @@ function edit(id){
 		document.getElementById(id).style.color = "black";
 	}
 }
-
-// document.getElementById("bar").addEventListener('click', function() {
-//if(false) {
-//	Snackbar.show({text: 'Example notification text.'});
-//}
-   
-//});

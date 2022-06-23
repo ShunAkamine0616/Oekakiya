@@ -50,7 +50,7 @@
 <div class="category">
     <div class="container">
     <div class="item">
-    <form action="categoryinsert" method="post">
+    <form action="categoryInsert" method="post">
     <div class="container2">
        <div class="item2"><input type="text"name="name" style="height: 25px;"></div>
         <div class="item2"><button type="submit" class="light_blue_btn2"><div class="pulus"><img src="images/プラス.png"></div></button></div>
