@@ -40,12 +40,13 @@ button{
 vertical-align: top;
 }
 .box img {
-	max-width: 150px;
-	max-hight: 150px;
+	max-width: 300px;
+	max-hight: 300px;
 	min-width: 125px;
 	min-hight: 125px;
 	margin: 25px;
 	margin-top: 80px;
 	border: 5px #FFFFFF solid;
+
 }
 
