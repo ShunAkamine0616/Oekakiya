@@ -10,4 +10,5 @@ public interface CategoryService {
 	public int update(Integer id,String categoryName);
 	public int delete(Integer categoryId);
 	public List<Category> findAll();
+	public Category findByCategoryId(Integer id);
 }
