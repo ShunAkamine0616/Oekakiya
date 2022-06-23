@@ -45,55 +45,55 @@ public class ImageDetailController {
 
 		//ユーザー情報を取得
 		User user = (User) session.getAttribute("user");
-		
-		
+
+
 		Image count = new Image();
 		count = imageService.findByIdCount(imageId);
 		int dounladLen = Integer.toString(count.getDownload()).length();
 		int favoriteLen = Integer.toString(count.getFavorite()).length();
 		String downloadcount = "0";
 		String favoritecount = "0";
-		
+
 		//download数桁数判断
 		switch(dounladLen) {
 		case 5:
-	    	String countString = Integer.valueOf(count.getDownload()).toString();
-	    	String result = countString.substring(0, 2);
-	    	int num = Integer.parseInt(result);
-	    	double nums = num;
-	    	nums = nums/10;
-	    	downloadcount = nums+"万";
-		    break;			
+			String countString = Integer.valueOf(count.getDownload()).toString();
+			String result = countString.substring(0, 2);
+			int num = Integer.parseInt(result);
+			double nums = num;
+			nums = nums/10;
+			downloadcount = nums+"万";
+			break;			
 		case 6:
-	    	countString = Integer.valueOf(count.getDownload()).toString();
-	    	result = countString.substring(0, 3);
-	    	num = Integer.parseInt(result);
-	    	nums = num;
-	    	nums = nums/10;
-	    	downloadcount = nums+"万";
+			countString = Integer.valueOf(count.getDownload()).toString();
+			result = countString.substring(0, 3);
+			num = Integer.parseInt(result);
+			nums = num;
+			nums = nums/10;
+			downloadcount = nums+"万";
 			break;			
 		case(7):
-	    	countString = Integer.valueOf(count.getDownload()).toString();
-	    	result = countString.substring(0, 4);
-	    	num = Integer.parseInt(result);
-	    	nums = num;
-	    	nums = nums/10;
-	    	downloadcount = nums+"万";
-			break;			
+			countString = Integer.valueOf(count.getDownload()).toString();
+		result = countString.substring(0, 4);
+		num = Integer.parseInt(result);
+		nums = num;
+		nums = nums/10;
+		downloadcount = nums+"万";
+		break;			
 		case(8):
-	        countString = Integer.valueOf(count.getDownload()).toString();
-	    	result = countString.substring(0, 5);
-	    	num = Integer.parseInt(result);
-	    	nums = num;
-	    	nums = nums/10;
-	    	downloadcount = nums+"万";
-			break;	
+			countString = Integer.valueOf(count.getDownload()).toString();
+		result = countString.substring(0, 5);
+		num = Integer.parseInt(result);
+		nums = num;
+		nums = nums/10;
+		downloadcount = nums+"万";
+		break;	
 		default:
 			downloadcount = String.valueOf(count.getDownload());
 			break;
 		}
 		session.setAttribute("downloadcount", downloadcount);
-		
+
 		//favorite数桁数判断
 		switch(favoriteLen) {
 		case 5:
@@ -133,11 +133,14 @@ public class ImageDetailController {
 			break;
 		}
 		session.setAttribute("favoritecount", favoritecount);
-		
+
 		if(user == null){
 			//imageIdから投稿情報を取得
 			Image image = imageService.findByImageId(imageId);
 			session.setAttribute("image",image);
+			// 画像の投稿者を取得
+			User postingUser = userService.findById(image.getUserId());
+			session.setAttribute("imageUser",postingUser);
 			return"download";
 		} else {
 			Integer users = user.getId();
@@ -156,10 +159,10 @@ public class ImageDetailController {
 				form.setCategoryId(imageService.findByImageId(imageId).getCategoryId());
 				form.setComment(imageService.findByImageId(imageId).getComment());
 				Image images= imageService.findByImageId(imageId);
-				
 
 
-				
+
+
 				//イメージIDを保存
 				session.setAttribute("imageId",imageId);
 				//categoryを全権取得
@@ -169,6 +172,7 @@ public class ImageDetailController {
 				session.setAttribute("images",images);
 				return "postingEdit";
 			}else{
+
 				Image DlImages =imageService.findByImageId(imageId);
 				// 画像の投稿者を取得
 				User postingUser = userService.findById(DlImages.getUserId());
@@ -179,7 +183,7 @@ public class ImageDetailController {
 				session.setAttribute("imageUser",postingUser);
 				session.setAttribute("categoryName",categoryName);
 				return"download";
-				//投稿詳細画面へ
+		
 			}
 		}
 
