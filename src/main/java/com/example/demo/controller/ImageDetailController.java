@@ -18,7 +18,9 @@ import com.example.demo.entity.Category;
 import com.example.demo.entity.Image;
 import com.example.demo.entity.User;
 import com.example.demo.service.CategoryService;
+import com.example.demo.service.FavoriteService;
 import com.example.demo.service.ImageService;
+import com.example.demo.service.UserService;
 
 
 @Controller
@@ -30,8 +32,10 @@ public class ImageDetailController {
 	ImageService imageService;
 	@Autowired
 	private CategoryService categoryService;
-
-
+	@Autowired
+	private UserService userService;
+	@Autowired
+	FavoriteService favoriteService;
 	@RequestMapping(path="/detail", method = RequestMethod.GET)
 	public String detail(@RequestParam("id") Integer imageId,@ModelAttribute("postingEdit") EditForm form, Model model) {
 
@@ -74,7 +78,12 @@ public class ImageDetailController {
 				return "postingEdit";
 			}else{
 				Image DlImages =imageService.findByImageId(imageId);
+				
+				List<Image> GetFavoriteUserId =favoriteService.findByUserId(userId);
+				List<Image> GetFavoriteImageId =favoriteService.findByUserId(imageId);
 				session.setAttribute("image",DlImages);
+				session.setAttribute("favoriteUser",GetFavoriteUserId);
+				session.setAttribute("favoriteImage",GetFavoriteImageId);
 				return"download";
 				//投稿詳細画面へ
 			}
