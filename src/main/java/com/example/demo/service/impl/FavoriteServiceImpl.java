@@ -29,4 +29,7 @@ public class FavoriteServiceImpl implements FavoriteService{
 	public List<Image> findByUserId(Integer userId){
 		return favoritedao.findByUserId(userId);
 	}
+	public Image findByUserIdAndImageId(Integer userId,Integer imageId){
+		return favoritedao.findByUserIdAndImageId(userId,imageId);
+	}
 }

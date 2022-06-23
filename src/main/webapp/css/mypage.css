@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+.flexbox2{
+	display:flex;
+	justify-content:space-around;
+}
+.item2{
+
+}
+.icon{
+	margin-top:50px;
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+	object-fit: cover;
+	border: solid 3px #6a6565ae
+}
+.btns{
+	margin-top:40px;
+}
+.item3{
+	margin:30px;
+}
+.comment{
+	padding-right: 3px;
+	padding-top:150px; 
+	margin-bottom: 10px; 
+	border: 1px solid #333333;
+	background-color:white;
+}
+
+

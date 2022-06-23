@@ -10,4 +10,5 @@ public interface FavoriteService {
 	public int delete(Integer userId,Integer imageId);
 	public int deleteUser(Integer userId);
 	public List<Image> findByUserId(Integer userId);
+	public Image findByUserIdAndImageId(Integer userId,Integer imageId);
 }

@@ -1,0 +1,9 @@
+@charset "UTF-8";
+#postingImg{
+/* 	text-align: center; */
+	margin:auto;
+	min-width: 200px;
+	max-width: 500px;
+	min-height: 200px;
+	max-height: 500px;
+}
