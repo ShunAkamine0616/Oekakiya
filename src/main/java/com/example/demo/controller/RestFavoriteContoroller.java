@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entity.Image;
+import com.example.demo.entity.User;
 import com.example.demo.service.CategoryService;
 import com.example.demo.service.FavoriteService;
 import com.example.demo.service.ImageService;
@@ -22,15 +23,32 @@ public class RestFavoriteContoroller {
 	@Autowired
 	CategoryService categoryService;
 	//いいね数をインサート&いいね数を数える
+	@GetMapping("checkFavorite")
+	public int checkFavorite(Model model) {
+		
+		Image image = (Image)session.getAttribute("image"); 
+		User user = (User) session.getAttribute("user");
+		int imageId =image.getId();
+		Image GetFavoriteUserIdANDImageId =favoriteService.findByUserIdAndImageId(user.getId(),imageId);
+		if(GetFavoriteUserIdANDImageId == null) {
+			//まだいいねしてない
+			return 0;
+		} else {
+			//既にいいねしている
+			return 1;
+		}
+	}
+	
     @GetMapping("FavoriteCount")
 	public int count(Model model) {
 		Image image = (Image)session.getAttribute("image"); 
 		int userId = (int) session.getAttribute("UserId");
 		int imageId =image.getId();
-		int insertSession =favoriteService.insert(userId,imageId);
-		session.setAttribute("FavoriteInsertInfo",insertSession);
+		// いいねをつける
+		favoriteService.insert(userId,imageId);
 		int count = favoriteService.countFavorite(imageId);
-		
+//		Image GetFavoriteUserIdANDImageId =favoriteService.findByUserIdAndImageId(userId,imageId);
+//		session.setAttribute("favoriteUser",GetFavoriteUserIdANDImageId);
 //		List<> a= favoriteService.findByUserId(userId);
 		return count;
 	}
@@ -39,10 +57,11 @@ public class RestFavoriteContoroller {
   		Image image = (Image)session.getAttribute("image"); 
   		int userId = (int) session.getAttribute("UserId");
   		int imageId =image.getId();
-  		int deleteSession =favoriteService.delete(userId,imageId);
-  		session.setAttribute("FavoriteInsertInfo",deleteSession);
+  		//いいねを取り消す
+  		favoriteService.delete(userId,imageId);
   		int count = favoriteService.countFavorite(imageId);
-  		
+//  		Image GetFavoriteUserIdANDImageId =favoriteService.findByUserIdAndImageId(userId,imageId);
+//		session.setAttribute("favoriteUser",GetFavoriteUserIdANDImageId);
 //  		List<> a= favoriteService.findByUserId(userId);
   		return count;
   	}
