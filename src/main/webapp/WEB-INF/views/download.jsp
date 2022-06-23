@@ -124,7 +124,7 @@
 				</label>
 
 				<!--  いいね状態のボタン -->
-				<img src="./images/images_yesHurt.png" id="yesHurt" class="hidden">
+				<img src="./images/ピンクハート透過.png" id="yesHurt" class="hidden">
 			</c:if>
 			<c:if test="${user.role == 1}">
 				<button type="button" class="delete_btn" onclick="openModal()">削除</button>
@@ -153,6 +153,10 @@
 
 
 			</div>
+			
+			<div class="title">
+				<label>投稿者</label> <img src="${postUser.iconPath}" class="image_circle">${postUser.userName}
+				
 			<div class="category">
 				<label>カテゴリ</label> ${image.categoryId}
 
