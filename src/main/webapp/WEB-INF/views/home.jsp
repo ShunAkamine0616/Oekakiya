@@ -126,7 +126,7 @@
 							src=${ image.getImagePath() }>
 						</a>
 						<p>${ image.getImageTitle() }</p>
-						<p>いいね：${ image.getFavorite() } DL：${ image.getDownload() }</p>
+						<p>いいね数：${ image.getFavorite() } DL数：${ image.getDownload() }</p>
 					</div>
 				</c:forEach>
 			</div>
