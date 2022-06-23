@@ -25,3 +25,30 @@
 .hidden{
 	display: none;
 }
+
+.Dltitle{
+	margin-top:70px;
+	border: none;
+    background-color:white;
+}
+.Dlcategory{
+	margin-top:70px;
+	border: none;
+    background-color:white;
+}
+.Dlcomment{
+	margin-top:70px;
+	border: none;
+    background-color:white;
+}
+.wrapper{
+ 	height: 200px; 
+      width: 700px; 
+
+      overflow-y: scroll;
+      background-color:white;
+}
+.contents{
+	width:100%;
+	height:auto;
+}
