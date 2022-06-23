@@ -83,7 +83,7 @@
 				
 					<c:forEach var="image" items="${imageList}">
 						<div class="box">
-							<a href="detail?id=${ image.getId() }"> 
+							<a href="detailmyapage?id=${ image.getId() }"> 
 								<img src=${ image.getImagePath() }>
 							</a>
 							<p>${ image.getImageTitle() }</p>

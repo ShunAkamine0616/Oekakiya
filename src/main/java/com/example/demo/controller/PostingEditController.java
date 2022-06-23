@@ -1,6 +1,9 @@
 
 package com.example.demo.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,13 +16,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.demo.controller.form.EditForm;
+import com.example.demo.entity.Category;
 import com.example.demo.entity.Image;
+import com.example.demo.entity.User;
+import com.example.demo.service.CategoryService;
 import com.example.demo.service.ImageService;
 
 @Controller
 public class PostingEditController{
 	@Autowired
 	ImageService imageService;
+
+	@Autowired
+	CategoryService categoryService;
 	@Autowired
 	HttpSession session;
 	
@@ -39,7 +48,28 @@ public class PostingEditController{
 		int imageId = (int)session.getAttribute("imageId");  
 		image.setId(imageId);		
 		imageservice.update(image);
-		return "home";
+	    String page = (String) session.getAttribute("page"); 
+	    if(page.equals("home")) {
+			ArrayList<Category> categoryList = (ArrayList<Category>) categoryService.findAll();
+			session.setAttribute("category",categoryList);
+			ArrayList<Image> imageList = (ArrayList<Image>) imageService.findByKeyword("", " ", "created_at DESC");
+			session.setAttribute("keywordHistory", "");
+			session.setAttribute("categoryHistory", " ");
+			session.setAttribute("userHistory", "all");
+			session.setAttribute("orderHistory", "created_at");
+			if(imageList != null) {
+				model.addAttribute("imageList",imageList);
+			}
+	    	return "home";
+	    }else {
+			User user = (User) session.getAttribute("user");
+			model.addAttribute("user", user);
+			List<Image> imageList = (List<Image>) imageService.findByUserId(user.getId());
+			model.addAttribute("imageList",imageList);
+			   return "MyPage";
+	    }
+	    
+	     
 	}
 	
 	@RequestMapping(value="/delete",method = RequestMethod.GET)
@@ -48,80 +78,12 @@ public class PostingEditController{
 		imageservice.delete(imageId);
 		return "postingEdit";
 	}
+
+	@RequestMapping(value = "/mypegeBack", method = RequestMethod.GET)
+	public String cancel(@ModelAttribute("postingEdit") EditForm form, Model model) {
+		//まいぺーじができたら遷移先を決める。
+		return "home";
+	}
 	
-	@RequestMapping("/te")
-	public String e(@ModelAttribute("postingEdit") EditForm from, Model model) {
-		Image count = new Image();
-		count = imageService.findByIdCount(16);
-		int len = Integer.toString(count.getDownload()).length();
-		len=7;
-//		if(len>7) {
-//	    	String countString = Integer.valueOf(count.getDownload()).toString();
-//	    	String result = countString.substring(0, 5);
-//	    	int num = Integer.parseInt(result);
-//	    	double nums = num;
-//	    	nums = nums/10;
-//	    	System.out.println(nums+"万");
-//		}else if(len>6) {
-//	    	String countString = Integer.valueOf(count.getDownload()).toString();
-//	    	String result = countString.substring(0, 4);
-//	    	int num = Integer.parseInt(result);
-//	    	double nums = num;
-//	    	nums = nums/10;
-//	    	System.out.println(nums+"万");
-//		}else if(len>5) {
-//	    	String countString = Integer.valueOf(count.getDownload()).toString();
-//	    	String result = countString.substring(0, 3);
-//	    	int num = Integer.parseInt(result);
-//	    	double nums = num;
-//	    	nums = nums/10;
-//	    	System.out.println(nums+"万");
-//	    }else if(len>4) {
-//	    	String countString = Integer.valueOf(count.getDownload()).toString();
-//	    	String result = countString.substring(0, 2);
-//	    	int num = Integer.parseInt(result);
-//	    	double nums = num;
-//	    	nums = nums/10;
-//	    	System.out.println(nums+"万");
-//}
-		
-		switch(len) {
-		case 5:
-	    	String countString = Integer.valueOf(count.getDownload()).toString();
-	    	String result = countString.substring(0, 2);
-	    	int num = Integer.parseInt(result);
-	    	double nums = num;
-	    	nums = nums/10;
-	    	System.out.println(nums+"万");
-		    break;			
-		case 6:
-	    	countString = Integer.valueOf(count.getDownload()).toString();
-	    	result = countString.substring(0, 3);
-	    	num = Integer.parseInt(result);
-	    	nums = num;
-	    	nums = nums/10;
-	    	System.out.println(nums+"万");
-			break;			
-		case(7):
-	    	countString = Integer.valueOf(count.getDownload()).toString();
-	    	result = countString.substring(0, 4);
-	    	num = Integer.parseInt(result);
-	    	nums = num;
-	    	nums = nums/10;
-	    	System.out.println(nums+"万");
-			break;			
-		case(8):
-	        countString = Integer.valueOf(count.getDownload()).toString();
-	    	result = countString.substring(0, 5);
-	    	num = Integer.parseInt(result);
-	    	nums = num;
-	    	nums = nums/10;
-	    	System.out.println(nums+"万");
-			break;			
-		}
-		
-		session.setAttribute("count", count);
-		return "postingEdit";
-}
 	
 }

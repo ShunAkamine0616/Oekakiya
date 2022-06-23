@@ -61,7 +61,7 @@
 						<button type="button" onclick="closeModal()" class="cancel_btn">キャンセル</button>
 					</div>
 				</div>
-				<button type="button" onclick="location.href='/mypage'" class="gray_btn">編集取消</button>
+				<button type="button" onclick="location.href='/${page}'" class="gray_btn">編集取消</button>
 		</div>
 	</div>
  <div class="item">
