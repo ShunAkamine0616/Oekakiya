@@ -93,10 +93,22 @@
 				<div class="right">
 					
 					<div class="btn" style="text-align: right">
-						<a class="basic_btn regist" href="/other">アカウント削除</a>
+						<!-- <a class="basic_btn regist" href="openModal()">アカウント削除</a>-->
+						<input type="button" onclick="openModal()" value="削除" class="delete_btn">
 						<a class="basic_btn regist" href="/other">管理者権限を付与</a>
 					</div>
+					<div id="modal">
+						<p class="modal_message">アカウントを削除しますか？</p>
+						<div class="btns">
+							<!-- 					<button type="submit" class="basic_btn"> -->
+							<!-- 						はい -->
+							<!-- 					</button> -->
+							<a href="/deleteAccount?otherId=${ userOther.getId() }" class="basic_btn"> はい </a>
+							<button type="button" onclick="closeModal()" class="cancel_btn">キャンセル</button>
+						</div>
+					</div>
 				</div>
+				<div id="fadeLayer"></div>
 			</c:if>
 			<br>
 			<div class="container">${ userOther.getName() }が投稿した画像</div>
