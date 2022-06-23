@@ -30,7 +30,7 @@
 					</c:when>
 					<c:when test="${not empty user}">
 
-						<label> <a href="./inputEditMyPage"> <img id="iconAdd"
+						<label> <a href="./mypage"> <img id="iconAdd"
 								class="image_circle" src="${user.iconPath}">
 						</a> ${user.name}
 
@@ -51,7 +51,7 @@
     <div class="item">
     	<div class="leftitem">
            <div class=""><div class="box"><img src=${ images.getImagePath() }></div></div>
-             <p>💛${count.getFavorite()} ⇩${count.getDownload()}</p>
+             <p>いいね数：${favoritecount} ダウンロード数：${downloadcount}</p>
 				<form:button type="submit" class="light_blue_btn">編集</form:button>
 				<button type="button" onclick="openModal()"class="delete_btn">消去</button>
 				<div id="modal">

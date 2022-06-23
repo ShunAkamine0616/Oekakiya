@@ -54,15 +54,71 @@ public class PostingEditController{
 		Image count = new Image();
 		count = imageService.findByIdCount(16);
 		int len = Integer.toString(count.getDownload()).length();
-		if(len>7) {
-			
-		}else if(len>6) {
-			
-		}else if(len>5) {
-		   
-	    }else if(len>4) {
-	      
-}
+		len=7;
+//		if(len>7) {
+//	    	String countString = Integer.valueOf(count.getDownload()).toString();
+//	    	String result = countString.substring(0, 5);
+//	    	int num = Integer.parseInt(result);
+//	    	double nums = num;
+//	    	nums = nums/10;
+//	    	System.out.println(nums+"万");
+//		}else if(len>6) {
+//	    	String countString = Integer.valueOf(count.getDownload()).toString();
+//	    	String result = countString.substring(0, 4);
+//	    	int num = Integer.parseInt(result);
+//	    	double nums = num;
+//	    	nums = nums/10;
+//	    	System.out.println(nums+"万");
+//		}else if(len>5) {
+//	    	String countString = Integer.valueOf(count.getDownload()).toString();
+//	    	String result = countString.substring(0, 3);
+//	    	int num = Integer.parseInt(result);
+//	    	double nums = num;
+//	    	nums = nums/10;
+//	    	System.out.println(nums+"万");
+//	    }else if(len>4) {
+//	    	String countString = Integer.valueOf(count.getDownload()).toString();
+//	    	String result = countString.substring(0, 2);
+//	    	int num = Integer.parseInt(result);
+//	    	double nums = num;
+//	    	nums = nums/10;
+//	    	System.out.println(nums+"万");
+//}
+		
+		switch(len) {
+		case 5:
+	    	String countString = Integer.valueOf(count.getDownload()).toString();
+	    	String result = countString.substring(0, 2);
+	    	int num = Integer.parseInt(result);
+	    	double nums = num;
+	    	nums = nums/10;
+	    	System.out.println(nums+"万");
+		    break;			
+		case 6:
+	    	countString = Integer.valueOf(count.getDownload()).toString();
+	    	result = countString.substring(0, 3);
+	    	num = Integer.parseInt(result);
+	    	nums = num;
+	    	nums = nums/10;
+	    	System.out.println(nums+"万");
+			break;			
+		case(7):
+	    	countString = Integer.valueOf(count.getDownload()).toString();
+	    	result = countString.substring(0, 4);
+	    	num = Integer.parseInt(result);
+	    	nums = num;
+	    	nums = nums/10;
+	    	System.out.println(nums+"万");
+			break;			
+		case(8):
+	        countString = Integer.valueOf(count.getDownload()).toString();
+	    	result = countString.substring(0, 5);
+	    	num = Integer.parseInt(result);
+	    	nums = num;
+	    	nums = nums/10;
+	    	System.out.println(nums+"万");
+			break;			
+		}
 		
 		session.setAttribute("count", count);
 		return "postingEdit";
