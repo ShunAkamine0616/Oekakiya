@@ -1,17 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <link href="css/commons.css" rel="stylesheet">
+<link href="css/header.css"rel="stylesheet">
+<link href="css/postingCompleted.css"rel="stylesheet">
 <title>おえかきや｜投稿完了</title>
 </head>
 <body>
 
-	<header>
+<header>
 		<div class="header">
 			<h1>
 				<a href="./home" class="page-title">おえかきや</a>
@@ -31,7 +34,7 @@
 						</a> ${user.name}
 
 						</label>
-						<button type="button" onclick="location.href='logout'"
+						<button type="button" onclick="location.href='login'"
 							class="logout_btn">ログアウト</button>
 
 					</c:when>
@@ -43,8 +46,14 @@
 	</header>
 
 	<!-- 投稿画像 -->
-
+	<div id="app">
+	<div class="">
+	<img src="${fn:escapeXml(image.imagePath)}" id="postingImg">
+	</div>
+	</div>
+	<br>
 	<div class="completeMsg">投稿しました！</div>
+	<br>
 	<div class="btn" style="text-align: center">
 		<a href="https://twitter.com/share?ref_src=twsrc%5Etfw"
 			class="twitter-share-button" data-show-count="false">Tweet</a>
@@ -52,7 +61,7 @@
 			charset="utf-8"></script>
 
 		<!-- コピー対象要素とコピーボタン -->
-		<input id="copyTarget" type="text" value="コピー対象の文言" readonly>
+		<input id="copyTarget" type="text" value="http://localhost:8080/detail?id=${fn:escapeXml(image.id)}" readonly>
 		<button onclick="copyToClipboard()">URL</button>
 		<a class="basic_btn" href="/home">ホーム</a> <a class="basic_btn"
 			href="/mypage">マイページ</a>

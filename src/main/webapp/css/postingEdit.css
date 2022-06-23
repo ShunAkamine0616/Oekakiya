@@ -39,8 +39,8 @@ button{
 vertical-align: top;
 }
 .box img {
-	max-width: 250px;
-	max-hight: 250px;
+	max-width: 150px;
+	max-hight: 150px;
 	min-width: 125px;
 	min-hight: 125px;
 	margin: 25px;

@@ -79,6 +79,15 @@ public class PgImageDao implements ImageDao {
 		List<Image> resultList = jdbcTemplate2.query(sql, new BeanPropertyRowMapper<Image>(Image.class));
 		return resultList.isEmpty() ? null : resultList.get(0);
 	}
+	public Image findByImagePath(String imagePath) {
+		System.out.println("imagePath = " + imagePath);
+		String SQL_SELECT_IMAGE_BY_IMAGEPATH = "SELECT * FROM images WHERE image_path =:imagePath";
+		MapSqlParameterSource param = new MapSqlParameterSource();
+		param.addValue("imagePath", imagePath);
+		String sql = SQL_SELECT_IMAGE_BY_IMAGEPATH;
+		List<Image> resultList = jdbcTemplate.query(sql, param, new BeanPropertyRowMapper<Image>(Image.class));
+		return resultList.isEmpty() ? null : resultList.get(0);
+	}
 	public int insert(Image image) {
 		String sql = SQL_INSERT_IMAGE;
         MapSqlParameterSource param = new MapSqlParameterSource();

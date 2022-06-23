@@ -95,6 +95,7 @@ public class ImageController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		image = imageService.findByImagePath("images/" + filename + extention);
 		model.addAttribute("image", image);
 		return "postingCompleted";
 	}

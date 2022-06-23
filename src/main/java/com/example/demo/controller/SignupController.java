@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.demo.controller.form.LoginForm;
 import com.example.demo.controller.form.SignupForm;
+import com.example.demo.entity.Image;
 import com.example.demo.entity.User;
+import com.example.demo.service.ImageService;
 import com.example.demo.service.UserService;
 @Controller
 public class SignupController {
@@ -27,6 +31,8 @@ public class SignupController {
 	HttpSession session;
 	@Autowired
 	UserService userService;
+	@Autowired
+	ImageService imageService;
 	@RequestMapping(value = "home", method = RequestMethod.POST)
 	public String index(@ModelAttribute("login") LoginForm loginform ,Model model) {
 		//imageService.findByKeyword("", " ", "id");
@@ -51,7 +57,7 @@ public class SignupController {
 			return "signup";
 		}
 		User user = new User(signupform.getAccountId(), signupform.getPassword(),signupform.getName());
-		
+		user.setIconPath("images/汎用的な人のシルエットアイコン.png");
 		// ユーザー登録失敗
 		if(userService.insert(user) == 0) {
 			String errMsg = "登録に失敗しました。";
@@ -59,8 +65,9 @@ public class SignupController {
 			return "signup";
 		} else {
 			user = userService.findByAccountId(signupform.getAccountId());
-			user.setIconPath("images/汎用的な人のシルエットアイコン.png");
 			session.setAttribute("user", user);
+			ArrayList<Image> imageList = (ArrayList<Image>) imageService.findByKeyword("", " ", "created_at");
+			model.addAttribute("imageList",imageList);
 			return "home";
 		}
 	}

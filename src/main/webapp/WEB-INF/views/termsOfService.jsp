@@ -10,6 +10,7 @@
 <meta charset="UTF-8">
 <title>おえかきや｜利用規約</title>
 <link href="css/commons.css" rel="stylesheet">
+<link href="css/header.css" rel="stylesheet">
 
 </head>
 <body>
