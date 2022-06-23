@@ -103,6 +103,7 @@
 <%-- 			<a href="${image.imagePath}" download="${image.imageTitle}">ダウンロード</a> --%>
 <!-- 		</button> -->
 <!-- 	</label> -->
+<!-- <div class="contents"> -->
 <div class="container">
 	<div class="item">
 		<div class="leftitem">
@@ -143,30 +144,35 @@
 
 		</div>
 	</div>
-
-	<div class="item">
-		<div class="rightitem">
-			<div class="title">
-				<label>タイトル</label> ${fn:escapeXml(image.imageTitle)}
-
-
-			</div>
-
-			<div class="title">
-				<label>投稿者</label><a href="./other?id=${fn:escapeXml(imageUser.id)}">
-					<img src="${fn:escapeXml(imageUser.iconPath)}" class="image_circle">
-				</a>${fn:escapeXml(imageUser.name)}
-
-				<div class="category">
-					<label>カテゴリ</label> ${fn:escapeXml(categoryName.categoryName)}
-
+	<div class="title">
+		<label>投稿者</label><a href="./other?id=${fn:escapeXml(imageUser.id)}">
+			<img src="${fn:escapeXml(imageUser.iconPath)}" class="image_circle">
+		</a>${fn:escapeXml(imageUser.name)}
+		<div class="item">
+			<div class="rightitem">
+				<div class="title">
+					<label>タイトル</label><span class=Dltitle>
+						${fn:escapeXml(image.imageTitle)} </span>
 
 				</div>
-				<div class="comment">${fn:escapeXml(image.comment)}</div>
+
+
+
+				<div class="category">
+					<label>カテゴリ</label> <span class=Dlcategory>${fn:escapeXml(categoryName.categoryName)}
+					</span>
+
+				</div>
+				<label>コメント</label>
+				<div class="wrapper">
+					<span >${fn:escapeXml(image.comment)} </span>
+				</div>
+
 			</div>
 		</div>
-
-	</div>
+</div>
+</div>
+<!-- 	</div> -->
 	<div id="fadeLayer"></div>
 	</body>
 </html>
