@@ -18,6 +18,7 @@ import com.example.demo.entity.Category;
 import com.example.demo.entity.Image;
 import com.example.demo.entity.User;
 import com.example.demo.service.CategoryService;
+import com.example.demo.service.DownloadService;
 import com.example.demo.service.FavoriteService;
 import com.example.demo.service.ImageService;
 import com.example.demo.service.UserService;
@@ -32,6 +33,8 @@ public class ImageDetailController {
 	ImageService imageService;
 	@Autowired
 	private CategoryService categoryService;
+	@Autowired
+	private DownloadService downloadService;
 	@Autowired
 	private UserService userService;
 	@Autowired
@@ -78,10 +81,14 @@ public class ImageDetailController {
 				return "postingEdit";
 			}else{
 				Image DlImages =imageService.findByImageId(imageId);
-				
+				// 画像の投稿者を取得
+				User postingUser = userService.findById(DlImages.getUserId());
+				Category categoryName = categoryService.findByCategoryId(DlImages.getUserId());
 				Image GetFavoriteUserIdANDImageId =favoriteService.findByUserIdAndImageId(user.getId(),image.getId());
 				session.setAttribute("image",DlImages);
 				session.setAttribute("favoriteUser",GetFavoriteUserIdANDImageId);
+				session.setAttribute("imageUser",postingUser);
+				session.setAttribute("categoryName",categoryName);
 				return"download";
 				//投稿詳細画面へ
 			}
