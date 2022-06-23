@@ -183,7 +183,7 @@ public class ImageDetailController {
 				session.setAttribute("imageUser",postingUser);
 				session.setAttribute("categoryName",categoryName);
 				return"download";
-		
+
 			}
 		}
 

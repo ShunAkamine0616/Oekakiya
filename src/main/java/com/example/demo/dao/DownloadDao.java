@@ -12,12 +12,12 @@ public interface DownloadDao {
 	public List<Image> findByUserId(Integer userId);
 
 	// ダウンロード数を数える
-//	public int countDownload(Integer imageId);
+	//	public int countDownload(Integer imageId);
 	public Integer countDownload(Integer imageId);
-	
+
 	// ダウンロードされたときユーザーと画像をダウンロードしたことを処理
 	public int insert(Integer userId, Integer imageId);
-	
-//ユーザーテーブルと画像テーブルを結合して画像IDで指定
+
+	//ユーザーテーブルと画像テーブルを結合して画像IDで指定
 	public List<Image> usersJoinImages(Integer imageId);
 }
