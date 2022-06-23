@@ -78,10 +78,9 @@
 				${ userOther.getAccountId() }<br>
 				${ userOther.getMail() }<br>
 			</div>
-			<div class="container">
-				${ userOther.getIconPath() }
+			<div class="">
+				<img src=${ userOther.getIconPath() }>
 				<br>
-				
 			</div>
 			<div class="container">
 				<div class="btn" style="text-align: center">
@@ -115,3 +114,4 @@
 		</div>
 	</body>
 </html>
+<script src="./js/commons.js"></script>
