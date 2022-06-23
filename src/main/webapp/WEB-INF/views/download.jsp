@@ -112,8 +112,8 @@
 				</div>
 			</div>
 			<span><img src="./images/images_yesHurt.png" width="3%"
-				height="3%">いいね数:</span><span id="favoriteNum">${fn:escapeXml(count.getFavorite())}</span><span>ダウンロード数:</span><span
-				id="downloadNum">${fn:escapeXml(count.getDownload()) }</span>
+				height="3%">いいね数:</span><span id="favoriteNum">${fn:escapeXml(favoritecount}</span><span>ダウンロード数:</span><span
+				id="downloadNum">${fn:escapeXml(downloadcount) }</span>
 
 
 			<c:if test="${not empty user}">
@@ -152,8 +152,8 @@
 			</div>
 
 			<div class="title">
-				<label>投稿者</label> <img src="${fn:escapeXml(imageUser.iconPath)}"
-					class="image_circle">${fn:escapeXml(imageUser.name)}
+				<label>投稿者</label><a href="./other?id=${fn:escapeXml(imageUser.id)}"> <img src="${fn:escapeXml(imageUser.iconPath)}"
+					class="image_circle"></a>${fn:escapeXml(imageUser.name)}
 
 				<div class="category">
 					<label>カテゴリ</label> ${fn:escapeXml(categoryName.categoryName)}
