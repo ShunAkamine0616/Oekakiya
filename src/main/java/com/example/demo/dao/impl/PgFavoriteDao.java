@@ -24,7 +24,8 @@ public class PgFavoriteDao implements FavoriteDao{
     private static final String SQL_DELETE = "delete from favorite where user_id = :userId and image_id = :imageId;";
     private static final String SQL_DELETE_USER = "delete from favorite where user_id = :userId;";
     private static final String SQL_SELECT_IMAGES = "select i.id as images_id,image_title,image_path,i.user_id as image_user_id,created_at,updated_at from images as i inner join favorite as f on i.user_id = f.user_id where f.user_id =:userId;";
-    
+    private static final String SQL_SELECT_IMAGES_BY_USERID_AND_IMAGEID = "select i.id as images_id,image_title,image_path,i.user_id as image_user_id,created_at,updated_at from images as i inner join favorite as f on i.user_id = f.user_id where f.user_id =:userId AND f.image_id = :imageId;";
+
     public int countFavorite(Integer imageId) {
     	String sql = SELECT_FAVORITE_COUNT;
         MapSqlParameterSource param = new MapSqlParameterSource();
@@ -63,6 +64,16 @@ public class PgFavoriteDao implements FavoriteDao{
 	    param.addValue("userId", userId);
 	    image =  jdbcTemplate.query(sql,param, new BeanPropertyRowMapper<Image>(Image.class));
 	    return image;
+	}
+	
+	public Image findByUserIdAndImageId(Integer userId,Integer imageId) {
+		List<Image> imageList = new ArrayList<>();
+		String sql = SQL_SELECT_IMAGES_BY_USERID_AND_IMAGEID;
+		MapSqlParameterSource param = new MapSqlParameterSource();
+	    param.addValue("userId", userId);
+	    param.addValue("imageId", imageId);
+	    imageList =  jdbcTemplate.query(sql,param, new BeanPropertyRowMapper<Image>(Image.class));
+	    return imageList.isEmpty() ? null : imageList.get(0);
 	}
 
 }
