@@ -13,7 +13,7 @@ public class Image {
 	private Timestamp updatedAt;
 	private Integer favorite;
 	private Integer download;
-
+    private User user;
 	
 
 	public Image() {
@@ -98,5 +98,13 @@ public class Image {
 
 	public void setDownload(Integer download) {
 		this.download = download;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 }
