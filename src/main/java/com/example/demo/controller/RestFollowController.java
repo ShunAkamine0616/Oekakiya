@@ -43,16 +43,16 @@ public class RestFollowController {
 		User userMe = (User) session.getAttribute("user");
 		User userOther = (User) session.getAttribute("userOther");
 		followService.insert(userMe.getId(), userOther.getId());
-		
-		return 0;
+		int count = followService.countFollow(userOther.getId());
+		return count;
 	}
 	
 	@GetMapping("liftFollow")
 	public int lift(Model model) {
 		User userMe = (User) session.getAttribute("user");
 		User userOther = (User) session.getAttribute("userOther");
-		followService.insert(userMe.getId(), userOther.getId());
-		
-		return 0;
+		followService.delete(userMe.getId(), userOther.getId());
+		int count = followService.countFollow(userOther.getId());
+		return count;
 	}
 }

@@ -18,7 +18,7 @@ public class FollowServiceImpl implements FollowService {
 		return followDao.findByUserId(userId);
 	}
 	
-	public Follow countFollow(Integer userFollowId) {
+	public Integer countFollow(Integer userFollowId) {
 		return followDao.countFollow(userFollowId);
 	}
 

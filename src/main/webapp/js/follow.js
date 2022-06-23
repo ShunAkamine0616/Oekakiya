@@ -24,7 +24,7 @@ follow.addEventListener('click',event =>{
 .then(response => response.text())
 .then(data => {
 	console.log(data);
-	document.getElementById("favoriteNum").textContent = data;
+	document.getElementById("followNum").textContent = data;
 	var button = document.get
 	follow.className = "basic_btn regist hidden";
 	lift.className = "basic_btn regist";
@@ -33,11 +33,11 @@ follow.addEventListener('click',event =>{
 
 //いいね押したとき　削除
 lift.addEventListener('click',event =>{
-	fetch("FavoriteDelete")
+	fetch("liftFollow")
 .then(response => response.text())
 .then(data => {
 	console.log(data);
-	document.getElementById("favoriteNum").textContent = data;
+	document.getElementById("followNum").textContent = data;
 	follow.className = "basic_btn regist";
 	lift.className = "basic_btn regist hidden";
 })});
