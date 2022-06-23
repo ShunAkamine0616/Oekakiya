@@ -35,9 +35,18 @@ public class ImageController {
 	ImageService imageService;
 	@Autowired
 	CategoryService categoryService;
-	@RequestMapping(path = "upload", method = RequestMethod.GET)
-	String uploadview(@ModelAttribute("upload") UploadForm uploadForm, Model model) {
+	// マイページから呼ばれたとき
+	@RequestMapping(path = "upload1", method = RequestMethod.GET)
+	String uploadview1(@ModelAttribute("upload") UploadForm uploadForm, Model model) {
 		session.setAttribute("categoryList", categoryService.findAll());
+		session.setAttribute("return1", "mypage");
+		return "imagePosting";
+	}
+	// ホームから呼ばれたとき
+	@RequestMapping(path = "upload", method = RequestMethod.GET)
+	String uploadview2(@ModelAttribute("upload") UploadForm uploadForm, Model model) {
+		session.setAttribute("categoryList", categoryService.findAll());
+		session.setAttribute("return1", "home");
 		return "imagePosting";
 	}
 

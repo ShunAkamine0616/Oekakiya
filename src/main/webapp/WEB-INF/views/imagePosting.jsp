@@ -44,12 +44,8 @@
 		</div>
 		<hr>
 	</header>
-	<!-- 	<hr> -->
-	<!-- 	<div class="insert"> -->
 	<form:form method="post" enctype="multipart/form-data" action="upload1"
 		modelAttribute="upload" class="upload_form">
-		<%-- 		<div>名前：<form:input path="name" /><form:errors path="name" cssStyle="color: red"/></div> --%>
-		<%--   <div>ポイント：<form:input path="point" /><form:errors path="point" cssStyle="color: red"/></div> --%>
 		<div>
 			<div>
 				<p>
@@ -58,10 +54,6 @@
 					<form:errors path="imageTitle" cssStyle="color: red" />
 				</p>
 			</div>
-			<%-- 		<form:select path="categoryId" class="base-text"> --%>
-			<%-- 			<form:options items="${categoryList}" itemLabel="categoryName" --%>
-			<%-- 				itemValue="categoryId" /> --%>
-			<%-- 		</form:select> --%>
 			<div>
 				<p>
 					カテゴリ：
@@ -69,22 +61,6 @@
 						<form:options items="${categoryList}" itemLabel="categoryName"
 							itemValue="id" />
 					</form:select>
-					<!-- <select name="categoryId">  -->
-					<!-- 							<option value="1">季節</option> -->
-					<!-- 							<option value="2">イベント</option> -->
-					<!-- 							<option value="3">人物</option> -->
-					<!-- 							<option value="4">食べ物</option> -->
-					<!-- 							<option value="5">学校</option> -->
-					<!-- 							<option value="6">生活</option> -->
-					<!-- 							<option value="7">医療</option> -->
-					<!-- 							<option value="8">社会</option> -->
-					<!-- 							<option value="9">スポーツ</option> -->
-					<!-- 							<option value="10">自然</option> -->
-					<!-- 							<option value="11">建物・地図</option> -->
-					<!-- 							<option value="12">メッセージカード</option> -->
-					<!-- 							<option value="13">文字マーク</option> -->
-					<!-- 							<option value="14">その他</option> -->
-					<!-- 						</select> -->
 				</p>
 			</div>
 			<div>
@@ -94,24 +70,24 @@
 				<form:errors path="comment" cssStyle="color: red" />
 			</div>
 			<p>
-				<label for="file_upload" class="logout_btn">画像を選択<input
-					name="file" type="file" id="file_upload"
-					onchange="previewImage(this);">
-				</label> <input type="submit" value="投稿する" class="logout_btn" /> <input
-					type="button" onclick="location.href='back'" value="投稿取消"
-					class="cancel_btn">
+				<input name="file" type="file" id="file_upload"
+					onchange="previewImage(this);" class="display-none"> <input
+					type="submit" value="投稿する" class="login_btn" /> <input
+					type="button" onclick="location.href='${return1}'" value="投稿取消"
+					class="gray_btn">
 			</p>
 		</div>
-		<label for="file_upload">
-			<div>
-				<p>
-					画像:<br> <img id="preview" class="image_preview"
-						src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-						style="max-width: 500px;">
 
-				</p>
-			</div>
-		</label>
+		<div>
+			<p>
+				画像:<br> <label for="file_upload"> <img id="preview"
+					class="image_preview"
+					src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+					style="max-width: 500px;" title="画像を選択する">
+				</label>
+
+			</p>
+		</div>
 	</form:form>
 
 	<script>

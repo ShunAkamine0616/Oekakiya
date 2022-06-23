@@ -14,6 +14,10 @@ textarea {
 	height: 200px;
 }
 
+.display-none{
+	display: none;
+}
+
 .image_preview {
 	/* 空の要素なので、高さの定義が必要です。 */
 	/* 	width:1000px; */
