@@ -118,22 +118,12 @@
 
 			<c:if test="${not empty user}">
 
-				<!--  最初のボタン -->
-				<label> <img src="./images/ハート透過.png" id="nonHurt"
-					class=null>
-
-				</label>
-
-
-				<!--  いいね状態のボタン -->
+				<!--いいねしてないとき -->
+				<img src="./images/ハート透過.png" id="nonHurt" class="hidden">
+				<!-- いいねしてるとき -->
 				<img src="./images/ピンクハート透過.png" id="yesHurt" class="hidden">
 
-				<!--  いいね状態の初期ボタン -->
-<%-- 				<c:if test="${not empty favoriteUser && not empty favoriteImage}"> --%>
-					<img src="./images/ピンクハート透過.png" id="yesHurt" class=null>
-				</c:if>
-<%-- 			</c:if> --%>
-			<%-- 			</c:if> --%>
+			</c:if>
 			<c:if test="${user.role == 1}">
 				<button type="button" class="delete_btn" onclick="openModal()">削除</button>
 				<div id="modal">
