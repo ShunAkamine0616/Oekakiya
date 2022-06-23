@@ -86,7 +86,7 @@
 				<div class="btn" style="text-align: center">
 							<a id="follow" class="basic_btn regist hidden">フォローする</a>
 							<a id="lift" class="basic_btn regist hidden">フォロー解除</a>
-							フォロワー：${followCnt.getFollowCount()}人
+							フォロワー：<span id="followNum">${fn:escapeXml(followCnt)}</span>人
 				</div>
 			</div>
 			<c:if test="${ user.getRole() eq '1' }">
@@ -127,3 +127,4 @@
 	</body>
 </html>
 <script src="./js/commons.js"></script>
+<script src="./js/follow.js"></script>
