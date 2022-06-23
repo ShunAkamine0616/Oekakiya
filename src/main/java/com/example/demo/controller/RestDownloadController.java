@@ -29,7 +29,10 @@ public class RestDownloadController {
     @GetMapping("DownloadCount")
 	public int count(Model model) {
 		Image image = (Image)session.getAttribute("image"); 
-		int userId = (int) session.getAttribute("UserId");
+		Integer userId = (Integer) session.getAttribute("UserId");
+		if(userId == null) {
+			userId = 0;
+		}
 		int imageId =image.getId();
 		downloadService.insert(userId,imageId);
 		int count = downloadService.countDownload(imageId);
