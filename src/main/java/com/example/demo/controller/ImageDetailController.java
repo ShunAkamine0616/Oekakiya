@@ -79,11 +79,9 @@ public class ImageDetailController {
 			}else{
 				Image DlImages =imageService.findByImageId(imageId);
 				
-				List<Image> GetFavoriteUserId =favoriteService.findByUserId(userId);
-				List<Image> GetFavoriteImageId =favoriteService.findByUserId(imageId);
+				Image GetFavoriteUserIdANDImageId =favoriteService.findByUserIdAndImageId(user.getId(),image.getId());
 				session.setAttribute("image",DlImages);
-				session.setAttribute("favoriteUser",GetFavoriteUserId);
-				session.setAttribute("favoriteImage",GetFavoriteImageId);
+				session.setAttribute("favoriteUser",GetFavoriteUserIdANDImageId);
 				return"download";
 				//投稿詳細画面へ
 			}
