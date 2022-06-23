@@ -95,7 +95,7 @@ public class ImageController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		model.addAttribute("image", image);
 		return "postingCompleted";
 	}
 }
