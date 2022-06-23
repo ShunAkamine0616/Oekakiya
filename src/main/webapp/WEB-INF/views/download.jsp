@@ -117,15 +117,23 @@
 
 
 			<c:if test="${not empty user}">
+
 				<!--  最初のボタン -->
 				<label> <img src="./images/ハート透過.png" id="nonHurt"
 					class=null>
 
 				</label>
 
+
 				<!--  いいね状態のボタン -->
 				<img src="./images/ピンクハート透過.png" id="yesHurt" class="hidden">
-			</c:if>
+
+				<!--  いいね状態の初期ボタン -->
+<%-- 				<c:if test="${not empty favoriteUser && not empty favoriteImage}"> --%>
+					<img src="./images/ピンクハート透過.png" id="yesHurt" class=null>
+				</c:if>
+<%-- 			</c:if> --%>
+			<%-- 			</c:if> --%>
 			<c:if test="${user.role == 1}">
 				<button type="button" class="delete_btn" onclick="openModal()">削除</button>
 				<div id="modal">
@@ -137,10 +145,9 @@
 					</div>
 				</div>
 			</c:if>
-
-			<button class="light_blue_btn" id="download_btn">
-				<a href="${image.imagePath}" download="${image.imageTitle}">ダウンロード</a>
-			</button>
+			<a href="${image.imagePath}" download="${image.imageTitle}">
+				<button class="light_blue_btn" id="download_btn">ダウンロード</button>
+			</a>
 
 
 		</div>
@@ -153,23 +160,23 @@
 
 
 			</div>
-			
+
 			<div class="title">
-				<label>投稿者</label> <img src="${postUser.iconPath}" class="image_circle">${postUser.userName}
-				
-			<div class="category">
-				<label>カテゴリ</label> ${image.categoryId}
+				<label>投稿者</label> <img src="${postUser.iconPath}"
+					class="image_circle">${postUser.userName}
+
+				<div class="category">
+					<label>カテゴリ</label> ${image.categoryId}
 
 
+				</div>
+				<div class="comment">${image.comment}</div>
 			</div>
-			<div class="comment">${image.comment}</div>
 		</div>
+
 	</div>
-
-</div>
-<div id="fadeLayer"></div>
-</body>
-
+	<div id="fadeLayer"></div>
+	</body>
 </html>
 <script src="./js/commons.js">
 	
