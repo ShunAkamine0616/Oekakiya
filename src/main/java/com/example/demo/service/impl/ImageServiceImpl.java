@@ -25,6 +25,9 @@ public class ImageServiceImpl implements ImageService {
 	public Image findByImageId(Integer imageId) {
 		return imageDao.findByImageId(imageId);
 	}
+	public Image findByImagePath(String imagePath) {
+		return imageDao.findByImagePath(imagePath);
+	}
 	public int insert(Image image) {
 		return imageDao.insert(image);
 	}
