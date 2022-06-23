@@ -2,6 +2,8 @@
 
 .upload_form {
 	display: flex;
+	position:relative;
+	top:-100px;
 	margin: 10%;
 }
 

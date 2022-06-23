@@ -64,18 +64,20 @@
 				</p>
 			</div>
 			<div>
-				<div>コメント：</div>
+				コメント：<br>
 				<textarea name="comment"
 					placeholder="例&#13;&#10;画像サイズ：367×400&#13;&#10;用途：アイコン&#13;&#10;かわいい感じで書いてみました。アイコンなどに自由に使ってください。"></textarea>
 				<form:errors path="comment" cssStyle="color: red" />
 			</div>
-			<p>
-				<input name="file" type="file" id="file_upload"
-					onchange="previewImage(this);" class="display-none"> <input
-					type="submit" value="投稿する" class="login_btn" /> <input
-					type="button" onclick="location.href='${return1}'" value="投稿取消"
-					class="gray_btn">
-			</p>
+			<div>
+				<p>
+					<input name="file" type="file" id="file_upload"
+						onchange="previewImage(this);" class="display-none"> <input
+						type="submit" value="投稿する" class="login_btn" /> <input
+						type="button" onclick="location.href='${return1}'" value="投稿取消"
+						class="gray_btn">
+				</p>
+			</div>
 		</div>
 
 		<div>
@@ -83,7 +85,7 @@
 				画像:<br> <label for="file_upload"> <img id="preview"
 					class="image_preview"
 					src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-					style="max-width: 500px;" title="画像を選択する">
+					style="max-width: 500px;" title="クリックで画像を選択">
 				</label>
 
 			</p>
@@ -91,20 +93,20 @@
 	</form:form>
 
 	<script>
-			window
-					.addEventListener(
-							'load',
-							function() {
-								document.getElementById('preview').src = "/images/icon_001050_256.png";
-							});
-			function previewImage(obj) {
-				var fileReader = new FileReader();
-				fileReader.onload = (function() {
-					document.getElementById('preview').src = fileReader.result;
-				});
-				fileReader.readAsDataURL(obj.files[0]);
-			}
-		</script>
+		window
+				.addEventListener(
+						'load',
+						function() {
+							document.getElementById('preview').src = "/images/icon_001050_256.png";
+						});
+		function previewImage(obj) {
+			var fileReader = new FileReader();
+			fileReader.onload = (function() {
+				document.getElementById('preview').src = fileReader.result;
+			});
+			fileReader.readAsDataURL(obj.files[0]);
+		}
+	</script>
 	<!-- 	</div> -->
 </body>
 </html>
