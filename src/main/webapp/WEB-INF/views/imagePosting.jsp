@@ -29,12 +29,12 @@
 					</c:when>
 					<c:when test="${not empty user}">
 
-						<label> <a href="./inputEditMyPage"> <img id="iconAdd"
+						<label> <a href="./mypage"> <img id="iconAdd"
 								class="image_circle" src="${user.iconPath}">
 						</a> ${user.name}
 
 						</label>
-						<button type="button" onclick="location.href='login'"
+						<button type="button" onclick="location.href='logout'"
 							class="logout_btn">ログアウト</button>
 
 					</c:when>

@@ -18,7 +18,8 @@ import com.example.demo.service.ImageService;
 
 @Controller
 public class PostingEditController{
-	
+	@Autowired
+	ImageService imageService;
 	@Autowired
 	HttpSession session;
 	
@@ -47,12 +48,24 @@ public class PostingEditController{
 		imageservice.delete(imageId);
 		return "postingEdit";
 	}
-
-	@RequestMapping(value = "/mypegeBack", method = RequestMethod.GET)
-	public String cancel(@ModelAttribute("postingEdit") EditForm form, Model model) {
-		//まいぺーじができたら遷移先を決める。
-		return "home";
-	}
 	
+	@RequestMapping("/te")
+	public String e(@ModelAttribute("postingEdit") EditForm from, Model model) {
+		Image count = new Image();
+		count = imageService.findByIdCount(16);
+		int len = Integer.toString(count.getDownload()).length();
+		if(len>7) {
+			
+		}else if(len>6) {
+			
+		}else if(len>5) {
+		   
+	    }else if(len>4) {
+	      
+}
+		
+		session.setAttribute("count", count);
+		return "postingEdit";
+}
 	
 }

@@ -20,6 +20,7 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+<script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
 
 </head>
 <body>
@@ -39,8 +40,8 @@
 								class="login_btn">ログイン</button>
 						</c:when>
 						<c:when test="${not empty user}">
-							<label> <a href="./mypage"> <img
-									id="iconAdd" class="image_circle" src="${user.iconPath}">
+							<label> <a href="./mypage"> <img id="iconAdd"
+									class="image_circle" src="${user.iconPath}">
 							</a> ${user.name}
 							</label>
 							<button type="button" onclick="location.href='logout'"
@@ -51,9 +52,9 @@
 			</div>
 			<hr>
 		</header>
-		<input type ="hidden" value="${delete}" id="deleteFlag"></input>
+		<input type="hidden" value="${delete}" id="deleteFlag"></input>
 		<c:if test="${ user ne null }">
-			<a href="upload" class="post_btn">　投稿　</a>
+			<a href="upload" class="post_btn"> 投稿 </a>
 		</c:if>
 
 		<p>${ msg }</p>
@@ -65,45 +66,46 @@
 			<a href="userSearch" class="select_btn">ユーザー</a> <input type="submit"
 				value="イラスト" class="not_select_btn"> <br>
 
-			
+
 			<div class="search_con">
-			<div style="margin: auto; margin-left: 40%;">
-				<label>検索対象：</label> <label> <input type="radio" name="user"
-					id="user" value="all" checked
-					onChange="location.href='search?keyword=${ keywordHistory }&user=all&category=${ categoryHistory }&order=${ orderHistory }'">すべて
-				</label>
-				<c:if test="${ user ne null }">
-					<label> <input type="radio" name="user" id="user"
-						value="follow"
-						<c:if test="${ userHistory eq 'follow' }"> checked </c:if>
-						onChange="location.href='search?keyword=${ keywordHistory }&user=follow&category=${ categoryHistory }&order=${ orderHistory }'">フォロー
+				<div style="margin: auto; margin-left: 40%;">
+					<label>検索対象：</label> <label> <input type="radio"
+						name="user" id="user" value="all" checked
+						onChange="location.href='search?keyword=${ keywordHistory }&user=all&category=${ categoryHistory }&order=${ orderHistory }'">すべて
 					</label>
-				</c:if>
+					<c:if test="${ user ne null }">
+						<label> <input type="radio" name="user" id="user"
+							value="follow"
+							<c:if test="${ userHistory eq 'follow' }"> checked </c:if>
+							onChange="location.href='search?keyword=${ keywordHistory }&user=follow&category=${ categoryHistory }&order=${ orderHistory }'">フォロー
+						</label>
+					</c:if>
+				</div>
+
+				<div class="order">
+					<label for="sort" style="margin-left: 50px;">並び替え</label> <select
+						class="base-text center" id="sort" name="order"
+						style="background-color: white;"
+						onChange="location.href='search?keyword=${ keywordHistory }&user=${ userHistory }&category=${ categoryHistory }&order='+value">
+						<option value="created_at DESC"
+							<c:if test="${ orderHistory eq 'created_at DESC' }">selected</c:if>>投稿日</option>
+						<option value="updated_at DESC"
+							<c:if test="${ orderHistory eq 'updated_at DESC' }">selected</c:if>>更新日</option>
+						<option value="download DESC"
+							<c:if test="${ orderHistory eq 'download DESC' }">selected</c:if>>ダウンロード数</option>
+						<option value="favorite DESC"
+							<c:if test="${ orderHistory eq 'favorite DESC' }">selected</c:if>>いいね数</option>
+					</select>
+				</div>
 			</div>
-			
-			<div class="order">
-				<label for="sort" style="margin-left: 50px;">並び替え</label> <select class="base-text center"
-					id="sort" name="order" style="background-color: white;"
-					onChange="location.href='search?keyword=${ keywordHistory }&user=${ userHistory }&category=${ categoryHistory }&order='+value">
-					<option value="created_at DESC"
-						<c:if test="${ orderHistory eq 'created_at DESC' }">selected</c:if>>投稿日</option>
-					<option value="updated_at DESC"
-						<c:if test="${ orderHistory eq 'updated_at DESC' }">selected</c:if>>更新日</option>
-					<option value="download DESC"
-						<c:if test="${ orderHistory eq 'download DESC' }">selected</c:if>>ダウンロード数</option>
-					<option value="favorite DESC"
-						<c:if test="${ orderHistory eq 'favorite DESC' }">selected</c:if>>いいね数</option>
-				</select>
-			</div>
-			</div>
-			
+
 			<br>
 			<c:if test="${ user.getRole() eq 1 }">
 				<a href="categoryMg" class="categoryMg_btn">カテゴリ管理</a>
 			</c:if>
 			<!--   チェックボックスの表示切替ボタン   -->
 			<div class="checkbox-toggle">カテゴリ▼</div>
-			
+
 			<!--   チェックボックス   -->
 			<div class="checkboxes">
 				<input name="category" type="hidden" value=" ">
@@ -115,7 +117,7 @@
 				</c:forEach>
 
 			</div>
-			
+
 		</form>
 
 		<c:if test="${ imageList ne null }">
@@ -126,7 +128,22 @@
 							src=${ image.getImagePath() }>
 						</a>
 						<p>${ image.getImageTitle() }</p>
-						<p>いいね数：${ image.getFavorite() } DL数：${ image.getDownload() }</p>
+						<span><img src="./images/images_yesHurt.png" width="3%"
+							height="3%">いいね数:</span><span id="${ image.getId() }">${count.getFavorite()}</span><span>ダウンロード数:</span><span
+							id="downloadNum">${ count.getDownload() }</span>
+
+
+						<c:if test="${not empty user}">
+							<!--  最初のボタン -->
+							<label> <img src="./images/ハート透過.png" id="${ image.getId() }"
+								class="nonHurt">
+
+							</label>
+
+							<!--  いいね状態のボタン -->
+							<img src="./images/ピンクハート透過.png" id="${ image.getId() }"
+								class="yesHurt hidden">
+						</c:if>
 					</div>
 				</c:forEach>
 			</div>
@@ -137,9 +154,12 @@
 	<script src="js/home.js"></script>
 	<script src="./dist/snackbar.min.js"></script>
 	<script>
-	if(document.getElementById("deleteFlag").value === "1") {
-		Snackbar.show({text: 'アカウント削除しました。'});
-	}
+		if (document.getElementById("deleteFlag").value === "1") {
+			Snackbar.show({
+				text : 'アカウント削除しました。'
+			});
+		}
 	</script>
+	<script src="js/homeFavorite.js"></script>
 </body>
 </html>
