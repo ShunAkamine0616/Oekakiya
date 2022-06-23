@@ -39,8 +39,8 @@
 				<c:when test="${not empty user}">
 
 					<label> <a href="./mypage"> <img id="iconAdd"
-							class="image_circle" src="${user.iconPath}">
-					</a> ${user.name}
+							class="image_circle" src="${fn:escapeXml(user.iconPath)}">
+					</a> ${fn:escapeXml(user.name)}
 
 					</label>
 					<button type="button" onclick="location.href='logout'"
@@ -108,12 +108,12 @@
 		<div class="leftitem">
 			<div class="">
 				<div class="box">
-					<img src="${image.imagePath}">
+					<img src="${fn:escapeXml(image.imagePath)}">
 				</div>
 			</div>
 			<span><img src="./images/images_yesHurt.png" width="3%"
-				height="3%">いいね数:</span><span id="favoriteNum">${count.getFavorite()}</span><span>ダウンロード数:</span><span
-				id="downloadNum">${ count.getDownload() }</span>
+				height="3%">いいね数:</span><span id="favoriteNum">${fn:escapeXml(count.getFavorite())}</span><span>ダウンロード数:</span><span
+				id="downloadNum">${fn:escapeXml(count.getDownload()) }</span>
 
 
 			<c:if test="${not empty user}">
@@ -135,7 +135,7 @@
 					</div>
 				</div>
 			</c:if>
-			<a href="${image.imagePath}" download="${image.imageTitle}">
+			<a href="${fn:escapeXml(image.imagePath)}" download="${fn:escapeXml(image.imageTitle)}">
 				<button class="light_blue_btn" id="download_btn">ダウンロード</button>
 			</a>
 
@@ -146,21 +146,21 @@
 	<div class="item">
 		<div class="rightitem">
 			<div class="title">
-				<label>タイトル</label> ${image.imageTitle}
+				<label>タイトル</label> ${fn:escapeXml(image.imageTitle)}
 
 
 			</div>
 
 			<div class="title">
-				<label>投稿者</label> <img src="${postUser.iconPath}"
-					class="image_circle">${postUser.userName}
+				<label>投稿者</label> <img src="${fn:escapeXml(imageUser.iconPath)}"
+					class="image_circle">${fn:escapeXml(imageUser.name)}
 
 				<div class="category">
-					<label>カテゴリ</label> ${image.categoryId}
+					<label>カテゴリ</label> ${fn:escapeXml(categoryName.categoryName)}
 
 
 				</div>
-				<div class="comment">${image.comment}</div>
+				<div class="comment">${fn:escapeXml(image.comment)}</div>
 			</div>
 		</div>
 
