@@ -15,6 +15,7 @@ import com.example.demo.entity.Image;
 import com.example.demo.service.CategoryService;
 import com.example.demo.service.DownloadService;
 import com.example.demo.service.ImageService;
+import com.example.demo.service.UserService;
 
 
 
@@ -28,6 +29,8 @@ public class DownloadController {
 	@Autowired
 	ImageService imageService;
 	@Autowired
+	UserService userService;
+	@Autowired
 	CategoryService categoryService;
 	// 登録画面遷移
     @RequestMapping(value = "/download", method = RequestMethod.GET)
@@ -36,7 +39,8 @@ public class DownloadController {
     			Image image = (Image) session.getAttribute("image");
 //    			Integer imageId = image.getId();
     	session.setAttribute("downloadImg",image);
-    	
+    	session.setAttribute("postUser", userService.findById(image.getUserId()));
+    	System.out.println("postUser");
         return "download";
     }
  // ログイン画面遷移
