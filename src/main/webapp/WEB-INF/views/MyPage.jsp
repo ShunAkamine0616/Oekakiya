@@ -8,6 +8,7 @@
 	<meta charset="UTF-8">
 	<title>マイページ</title>
 	<link href="css/commons.css" rel="stylesheet">
+	<!--link href="css/commonsG.css" rel="stylesheet"-->
 	<link href="css/home.css" rel="stylesheet">
 	<link href="css/mypage.css" rel="stylesheet">
 	<link
@@ -18,7 +19,7 @@
 	<header>
 			<div class="header">
 				<h1>
-					<a href="./home" class="page-title">おえかきや</a>
+					<a href="./home" class="page-title gaming">おえかきや</a>
 				</h1>
 				
 				<div class="btn-wrap">
@@ -52,9 +53,7 @@
 			<div  class="site_logo">
 				<h1>
 					${ user.getName() }
-					
 				</h1>
-				
 				${ user.getAccountId() }<br>
 				${ user.getMail() }<br>
 			</div>
