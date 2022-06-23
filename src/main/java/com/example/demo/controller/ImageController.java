@@ -58,7 +58,7 @@ public class ImageController {
 			extention = uploadForm.getFile().getOriginalFilename().substring(dot).toLowerCase();
 		}
 		// ファイル名
-		String filename = uploadForm.getImageTitle() + DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS").format(LocalDateTime.now());
+		String filename = uploadForm.getImageTitle().replaceAll(" ","").replaceAll("　","") + DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS").format(LocalDateTime.now());
 		
 		//画像インスタンス生成
 		Image image = new Image(uploadForm.getImageTitle(), "images/" + filename + extention, uploadForm.getComment(), uploadForm.getCategoryId(), user.getId());
@@ -95,7 +95,7 @@ public class ImageController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		model.addAttribute("image", image);
 		return "postingCompleted";
 	}
 }

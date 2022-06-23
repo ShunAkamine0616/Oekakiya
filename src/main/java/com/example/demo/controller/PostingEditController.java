@@ -1,3 +1,4 @@
+
 package com.example.demo.controller;
 
 import javax.servlet.http.HttpSession;
@@ -13,19 +14,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.demo.controller.form.EditForm;
 import com.example.demo.entity.Image;
-import com.example.demo.service.CategoryService;
 import com.example.demo.service.ImageService;
 
 @Controller
-public class postingEditController{
+public class PostingEditController{
 	
 	@Autowired
 	HttpSession session;
 	
 	@Autowired
 	private ImageService imageservice;
-	@Autowired
-	private CategoryService categoryservice;
+
 	
 	@RequestMapping(value="/edit", method = RequestMethod.POST)
 	public String edit(@Validated @ModelAttribute("postingEdit") EditForm form, BindingResult bindingResult,Model model) {
@@ -46,10 +45,10 @@ public class postingEditController{
 	public String delete(@ModelAttribute("postingEdit") EditForm from, Model model) {
 		int imageId = (int)session.getAttribute("imageId"); 
 		imageservice.delete(imageId);
-		return "home";
+		return "postingEdit";
 	}
-	
-	@RequestMapping(value="/mypegeBack",method = RequestMethod.GET)
+
+	@RequestMapping(value = "/mypegeBack", method = RequestMethod.GET)
 	public String cancel(@ModelAttribute("postingEdit") EditForm form, Model model) {
 		//まいぺーじができたら遷移先を決める。
 		return "home";
