@@ -1,37 +1,82 @@
 @charset "UTF-8";
-.downloadInfo{
-	 display: flex;
-    justify-content: flex-end;
-}
-.Lavel{
-	border: none;
-  border-radius: 5px;
-  border: 2px solid;
-  border-color:red;
-	background-color:white;
+
+.downloadInfo {
+	display: flex;
+	justify-content: flex-end;
 }
 
-
-.iineMoji{
-	font-size:15px;
+.Lavel {
+	border: none;
+	border-radius: 5px;
+	border: 2px solid;
+	border-color: red;
+	background-color: white;
 }
-.iineBtn{
+
+.iineMoji {
+	font-size: 15px;
+}
+
+.iineBtn {
 	border: none;
 }
-.hidden{
+
+.hidden {
 	display: none;
 }
 
-.contents{
-	width:100%;
-	height:auto;
+.contents {
+	width: 100%;
+	height: auto;
 }
-.center{
+/* 画面を縮小してもいい感じに調整してくれる */
+.center {
 	width: 80%;
-  margin: 0 auto;
-  max-width: 500px;
-}
-.right{
-	margin-left:120px;
+	margin: 0 auto;
+	max-width: 500px;
 }
 
+.right {
+	margin-left: 120px;
+}
+
+.postusericon {
+	position: relative;
+	top: 0px;
+	left: 120px;
+}
+
+.postuser {
+	position: relative;
+	top: 0px;
+	left: 120px;
+}
+
+.iine-box {
+	position: relative;
+}
+
+.iine {
+	width: 2px;
+	height: 2px;
+	color: black;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 14px;
+	border-radius: 50%;
+	cursor: pointer;
+	position: absolute;
+	top: 55%;
+	left: 75%;
+}
+
+.downloadNum {
+	margin-left: 120px;
+}
+/* DL画面で中央寄せ */
+.Dlcenter {
+	width: 72%;
+	margin:  auto;
+	
+}
