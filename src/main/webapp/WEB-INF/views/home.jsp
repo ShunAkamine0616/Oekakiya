@@ -125,25 +125,23 @@
 				<c:forEach var="image" items="${imageList}">
 					<div class="box">
 						<a href="detail?id=${ image.getId() }"> <img
-							src=${ image.getImagePath() }>
+							src=${ image.getImagePath() } class="post">
 						</a>
 						<p>${ image.getImageTitle() }</p>
-						<span><img src="./images/images_yesHurt.png" width="3%"
-							height="3%">いいね数:</span><span id="${ image.getId() }">${count.getFavorite()}</span><span>ダウンロード数:</span><span
-							id="downloadNum">${ count.getDownload() }</span>
-
-
-						<c:if test="${not empty user}">
+						
+						<div>
+						いいね数:<span id="${ image.getId() }"><c:if test="${empty count.getFavorite()}">${ image.getFavorite() }</c:if>${count.getFavorite()}</span><span>ダウンロード数:${ image.getDownload() }</span></div>
+							<c:if test="${not empty user}">
 							<!--  最初のボタン -->
-							<label> <img src="./images/ハート透過.png" id="${ image.getId() }"
-								class="nonHurt">
-
-							</label>
-
+							<img src="./images/ハート透過.png" id="${ image.getId() }"
+								class="favorite_btn nonHurt <c:if test="${image.getFavoriteFlag() eq 1}">hidden</c:if>" style="width: 30px; height: 30px;">
 							<!--  いいね状態のボタン -->
 							<img src="./images/ピンクハート透過.png" id="${ image.getId() }"
-								class="yesHurt hidden">
+								class="favorite_btn yesHurt <c:if test="${image.getFavoriteFlag() eq 0}">hidden</c:if>" style="width: 30px; height: 30px;">
 						</c:if>
+
+
+						
 					</div>
 				</c:forEach>
 			</div>

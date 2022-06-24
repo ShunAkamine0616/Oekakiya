@@ -13,8 +13,8 @@ public class ImageServiceImpl implements ImageService {
 	@Autowired
 	private ImageDao imageDao;
 	
-	public List<Image> findByKeyword(String keyword, String categoryId, String sort) {
-		return imageDao.findByKeyword(keyword, categoryId, sort);
+	public List<Image> findByKeyword(String keyword, String categoryId, String sort, Integer userId) {
+		return imageDao.findByKeyword(keyword, categoryId, sort, userId);
 	}
 	public List<Image> findFollow(String keyword, String categoryId, String sort, Integer userId) {
 		return imageDao.findFollow(keyword, categoryId, sort, userId);

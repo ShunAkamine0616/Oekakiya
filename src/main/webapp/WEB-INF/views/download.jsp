@@ -12,11 +12,10 @@
 <link href="css/download.css" rel="stylesheet">
 <link href="css/postingEdit.css" rel="stylesheet">
 <link href="css/header.css" rel="stylesheet">
-<title>Insert title here</title>
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>おえかきや</title>
+<title>${fn:escapeXml(image.imageTitle)}|おえかきや|画像詳細</title>
 
 <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
 </head>
@@ -120,9 +119,9 @@
 			<c:if test="${not empty user}">
 
 				<!--いいねしてないとき -->
-				<img src="./images/ハート透過.png" id="nonHurt" class="hidden">
+				<img src="./images/ハート透過.png" id="nonHurt" class="hidden" title="いいね！">
 				<!-- いいねしてるとき -->
-				<img src="./images/ピンクハート透過.png" id="yesHurt" class="hidden">
+				<img src="./images/ピンクハート透過.png" id="yesHurt" class="hidden" >
 
 			</c:if>
 			<c:if test="${user.role == 1}">
