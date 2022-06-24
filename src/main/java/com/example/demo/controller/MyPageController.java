@@ -71,6 +71,7 @@ public class MyPageController {
 		if(imageList != null) {
 			model.addAttribute("imageList",imageList);
 		}
+		model.addAttribute("delete", 1);
 		return "home";
 	}
 
@@ -137,7 +138,7 @@ public class MyPageController {
 			return "editMyPage";
 		}
 
-
+		model.addAttribute("edit", 1);
 		session.setAttribute("user", userService.findById(user.getId()));
 		return "editMyPage";
 	}
