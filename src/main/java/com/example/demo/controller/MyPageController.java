@@ -5,6 +5,7 @@ import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.example.demo.controller.form.EditMyPageForm;
 import com.example.demo.entity.Image;
 import com.example.demo.entity.User;
+import com.example.demo.service.DeleteUserService;
 import com.example.demo.service.ImageService;
 import com.example.demo.service.UserService;
 
@@ -34,6 +36,8 @@ public class MyPageController {
 	HttpSession session;
 	@Autowired
 	UserService userService;
+	@Autowired
+	DeleteUserService deleteUserService;
 	@Autowired
 	ImageService imageService;
 
@@ -59,12 +63,14 @@ public class MyPageController {
 	@RequestMapping(path = "deleteMyAccount", method = RequestMethod.GET)
 	String deleteMyAccount(Model model) {
 		User user = (User) session.getAttribute("user");
-		if(userService.delete(user.getId()) == 0) {
-			model.addAttribute("editMyPageErrMsg", "編集できませんでした。");
-			return "editMyPage";
-		}
+		deleteUserService.delete(user.getId());
 		// userのセッションを破棄
 		session.removeAttribute("user");
+		// 検索画面のデフォルトの画像情報を取得
+		ArrayList<Image> imageList = (ArrayList<Image>) imageService.findByKeyword("", " ", "created_at DESC", null);
+		if(imageList != null) {
+			model.addAttribute("imageList",imageList);
+		}
 		return "home";
 	}
 

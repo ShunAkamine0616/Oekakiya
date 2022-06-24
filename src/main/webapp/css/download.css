@@ -10,11 +10,7 @@
   border-color:red;
 	background-color:white;
 }
-/* .iconAdd { */
-/* 	position: relative; */
-/* 	top: 130px; */
-/* 	right: 55px */
-/* } */
+
 
 .iineMoji{
 	font-size:15px;
@@ -26,29 +22,16 @@
 	display: none;
 }
 
-.Dltitle{
-	margin-top:70px;
-	border: none;
-    background-color:white;
-}
-.Dlcategory{
-	margin-top:70px;
-	border: none;
-    background-color:white;
-}
-.Dlcomment{
-	margin-top:70px;
-	border: none;
-    background-color:white;
-}
-.wrapper{
- 	height: 200px; 
-      width: 700px; 
-
-      overflow-y: scroll;
-      background-color:white;
-}
 .contents{
 	width:100%;
 	height:auto;
 }
+.center{
+	width: 80%;
+  margin: 0 auto;
+  max-width: 500px;
+}
+.right{
+	margin-left:120px;
+}
+

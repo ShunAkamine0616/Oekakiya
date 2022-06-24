@@ -13,6 +13,7 @@
 		href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
 		rel="stylesheet">
 	<link href="css/header.css" rel="stylesheet">
+	<link href="dist/snackbar.min.css" type="text/css" rel="stylesheet">
 	</head>
 <!--	<header>
 		<div class="header">
@@ -82,20 +83,23 @@
 				<img src=${ userOther.getIconPath() }>
 				<br>
 			</div>
-			<div class="container">
-				<div class="btn" style="text-align: center">
-							<a id="follow" class="basic_btn regist hidden">フォローする</a>
-							<a id="lift" class="basic_btn regist hidden">フォロー解除</a>
-							フォロワー：<span id="followNum">${fn:escapeXml(followCnt)}</span>人
+			<c:if test="${ user.getRole() eq '1' or user.getRole() eq '2'}">
+				<div class="container">
+					<div class="btn" style="text-align: center">
+								<a id="follow" class="basic_btn regist hidden">フォローする</a>
+								<a id="lift" class="basic_btn regist hidden">フォロー解除</a>
+								フォロワー：<span id="followNum">${fn:escapeXml(followCnt)}</span>人
+					</div>
 				</div>
-			</div>
+			</c:if>
 			<c:if test="${ user.getRole() eq '1' }">
 				<div class="right">
 					
 					<div class="btn" style="text-align: right">
 						<!-- <a class="basic_btn regist" href="openModal()">アカウント削除</a>-->
 						<input type="button" onclick="openModal()" value="アカウント消去" class="delete_btn">
-						<a class="basic_btn regist" href="/other">管理者権限を付与</a>
+						<a id="assign" class="basic_btn regist hidden">管理者権限を付与</a>
+						<a id="deprivation" class="basic_btn regist hidden">管理者権限を解除</a>
 					</div>
 					<div id="modal">
 						<p class="modal_message">アカウントを削除しますか？</p>
@@ -124,7 +128,9 @@
 				</c:forEach>
 			</div>
 		</div>
+		<script src="./dist/snackbar.min.js"></script>
 	</body>
 </html>
 <script src="./js/commons.js"></script>
 <script src="./js/follow.js"></script>
+<script src="./js/roleChange.js"></script>
