@@ -131,7 +131,7 @@
 						
 						<div>
 						いいね数:<span id="${ image.getId() }"><c:if test="${empty count.getFavorite()}">${ image.getFavorite() }</c:if>${count.getFavorite()}</span><span>ダウンロード数:${ image.getDownload() }</span></div>
-							<c:if test="${not empty user}">
+						<c:if test="${not empty user and image.getUserId() ne user.getId()}">
 							<!--  最初のボタン -->
 							<img src="./images/ハート透過.png" id="${ image.getId() }"
 								class="favorite_btn nonHurt <c:if test="${image.getFavoriteFlag() eq 1}">hidden</c:if>" style="width: 30px; height: 30px;">
