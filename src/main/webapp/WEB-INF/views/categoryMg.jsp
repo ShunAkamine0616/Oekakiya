@@ -92,7 +92,8 @@
 	<script src="./js/commons.js"></script>
 	<script>
 	if(document.getElementById("deleteFlag").value === "1") {
-		Snackbar.show({text: 'カテゴリを削除しました。'});
+		Snackbar.show({actionText: '閉じる',text: 'カテゴリを削除しました。'});
+	//	document.getElementById("deleteFlag").value == "2";
 	}
 	</script>
 </body>

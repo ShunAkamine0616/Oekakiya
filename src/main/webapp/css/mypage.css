@@ -9,8 +9,8 @@
 }
 .icon{
 	margin-top:50px;
-	width: 150px;
-	height: 150px;
+	width: 170px;
+	height: 170px;
 	border-radius: 50%;
 	object-fit: cover;
 	border: solid 3px #6a6565ae
@@ -28,5 +28,10 @@
 	border: 1px solid #333333;
 	background-color:white;
 }
+.margin{
+	margin-top:25px;
+}
+.flexbox3{
 
+}
 

@@ -11,6 +11,9 @@
 <link href="css/postingEdit.css" rel="stylesheet">
 <link href="css/commons.css" rel="stylesheet">
 <link href="css/header.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js" type="text/javascript"></script>
 
 </head>
 
@@ -50,7 +53,9 @@
  <div class="container">
     <div class="item">
     	<div class="leftitem">
-           <div class=""><div class="box"><img src=${ images.getImagePath() }></div></div>
+           
+           
+<a class="box"href=${ images.getImagePath() } data-lightbox="group"><img src=${ images.getImagePath() }></a>
              <p>いいね数：${favoritecount} ダウンロード数：${downloadcount}</p>
 				<form:button type="submit" class="light_blue_btn">編集</form:button>
 				<button type="button" onclick="openModal()"class="delete_btn">消去</button>
