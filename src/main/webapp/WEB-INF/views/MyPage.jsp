@@ -15,6 +15,7 @@
 		href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
 		rel="stylesheet">
 	<link href="css/header.css" rel="stylesheet">
+	<link href="dist/snackbar.min.css" type="text/css" rel="stylesheet">
 	</head>
 	<header>
 			<div class="header">
@@ -89,9 +90,21 @@
 							<p>${ image.getImageTitle() }</p>
 						</div>
 					</c:forEach>
-			</div>
-        </div>
-</div>	
+				</div>
+	        </div>
+		</div>
+	<input type ="hidden" value="${edit}" id="editFlag"></input>
+	<input type ="hidden" value="${delete}" id="deleteFlag"></input>
+	<script src="./dist/snackbar.min.js"></script>
+	<script>
+	if(document.getElementById("editFlag").value === "1") {
+		Snackbar.show({pos: 'bottom-center', actionText: '閉じる', actionTextColor: '#00ff00', text: '編集完了しました。'});
+	}
+	if(document.getElementById("deleteFlag").value === "1") {
+		Snackbar.show({pos: 'bottom-center', actionText: '閉じる', actionTextColor: '#ff0000', text: '削除しました。'});
+	}
+	</script>
 	</body>
 </html>
 <script src="./js/commons.js"></script>
+<script src="./js/roleChange.js"></script>
