@@ -3,10 +3,13 @@ package com.example.demo.service;
 import java.util.List;
 
 import com.example.demo.entity.Follow;
+import com.example.demo.entity.User;
 
 public interface FollowService {
 
 	public List<Follow> findByUserId(Integer userId);
+	
+	public List<User> findByUserIdFollow(Integer userId);
 	
 	public Integer countFollow(Integer userFollowId);
 	

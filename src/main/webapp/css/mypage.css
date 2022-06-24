@@ -34,4 +34,6 @@
 .flexbox3{
 
 }
-
+.imagebox{
+	display:flex;
+}

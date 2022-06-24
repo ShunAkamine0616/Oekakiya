@@ -27,4 +27,8 @@ public class DownloadServiceImpl implements DownloadService{
 	public List<Image> usersJoinImages(Integer imageId) {
 		return downloadDao.usersJoinImages(imageId);
 	}
+	@Override
+	public List<Image> findByUserIdList(Integer userId) {
+		return downloadDao.findByUserIdList(userId);
+	}
 }

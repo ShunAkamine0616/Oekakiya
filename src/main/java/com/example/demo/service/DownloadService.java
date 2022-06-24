@@ -8,7 +8,8 @@ import com.example.demo.entity.Image;
 public interface DownloadService {
 	// ユーザー毎にダウンロードを管理
 	public List<Image> findByUserId(Integer userId);
-
+	// ユーザー毎にダウンロードを管理
+	public List<Image> findByUserIdList(Integer userId);
 	// ダウンロード数を数える
 	public int countDownload(Integer imageId);
 

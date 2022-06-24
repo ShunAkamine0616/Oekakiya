@@ -10,7 +10,9 @@ public interface DownloadDao {
 
 	// ユーザー毎にダウンロードを管理
 	public List<Image> findByUserId(Integer userId);
-
+	// ユーザー毎にダウンロードを管理
+	public List<Image> findByUserIdList(Integer userId);
+		
 	// ダウンロード数を数える
 	//	public int countDownload(Integer imageId);
 	public Integer countDownload(Integer imageId);

@@ -99,9 +99,8 @@
 			</c:if>
 			<c:if test="${ user.getRole() eq '1' }">
 				<div class="right">
-					
+					<!--
 					<div class="btn" style="text-align: right">
-						<!-- <a class="basic_btn regist" href="openModal()">アカウント削除</a>-->
 						<input type="button" onclick="openModal()" value="アカウント消去" class="delete_btn">
 						<a id="assign" class="basic_btn regist hidden">管理者権限を付与</a>
 						<a id="deprivation" class="basic_btn regist hidden">管理者権限を解除</a>
@@ -109,13 +108,11 @@
 					<div id="modal">
 						<p class="modal_message">アカウントを削除しますか？</p>
 						<div class="btns">
-							<!-- 					<button type="submit" class="basic_btn"> -->
-							<!-- 						はい -->
-							<!-- 					</button> -->
 							<a href="/deleteAccount?otherId=${ userOther.getId() }" class="basic_btn"> はい </a>
 							<button type="button" onclick="closeModal()" class="cancel_btn">キャンセル</button>
 						</div>
 					</div>
+					-->
 				</div>
 				<div id="fadeLayer"></div>
 			</c:if>
@@ -124,6 +121,22 @@
 			<div class="flexbox3">
 			<div class="item3">フォロワー：<span id="followNum">${fn:escapeXml(followCnt)}</span>人</div>
 			<div class="item3"><textarea readonly>${ userOther.getIntroduction() }</textarea></div>
+			<c:if test="${ user.getRole() eq '1' }">
+				<div class="item3">
+					<div class="btn" style="text-align: right">
+						<input type="button" onclick="openModal()" value="アカウント消去" class="delete_btn">
+						<a id="assign" class="basic_btn regist hidden">管理者権限を付与</a>
+						<a id="deprivation" class="basic_btn regist hidden">管理者権限を解除</a>
+					</div>
+					<div id="modal">
+						<p class="modal_message">アカウントを削除しますか？</p>
+						<div class="btns">
+							<a href="/deleteAccount?otherId=${ userOther.getId() }" class="basic_btn"> はい </a>
+							<button type="button" onclick="closeModal()" class="cancel_btn">キャンセル</button>
+						</div>
+					</div>
+				</div>
+			</c:if>
 			</div>
 			</div>
 

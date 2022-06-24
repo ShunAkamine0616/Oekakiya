@@ -26,6 +26,8 @@ import com.example.demo.controller.form.EditMyPageForm;
 import com.example.demo.entity.Image;
 import com.example.demo.entity.User;
 import com.example.demo.service.DeleteUserService;
+import com.example.demo.service.DownloadService;
+import com.example.demo.service.FavoriteService;
 import com.example.demo.service.FollowService;
 import com.example.demo.service.ImageService;
 import com.example.demo.service.UserService;
@@ -40,7 +42,11 @@ public class MyPageController {
 	@Autowired
 	FollowService followService;
 	@Autowired
+	FavoriteService favoriteService;
+	@Autowired
 	DeleteUserService deleteUserService;
+	@Autowired
+	DownloadService downloadService;
 	@Autowired
 	ImageService imageService;
 
@@ -53,9 +59,20 @@ public class MyPageController {
 		Integer follow  = followService.countFollow(user.getId());
 		model.addAttribute("followCnt", follow);
 		
+		List<User> followUser = (List<User>) followService.findByUserIdFollow(user.getId());
+		model.addAttribute("followUser", followUser);
+		
 		List<Image> imageList = (List<Image>) imageService.findByUserId(user.getId());
 		model.addAttribute("imageList",imageList);
 		System.out.println(imageList);
+		
+		List<Image> imageFavList = (List<Image>) favoriteService.findByUserId(user.getId());
+		model.addAttribute("imageFavList",imageFavList);
+		System.out.println(imageFavList);
+		
+		List<Image> imageDlList = (List<Image>) downloadService.findByUserIdList(user.getId());
+		model.addAttribute("imageDlList",imageDlList);
+		System.out.println(imageDlList.get(0).getId());
 		
 		return "MyPage";
 	}
@@ -148,6 +165,21 @@ public class MyPageController {
 
 		model.addAttribute("edit", 1);
 		session.setAttribute("user", userService.findById(user.getId()));
+		
+		Integer follow  = followService.countFollow(user.getId());
+		model.addAttribute("followCnt", follow);
+		
+		List<Image> imageList = (List<Image>) imageService.findByUserId(user.getId());
+		model.addAttribute("imageList",imageList);
+		System.out.println(imageList);
+		
+		List<Image> imageFavList = (List<Image>) favoriteService.findByUserId(user.getId());
+		model.addAttribute("imageFavList",imageFavList);
+		System.out.println(imageFavList);
+		
+		List<Image> imageDlList = (List<Image>) favoriteService.findByUserId(user.getId());
+		model.addAttribute("imageDlList",imageDlList);
+		System.out.println(imageDlList);
 		return "MyPage";
 	}
 }
