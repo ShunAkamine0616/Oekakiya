@@ -70,14 +70,14 @@ public class ImageController {
 		String filename = uploadForm.getImageTitle().replaceAll(" ","").replaceAll("　","") + DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS").format(LocalDateTime.now());
 		
 		//画像インスタンス生成
-		Image image = new Image(uploadForm.getImageTitle(), "images/" + filename + extention, uploadForm.getComment(), uploadForm.getCategoryId(), user.getId());
+		Image image = new Image(uploadForm.getImageTitle(), "https://oekakiya.herokuapp.com/images/" + filename + extention, uploadForm.getComment(), uploadForm.getCategoryId(), user.getId());
 		if(imageService.insert(image) == 0) {
 			session.setAttribute("imgErrMsg", "投稿できませんでした。");
 			return "imagePosting";
 		}
 		
 		try (BufferedInputStream bis = new BufferedInputStream(uploadForm.getFile().getInputStream());
-				BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream("C:\\Users\\axiz\\git\\Oekakiya\\src\\main\\webapp\\images\\" + filename + extention))) {
+				BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream("https://oekakiya.herokuapp.com/images/" + filename + extention))) {
 
 			//読み取ったデータを格納するためのバッファとなるバイト配列を宣言します。
 			//配列の長さは、1024の倍数にするのが一般的です。
@@ -104,7 +104,7 @@ public class ImageController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		image = imageService.findByImagePath("images/" + filename + extention);
+		image = imageService.findByImagePath("https://oekakiya.herokuapp.com/images/" + filename + extention);
 		model.addAttribute("image", image);
 		return "postingCompleted";
 	}
