@@ -140,6 +140,6 @@ public class MyPageController {
 
 		model.addAttribute("edit", 1);
 		session.setAttribute("user", userService.findById(user.getId()));
-		return "editMyPage";
+		return "MyPage";
 	}
 }
