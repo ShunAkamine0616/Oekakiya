@@ -28,12 +28,12 @@
 .box .post {
 	//min-width: 125px;
 	//min-height: 125px;
-	max-width: 250px;
-	max-height: 250px;
+	max-width: 300px;
+	max-height: 300px;
 	width: auto;
 	height: auto;
-	margin: 35px;
-	margin-top: 80px;
+	//margin: 45px;
+	//margin-top: 80px;
 	border: 5px #FFFFFF solid;
 }
 
@@ -45,7 +45,7 @@
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-around;
-	align-items: center;
+	align-items: flex-end;
 	align-content: space-around;
 	align-self: center;
 	flex-wrap: wrap;
@@ -60,6 +60,10 @@
 .box {
 	display: flex;
 	flex-direction: column;
+}
+
+.box a {
+	height: fit-content;display: inline;
 }
 
 .select_btn {
