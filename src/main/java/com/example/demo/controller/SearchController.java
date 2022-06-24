@@ -35,7 +35,12 @@ public class SearchController {
     public String index( Model model) {
 		ArrayList<Category> categoryList = (ArrayList<Category>) categoryService.findAll();
 		session.setAttribute("category",categoryList);
-		ArrayList<Image> imageList = (ArrayList<Image>) imageService.findByKeyword("", " ", "created_at DESC",2);
+		User userInfo = (User) session.getAttribute("user");
+		Integer userId = null;
+		if(userInfo != null) {
+			userId = userInfo.getId();
+		}
+		ArrayList<Image> imageList = (ArrayList<Image>) imageService.findByKeyword("", " ", "created_at DESC", userId);
 		session.setAttribute("keywordHistory", "");
 		session.setAttribute("categoryHistory", " ");
 		session.setAttribute("userHistory", "all");
