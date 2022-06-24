@@ -21,9 +21,10 @@
 				<a href="./home" class="page-title">おえかきや</a>
 			</h1>
 		</div>
+		<hr>
 	</header>
 
-	<hr>
+	<div class="terms_of_service">【利用規約】</div>
 	<div class="center">
 		<iframe src="html/termsOfService.html" width="700" height="1000"></iframe>
 		<br><br>
