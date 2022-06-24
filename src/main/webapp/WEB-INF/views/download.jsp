@@ -112,16 +112,17 @@
 				</div>
 			</div>
 			<span><img src="./images/images_yesHurt.png" width="3%"
-				height="3%">いいね数:</span><span id="favoriteNum">${fn:escapeXml(favoritecount)}</span><span>ダウンロード数:</span><span
-				id="downloadNum">${fn:escapeXml(downloadcount) }</span>
+				height="3%">いいね数:</span><span id="favoriteNum">${fn:escapeXml(favoritecount)}</span>
+			<span>ダウンロード数:</span><span id="downloadNum">${fn:escapeXml(downloadcount) }</span>
 
-
+			<br>
 			<c:if test="${not empty user}">
 
 				<!--いいねしてないとき -->
-				<img src="./images/ハート透過.png" id="nonHurt" class="hidden" title="いいね！">
+				<img src="./images/ハート透過.png" id="nonHurt" class="hidden"
+					title="いいね！">
 				<!-- いいねしてるとき -->
-				<img src="./images/ピンクハート透過.png" id="yesHurt" class="hidden" >
+				<img src="./images/ピンクハート透過.png" id="yesHurt" class="hidden">
 
 			</c:if>
 			<c:if test="${user.role == 1}">
@@ -150,30 +151,28 @@
 		<div class="item">
 			<div class="rightitem">
 				<div class="title">
-					<label>タイトル</label><span class=Dltitle>
-						${fn:escapeXml(image.imageTitle)} </span>
-
+					<label>タイトル</label> <input type="text"
+						value="${fn:escapeXml(image.imageTitle)}" disabled />
 				</div>
 
 
 
 				<div class="category">
-					<label>カテゴリ</label> <span class=Dlcategory>${fn:escapeXml(categoryName.categoryName)}
-					</span>
-
+					<label>カテゴリ</label> <input type="text"
+						value="${fn:escapeXml(categoryName.categoryName)}" disabled />
 				</div>
-				<label>コメント</label>
-				<div class="wrapper">
-					<span >${fn:escapeXml(image.comment)} </span>
+				<div class="comment">
+					<label>コメント</label>
+					<textarea disabled>${fn:escapeXml(image.comment)} </textarea>
 				</div>
 
 			</div>
 		</div>
-</div>
+	</div>
 </div>
 <!-- 	</div> -->
-	<div id="fadeLayer"></div>
-	</body>
+<div id="fadeLayer"></div>
+</body>
 </html>
 <script src="./js/commons.js">
 	
