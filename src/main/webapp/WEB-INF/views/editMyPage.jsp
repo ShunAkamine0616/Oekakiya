@@ -106,8 +106,7 @@
 				<div>
 					<div>自己紹介：</div>
 					<textarea name="introduction"
-						placeholder="ここに自己紹介を書いてください。"
-						value="${fn:escapeXml(user.introduction)}"></textarea>
+						placeholder="ここに自己紹介を書いてください。">${fn:escapeXml(user.introduction)}</textarea>
 					<form:errors path="introduction" cssStyle="color: red" />
 				</div>
 				<p>
