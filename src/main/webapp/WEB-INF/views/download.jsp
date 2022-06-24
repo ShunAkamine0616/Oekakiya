@@ -71,7 +71,7 @@
 
 					<a href="${fn:escapeXml(image.imagePath)}"
 						download="${fn:escapeXml(image.imageTitle)}">
-						<button class="light_blue_btn" id="download_btn">ダウンロード</button>
+						<button class="light_blue_btn" id="download_btn" onclick="showBox()">ダウンロード</button>
 					</a>
 					<br>
 
@@ -106,7 +106,7 @@
 					</c:if>
 					<a href="${fn:escapeXml(image.imagePath)}"
 						download="${fn:escapeXml(image.imageTitle)}">
-						<button class="light_blue_btn" id="download_btn">ダウンロード</button>
+						<button class="light_blue_btn" id="download_btn" onclick="showBox()">ダウンロード</button>
 					</a>
 				</c:if>
 			</div>
@@ -146,6 +146,24 @@
 	</div>
 </div>
 <div id="fadeLayer"></div>
+<script>
+  
+var timerId;
+
+
+function showBox() {
+timerId = setTimeout( closeBox , 5000 ); 
+document.getElementById("download_btn").disabled = true;
+document.getElementById("download_btn").style.backgroundColor = "#8aa3b9";
+
+}
+
+function closeBox() {
+clearTimeout( timerId );
+document.getElementById("download_btn").disabled = false;
+document.getElementById("download_btn").style.backgroundColor = "#8ED0FF";
+}
+  </script>
 </body>
 </html>
 <script src="./js/commons.js">
