@@ -13,7 +13,7 @@ public class Image {
 	private Timestamp updatedAt;
 	private Integer favorite;
 	private Integer download;
-
+	private Integer favoriteFlag;
 	
 
 	public Image() {
@@ -98,5 +98,13 @@ public class Image {
 
 	public void setDownload(Integer download) {
 		this.download = download;
+	}
+
+	public Integer getFavoriteFlag() {
+		return favoriteFlag;
+	}
+
+	public void setFavoriteFlag(Integer favoriteFlag) {
+		this.favoriteFlag = favoriteFlag;
 	}
 }

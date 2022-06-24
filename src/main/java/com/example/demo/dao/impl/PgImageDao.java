@@ -15,7 +15,7 @@ import com.example.demo.entity.Image;
 @Repository
 public class PgImageDao implements ImageDao {
 
-	String SQL_SELECT_IMAGE_BY_KEYWORD = "SELECT im.id, im.image_title, im.image_path, im.comment, im.category_id, im.user_id, im.created_at, im.updated_at, COALESCE(f.favorite,0) AS favorite, COALESCE(dl.download,0) AS download FROM images im "
+	String SQL_SELECT_IMAGE_BY_KEYWORD = "SELECT im.id, im.image_title, im.image_path, im.comment, im.category_id, im.user_id, im.created_at, im.updated_at, COALESCE(f.favorite,0) AS favorite, COALESCE(dl.download,0) AS download, CASE WHEN im.id IN (SELECT image_id FROM favorite WHERE user_id = :userId) THEN 1 ELSE 0 END favorite_flag FROM images im "
 			+ "LEFT JOIN (SELECT image_id, count(*) favorite FROM favorite GROUP BY image_id) f "
 			+ "ON im.id = f.image_id "
 			+ "LEFT JOIN (SELECT image_id, count(*) download FROM downloads GROUP BY image_id) dl "
@@ -34,7 +34,7 @@ public class PgImageDao implements ImageDao {
 	private JdbcTemplate jdbcTemplate2;
 
 
-	public List<Image> findByKeyword(String keyword, String categoryId, String sort) {
+	public List<Image> findByKeyword(String keyword, String categoryId, String sort, Integer userId) {
 		String sql = SQL_SELECT_IMAGE_BY_KEYWORD;
 		MapSqlParameterSource param = new MapSqlParameterSource();
 		if(!" ".equals(categoryId)) {
@@ -43,6 +43,7 @@ public class PgImageDao implements ImageDao {
 			sql += "ORDER BY "+ sort;
 		}
 		param.addValue("keyword", "%"+keyword+"%");
+		param.addValue("userId", userId);
 		List<Image> resultList = jdbcTemplate.query(sql, param, new BeanPropertyRowMapper<Image>(Image.class));
 
 		return resultList.isEmpty() ? null : resultList;

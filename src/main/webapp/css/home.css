@@ -25,7 +25,7 @@
 	display: inline-block;
 }
 
-.box img {
+.box .post {
 	//min-width: 125px;
 	//min-height: 125px;
 	max-width: 250px;
@@ -130,4 +130,9 @@
 
 .hidden{
 	display: none;
+}
+
+.favorite_btn {
+	border: none;
+	align: center;
 }
