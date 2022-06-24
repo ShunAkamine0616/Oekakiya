@@ -62,13 +62,12 @@
 					</div>
 				</div>
 
-				<!-- 				ユーザーがないと、いいね数： -->
+				<!-- 				ログインしてないと、いいね数：〇で表示される -->
 				<c:if test="${empty user}">
 					<span>いいね数： </span>
-					<span id="favoriteNum">${fn:escapeXml(favoritecount)}</span>&nbsp
-					<div class="downloadNum">
-						<span>ダウンロード数：</span> <span id="downloadNum">${fn:escapeXml(downloadcount) }</span>
-					</div>
+					${fn:escapeXml(favoritecount)}
+						<span>ダウンロード数：</span> ${fn:escapeXml(downloadcount) }
+					
 
 					<a href="${fn:escapeXml(image.imagePath)}"
 						download="${fn:escapeXml(image.imageTitle)}">
