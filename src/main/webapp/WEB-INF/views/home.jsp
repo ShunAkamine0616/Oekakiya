@@ -42,7 +42,7 @@
 						<c:when test="${not empty user}">
 							<label> <a href="./mypage"> <img id="iconAdd"
 									class="image_circle" src="${user.iconPath}">
-							</a> ${user.name}
+							</a> ${fn:escapeXml(user.name)}
 							</label>
 							<button type="button" onclick="location.href='logout'"
 								class="logout_btn">ログアウト</button>
@@ -119,19 +119,24 @@
 			</div>
 
 		</form>
-
+<hr>
 		<c:if test="${ imageList ne null }">
 			<div class="container">
 				<c:forEach var="image" items="${imageList}">
+				<div style="margin: 30px;margin-bottom: 30px;">
 					<div class="box">
 						<a href="detail?id=${ image.getId() }"> <img
 							src=${ image.getImagePath() } class="post">
 						</a>
-						<p>${ image.getImageTitle() }</p>
+						<p>${ fn:escapeXml(image.getImageTitle()) }</p>
 						
 						<div>
 						いいね数:<span id="${ image.getId() }"><c:if test="${empty count.getFavorite()}">${ image.getFavorite() }</c:if>${count.getFavorite()}</span><span>ダウンロード数:${ image.getDownload() }</span></div>
-						<c:if test="${not empty user and image.getUserId() ne user.getId()}">
+						
+
+
+						
+					</div><c:if test="${not empty user and image.getUserId() ne user.getId()}">
 							<!--  最初のボタン -->
 							<img src="./images/ハート透過.png" id="${ image.getId() }"
 								class="favorite_btn nonHurt <c:if test="${image.getFavoriteFlag() eq 1}">hidden</c:if>" style="width: 30px; height: 30px;">
@@ -139,10 +144,11 @@
 							<img src="./images/ピンクハート透過.png" id="${ image.getId() }"
 								class="favorite_btn yesHurt <c:if test="${image.getFavoriteFlag() eq 0}">hidden</c:if>" style="width: 30px; height: 30px;">
 						</c:if>
-
-
+						<c:if test="${image.getUserId() eq user.getId()}">
+						<div style="width: 30px; height: 37.2px;" class="center"></div>
+						</c:if>
+						</div>
 						
-					</div>
 				</c:forEach>
 			</div>
 		</c:if>
@@ -154,7 +160,7 @@
 	<script>
 		if (document.getElementById("deleteFlag").value === "1") {
 			Snackbar.show({
-				text : 'アカウント削除しました。'
+				actionText: '閉じる',text : 'アカウント削除しました。'
 			});
 		}
 	</script>

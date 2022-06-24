@@ -15,6 +15,7 @@
 		href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
 		rel="stylesheet">
 	<link href="css/header.css" rel="stylesheet">
+	<link href="dist/snackbar.min.css" type="text/css" rel="stylesheet">
 	</head>
 	<header>
 			<div class="header">
@@ -32,8 +33,8 @@
 						<c:when test="${not empty user}">
 							<label>
 								<a href="./mypage"> <img id="iconAdd"
-									class="image_circle" src="${user.iconPath}">
-								</a> ${user.name}
+									class="image_circle" src="${fn:escapeXml(user.iconPath)}">
+								</a> ${fn:escapeXml(user.name)}
 							</label>
 							<button type="button" onclick="location.href='logout'"
 							class="logout_btn">ログアウト</button>
@@ -52,14 +53,14 @@
 
 			<div  class="site_logo">
 				<h1>
-					${ user.getName() }
+					${ fn:escapeXml(user.getName()) }
 				</h1>
-				${ user.getAccountId() }<br>
-				${ user.getMail() }<br>
+				${ fn:escapeXml(user.getAccountId()) }<br>
+				${ fn:escapeXml(user.getMail()) }<br>
 			</div>
 			</div>
 			<div class="item2">
-				<img class="icon" src="${user.iconPath}">
+				<img class="icon" src="${ user.getIconPath() }">
 				<br>
 			</div>
 			<div class="item2">
@@ -71,27 +72,42 @@
 			 </div>	
 			</div>
 			<div class="item2">
-		　　　　<p>フォロワー500000人</p>
-            	<textarea readonly>${ user.getIntroduction() }</textarea>
+		　　　　<p>フォロワー：${fn:escapeXml(followCnt)}人</p>
+            	<textarea readonly>${fn:escapeXml(user.getIntroduction())}</textarea>
 			</div>
 
 		</div>
 	    </div>
 		<div class="item">
 			<div class="container">
-				<br>
-				
 					<c:forEach var="image" items="${imageList}">
+						<div style="margin: 30px;margin-bottom: 30px;">
 						<div class="box">
 							<a href="detailmyapage?id=${ image.getId() }"> 
-								<img src=${ image.getImagePath() }>
+								<img src=${ image.getImagePath() } class="post">
 							</a>
-							<p>${ image.getImageTitle() }</p>
+							<p>${ fn:escapeXml(image.getImageTitle()) }</p>
+						</div>
 						</div>
 					</c:forEach>
-			</div>
-        </div>
-</div>	
+				</div>
+	        </div>
+		</div>
+	<input type ="hidden" value="${edit}" id="editFlag"></input>
+	<input type ="hidden" value="${delete}" id="deleteFlag"></input>
+	<script src="./dist/snackbar.min.js"></script>
+	<script>
+	if(document.getElementById("editFlag").value === "1") {
+		Snackbar.show({pos: 'bottom-center', actionText: '閉じる', actionTextColor: '#00ff00', text: '編集完了しました。'});
+	}
+	if(document.getElementById("deleteFlag").value === "1") {
+		Snackbar.show({pos: 'bottom-center', actionText: '閉じる', actionTextColor: '#ff0000', text: '削除しました。'});
+	}
+	</script>
 	</body>
 </html>
+
 <script src="./js/commons.js"></script>
+<script src="./js/roleChange.js">
+//(´・ω・`)
+</script>

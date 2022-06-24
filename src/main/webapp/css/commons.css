@@ -255,6 +255,7 @@ hr {
   cursor: pointer;
   color: white;
   margin: 10px;
+  
 }
 
 .basic_btn:hover {
@@ -347,6 +348,16 @@ hr {
   width: 180px;
   height: 70px;
   margin-top: 10px;
+}
+
+.cp_iptxt{
+	padding-bottom: 20px;
+}
+
+/* 利用規約 */
+.terms_of_service {
+	text-align: center;
+	font-size: 25px;
 }
 
 /** 登録画面 **/

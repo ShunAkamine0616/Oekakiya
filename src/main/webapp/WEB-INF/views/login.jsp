@@ -19,8 +19,8 @@
 				<a href="./home" class="page-title">おえかきや</a>
 			</h1>
 		</div>
+		<hr>
 	</header>
-	<hr>
 
 	<div class="login_form">
 		<img src="./images/logo.png" class="login_logo">
@@ -48,11 +48,11 @@
 				</div>
 			</div>
 			<!-- 			</fieldset> -->
-			<form:button name="login">ログイン</form:button>
+			<button class="basic_btn" name="login">ログイン</button>
 		</form:form>
 
 		<form action="termsOfService" method="get">
-			<button class="basic_btn regist" name="register">新規登録</button>
+			<button class="basic_btn" name="register">新規登録</button>
 		</form>
 	</div>
 </body>
