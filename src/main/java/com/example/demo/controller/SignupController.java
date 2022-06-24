@@ -66,7 +66,7 @@ public class SignupController {
 		} else {
 			user = userService.findByAccountId(signupform.getAccountId());
 			session.setAttribute("user", user);
-			ArrayList<Image> imageList = (ArrayList<Image>) imageService.findByKeyword("", " ", "created_at");
+			ArrayList<Image> imageList = (ArrayList<Image>) imageService.findByKeyword("", " ", "created_at",user.getId());
 			model.addAttribute("imageList",imageList);
 			return "home";
 		}
