@@ -1,4 +1,4 @@
-//いいね押したとき　追加
+//ボタン押したとき　追加
 var follow = document.getElementById("follow");
 var lift = document.getElementById("lift");
 
@@ -31,7 +31,7 @@ follow.addEventListener('click',event =>{
 })});
 
 
-//いいね押したとき　削除
+//再度押したとき　削除
 lift.addEventListener('click',event =>{
 	fetch("liftFollow")
 .then(response => response.text())
