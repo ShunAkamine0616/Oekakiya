@@ -26,6 +26,7 @@ import com.example.demo.controller.form.EditMyPageForm;
 import com.example.demo.entity.Image;
 import com.example.demo.entity.User;
 import com.example.demo.service.DeleteUserService;
+import com.example.demo.service.FollowService;
 import com.example.demo.service.ImageService;
 import com.example.demo.service.UserService;
 
@@ -37,6 +38,8 @@ public class MyPageController {
 	@Autowired
 	UserService userService;
 	@Autowired
+	FollowService followService;
+	@Autowired
 	DeleteUserService deleteUserService;
 	@Autowired
 	ImageService imageService;
@@ -46,9 +49,14 @@ public class MyPageController {
 	public String mypage(Model model) {
 		User user = (User) session.getAttribute("user");
 		model.addAttribute("user", user);
+		
+		Integer follow  = followService.countFollow(user.getId());
+		model.addAttribute("followCnt", follow);
+		
 		List<Image> imageList = (List<Image>) imageService.findByUserId(user.getId());
 		model.addAttribute("imageList",imageList);
 		System.out.println(imageList);
+		
 		return "MyPage";
 	}
 

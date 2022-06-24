@@ -33,8 +33,8 @@
 						<c:when test="${not empty user}">
 							<label>
 								<a href="./mypage"> <img id="iconAdd"
-									class="image_circle" src="${user.iconPath}">
-								</a> ${user.name}
+									class="image_circle" src="${fn:escapeXml(user.iconPath)}">
+								</a> ${fn:escapeXml(user.name)}
 							</label>
 							<button type="button" onclick="location.href='logout'"
 							class="logout_btn">ログアウト</button>
@@ -53,14 +53,14 @@
 
 			<div  class="site_logo">
 				<h1>
-					${ user.getName() }
+					${ fn:escapeXml(user.getName()) }
 				</h1>
-				${ user.getAccountId() }<br>
-				${ user.getMail() }<br>
+				${ fn:escapeXml(user.getAccountId()) }<br>
+				${ fn:escapeXml(user.getMail()) }<br>
 			</div>
 			</div>
 			<div class="item2">
-				<img class="icon" src="${user.iconPath}">
+				<img class="icon" src="${ user.getIconPath() }">
 				<br>
 			</div>
 			<div class="item2">
@@ -72,22 +72,22 @@
 			 </div>	
 			</div>
 			<div class="item2">
-		　　　　<p>フォロワー500000人</p>
-            	<textarea readonly>${ user.getIntroduction() }</textarea>
+		　　　　<p>フォロワー：${fn:escapeXml(followCnt)}人</p>
+            	<textarea readonly>${fn:escapeXml(user.getIntroduction())}</textarea>
 			</div>
 
 		</div>
 	    </div>
 		<div class="item">
 			<div class="container">
-				<br>
-				
 					<c:forEach var="image" items="${imageList}">
+						<div style="margin: 30px;margin-bottom: 30px;">
 						<div class="box">
 							<a href="detailmyapage?id=${ image.getId() }"> 
-								<img src=${ image.getImagePath() }>
+								<img src=${ image.getImagePath() } class="post">
 							</a>
-							<p>${ image.getImageTitle() }</p>
+							<p>${ fn:escapeXml(image.getImageTitle()) }</p>
+						</div>
 						</div>
 					</c:forEach>
 				</div>
@@ -106,5 +106,8 @@
 	</script>
 	</body>
 </html>
+
 <script src="./js/commons.js"></script>
-<script src="./js/roleChange.js"></script>
+<script src="./js/roleChange.js">
+//(´・ω・`)
+</script>
