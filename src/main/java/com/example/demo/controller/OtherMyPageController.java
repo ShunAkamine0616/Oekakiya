@@ -60,9 +60,14 @@ public class OtherMyPageController {
 		if(userService.delete(otherId) == 0) {
 			return "editMyPage";
 		}
+		User userInfo = (User) session.getAttribute("user");
+		Integer userId = null;
+		if(userInfo != null) {
+			userId = userInfo.getId();
+		}
 		ArrayList<Category> categoryList = (ArrayList<Category>) categoryService.findAll();
 		session.setAttribute("category",categoryList);
-		ArrayList<Image> imageList = (ArrayList<Image>) imageService.findByKeyword("", " ", "created_at DESC");
+		ArrayList<Image> imageList = (ArrayList<Image>) imageService.findByKeyword("", " ", "created_at DESC", userId);
 		session.setAttribute("keywordHistory", "");
 		session.setAttribute("categoryHistory", " ");
 		session.setAttribute("userHistory", "all");

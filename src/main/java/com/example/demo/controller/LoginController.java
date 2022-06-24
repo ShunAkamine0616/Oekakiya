@@ -40,7 +40,7 @@ public class LoginController {
 			model.addAttribute("loginErrMsg", errMsg);
 			return "login";
 		} else {
-			ArrayList<Image> imageList = (ArrayList<Image>) imageService.findByKeyword("", " ", "created_at");
+			ArrayList<Image> imageList = (ArrayList<Image>) imageService.findByKeyword("", " ", "created_at DESC",user.getId());
 			session.setAttribute("user",user);
 			model.addAttribute("imageList", imageList);
 			return "home";

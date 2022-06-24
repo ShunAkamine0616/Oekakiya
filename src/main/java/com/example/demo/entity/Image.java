@@ -13,7 +13,11 @@ public class Image {
 	private Timestamp updatedAt;
 	private Integer favorite;
 	private Integer download;
+
+	private Integer favoriteFlag;
+
     private User user;
+
 	
 
 	public Image() {
@@ -100,11 +104,19 @@ public class Image {
 		this.download = download;
 	}
 
+	public Integer getFavoriteFlag() {
+		return favoriteFlag;
+	}
+
+	public void setFavoriteFlag(Integer favoriteFlag) {
+		this.favoriteFlag = favoriteFlag;
+	}
 	public User getUser() {
 		return user;
 	}
 
 	public void setUser(User user) {
 		this.user = user;
+
 	}
 }

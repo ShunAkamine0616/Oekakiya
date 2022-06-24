@@ -35,7 +35,7 @@ public class SearchController {
     public String index( Model model) {
 		ArrayList<Category> categoryList = (ArrayList<Category>) categoryService.findAll();
 		session.setAttribute("category",categoryList);
-		ArrayList<Image> imageList = (ArrayList<Image>) imageService.findByKeyword("", " ", "created_at DESC");
+		ArrayList<Image> imageList = (ArrayList<Image>) imageService.findByKeyword("", " ", "created_at DESC",2);
 		session.setAttribute("keywordHistory", "");
 		session.setAttribute("categoryHistory", " ");
 		session.setAttribute("userHistory", "all");
@@ -53,14 +53,18 @@ public class SearchController {
 		session.setAttribute("categoryHistory", category);
 		session.setAttribute("userHistory", user);
 		session.setAttribute("orderHistory", order);
+		User userInfo = (User) session.getAttribute("user");
+		Integer userId = null;
+		if(userInfo != null) {
+			userId = userInfo.getId();
+		}
 		ArrayList<Image> imageList = null;
 		category = category.replace(" ,", "");
         if("all".equals(user)) {
-        	imageList = (ArrayList<Image>) imageService.findByKeyword(key, category, order);
+        	imageList = (ArrayList<Image>) imageService.findByKeyword(key, category, order, userId);
         	System.out.println("user");
         }else {
-        	User userInfo = (User) session.getAttribute("user");
-        	imageList = (ArrayList<Image>) imageService.findFollow(key, category, order, userInfo.getId());
+        	imageList = (ArrayList<Image>) imageService.findFollow(key, category, order, userId);
         	System.out.println("follow");
         }
         System.out.println(imageList);
