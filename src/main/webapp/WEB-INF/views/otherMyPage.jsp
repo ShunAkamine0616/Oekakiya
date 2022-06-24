@@ -9,6 +9,7 @@
 	<title>${userOther.getName()}のマイページ</title>
 	<link href="css/commons.css" rel="stylesheet">
 	<link href="css/home.css" rel="stylesheet">
+	<link href="css/mypage.css" rel="stylesheet">
 	<link
 		href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
 		rel="stylesheet">
@@ -69,26 +70,30 @@
 		<hr>
 	</header>
 	<body>
-		<div id="app">
-			<div  class="site_logo">
-				<h1>
-					${ userOther.getName() }
-					
-				</h1>
-				<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">${ userOther.getIntroduction() }</div>
-				${ userOther.getAccountId() }<br>
-				${ userOther.getMail() }<br>
+	<div class="margin">
+	<div class="flexbox">
+		<div  class="item">
+		<div class="flexbox2">
+			<div class="item2">
+				<div id="app">
+					<div  class="site_logo">
+						<h1>
+							${ userOther.getName() }
+						</h1>
+						${ userOther.getAccountId() }<br>
+						${ userOther.getMail() }<br>
+				</div>
 			</div>
-			<div class="">
-				<img src=${ userOther.getIconPath() }>
+			</div>
+			<div class="item2">
+				<img class="icon" src=${ userOther.getIconPath() }>
 				<br>
-			</div>
-			<c:if test="${ user.getRole() eq '1' or user.getRole() eq '2'}">
+							<c:if test="${ user.getRole() eq '1' or user.getRole() eq '2'}">
 				<div class="container">
 					<div class="btn" style="text-align: center">
 								<a id="follow" class="basic_btn regist hidden">フォローする</a>
 								<a id="lift" class="basic_btn regist hidden">フォロー解除</a>
-								フォロワー：<span id="followNum">${fn:escapeXml(followCnt)}</span>人
+						
 					</div>
 				</div>
 			</c:if>
@@ -114,6 +119,17 @@
 				</div>
 				<div id="fadeLayer"></div>
 			</c:if>
+			</div>
+			<div class="item2">
+			<div class="flexbox3">
+			<div class="item3">フォロワー：<span id="followNum">${fn:escapeXml(followCnt)}</span>人</div>
+			<div class="item3"><textarea readonly>${ userOther.getIntroduction() }</textarea></div>
+			</div>
+			</div>
+
+		</div>
+		</div>
+		<div class="item">
 			<br>
 			<div class="container">${ userOther.getName() }が投稿した画像</div>
 			<div class="container">
@@ -128,7 +144,11 @@
 				</c:forEach>
 			</div>
 		</div>
+	  
+	</div>
+	</div>
 		<script src="./dist/snackbar.min.js"></script>
+		
 	</body>
 </html>
 <script src="./js/commons.js"></script>

@@ -1,7 +1,6 @@
 
 package com.example.demo.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.demo.controller.form.EditForm;
-import com.example.demo.entity.Category;
 import com.example.demo.entity.Image;
 import com.example.demo.entity.User;
 import com.example.demo.service.CategoryService;
@@ -47,48 +45,29 @@ public class PostingEditController{
 		image.setCategoryId(form.getCategoryId());
 		int imageId = (int)session.getAttribute("imageId");  
 		image.setId(imageId);		
-		imageservice.update(image);
-	    String page = (String) session.getAttribute("page"); 
-	    if(page.equals("home")) {
-	    	User userInfo = (User) session.getAttribute("user");
-			Integer userId = null;
-			if(userInfo != null) {
-				userId = userInfo.getId();
-			}
-			ArrayList<Category> categoryList = (ArrayList<Category>) categoryService.findAll();
-			session.setAttribute("category",categoryList);
-			ArrayList<Image> imageList = (ArrayList<Image>) imageService.findByKeyword("", " ", "created_at DESC", userId);
-			session.setAttribute("keywordHistory", "");
-			session.setAttribute("categoryHistory", " ");
-			session.setAttribute("userHistory", "all");
-			session.setAttribute("orderHistory", "created_at");
-			if(imageList != null) {
-				model.addAttribute("imageList",imageList);
-			}
-	    	return "home";
-	    }else {
+		int edit = imageservice.update(image);
+		model.addAttribute("edit", edit);
 			User user = (User) session.getAttribute("user");
 			model.addAttribute("user", user);
 			List<Image> imageList = (List<Image>) imageService.findByUserId(user.getId());
 			model.addAttribute("imageList",imageList);
 			   return "MyPage";
-	    }
-	    
-	     
+    
 	}
 	
 	@RequestMapping(value="/delete",method = RequestMethod.GET)
 	public String delete(@ModelAttribute("postingEdit") EditForm from, Model model) {
 		int imageId = (int)session.getAttribute("imageId"); 
-		imageservice.delete(imageId);
-		return "postingEdit";
+		int delete = imageservice.delete(imageId);
+		User user = (User) session.getAttribute("user");
+		model.addAttribute("user", user);
+		List<Image> imageList = (List<Image>) imageService.findByUserId(user.getId());
+		model.addAttribute("imageList",imageList);
+		model.addAttribute("delete",delete);
+		return "MyPage";
 	}
 
-	@RequestMapping(value = "/mypegeBack", method = RequestMethod.GET)
-	public String cancel(@ModelAttribute("postingEdit") EditForm form, Model model) {
-		//まいぺーじができたら遷移先を決める。
-		return "home";
-	}
+
 	
 	
 }
