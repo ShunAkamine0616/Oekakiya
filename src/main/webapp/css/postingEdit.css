@@ -1,6 +1,7 @@
 @charset "UTF-8";
 .item{
-margin:50px;
+margin-left:120px;
+margin-top:5px;
 
 }
 .container{
@@ -16,7 +17,7 @@ margin:50px;
 }
 .item2{
 padding: 50px;
-margin-top: 80px;
+
 }
 
 .button{
@@ -28,7 +29,7 @@ button{
     padding: 30px 50px 30px 50px;
 }
 .title{
-	margin-top:70px;
+
 }
 .category{
 	margin-top:70px;
@@ -40,8 +41,8 @@ button{
 vertical-align: top;
 }
 .box img {
-	max-width: 300px;
-	max-hight: 300px;
+	max-width: 200px;
+	max-hight: 200px;
 	min-width: 125px;
 	min-hight: 125px;
 	margin: 25px;
