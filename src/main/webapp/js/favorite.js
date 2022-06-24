@@ -24,7 +24,6 @@ nonImg.addEventListener('click',event =>{
 .then(data => {
 	console.log(data);
 	document.getElementById("favoriteNum").textContent = data;
-	var button = document.get
 	nonImg.className = "hidden";
 	yesImg.className = null;
 })});

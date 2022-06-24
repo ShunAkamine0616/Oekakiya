@@ -16,7 +16,7 @@ public class PgCategoryDao implements CategoryDao {
 	private static final String SQL_INSERT_CATEGORY = "insert into categories(category_name) values(:categoryName)";
 	private static final String SQL_UPDATE_CATEGORY = "UPDATE categories SET category_name = :categoryName WHERE id = :id";
 	private static final String SQL_DELETE_CATEGORY = "DELETE FROM categories WHERE id = :id";
-	
+	private static final String SQL_SELSECT_CATEGORYID ="SELECT * FROM categories WHERE id =:id";
 	@Autowired
 	private NamedParameterJdbcTemplate jdbcTemplate;
 	@Autowired
@@ -25,6 +25,14 @@ public class PgCategoryDao implements CategoryDao {
 	public List<Category> findAll() {
         return jdbcTemplate2.query("SELECT * FROM categories",
                 new BeanPropertyRowMapper<Category>(Category.class));
+	}
+	public Category findByCategoryId(Integer id){
+		String sql = SQL_SELSECT_CATEGORYID;
+		   MapSqlParameterSource param = new MapSqlParameterSource();
+	        param.addValue("id", id);
+	        
+	       List<Category> categoryList =jdbcTemplate.query(sql, param, new BeanPropertyRowMapper<Category>(Category.class));
+	       return categoryList .isEmpty()? null:categoryList.get(0);
 	}
 	public int insert(String categoryName){
 		String sql = SQL_INSERT_CATEGORY;

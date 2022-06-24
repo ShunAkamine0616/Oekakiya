@@ -18,7 +18,7 @@ public class FollowServiceImpl implements FollowService {
 		return followDao.findByUserId(userId);
 	}
 	
-	public Follow countFollow(Integer userFollowId) {
+	public Integer countFollow(Integer userFollowId) {
 		return followDao.countFollow(userFollowId);
 	}
 
@@ -32,5 +32,11 @@ public class FollowServiceImpl implements FollowService {
 
 	public int deleteByUserId(Integer userId) {
 		return followDao.deleteByUserId(userId);
+	}
+
+	@Override
+	public Follow checkFollow(Integer userId, Integer otherId) {
+		// TODO 自動生成されたメソッド・スタブ
+		return followDao.checkFollow(userId, otherId);
 	}
 }

@@ -26,7 +26,7 @@ public class RestDownloadController {
 	@Autowired
 	FavoriteService favoriteService;
 	//ダウンロード数をインサート&ダウンロード数を数える
-    @GetMapping("DownloadCount")
+	@GetMapping("DownloadCount")
 	public int count(Model model) {
 		Image image = (Image)session.getAttribute("image"); 
 		Integer userId = (Integer) session.getAttribute("UserId");
@@ -38,6 +38,6 @@ public class RestDownloadController {
 		int count = downloadService.countDownload(imageId);
 		return count;
 	}
-    
-    
+
+
 }

@@ -18,7 +18,7 @@ public class PgDownloadDao implements DownloadDao {
 	private static final String SQL_SELECT_DOWNLOADS_WHERE_USERID ="SELECT * FROM downloads WHERE user_id =:userId";
 	private static final String SQL_SELECT_DOWNLOADS_COUNT_IMAGEID ="SELECT COUNT(*) FROM downloads WHERE image_id = :imageId";
 	private static final String SQL_INSERT ="INSERT INTO downloads(user_id,image_id) VALUES(:userId,:imageId)";
-
+	private static final String SQL_SELECT_USERS_JOIN_IMAGES_WHERE_IMAGEID ="SELECT * FROM users u JOIN images i ON u.id = i.user_id WHERE i.user_id = :imageId";
 	@Autowired
 	private NamedParameterJdbcTemplate jdbcTemplate;
 
@@ -34,7 +34,7 @@ public class PgDownloadDao implements DownloadDao {
 		return imageList.isEmpty() ? null : imageList;
 
 	}
-	//userID指定
+	//imageID指定
 	@Override
 	public Integer countDownload(Integer imageId) {
 		String sql = SQL_SELECT_DOWNLOADS_COUNT_IMAGEID;
@@ -42,6 +42,16 @@ public class PgDownloadDao implements DownloadDao {
 		param.addValue("imageId",imageId);
 		Integer count = jdbcTemplate.queryForObject(sql, param, Integer.class);
 		return count;
+
+	}
+	//ユーザーテーブルとイメージテーブルからimageID指定
+	@Override
+	public List<Image> usersJoinImages(Integer imageId) {
+		String sql = SQL_SELECT_USERS_JOIN_IMAGES_WHERE_IMAGEID;
+		MapSqlParameterSource param = new MapSqlParameterSource();
+		param.addValue("imageId",imageId);
+		List<Image> UserImageList =jdbcTemplate.query(sql, param, new BeanPropertyRowMapper<Image>(Image.class));
+		return UserImageList.isEmpty()? null : UserImageList;
 
 	}
 	public int insert(Integer userId,Integer imageId) {
@@ -57,31 +67,3 @@ public class PgDownloadDao implements DownloadDao {
 	}
 
 }
-
-
-//**SQLの定数の名前** 
-//
-//大文字のスネークケースみたいなやつ　例：　SQL_SELECT_ALL
-//
-//WHEREまではなくてもいい
-//
-//**共通**
-//
-//SQL_INSERT
-//
-//SQL_UPDATE
-//
-//SQL_SELECT
-//
-//SQL_DELETE
-//
-//全部取得するとき
-//
-//例：SELECT_USERS_ALL
-//
-//　USERSはテーブル名
-//
-//ログインは一個しかないから
-//
-//例　：　ログインするとき→　SQL_LOGIN
-

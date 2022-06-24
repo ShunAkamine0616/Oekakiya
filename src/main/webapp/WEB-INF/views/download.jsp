@@ -12,11 +12,10 @@
 <link href="css/download.css" rel="stylesheet">
 <link href="css/postingEdit.css" rel="stylesheet">
 <link href="css/header.css" rel="stylesheet">
-<title>Insert title here</title>
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>おえかきや</title>
+<title>${fn:escapeXml(image.imageTitle)}|おえかきや|画像詳細</title>
 
 <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
 </head>
@@ -39,8 +38,8 @@
 				<c:when test="${not empty user}">
 
 					<label> <a href="./mypage"> <img id="iconAdd"
-							class="image_circle" src="${user.iconPath}">
-					</a> ${user.name}
+							class="image_circle" src="${fn:escapeXml(user.iconPath)}">
+					</a> ${fn:escapeXml(user.name)}
 
 					</label>
 					<button type="button" onclick="location.href='logout'"
@@ -103,25 +102,26 @@
 <%-- 			<a href="${image.imagePath}" download="${image.imageTitle}">ダウンロード</a> --%>
 <!-- 		</button> -->
 <!-- 	</label> -->
+<!-- <div class="contents"> -->
 <div class="container">
 	<div class="item">
 		<div class="leftitem">
 			<div class="">
 				<div class="box">
-					<img src="${image.imagePath}">
+					<img src="${fn:escapeXml(image.imagePath)}">
 				</div>
 			</div>
 			<span><img src="./images/images_yesHurt.png" width="3%"
-				height="3%">いいね数:</span><span id="favoriteNum">${count.getFavorite()}</span><span>ダウンロード数:</span><span
-				id="downloadNum">${ count.getDownload() }</span>
+				height="3%">いいね数:</span><span id="favoriteNum">${fn:escapeXml(favoritecount)}</span><span>ダウンロード数:</span><span
+				id="downloadNum">${fn:escapeXml(downloadcount) }</span>
 
 
 			<c:if test="${not empty user}">
 
 				<!--いいねしてないとき -->
-				<img src="./images/ハート透過.png" id="nonHurt" class="hidden">
+				<img src="./images/ハート透過.png" id="nonHurt" class="hidden" title="いいね！">
 				<!-- いいねしてるとき -->
-				<img src="./images/ピンクハート透過.png" id="yesHurt" class="hidden">
+				<img src="./images/ピンクハート透過.png" id="yesHurt" class="hidden" >
 
 			</c:if>
 			<c:if test="${user.role == 1}">
@@ -135,36 +135,43 @@
 					</div>
 				</div>
 			</c:if>
-			<a href="${image.imagePath}" download="${image.imageTitle}">
+			<a href="${fn:escapeXml(image.imagePath)}"
+				download="${fn:escapeXml(image.imageTitle)}">
 				<button class="light_blue_btn" id="download_btn">ダウンロード</button>
 			</a>
 
 
 		</div>
 	</div>
-
-	<div class="item">
-		<div class="rightitem">
-			<div class="title">
-				<label>タイトル</label> ${image.imageTitle}
-
-
-			</div>
-
-			<div class="title">
-				<label>投稿者</label> <img src="${postUser.iconPath}"
-					class="image_circle">${postUser.userName}
-
-				<div class="category">
-					<label>カテゴリ</label> ${image.categoryId}
-
+	<div class="title">
+		<label>投稿者</label><a href="./other?id=${fn:escapeXml(imageUser.id)}">
+			<img src="${fn:escapeXml(imageUser.iconPath)}" class="image_circle">
+		</a>${fn:escapeXml(imageUser.name)}
+		<div class="item">
+			<div class="rightitem">
+				<div class="title">
+					<label>タイトル</label><span class=Dltitle>
+						${fn:escapeXml(image.imageTitle)} </span>
 
 				</div>
-				<div class="comment">${image.comment}</div>
+
+
+
+				<div class="category">
+					<label>カテゴリ</label> <span class=Dlcategory>${fn:escapeXml(categoryName.categoryName)}
+					</span>
+
+				</div>
+				<label>コメント</label>
+				<div class="wrapper">
+					<span >${fn:escapeXml(image.comment)} </span>
+				</div>
+
 			</div>
 		</div>
-
-	</div>
+</div>
+</div>
+<!-- 	</div> -->
 	<div id="fadeLayer"></div>
 	</body>
 </html>
