@@ -42,7 +42,7 @@
 						<c:when test="${not empty user}">
 							<label> <a href="./mypage"> <img id="iconAdd"
 									class="image_circle" src="${user.iconPath}">
-							</a> ${user.name}
+							</a> ${fn:escapeXml(user.name)}
 							</label>
 							<button type="button" onclick="location.href='logout'"
 								class="logout_btn">ログアウト</button>
@@ -128,7 +128,7 @@
 						<a href="detail?id=${ image.getId() }"> <img
 							src=${ image.getImagePath() } class="post">
 						</a>
-						<p>${ image.getImageTitle() }</p>
+						<p>${ fn:escapeXml(image.getImageTitle()) }</p>
 						
 						<div>
 						いいね数:<span id="${ image.getId() }"><c:if test="${empty count.getFavorite()}">${ image.getFavorite() }</c:if>${count.getFavorite()}</span><span>ダウンロード数:${ image.getDownload() }</span></div>

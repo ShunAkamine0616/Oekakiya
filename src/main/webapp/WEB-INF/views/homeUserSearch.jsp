@@ -40,7 +40,7 @@
 							<label>
 								<a href="./mypage"> 
 									<img id="iconAdd" class="image_circle" src="${user.iconPath}">
-								</a> ${user.name}
+								</a> ${fn:escapeXml(user.name)}
 							</label>
 							<button type="button" onclick="location.href='logout'"
 								class="logout_btn">ログアウト</button>
@@ -80,7 +80,7 @@
 		
 		<c:forEach var="userList" items="${userList}">
 			<c:if test="${ user.id ne userList.getId() }">
-				<div class="userContainer"><a href="other?id=${ userList.getId() }"><img id="iconAdd" class="image_circle" src="${ userList.getIconPath() }"></a><span class="user_name"><b>${ userList.getName() }</b><br> ${ userList.getAccountId() }</span></div>
+				<div class="userContainer"><a href="other?id=${ userList.getId() }"><img id="iconAdd" class="image_circle" src="${ userList.getIconPath() }"></a><span class="user_name"><b>${ fn:escapeXml(userList.getName()) }</b><br> ${ fn:escapeXml(userList.getAccountId()) }</span></div>
 			</c:if>
 		</c:forEach>
 		
