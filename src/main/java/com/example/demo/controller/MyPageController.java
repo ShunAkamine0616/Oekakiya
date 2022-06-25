@@ -1,8 +1,6 @@
 package com.example.demo.controller;
 
 import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.FileOutputStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -27,6 +25,8 @@ import com.example.demo.controller.form.EditMyPageForm;
 import com.example.demo.entity.Image2;
 import com.example.demo.entity.User;
 import com.example.demo.service.DeleteUserService;
+import com.example.demo.service.DownloadService;
+import com.example.demo.service.FavoriteService;
 import com.example.demo.service.FollowService;
 import com.example.demo.service.Image2Service;
 import com.example.demo.service.UserService;
@@ -41,10 +41,14 @@ public class MyPageController {
 	@Autowired
 	FollowService followService;
 	@Autowired
+	FavoriteService favoriteService;
+	@Autowired
 	DeleteUserService deleteUserService;
 	@Autowired
 	Image2Service imageService;
-
+	@Autowired
+	DownloadService downloadService;
+	
 	//マイページ遷移
 	@RequestMapping({"/mypage"})
 	public String mypage(Model model) {
@@ -57,6 +61,14 @@ public class MyPageController {
 		List<Image2> imageList = (List<Image2>) imageService.findByUserId(user.getId());
 		model.addAttribute("imageList",imageList);
 		System.out.println(imageList);
+		
+		List<Image2> imageFavList = (List<Image2>) favoriteService.findByUserId(user.getId());
+		model.addAttribute("imageFavList",imageFavList);
+		System.out.println(imageFavList);
+		
+		List<Image2> imageDlList = (List<Image2>) downloadService.findByUserIdList(user.getId());
+		model.addAttribute("imageDlList",imageDlList);
+		System.out.println(imageDlList.get(0).getId());
 		
 		return "MyPage";
 	}
@@ -110,7 +122,7 @@ public class MyPageController {
 //			newUser = new User(editMyPageFrom.getAccountId(), editMyPageFrom.getPassword(), editMyPageFrom.getName(), "images/" + filename + extention, editMyPageFrom.getMail(), editMyPageFrom.getIntroduction());
 
 			try (BufferedInputStream bis = new BufferedInputStream(editMyPageFrom.getFile().getInputStream());
-					BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream("C:\\Users\\axiz\\git\\Oekakiya\\src\\main\\webapp\\images\\" + filename + extention))) {
+					) {
 
 				//読み取ったデータを格納するためのバッファとなるバイト配列を宣言します。
 				//配列の長さは、1024の倍数にするのが一般的です。
@@ -129,13 +141,13 @@ public class MyPageController {
 
 					//read(byte[] b, int off, int len)メソッドで、readで読み取った長さの分だけ、
 					//バイト配列dataの内容をsample3.jpgに書き込みます。
-					bos.write(data, 0, len);
-					bos.flush();
+//					bos.write(data, 0, len);
+//					bos.flush();
 					System.out.println("filename = " + filename);
 					//				bos.close();
 				}
 				String encodedString = Base64.getEncoder().encodeToString(editMyPageFrom.getFile().getBytes());
-				newUser = new User(editMyPageFrom.getAccountId(), editMyPageFrom.getPassword(), editMyPageFrom.getName(), "data:image/"+ extention +"base64,"+encodedString, editMyPageFrom.getMail(), editMyPageFrom.getIntroduction());
+				newUser = new User(editMyPageFrom.getAccountId(), editMyPageFrom.getPassword(), editMyPageFrom.getName(), "data:image/"+ extention +";base64,"+encodedString, editMyPageFrom.getMail(), editMyPageFrom.getIntroduction());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -151,6 +163,21 @@ public class MyPageController {
 
 		model.addAttribute("edit", 1);
 		session.setAttribute("user", userService.findById(user.getId()));
+		
+		Integer follow  = followService.countFollow(user.getId());
+		model.addAttribute("followCnt", follow);
+		
+		List<Image2> imageList = (List<Image2>) imageService.findByUserId(user.getId());
+		model.addAttribute("imageList",imageList);
+		System.out.println(imageList);
+		
+		List<Image2> imageFavList = (List<Image2>) favoriteService.findByUserId(user.getId());
+		model.addAttribute("imageFavList",imageFavList);
+		System.out.println(imageFavList);
+		
+		List<Image2> imageDlList = (List<Image2>) favoriteService.findByUserId(user.getId());
+		model.addAttribute("imageDlList",imageDlList);
+		System.out.println(imageDlList);
 		return "MyPage";
 	}
 }

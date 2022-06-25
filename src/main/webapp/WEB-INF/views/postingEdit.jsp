@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>画像編集画面</title>
+<title>㋔　${images.getImageTitle()}｜おえかきや｜画像編集画面</title>
 <link href="css/postingEdit.css" rel="stylesheet">
 <link href="css/commons.css" rel="stylesheet">
 <link href="css/header.css" rel="stylesheet">

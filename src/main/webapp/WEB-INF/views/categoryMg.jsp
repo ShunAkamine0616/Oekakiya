@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>カテゴリ管理画面</title>
+<title>㋔　おえかきや｜カテゴリ管理画面</title>
 <link href="css/categoryMg.css" rel="stylesheet">
 <link href="css/commons.css" rel="stylesheet">
 <link href="css/header.css" rel="stylesheet">

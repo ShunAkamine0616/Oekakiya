@@ -14,7 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.Category;
+import com.example.demo.entity.Image;
+import com.example.demo.entity.User;
 import com.example.demo.service.CategoryService;
+import com.example.demo.service.ImageService;
 
 @Controller
 public class CategoryMgController {
@@ -25,13 +28,33 @@ public class CategoryMgController {
 	private HttpServletRequest req;
 	@Autowired
 	private CategoryService categoryservice;
+	@Autowired
+	ImageService imageService;
 
 	@RequestMapping("/categoryMg")
 	public String index(Model model) {
 		List<Category> category = new ArrayList<>();
 		category = categoryservice.findAll();
-		session.setAttribute("category", category);
-		return "categoryMg";
+		User user = (User)session.getAttribute("user");
+		if(user==null) {
+			ArrayList<Image> imageList = (ArrayList<Image>) imageService.findByKeyword("", " ", "created_at DESC", null);
+			if(imageList != null) {
+				model.addAttribute("imageList",imageList);
+			}
+			return"home";
+		}
+		int role = user.getRole();
+		if(role==1) {
+			session.setAttribute("category", category);
+			return "categoryMg";
+		}else {
+			ArrayList<Image> imageList = (ArrayList<Image>) imageService.findByKeyword("", " ", "created_at DESC", null);
+			if(imageList != null) {
+				model.addAttribute("imageList",imageList);
+			}
+			return "home";
+		}
+
 	}
 
 	@RequestMapping(value = "/categoryEdit", params = "editId", method = RequestMethod.POST)

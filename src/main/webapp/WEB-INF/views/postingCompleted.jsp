@@ -10,6 +10,7 @@
 <link href="css/commons.css" rel="stylesheet">
 <link href="css/header.css"rel="stylesheet">
 <link href="css/postingCompleted.css"rel="stylesheet">
+<link href="dist/snackbar.min.css" type="text/css" rel="stylesheet">
 <title>おえかきや｜投稿完了</title>
 </head>
 <body>
@@ -29,12 +30,12 @@
 					</c:when>
 					<c:when test="${not empty user}">
 
-						<label> <a href="./inputEditMyPage"> <img id="iconAdd"
+						<label> <a href="./mypage"> <img id="iconAdd"
 								class="image_circle" src="${user.iconPath}">
 						</a> ${user.name}
 
 						</label>
-						<button type="button" onclick="location.href='login'"
+						<button type="button" onclick="location.href='logout'"
 							class="logout_btn">ログアウト</button>
 
 					</c:when>
@@ -81,8 +82,11 @@
 			document.execCommand("Copy");
 
 			// コピーをお知らせする
-			alert("コピーできました！ : " + copyTarget.value);
-		}
+ 			//alert("コピーできました！ : " + copyTarget.value);
+			
+ 			Snackbar.show({pos: 'bottom-center', actionText: '閉じる', actionTextColor: '#00ff00', text: 'コピーできました！'});
+			}
 	</script>
+	<script src="./dist/snackbar.min.js"></script>
 </body>
 </html>

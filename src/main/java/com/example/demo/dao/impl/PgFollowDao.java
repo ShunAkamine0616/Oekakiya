@@ -11,11 +11,13 @@ import org.springframework.stereotype.Repository;
 
 import com.example.demo.dao.FollowDao;
 import com.example.demo.entity.Follow;
+import com.example.demo.entity.User;
 
 @Repository
 public class PgFollowDao implements FollowDao {
 	
 	private static final String SQL_SELECT = "SELECT * FROM follow WHERE user_id = :userId";
+	private static final String SQL_SELECT_FOLLOW = "SELECT * FROM users WHERE id IN (SELECT follow_user_id FROM follow WHERE user_id = :userId)";
 	private static final String SQL_FOLLOW_COUNT = "SELECT COALESCE(count(*)) AS follow_count FROM follow WHERE follow_user_id = :userId";
 	private static final String SQL_CHECK_FOLLOW = "SELECT * FROM follow WHERE user_id = :userId AND follow_user_id = :otherId";
 	private static final String SQL_INSERT = "INSERT INTO follow(user_id, follow_user_id) VALUES(:userId, :followUserId)";
@@ -30,6 +32,14 @@ public class PgFollowDao implements FollowDao {
     	MapSqlParameterSource param = new MapSqlParameterSource();
     	param.addValue("userId", userId);
     	ArrayList<Follow> followList = (ArrayList<Follow>) jdbcTemplate.query(sql, param, new BeanPropertyRowMapper<Follow>(Follow.class));
+    	return followList.isEmpty() ? null : followList;
+    }
+    
+    public List<User> findByUserIdFollow(Integer userId){
+    	String sql = SQL_SELECT_FOLLOW;
+    	MapSqlParameterSource param = new MapSqlParameterSource();
+    	param.addValue("userId", userId);
+    	ArrayList<User> followList = (ArrayList<User>) jdbcTemplate.query(sql, param, new BeanPropertyRowMapper<User>(User.class));
     	return followList.isEmpty() ? null : followList;
     }
 	

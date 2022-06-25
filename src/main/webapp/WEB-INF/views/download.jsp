@@ -12,6 +12,9 @@
 <link href="css/download.css" rel="stylesheet">
 <link href="css/postingEdit.css" rel="stylesheet">
 <link href="css/header.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js" type="text/javascript"></script>
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -69,9 +72,9 @@
 						<span>ダウンロード数：</span> ${fn:escapeXml(downloadcount) }
 					
 
-					<a href="${fn:escapeXml(image.imagePath)}"
+					<a href="${fn:escapeXml(image.base64)}"
 						download="${fn:escapeXml(image.imageTitle)}">
-						<button class="light_blue_btn" id="download_btn">ダウンロード</button>
+						<button class="light_blue_btn" id="download_btn" onclick="showBox()">ダウンロード</button>
 					</a>
 					<br>
 
@@ -104,9 +107,9 @@
 							</div>
 						</div>
 					</c:if>
-					<a href="${fn:escapeXml(image.imagePath)}"
+					<a href="${fn:escapeXml(image.base64)}"
 						download="${fn:escapeXml(image.imageTitle)}">
-						<button class="light_blue_btn" id="download_btn">ダウンロード</button>
+						<button class="light_blue_btn" id="download_btn" onclick="showBox()">ダウンロード</button>
 					</a>
 				</c:if>
 			</div>
@@ -146,6 +149,24 @@
 	</div>
 </div>
 <div id="fadeLayer"></div>
+<script>
+  
+var timerId;
+
+
+function showBox() {
+timerId = setTimeout( closeBox , 5000 ); 
+document.getElementById("download_btn").disabled = true;
+document.getElementById("download_btn").style.backgroundColor = "#8aa3b9";
+
+}
+
+function closeBox() {
+clearTimeout( timerId );
+document.getElementById("download_btn").disabled = false;
+document.getElementById("download_btn").style.backgroundColor = "#8ED0FF";
+}
+  </script>
 </body>
 </html>
 <script src="./js/commons.js">

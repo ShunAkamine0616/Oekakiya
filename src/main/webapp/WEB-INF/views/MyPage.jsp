@@ -78,19 +78,66 @@
 
 		</div>
 	    </div>
-		<div class="item">
-			<div class="container">
-					<c:forEach var="image" items="${imageList}">
-						<div style="margin: 30px;margin-bottom: 30px;">
-						<div class="box">
-							<a href="detailmyapage?id=${ image.getId() }"> 
-								<img src=${ image.base64} class="post">
-							</a>
-							<p>${ fn:escapeXml(image.getImageTitle()) }</p>
+			<div class="item">
+				<div class="imagebox">
+					<div class="myimage">
+						<div class="container">
+							<c:forEach var="image" items="${imageList}">
+								<div style="margin: 30px;margin-bottom: 30px;">
+								<div class="box">
+									<a href="detailmyapage?id=${ image.getId() }"> 
+										<img src=${ image.base64 } class="post">
+									</a>
+									<p>${ fn:escapeXml(image.getImageTitle()) }</p>
+								</div>
+								</div>
+							</c:forEach>
 						</div>
+					</div>
+					<div class="myimage">
+						<div class="container">
+							<c:forEach var="imagefav" items="${imageFavList}">
+								<div style="margin: 30px;margin-bottom: 30px;">
+								<div class="box">
+									<a href="detailmyapage?id=${ imagefav.getId() }"> 
+										<img src=${ imagefav.base64 } class="post">
+									</a>
+									<p>${ fn:escapeXml(imagefav.getImageTitle()) }</p>
+								</div>
+								</div>
+							</c:forEach>
 						</div>
-					</c:forEach>
-				</div>
+					</div>
+					<div class="myimage">
+						<div class="container">
+							<c:forEach var="imageDl" items="${imageDlList}">
+								<div style="margin: 30px;margin-bottom: 30px;">
+								<div class="box">
+									<a href="detailmyapage?id=${ imageDl.getId() }"> 
+										<img src=${ imageDl.base64 } class="post">
+									</a>
+									<p>${ fn:escapeXml(imageDl.getImageTitle()) }</p>
+								</div>
+								</div>
+							</c:forEach>
+						</div>
+					</div>
+					<div class="myimage">
+						<div class="container">
+							<c:forEach var="fuser" items="${followUser}">
+								<div style="margin: 30px;margin-bottom: 30px;">
+									<div class="box">
+										<label>
+											<a href="/other?id=${ fuser.id }"> <img id="iconAdd"
+												class="image_circle" src="${fn:escapeXml(fuser.iconPath)}">
+											</a> ${fn:escapeXml(fuser.name)}
+										</label>	
+									</div>
+								</div>
+							</c:forEach>
+						</div>
+					</div>
+		        </div>
 	        </div>
 		</div>
 	<input type ="hidden" value="${edit}" id="editFlag"></input>

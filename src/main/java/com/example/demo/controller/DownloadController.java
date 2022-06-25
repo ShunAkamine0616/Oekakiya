@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.demo.controller.form.DownloadForm;
 import com.example.demo.controller.form.LoginForm;
-import com.example.demo.entity.Image;
+import com.example.demo.entity.Image2;
 import com.example.demo.service.CategoryService;
 import com.example.demo.service.DownloadService;
 import com.example.demo.service.Image2Service;
@@ -36,7 +36,7 @@ public class DownloadController {
 	@RequestMapping(value = "/download", method = RequestMethod.GET)
 	public String download(@ModelAttribute("download") DownloadForm downloadform, Model model) {
 		//セッションに保存されたimageIdを取得
-		Image image = (Image) session.getAttribute("image");
+		Image2 image = (Image2) session.getAttribute("image");
 		//    			Integer imageId = image.getId();
 		session.setAttribute("downloadImg",image);
 		session.setAttribute("postUser", userService.findById(image.getUserId()));
@@ -59,7 +59,7 @@ public class DownloadController {
 	//管理者権限で画像を削除
 	@RequestMapping(value="/adminsDelete",method = RequestMethod.GET)
 	public String delete(@ModelAttribute("download") DownloadForm downloadform, Model model) {
-		Image image = (Image)session.getAttribute("image"); 
+		Image2 image = (Image2)session.getAttribute("image"); 
 		imageService.delete(image.getId());
 		return "home";
 	}

@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>メニュー</title>
+<title>おえかきや|ホーム</title>
 <link href="css/commons.css" rel="stylesheet">
 <link href="css/home.css" rel="stylesheet">
 <link href="css/header.css" rel="stylesheet">

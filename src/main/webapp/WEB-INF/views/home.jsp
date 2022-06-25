@@ -6,7 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>メニュー</title>
+<title>おえかきや|ホーム</title>
+<link rel="icon" href="favicon.ico">
 <link href="css/commons.css" rel="stylesheet">
 <link href="css/home.css" rel="stylesheet">
 <link href="css/header.css" rel="stylesheet">
@@ -54,7 +55,7 @@
 		</header>
 		<input type="hidden" value="${delete}" id="deleteFlag"></input>
 		<c:if test="${ user ne null }">
-			<a href="upload" class="post_btn"> 投稿 </a>
+			<a href="upload" class="post_btn"> 　投稿　 </a>
 		</c:if>
 
 		<p>${ msg }</p>
@@ -128,7 +129,7 @@
 						<a href="detail?id=${ image.getId() }"> <img
 							src=${ image.base64 } class="post">
 						</a>
-						<p>${ fn:escapeXml(image.getImageTitle()) }</p>
+						<p><b>${ fn:escapeXml(image.getImageTitle()) }</b></p>
 						
 						<div>
 						いいね数:<span id="${ image.getId() }"><c:if test="${empty count.getFavorite()}">${ image.getFavorite() }</c:if>${count.getFavorite()}</span><span>ダウンロード数:${ image.getDownload() }</span></div>

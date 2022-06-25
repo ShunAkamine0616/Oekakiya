@@ -18,7 +18,6 @@ import com.example.demo.entity.Category;
 import com.example.demo.entity.Image2;
 import com.example.demo.entity.User;
 import com.example.demo.service.CategoryService;
-import com.example.demo.service.DownloadService;
 import com.example.demo.service.FavoriteService;
 import com.example.demo.service.Image2Service;
 import com.example.demo.service.UserService;
@@ -33,8 +32,6 @@ public class ImageDetailController {
 	Image2Service imageService;
 	@Autowired
 	private CategoryService categoryService;
-	@Autowired
-	private DownloadService downloadService;
 	@Autowired
 	private UserService userService;
 	@Autowired

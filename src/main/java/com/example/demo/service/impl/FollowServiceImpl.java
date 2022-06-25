@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.FollowDao;
 import com.example.demo.entity.Follow;
+import com.example.demo.entity.User;
 import com.example.demo.service.FollowService;
 @Service
 public class FollowServiceImpl implements FollowService {
@@ -16,6 +17,10 @@ public class FollowServiceImpl implements FollowService {
 	
 	public List<Follow> findByUserId(Integer userId){
 		return followDao.findByUserId(userId);
+	}
+	
+	public List<User> findByUserIdFollow(Integer userId){
+		return followDao.findByUserIdFollow(userId);
 	}
 	
 	public Integer countFollow(Integer userFollowId) {
