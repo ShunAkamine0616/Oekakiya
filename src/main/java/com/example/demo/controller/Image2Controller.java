@@ -1,10 +1,6 @@
 package com.example.demo.controller;
 
 import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.FileOutputStream;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Base64;
 
@@ -68,12 +64,12 @@ public class Image2Controller {
 			extention = uploadForm.getFile().getOriginalFilename().substring(dot).toLowerCase();
 		}
 		// ファイル名
-		String filename = uploadForm.getImageTitle().replaceAll(" ","").replaceAll("　","") + DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS").format(LocalDateTime.now());
+//		String filename = uploadForm.getImageTitle().replaceAll(" ","").replaceAll("　","") + DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS").format(LocalDateTime.now());
 		
 		
 		
 		try (BufferedInputStream bis = new BufferedInputStream(uploadForm.getFile().getInputStream());
-				BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream("C:\\Users\\axiz\\git\\Oekakiya\\src\\main\\webapp\\images/" + filename + extention))) {
+				) {
 
 			//読み取ったデータを格納するためのバッファとなるバイト配列を宣言します。
 			//配列の長さは、1024の倍数にするのが一般的です。
@@ -101,8 +97,8 @@ public class Image2Controller {
 				System.out.println(Arrays.toString(data));
 				//read(byte[] b, int off, int len)メソッドで、readで読み取った長さの分だけ、
 				//バイト配列dataの内容をsample3.jpgに書き込みます。
-				bos.write(data, 0, len);
-				bos.flush();
+//				bos.write(data, 0, len);
+//				bos.flush();
 				//				bos.close();
 			}
 			
