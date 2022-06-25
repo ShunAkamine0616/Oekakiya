@@ -139,10 +139,10 @@
 						
 					</div><c:if test="${not empty user and image.getUserId() ne user.getId()}">
 							<!--  最初のボタン -->
-							<img src="./images/ハート透過.png" id="${ image.getId() }"
+							<img src="./images/blackHurt.png" id="${ image.getId() }"
 								class="favorite_btn nonHurt <c:if test="${image.getFavoriteFlag() eq 1}">hidden</c:if>" style="width: 30px; height: 30px;">
 							<!--  いいね状態のボタン -->
-							<img src="./images/ピンクハート透過.png" id="${ image.getId() }"
+							<img src="./images/hurt.png" id="${ image.getId() }"
 								class="favorite_btn yesHurt <c:if test="${image.getFavoriteFlag() eq 0}">hidden</c:if>" style="width: 30px; height: 30px;">
 						</c:if>
 						<c:if test="${image.getUserId() eq user.getId()}">

@@ -86,9 +86,9 @@
 			<div class="leftitem">
 				<c:if test="${not empty user}">
 					<span class="iine-box"> <!--いいねしてないとき --> <img
-						src="./images/ハート透過.png" id="nonHurt" class="hidden" title="いいね！"
+						src="./images/blackHurt.png" id="nonHurt" class="hidden" title="いいね！"
 						width=20% height=20%> <!-- いいねしてるとき --> <img
-						src="./images/ピンクハート透過.png" id="yesHurt" class="hidden" width=20%
+						src="./images/hurt.png" id="yesHurt" class="hidden" width=20%
 						height=20%> <span class="iine"> <span
 							id="favoriteNum">${fn:escapeXml(favoritecount)}</span>
 					</span>
