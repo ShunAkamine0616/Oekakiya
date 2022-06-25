@@ -427,7 +427,7 @@ textarea {
   display: inline-block;
   width: 20px;
   height: 20px;
-  background-image: url(../images/注意.png);
+  background-image: url(../alart/注意.png);
   background-size: contain;
   vertical-align: middle;
   margin: 10px;
