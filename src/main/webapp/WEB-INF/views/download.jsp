@@ -58,7 +58,7 @@
 			<div class="leftitem">
 				<div class="">
 					<div class="box">
-						<img src="${fn:escapeXml(image.imagePath)}">
+						<img src="${fn:escapeXml(image.base64)}">
 					</div>
 				</div>
 

@@ -138,7 +138,7 @@
 					<div style="margin: 30px;margin-bottom: 30px;">
 					<div class="box">
 						<a href="detail?id=${ image.getId() }"> 
-							<img src=${ image.getImagePath() } class="post">
+							<img src=${ image.base64} class="post">
 						</a>
 						<p>${ image.getImageTitle() }</p>
 					</div>

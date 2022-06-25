@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.Category;
-import com.example.demo.entity.Image;
+import com.example.demo.entity.Image2;
 import com.example.demo.entity.User;
 import com.example.demo.service.CategoryService;
 import com.example.demo.service.FollowService;
-import com.example.demo.service.ImageService;
+import com.example.demo.service.Image2Service;
 import com.example.demo.service.UserService;
 
 @Controller
@@ -29,7 +29,7 @@ public class OtherMyPageController {
 	@Autowired
 	private FollowService followService;
 	@Autowired
-	private ImageService imageService;
+	private Image2Service imageService;
 	@Autowired
 	CategoryService categoryService;
 	
@@ -46,10 +46,10 @@ public class OtherMyPageController {
 		model.addAttribute("followCnt", follow);
 		
 		
-		List<Image> imageList = (List<Image>) imageService.findByUserId(userOther.getId());
+		List<Image2> imageList = (List<Image2>) imageService.findByUserId(userOther.getId());
 		if(imageList != null) {
 			model.addAttribute("imageList",imageList);
-			System.out.println(imageList.get(0).getImagePath());
+			System.out.println(imageList.get(0).getBase64());
 		}
 		return "otherMyPage";
 	}
@@ -67,7 +67,7 @@ public class OtherMyPageController {
 		}
 		ArrayList<Category> categoryList = (ArrayList<Category>) categoryService.findAll();
 		session.setAttribute("category",categoryList);
-		ArrayList<Image> imageList = (ArrayList<Image>) imageService.findByKeyword("", " ", "created_at DESC", userId);
+		ArrayList<Image2> imageList = (ArrayList<Image2>) imageService.findByKeyword("", " ", "created_at DESC", userId);
 		session.setAttribute("keywordHistory", "");
 		session.setAttribute("categoryHistory", " ");
 		session.setAttribute("userHistory", "all");

@@ -55,7 +55,7 @@
     	<div class="leftitem">
            
            
-<a class="box"href=${ images.getImagePath() } data-lightbox="group"><img src=${ images.getImagePath() }></a>
+<a class="box"href=${ images.base64} data-lightbox="group"><img src=${ images.base64}></a>
              <p>いいね数：${favoritecount} ダウンロード数：${downloadcount}</p>
 				<form:button type="submit" class="light_blue_btn">編集</form:button>
 				<button type="button" onclick="openModal()"class="delete_btn">消去</button>

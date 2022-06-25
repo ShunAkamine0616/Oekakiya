@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.example.demo.dao.FavoriteDao;
 import com.example.demo.entity.Favorite;
-import com.example.demo.entity.Image;
+import com.example.demo.entity.Image2;
 
 @Repository
 public class PgFavoriteDao implements FavoriteDao{
@@ -23,8 +23,8 @@ public class PgFavoriteDao implements FavoriteDao{
     private static final String SQL_INSERT = "insert into favorite(user_id,image_id) values(:userId,:imageId);";
     private static final String SQL_DELETE = "delete from favorite where user_id = :userId and image_id = :imageId;";
     private static final String SQL_DELETE_USER = "delete from favorite where user_id = :userId;";
-    private static final String SQL_SELECT_IMAGES = "select i.id as images_id,image_title,image_path,i.user_id as image_user_id,created_at,updated_at from images as i inner join favorite as f on i.user_id = f.user_id where f.user_id =:userId;";
-    private static final String SQL_SELECT_IMAGES_BY_USERID_AND_IMAGEID = "select i.id as images_id,image_title,image_path,i.user_id as image_user_id,created_at,updated_at from images as i inner join favorite as f on i.user_id = f.user_id where f.user_id =:userId AND f.image_id = :imageId;";
+    private static final String SQL_SELECT_IMAGES = "select i.id as images_id,image_title,base64,i.user_id as image_user_id,created_at,updated_at from images2 as i inner join favorite as f on i.user_id = f.user_id where f.user_id =:userId;";
+    private static final String SQL_SELECT_IMAGES_BY_USERID_AND_IMAGEID = "select i.id as images_id,image_title,base64,i.user_id as image_user_id,created_at,updated_at from images2 as i inner join favorite as f on i.user_id = f.user_id where f.user_id =:userId AND f.image_id = :imageId;";
 
     public int countFavorite(Integer imageId) {
     	String sql = SELECT_FAVORITE_COUNT;
@@ -57,22 +57,22 @@ public class PgFavoriteDao implements FavoriteDao{
 		return jdbcTemplate.update(sql, param);
 	}
 	
-	public List<Image> findByUserId(Integer userId) {
-		List<Image> image = new ArrayList<>();
+	public List<Image2> findByUserId(Integer userId) {
+		List<Image2> image = new ArrayList<>();
 		String sql = SQL_SELECT_IMAGES;
 		MapSqlParameterSource param = new MapSqlParameterSource();
 	    param.addValue("userId", userId);
-	    image =  jdbcTemplate.query(sql,param, new BeanPropertyRowMapper<Image>(Image.class));
+	    image =  jdbcTemplate.query(sql,param, new BeanPropertyRowMapper<Image2>(Image2.class));
 	    return image;
 	}
 	
-	public Image findByUserIdAndImageId(Integer userId,Integer imageId) {
-		List<Image> imageList = new ArrayList<>();
+	public Image2 findByUserIdAndImageId(Integer userId,Integer imageId) {
+		List<Image2> imageList = new ArrayList<>();
 		String sql = SQL_SELECT_IMAGES_BY_USERID_AND_IMAGEID;
 		MapSqlParameterSource param = new MapSqlParameterSource();
 	    param.addValue("userId", userId);
 	    param.addValue("imageId", imageId);
-	    imageList =  jdbcTemplate.query(sql,param, new BeanPropertyRowMapper<Image>(Image.class));
+	    imageList =  jdbcTemplate.query(sql,param, new BeanPropertyRowMapper<Image2>(Image2.class));
 	    return imageList.isEmpty() ? null : imageList.get(0);
 	}
 

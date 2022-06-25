@@ -44,7 +44,7 @@
 		</div>
 		<hr>
 	</header>
-	<form:form method="post" enctype="multipart/form-data" action="upload1"
+	<form:form method="post" enctype="multipart/form-data" action="2upload1"
 		modelAttribute="upload" class="upload_form">
 		<div>
 			<div>

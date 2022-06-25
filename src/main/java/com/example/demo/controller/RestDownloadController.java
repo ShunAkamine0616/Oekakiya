@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.entity.Image;
+import com.example.demo.entity.Image2;
 import com.example.demo.service.CategoryService;
 import com.example.demo.service.DownloadService;
 import com.example.demo.service.FavoriteService;
@@ -28,7 +28,7 @@ public class RestDownloadController {
 	//ダウンロード数をインサート&ダウンロード数を数える
 	@GetMapping("DownloadCount")
 	public int count(Model model) {
-		Image image = (Image)session.getAttribute("image"); 
+		Image2 image = (Image2)session.getAttribute("image"); 
 		Integer userId = (Integer) session.getAttribute("UserId");
 		if(userId == null) {
 			userId = 0;

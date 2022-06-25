@@ -48,7 +48,7 @@
 	<!-- 投稿画像 -->
 	<div id="app">
 	<div class="">
-	<img src="${fn:escapeXml(image.imagePath)}" id="postingImg">
+	<img src="${fn:escapeXml(image.base64)}" id="postingImg">
 	</div>
 	</div>
 	<br>

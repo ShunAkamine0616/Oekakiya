@@ -14,7 +14,7 @@ import com.example.demo.controller.form.LoginForm;
 import com.example.demo.entity.Image;
 import com.example.demo.service.CategoryService;
 import com.example.demo.service.DownloadService;
-import com.example.demo.service.ImageService;
+import com.example.demo.service.Image2Service;
 import com.example.demo.service.UserService;
 
 
@@ -27,7 +27,7 @@ public class DownloadController {
 	@Autowired
 	DownloadService downloadService;
 	@Autowired
-	ImageService imageService;
+	Image2Service imageService;
 	@Autowired
 	UserService userService;
 	@Autowired

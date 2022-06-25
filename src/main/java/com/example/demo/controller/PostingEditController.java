@@ -15,9 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.demo.controller.form.EditForm;
-import com.example.demo.entity.Image;
+import com.example.demo.entity.Image2;
 import com.example.demo.entity.User;
 import com.example.demo.service.CategoryService;
+import com.example.demo.service.Image2Service;
 import com.example.demo.service.ImageService;
 
 @Controller
@@ -31,7 +32,7 @@ public class PostingEditController{
 	HttpSession session;
 	
 	@Autowired
-	private ImageService imageservice;
+	private Image2Service image2service;
 
 	
 	@RequestMapping(value="/edit", method = RequestMethod.POST)
@@ -39,17 +40,17 @@ public class PostingEditController{
 		if (bindingResult.hasErrors()) {
 			return "postingEdit";
 		}
-		Image image =new Image();
+		Image2 image =new Image2();
 		image.setImageTitle(form.getTitle());
 		image.setComment(form.getComment());
 		image.setCategoryId(form.getCategoryId());
 		int imageId = (int)session.getAttribute("imageId");  
 		image.setId(imageId);		
-		int edit = imageservice.update(image);
+		int edit = image2service.update(image);
 		model.addAttribute("edit", edit);
 			User user = (User) session.getAttribute("user");
 			model.addAttribute("user", user);
-			List<Image> imageList = (List<Image>) imageService.findByUserId(user.getId());
+			List<Image2> imageList = (List<Image2>) image2service.findByUserId(user.getId());
 			model.addAttribute("imageList",imageList);
 			   return "MyPage";
     
@@ -58,10 +59,10 @@ public class PostingEditController{
 	@RequestMapping(value="/delete",method = RequestMethod.GET)
 	public String delete(@ModelAttribute("postingEdit") EditForm from, Model model) {
 		int imageId = (int)session.getAttribute("imageId"); 
-		int delete = imageservice.delete(imageId);
+		int delete = image2service.delete(imageId);
 		User user = (User) session.getAttribute("user");
 		model.addAttribute("user", user);
-		List<Image> imageList = (List<Image>) imageService.findByUserId(user.getId());
+		List<Image2> imageList = (List<Image2>) image2service.findByUserId(user.getId());
 		model.addAttribute("imageList",imageList);
 		model.addAttribute("delete",delete);
 		return "MyPage";

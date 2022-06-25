@@ -2,7 +2,7 @@ package com.example.demo.dao;
 
 import java.util.List;
 
-import com.example.demo.entity.Image;
+import com.example.demo.entity.Image2;
 
 public interface FavoriteDao {
 
@@ -10,6 +10,6 @@ public interface FavoriteDao {
 	public int insert(Integer userId,Integer imageId);
 	public int delete(Integer userId,Integer imageId);
 	public int deleteUser(Integer userId);
-	public List<Image> findByUserId(Integer userId);
-	public Image findByUserIdAndImageId(Integer userId,Integer imageId);
+	public List<Image2> findByUserId(Integer userId);
+	public Image2 findByUserIdAndImageId(Integer userId,Integer imageId);
 }

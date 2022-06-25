@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.controller.form.EditForm;
 import com.example.demo.entity.Category;
-import com.example.demo.entity.Image;
+import com.example.demo.entity.Image2;
 import com.example.demo.entity.User;
 import com.example.demo.service.CategoryService;
 import com.example.demo.service.DownloadService;
 import com.example.demo.service.FavoriteService;
-import com.example.demo.service.ImageService;
+import com.example.demo.service.Image2Service;
 import com.example.demo.service.UserService;
 
 
@@ -30,7 +30,7 @@ public class ImageDetailController {
 	@Autowired
 	HttpSession session;
 	@Autowired
-	ImageService imageService;
+	Image2Service imageService;
 	@Autowired
 	private CategoryService categoryService;
 	@Autowired
@@ -47,7 +47,7 @@ public class ImageDetailController {
 		User user = (User) session.getAttribute("user");
 
 
-		Image count = new Image();
+		Image2 count = new Image2();
 		count = imageService.findByIdCount(imageId);
 		int dounladLen = Integer.toString(count.getDownload()).length();
 		int favoriteLen = Integer.toString(count.getFavorite()).length();
@@ -136,7 +136,7 @@ public class ImageDetailController {
 		session.setAttribute("page", "home");
 		if(user == null){
 			//imageIdから投稿情報を取得
-			Image image = imageService.findByImageId(imageId);
+			Image2 image = imageService.findByImageId(imageId);
 			session.setAttribute("image",image);
 			// 画像の投稿者を取得
 			User postingUser = userService.findById(image.getUserId());
@@ -151,14 +151,14 @@ public class ImageDetailController {
 			//セッションに保存されたuserIdを取得
 			int userId = (int) session.getAttribute("UserId");
 			//imageIdから投稿情報を取得
-			Image image = imageService.findByImageId(imageId);
+			Image2 image = imageService.findByImageId(imageId);
 			//投稿者かどうかチェック
 			if(userId == image.getUserId()) {
 				//投稿編集画面へ
 				//渡されたイメージIDをもとに情報を取得
 				form.setCategoryId(imageService.findByImageId(imageId).getCategoryId());
 				form.setComment(imageService.findByImageId(imageId).getComment());
-				Image images= imageService.findByImageId(imageId);
+				Image2 images= imageService.findByImageId(imageId);
 
 
 
@@ -173,11 +173,11 @@ public class ImageDetailController {
 				return "postingEdit";
 			}else{
 
-				Image DlImages =imageService.findByImageId(imageId);
+				Image2 DlImages =imageService.findByImageId(imageId);
 				// 画像の投稿者を取得
 				User postingUser = userService.findById(DlImages.getUserId());
 				Category categoryName = categoryService.findByCategoryId(DlImages.getUserId());
-				Image GetFavoriteUserIdANDImageId =favoriteService.findByUserIdAndImageId(user.getId(),image.getId());
+				Image2 GetFavoriteUserIdANDImageId =favoriteService.findByUserIdAndImageId(user.getId(),image.getId());
 				session.setAttribute("image",DlImages);
 				session.setAttribute("favoriteUser",GetFavoriteUserIdANDImageId);
 				session.setAttribute("imageUser",postingUser);
@@ -196,7 +196,7 @@ public class ImageDetailController {
 		User user = (User) session.getAttribute("user");
 		
 		
-		Image count = new Image();
+		Image2 count = new Image2();
 		count = imageService.findByIdCount(imageId);
 		int dounladLen = Integer.toString(count.getDownload()).length();
 		int favoriteLen = Integer.toString(count.getFavorite()).length();
@@ -286,7 +286,7 @@ public class ImageDetailController {
 		
 		if(user == null){
 			//imageIdから投稿情報を取得
-			Image image = imageService.findByImageId(imageId);
+			Image2 image = imageService.findByImageId(imageId);
 			session.setAttribute("image",image);
 			// 画像の投稿者を取得
 			User postingUser = userService.findById(image.getUserId());
@@ -301,14 +301,14 @@ public class ImageDetailController {
 			//セッションに保存されたuserIdを取得
 			int userId = (int) session.getAttribute("UserId");
 			//imageIdから投稿情報を取得
-			Image image = imageService.findByImageId(imageId);
+			Image2 image = imageService.findByImageId(imageId);
 			//投稿者かどうかチェック
 			if(userId == image.getUserId()) {
 				//投稿編集画面へ
 				//渡されたイメージIDをもとに情報を取得
 				form.setCategoryId(imageService.findByImageId(imageId).getCategoryId());
 				form.setComment(imageService.findByImageId(imageId).getComment());
-				Image images= imageService.findByImageId(imageId);
+				Image2 images= imageService.findByImageId(imageId);
 				
 				
 				
@@ -323,11 +323,11 @@ public class ImageDetailController {
 				return "postingEdit";
 			}else{
 				
-				Image DlImages =imageService.findByImageId(imageId);
+				Image2 DlImages =imageService.findByImageId(imageId);
 				// 画像の投稿者を取得
 				User postingUser = userService.findById(DlImages.getUserId());
 				Category categoryName = categoryService.findByCategoryId(DlImages.getUserId());
-				Image GetFavoriteUserIdANDImageId =favoriteService.findByUserIdAndImageId(user.getId(),image.getId());
+				Image2 GetFavoriteUserIdANDImageId =favoriteService.findByUserIdAndImageId(user.getId(),image.getId());
 				session.setAttribute("image",DlImages);
 				session.setAttribute("favoriteUser",GetFavoriteUserIdANDImageId);
 				session.setAttribute("imageUser",postingUser);

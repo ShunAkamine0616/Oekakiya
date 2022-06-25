@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entity.User;
 import com.example.demo.service.CategoryService;
-import com.example.demo.service.ImageService;
+import com.example.demo.service.Image2Service;
 import com.example.demo.service.UserService;
 
 @RestController
@@ -19,7 +19,7 @@ public class RestRoleController {
 	@Autowired
 	UserService userService;
 	@Autowired
-	ImageService imageService;
+	Image2Service image2Service;
 	@Autowired
 	CategoryService categoryService;
 	

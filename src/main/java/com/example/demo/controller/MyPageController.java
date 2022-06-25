@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.List;
 
 import javax.servlet.annotation.MultipartConfig;
@@ -23,11 +24,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.demo.controller.form.EditMyPageForm;
-import com.example.demo.entity.Image;
+import com.example.demo.entity.Image2;
 import com.example.demo.entity.User;
 import com.example.demo.service.DeleteUserService;
 import com.example.demo.service.FollowService;
-import com.example.demo.service.ImageService;
+import com.example.demo.service.Image2Service;
 import com.example.demo.service.UserService;
 
 @Controller
@@ -42,7 +43,7 @@ public class MyPageController {
 	@Autowired
 	DeleteUserService deleteUserService;
 	@Autowired
-	ImageService imageService;
+	Image2Service imageService;
 
 	//マイページ遷移
 	@RequestMapping({"/mypage"})
@@ -53,7 +54,7 @@ public class MyPageController {
 		Integer follow  = followService.countFollow(user.getId());
 		model.addAttribute("followCnt", follow);
 		
-		List<Image> imageList = (List<Image>) imageService.findByUserId(user.getId());
+		List<Image2> imageList = (List<Image2>) imageService.findByUserId(user.getId());
 		model.addAttribute("imageList",imageList);
 		System.out.println(imageList);
 		
@@ -75,7 +76,7 @@ public class MyPageController {
 		// userのセッションを破棄
 		session.removeAttribute("user");
 		// 検索画面のデフォルトの画像情報を取得
-		ArrayList<Image> imageList = (ArrayList<Image>) imageService.findByKeyword("", " ", "created_at DESC", null);
+		ArrayList<Image2> imageList = (ArrayList<Image2>) imageService.findByKeyword("", " ", "created_at DESC", null);
 		if(imageList != null) {
 			model.addAttribute("imageList",imageList);
 		}
@@ -93,7 +94,7 @@ public class MyPageController {
 		User user = (User) session.getAttribute("user");
 		//拡張子
 		String extention = "";
-		User newUser;
+		User newUser = null;
 		// アイコンを変更するときとしないときで条件分岐
 		if (editMyPageFrom.getFile().isEmpty()) {
 			// 元のアイコンパス
@@ -106,7 +107,7 @@ public class MyPageController {
 			}
 			// 新しいアイコンのファイル名
 			String filename = editMyPageFrom.getName().replaceAll(" ","").replaceAll("　","") + DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS").format(LocalDateTime.now());
-			newUser = new User(editMyPageFrom.getAccountId(), editMyPageFrom.getPassword(), editMyPageFrom.getName(), "images/" + filename + extention, editMyPageFrom.getMail(), editMyPageFrom.getIntroduction());
+//			newUser = new User(editMyPageFrom.getAccountId(), editMyPageFrom.getPassword(), editMyPageFrom.getName(), "images/" + filename + extention, editMyPageFrom.getMail(), editMyPageFrom.getIntroduction());
 
 			try (BufferedInputStream bis = new BufferedInputStream(editMyPageFrom.getFile().getInputStream());
 					BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream("C:\\Users\\axiz\\git\\Oekakiya\\src\\main\\webapp\\images\\" + filename + extention))) {
@@ -133,6 +134,8 @@ public class MyPageController {
 					System.out.println("filename = " + filename);
 					//				bos.close();
 				}
+				String encodedString = Base64.getEncoder().encodeToString(editMyPageFrom.getFile().getBytes());
+				newUser = new User(editMyPageFrom.getAccountId(), editMyPageFrom.getPassword(), editMyPageFrom.getName(), "data:image/"+ extention +"base64,"+encodedString, editMyPageFrom.getMail(), editMyPageFrom.getIntroduction());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

@@ -11,17 +11,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.Category;
-import com.example.demo.entity.Image;
+import com.example.demo.entity.Image2;
 import com.example.demo.entity.User;
 import com.example.demo.service.CategoryService;
 import com.example.demo.service.FollowService;
-import com.example.demo.service.ImageService;
+import com.example.demo.service.Image2Service;
 import com.example.demo.service.UserService;
 @Controller
 public class SearchController {
 	
 	@Autowired
-	ImageService imageService;
+	Image2Service image2Service;
 	@Autowired
 	FollowService followService;
 	@Autowired
@@ -40,7 +40,7 @@ public class SearchController {
 		if(userInfo != null) {
 			userId = userInfo.getId();
 		}
-		ArrayList<Image> imageList = (ArrayList<Image>) imageService.findByKeyword("", " ", "created_at DESC", userId);
+		ArrayList<Image2> imageList = (ArrayList<Image2>) image2Service.findByKeyword("", " ", "created_at DESC", userId);
 		session.setAttribute("keywordHistory", "");
 		session.setAttribute("categoryHistory", " ");
 		session.setAttribute("userHistory", "all");
@@ -63,13 +63,13 @@ public class SearchController {
 		if(userInfo != null) {
 			userId = userInfo.getId();
 		}
-		ArrayList<Image> imageList = null;
+		ArrayList<Image2> imageList = null;
 		category = category.replace(" ,", "");
         if("all".equals(user)) {
-        	imageList = (ArrayList<Image>) imageService.findByKeyword(key, category, order, userId);
+        	imageList = (ArrayList<Image2>) image2Service.findByKeyword(key, category, order, userId);
         	System.out.println("user");
         }else {
-        	imageList = (ArrayList<Image>) imageService.findFollow(key, category, order, userId);
+        	imageList = (ArrayList<Image2>) image2Service.findFollow(key, category, order, userId);
         	System.out.println("follow");
         }
         System.out.println(imageList);

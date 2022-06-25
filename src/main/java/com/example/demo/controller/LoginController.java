@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.demo.controller.form.LoginForm;
-import com.example.demo.entity.Image;
+import com.example.demo.entity.Image2;
 import com.example.demo.entity.User;
-import com.example.demo.service.ImageService;
+import com.example.demo.service.Image2Service;
 import com.example.demo.service.UserService;
 @Controller
 
@@ -24,7 +24,7 @@ public class LoginController {
 	@Autowired
 	UserService userService;
 	@Autowired
-	ImageService imageService;
+	Image2Service image2Service;
 	@Autowired
 	HttpSession session;
 	@RequestMapping(value="/home", params = "login", method = RequestMethod.POST)
@@ -40,7 +40,7 @@ public class LoginController {
 			model.addAttribute("loginErrMsg", errMsg);
 			return "login";
 		} else {
-			ArrayList<Image> imageList = (ArrayList<Image>) imageService.findByKeyword("", " ", "created_at DESC",user.getId());
+			ArrayList<Image2> imageList = (ArrayList<Image2>) image2Service.findByKeyword("", " ", "created_at DESC",user.getId());
 			session.setAttribute("user",user);
 			model.addAttribute("imageList", imageList);
 			return "home";

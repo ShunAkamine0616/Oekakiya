@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.demo.controller.form.LoginForm;
 import com.example.demo.controller.form.SignupForm;
-import com.example.demo.entity.Image;
+import com.example.demo.entity.Image2;
 import com.example.demo.entity.User;
-import com.example.demo.service.ImageService;
+import com.example.demo.service.Image2Service;
 import com.example.demo.service.UserService;
 @Controller
 public class SignupController {
@@ -32,7 +32,7 @@ public class SignupController {
 	@Autowired
 	UserService userService;
 	@Autowired
-	ImageService imageService;
+	Image2Service image2Service;
 	@RequestMapping(value = "home", method = RequestMethod.POST)
 	public String index(@ModelAttribute("login") LoginForm loginform ,Model model) {
 		//imageService.findByKeyword("", " ", "id");
@@ -66,7 +66,7 @@ public class SignupController {
 		} else {
 			user = userService.findByAccountId(signupform.getAccountId());
 			session.setAttribute("user", user);
-			ArrayList<Image> imageList = (ArrayList<Image>) imageService.findByKeyword("", " ", "created_at",user.getId());
+			ArrayList<Image2> imageList = (ArrayList<Image2>) image2Service.findByKeyword("", " ", "created_at",user.getId());
 			model.addAttribute("imageList",imageList);
 			return "home";
 		}
