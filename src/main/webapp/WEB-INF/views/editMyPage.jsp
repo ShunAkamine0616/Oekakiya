@@ -69,8 +69,8 @@
 						アカウントID：
 
 						<form:input path="accountId"
-							value="${fn:escapeXml(user.accountId)}" />
-						<form:errors path="accountId" cssStyle="color: red" />
+							value="${fn:escapeXml(user.accountId)}" pattern="^[0-9a-zA-Z]+$" title="半角英数字で入力してください。"/>
+						<form:errors path="accountId" cssStyle="color: red"/>
 					</p>
 				</div>
 				<div>
@@ -79,7 +79,7 @@
 
 						<form:input type="password" path="password" id="Pas"
 							oninput="CheckPassword(this)"
-							value="${fn:escapeXml(user.password)}" pattern="^[0-9a-zA-Z]+$"/>
+							value="${fn:escapeXml(user.password)}" pattern="^[0-9a-zA-Z]+$" title="半角英数字で入力してください。"/>
 						<span onclick="ChangeVisibleStatus()" class="ViewPoint">👁</span>
 						<form:errors path="password" cssStyle="color: red" />
 					</p>
@@ -90,7 +90,7 @@
 
 						<form:input type="password" path="passConfirmation" id="Pas2"
 							oninput="CheckPassword(this)"
-							value="${fn:escapeXml(user.password)}" pattern="^[0-9a-zA-Z]+$"/>
+							value="${fn:escapeXml(user.password)}" pattern="^[0-9a-zA-Z]+$" title="半角英数字で入力してください。"/>
 						<span onclick="ChangeVisibleStatus2()" class="ViewPoint">👁</span>
 						<form:errors path="passConfirmation" cssStyle="color: red" />
 					</p>
