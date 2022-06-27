@@ -121,7 +121,7 @@
 						class="gray_btn">
 				</p>
 			</div>
-			<label for="file_upload">
+			<label for="file_upload" id="upload_label">
 				<div class="image_border">
 					<img id="icon" class="icon"
 						src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="

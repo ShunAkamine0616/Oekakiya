@@ -61,7 +61,7 @@ public class DownloadController {
 	public String delete(@ModelAttribute("download") DownloadForm downloadform, Model model) {
 		Image image = (Image)session.getAttribute("image"); 
 		imageService.delete(image.getId());
-		return "home";
+		return "otherMyPage";
 	}
 
 }
