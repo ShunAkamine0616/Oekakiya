@@ -64,7 +64,12 @@ public class CategoryMgController {
 			model.addAttribute("msg", "カテゴリ名は必須入力項目です。");
 			return "categoryMg";
 		} else {
-			categoryservice.update(id, name);
+	        try {
+	        	categoryservice.update(id, name);
+	        } catch (Exception e) {
+				model.addAttribute("msg", "255文字以内で入力してください");
+				return "categoryMg";
+	        }
 			List<Category> category = new ArrayList<>();
 			category = categoryservice.findAll();
 			session.setAttribute("category", category);
