@@ -16,32 +16,7 @@
 	<link href="css/header.css" rel="stylesheet">
 	<link href="dist/snackbar.min.css" type="text/css" rel="stylesheet">
 	</head>
-<!--	<header>
-		<div class="header">
-			<h1><a href="./home" class="page-title">おえかきや</a></h1>
-			
-			<div class="btn-wrap">
-				<c:choose>
-					<c:when test="${empty user}">
-						ゲスト
-						<button type="button" onclick="location.href='login'" class="login_btn">ログイン</button>
-					</c:when>
-					
-					<c:when test="${not empty user}">
-						<label>
-							<a href="./inputEditMyPage">
-								<img id="iconAdd" class="iconAdd"
-								src="${user.iconPath}" style="max-width: 30px;">
-							</a>
-							${user.name}
-						</label>
-						<button type="button" onclick="location.href='login'"  class="logout_btn">ログアウト</button>
-					</c:when>
-				</c:choose>
-			</div>
-		</div>
-	</header>
--->    
+  
 	<header>
 			<div class="header">
 				<h1>
@@ -98,22 +73,6 @@
 				</div>
 			</c:if>
 			<c:if test="${ user.getRole() eq '1' }">
-				<div class="right">
-					<!--
-					<div class="btn" style="text-align: right">
-						<input type="button" onclick="openModal()" value="アカウント消去" class="delete_btn">
-						<a id="assign" class="basic_btn regist hidden">管理者権限を付与</a>
-						<a id="deprivation" class="basic_btn regist hidden">管理者権限を解除</a>
-					</div>
-					<div id="modal">
-						<p class="modal_message">アカウントを削除しますか？</p>
-						<div class="btns">
-							<a href="/deleteAccount?otherId=${ userOther.getId() }" class="basic_btn"> はい </a>
-							<button type="button" onclick="closeModal()" class="cancel_btn">キャンセル</button>
-						</div>
-					</div>
-					-->
-				</div>
 				<div id="fadeLayer"></div>
 			</c:if>
 			</div>
@@ -144,6 +103,7 @@
 		</div>
 		<div class="item">
 			<br>
+			<div class="otherimage">
 			<div class="container">${ userOther.getName() }が投稿した画像</div>
 			<div class="container">
 				<br>
@@ -157,6 +117,7 @@
 					</div>
 					</div>
 				</c:forEach>
+			</div>
 			</div>
 		</div>
 	  
