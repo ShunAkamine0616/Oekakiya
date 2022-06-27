@@ -74,7 +74,7 @@
 					<br>
 <input type="hidden" value="${fn:escapeXml(image.imagePath)}"
 							id="download">
-						<input type="hidden" value="${fn:escapeXml(image.imageTitle)}"
+						<input type="hidden" value="${fn:escapeXml(image.imageTitle)}${fn:escapeXml(image.extention)}"
 							id="download_name">
 						<button class="light_blue_btn" id="download_btn">ダウンロード</button>
 <%-- 					<a href="${fn:escapeXml(image.imagePath)}" --%>
@@ -114,7 +114,7 @@
 					</c:if>
 					<input type="hidden" value="${fn:escapeXml(image.imagePath)}"
 							id="download">
-						<input type="hidden" value="${fn:escapeXml(image.imageTitle)}"
+						<input type="hidden" value="${fn:escapeXml(image.imageTitle)}${fn:escapeXml(image.extention)}"
 							id="download_name">
 						<button class="light_blue_btn" id="download_btn">ダウンロード</button>
 <%-- 					<a href="${fn:escapeXml(image.imagePath)}" --%>
