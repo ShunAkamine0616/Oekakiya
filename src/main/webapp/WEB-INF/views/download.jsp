@@ -69,13 +69,18 @@
 				<c:if test="${empty user}">
 					<span>いいね数： </span>
 					${fn:escapeXml(favoritecount)}
-						<span>ダウンロード数：</span> ${fn:escapeXml(downloadcount) }
-					
-
-					<a href="${fn:escapeXml(image.imagePath)}"
-						download="${fn:escapeXml(image.imageTitle)}">
-						<button class="light_blue_btn" id="download_btn" onclick="showBox()">ダウンロード</button>
-					</a>
+						<span>ダウンロード数：</span> 
+						<span id="downloadNum">${fn:escapeXml(downloadcount) }</span>
+					<br>
+<input type="hidden" value="${fn:escapeXml(image.imagePath)}"
+							id="download">
+						<input type="hidden" value="${fn:escapeXml(image.imageTitle)}"
+							id="download_name">
+						<button class="light_blue_btn" id="download_btn">ダウンロード</button>
+<%-- 					<a href="${fn:escapeXml(image.imagePath)}" --%>
+<%-- 						download="${fn:escapeXml(image.imageTitle)}"> --%>
+<!-- 						<button class="light_blue_btn" id="download_btn" onclick="showBox()">ダウンロード</button> -->
+<!-- 					</a> -->
 					<br>
 
 				</c:if>
@@ -107,10 +112,15 @@
 							</div>
 						</div>
 					</c:if>
-					<a href="${fn:escapeXml(image.imagePath)}"
-						download="${fn:escapeXml(image.imageTitle)}">
-						<button class="light_blue_btn" id="download_btn" onclick="showBox()">ダウンロード</button>
-					</a>
+					<input type="hidden" value="${fn:escapeXml(image.imagePath)}"
+							id="download">
+						<input type="hidden" value="${fn:escapeXml(image.imageTitle)}"
+							id="download_name">
+						<button class="light_blue_btn" id="download_btn">ダウンロード</button>
+<%-- 					<a href="${fn:escapeXml(image.imagePath)}" --%>
+<%-- 						download="${fn:escapeXml(image.imageTitle)}"> --%>
+<!-- 						<button class="light_blue_btn" id="download_btn" onclick="showBox()">ダウンロード</button> -->
+<!-- 					</a> -->
 				</c:if>
 			</div>
 		</div>
@@ -151,21 +161,21 @@
 <div id="fadeLayer"></div>
 <script>
   
-var timerId;
+// var timerId;
 
 
-function showBox() {
-timerId = setTimeout( closeBox , 3000 ); 
-document.getElementById("download_btn").disabled = true;
-document.getElementById("download_btn").style.backgroundColor = "#8aa3b9";
+// function showBox() {
+// timerId = setTimeout( closeBox , 3000 ); 
+// document.getElementById("download_btn").disabled = true;
+// document.getElementById("download_btn").style.backgroundColor = "#8aa3b9";
 
-}
+// }
 
-function closeBox() {
-clearTimeout( timerId );
-document.getElementById("download_btn").disabled = false;
-document.getElementById("download_btn").style.backgroundColor = "#8ED0FF";
-}
+// function closeBox() {
+// clearTimeout( timerId );
+// document.getElementById("download_btn").disabled = false;
+// document.getElementById("download_btn").style.backgroundColor = "#8ED0FF";
+// }
   </script>
 </body>
 </html>
