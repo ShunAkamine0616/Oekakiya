@@ -52,8 +52,9 @@
 }
 
 .userContainer {
+	margin-top: 10px;
 	display: flex;
-	justify-content: center;
+	justify-content: left;
 	align-items: center;
 }
 

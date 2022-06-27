@@ -76,14 +76,14 @@
 			<br>
 			
 		</form>
-
-		
-		<c:forEach var="userList" items="${userList}">
-			<c:if test="${ user.id ne userList.getId() }">
-				<div class="userContainer"><a href="other?id=${ userList.getId() }"><img id="iconAdd" class="image_circle" src="${ userList.getIconPath() }"></a><span class="user_name"><b>${ fn:escapeXml(userList.getName()) }</b><br> ${ fn:escapeXml(userList.getAccountId()) }</span></div>
-			</c:if>
-		</c:forEach>
-		
+		<hr>
+		<div style="width: fit-content; margin:auto;">
+			<c:forEach var="userList" items="${userList}">
+				<c:if test="${ user.id ne userList.getId() }">
+					<div class="userContainer"><a href="other?id=${ userList.getId() }"><img id="iconAdd" class="image_circle" src="${ userList.getIconPath() }"></a><span class="user_name"><b>${ fn:escapeXml(userList.getName()) }</b><br> ${ fn:escapeXml(userList.getAccountId()) }</span></div>
+				</c:if>
+			</c:forEach>
+		</div>
 
 	</div>
 	<footer></footer>
