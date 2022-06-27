@@ -6,7 +6,7 @@
 <html>
 	<head>
 	<meta charset="UTF-8">
-	<title>マイページ</title>
+	<title>おえかきや|マイページ</title>
 	<link href="css/commons.css" rel="stylesheet">
 	<!--link href="css/commonsG.css" rel="stylesheet"-->
 	<link href="css/home.css" rel="stylesheet">
