@@ -27,13 +27,21 @@
 	<div class="terms_of_service">【利用規約】</div>
 	<div class="center">
 		<iframe src="html/termsOfService.html" width="700" height="1000"></iframe>
-		<br><br>
-		<div class="btn"style="text-align: center">
-			<a class="basic_btn" href="/signup">同意する</a>
+		<br> <br>
+		<div class="btn" style="text-align: center">
+			<form action="signup" method="post">
+				<button class="basic_btn" type="submit">同意する</button>
+
+			</form>
+			<%-- 			<form action="login" method="post"> --%>
+			<!-- 				<button class="basic_btn" type="submit">同意しない</button> -->
+
+			<%-- 			</form> --%>
+			<!-- 			<a class="basic_btn" href="/signup">同意する</a> -->
 			<a class="basic_btn" href="/login">同意しない</a>
 		</div>
-		<br><br>
-		
+		<br> <br>
+
 	</div>
 </body>
 </html>

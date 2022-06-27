@@ -40,9 +40,15 @@ public class SignupController {
 		return "home";
 	}
 
-	@RequestMapping(value = "signup", method = RequestMethod.GET)
-	public String signup(@ModelAttribute("signup") SignupForm signupform, Model model) {
+	@RequestMapping(value = "signup",method = RequestMethod.GET)
+	public String signup1(@ModelAttribute("signup") SignupForm signupform, Model model) {
+		
+		return "termsOfService";
+	}
 
+	@RequestMapping(value = "signup", method = RequestMethod.POST)
+	public String signup2(@ModelAttribute("signup") SignupForm signupform, Model model) {
+		
 		return "signup";
 	}
 

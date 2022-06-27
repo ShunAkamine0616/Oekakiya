@@ -23,7 +23,7 @@
 	</header>
 
 	<div class="login_form">
-		<img src="./images/logo.png" class="login_logo">
+		<img src="./images/maruo.png" class="login_logo">
 		<p class="error">
 			<c:if test="${not empty loginErrMsg}">
 				<span>${fn:escapeXml(loginErrMsg)}</span>

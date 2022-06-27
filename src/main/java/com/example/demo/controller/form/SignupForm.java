@@ -2,13 +2,18 @@ package com.example.demo.controller.form;
 
 import javax.validation.constraints.NotBlank;
 
+import org.hibernate.validator.constraints.Length;
+
 public class SignupForm {
+	@Length(max=20, message="アカウントIDは20文字以内です。  ")
 	@NotBlank(message="アカウントIDは必須です。  ")
 	private String accountId;
+	@Length(max=10, message="パスワードは10文字以内です。  ")
 	@NotBlank(message="パスワードは必須です。  ")
 	private String password;
 	@NotBlank(message="パスワードの再入力は必須です。  ")
 	private String repassword;
+	@Length(max=20, message="名前は20文字以内です。  ")
 	@NotBlank(message="名前は必須です。  ")
 	private String name;
 	
