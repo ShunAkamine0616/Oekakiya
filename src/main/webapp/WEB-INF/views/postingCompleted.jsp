@@ -31,8 +31,8 @@
 					<c:when test="${not empty user}">
 
 						<label> <a href="./mypage"> <img id="iconAdd"
-								class="image_circle" src="${user.iconPath}">
-						</a> ${user.name}
+								class="image_circle" src="${fn:escapeXml(user.iconPath)}">
+						</a> ${fn:escapeXml(user.name)}
 
 						</label>
 						<button type="button" onclick="location.href='logout'"
@@ -62,7 +62,7 @@
 			charset="utf-8"></script>
 
 		<!-- コピー対象要素とコピーボタン -->
-		<input id="copyTarget" type="text" value="http://localhost:8080/detail?id=${fn:escapeXml(image.id)}" readonly>
+		<input id="copyTarget" type="text" value="https://oekakiya.herokuapp.com/detail?id=${fn:escapeXml(image.id)}" readonly>
 		<button onclick="copyToClipboard()">URL</button>
 		<a class="basic_btn" href="/home">ホーム</a> <a class="basic_btn"
 			href="/mypage">マイページ</a>
