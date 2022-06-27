@@ -72,7 +72,7 @@ public class MyPageController {
 		
 		List<Image> imageDlList = (List<Image>) downloadService.findByUserIdList(user.getId());
 		model.addAttribute("imageDlList",imageDlList);
-		System.out.println(imageDlList.get(0).getId());
+		System.out.println(imageDlList);
 		
 		return "MyPage";
 	}
