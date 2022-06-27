@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>㋔　おえかきや｜カテゴリ管理画面</title>
+<title>おえかきや｜カテゴリ管理画面</title>
 <link href="css/categoryMg.css" rel="stylesheet">
 <link href="css/commons.css" rel="stylesheet">
 <link href="css/header.css" rel="stylesheet">
@@ -52,7 +52,7 @@
     <div class="item">
     <form action="categoryInsert" method="post">
     <div class="container2">
-       <div class="item2"><input type="text"name="name" style="height: 25px;"></div>
+       <div class="item2"><input type="text"name="name" pattern="[^\x20-\x7E]*" style="height: 25px;"></div>
         <div class="item2"><button type="submit" class="light_blue_btn2"><div class="pulus"><img src="images/プラス.png"></div></button></div>
     </div>
     </form>

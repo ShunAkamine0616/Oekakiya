@@ -77,7 +77,7 @@ public class CategoryMgController {
 		}
 	}
 
-	@RequestMapping(value = "/categoryEdit", params = "deleteId", method = RequestMethod.POST)
+	@RequestMapping(value = "/categoryEdit", params = "delete", method = RequestMethod.POST)
 	public String delete(@RequestParam("deleteId") Integer[] id, Model model) {
 		for (Integer i : id) {
 			int delete = categoryservice.delete(i);

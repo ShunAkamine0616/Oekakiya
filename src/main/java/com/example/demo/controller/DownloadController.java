@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.example.demo.controller.form.DownloadForm;
 import com.example.demo.controller.form.LoginForm;
 import com.example.demo.entity.Image;
+import com.example.demo.entity.User;
 import com.example.demo.service.CategoryService;
 import com.example.demo.service.DownloadService;
 import com.example.demo.service.ImageService;
@@ -51,8 +54,16 @@ public class DownloadController {
 	// ログアウト処理
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(Model model) {
+		//ログアウトしてもホームの初期表示が変わらない
+		User userInfo = (User) session.getAttribute("user");
+		Integer userId =null;
+		userId = userInfo.getId();
+		ArrayList<Image> imageList = (ArrayList<Image>) imageService.findByKeyword("", " ", "created_at DESC", userId);
+		 model.addAttribute("imageList",imageList);
+		 
 		//ユーザのセッションを破棄
 		session.removeAttribute("user");
+	
 
 		return "home";
 	}
