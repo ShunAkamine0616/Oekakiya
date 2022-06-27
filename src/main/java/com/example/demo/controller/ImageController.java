@@ -57,6 +57,7 @@ public class ImageController {
 			return "imagePosting";
 		}
 		if (uploadForm.getFile().isEmpty()) {
+			model.addAttribute("imgErrMsg", "画像が選択されていません。");
 			return "imagePosting";
 		}
 		User user = (User) session.getAttribute("user");
