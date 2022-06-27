@@ -155,7 +155,7 @@ var timerId;
 
 
 function showBox() {
-timerId = setTimeout( closeBox , 5000 ); 
+timerId = setTimeout( closeBox , 3000 ); 
 document.getElementById("download_btn").disabled = true;
 document.getElementById("download_btn").style.backgroundColor = "#8aa3b9";
 
