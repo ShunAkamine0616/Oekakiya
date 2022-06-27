@@ -30,8 +30,8 @@
 					<c:when test="${not empty user}">
 
 						<label> <a href="./mypage"> <img id="iconAdd"
-								class="image_circle" src="${user.iconPath}">
-						</a> ${user.name}
+								class="image_circle" src="${fn:escapeXml(user.iconPath)}">
+						</a> ${fn:escapeXml(user.name)}
 
 						</label>
 						<button type="button" onclick="location.href='logout'"
