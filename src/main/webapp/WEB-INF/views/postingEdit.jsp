@@ -35,7 +35,7 @@
 
 						<label> <a href="./mypage"> <img id="iconAdd"
 								class="image_circle" src="${user.iconPath}">
-						</a> ${user.name}
+						</a> ${fn:escapeXml(user.name)}
 
 						</label>
 						<button type="button" onclick="location.href='logout'"
@@ -58,9 +58,9 @@
 <a class="box"href=${ images.getImagePath() } data-lightbox="group"><img src=${ images.getImagePath() }></a>
              <p>いいね数：${favoritecount} ダウンロード数：${downloadcount}</p>
 				<form:button type="submit" class="light_blue_btn">編集</form:button>
-				<button type="button" onclick="openModal()"class="delete_btn">消去</button>
+				<button type="button" onclick="openModal()"class="delete_btn">削除</button>
 				<div id="modal">
-					<p class="modal_message">消去しますか？</p>
+					<p class="modal_message">削除しますか？</p>
 					<div class="btns">
 						<button type="button" onclick="location.href='/delete'"class="basic_btn">削除</button>
 						<button type="button" onclick="closeModal()" class="cancel_btn">キャンセル</button>
@@ -87,6 +87,7 @@
         <div class="comment">
             <label>コメント</label>
             <form:textarea path="comment"></form:textarea>
+            <p><form:errors path="comment" cssStyle="color: red"/></p>
         </div>
    </div>
 </div>

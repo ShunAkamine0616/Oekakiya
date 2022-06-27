@@ -58,7 +58,7 @@ public class CategoryMgController {
 	}
 
 	@RequestMapping(value = "/categoryEdit", params = "editId", method = RequestMethod.POST)
-	public String edit(@RequestParam("editId") Integer id, Model model) {
+	public String edit(@RequestParam("editId") Integer id,  Model model) {
 		String name = req.getParameter(id.toString());
 		if (name.equals("")) {
 			model.addAttribute("msg", "カテゴリ名は必須入力項目です。");

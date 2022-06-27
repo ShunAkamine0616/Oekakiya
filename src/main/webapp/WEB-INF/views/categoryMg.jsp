@@ -32,7 +32,7 @@
 
 						<label> <a href="./mypage"> <img id="iconAdd"
 								class="image_circle" src="${user.iconPath}">
-						</a> ${user.name}
+						</a> ${fn:escapeXml(user.name)}
 
 						</label>
 						<button type="button" onclick="location.href='logout'"
@@ -77,7 +77,7 @@
                 </div>
                 
                <div id="modal">
-					<p class="modal_message">消去しますか？</p>
+					<p class="modal_message">削除しますか？</p>
 					<div class="btns">
 						<button type="submit" name="delete" class="basic_btn" id="bar">削除</button>
 						<button type="button" onclick="closeModal()" class="cancel_btn">キャンセル</button>
