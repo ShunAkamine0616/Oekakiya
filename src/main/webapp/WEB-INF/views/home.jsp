@@ -113,7 +113,7 @@
 
 				<c:forEach var="category" items="${category}">
 					<label> <input type="checkbox" name="category"
-						value=${ category.getId() }> ${ category.getCategoryName() }
+						value=${ category.getId() }> ${ fn:escapeXml(category.getCategoryName()) }
 					</label>
 				</c:forEach>
 

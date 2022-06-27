@@ -87,8 +87,13 @@
 					src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
 					style="max-width: 500px;" title="クリックで画像を選択">
 				</label>
-
 			</p>
+			<p class="error">
+				<c:if test="${not empty imgErrMsg}">
+					<span>${fn:escapeXml(imgErrMsg)}</span>
+				</c:if>
+			</p>
+
 		</div>
 	</form:form>
 

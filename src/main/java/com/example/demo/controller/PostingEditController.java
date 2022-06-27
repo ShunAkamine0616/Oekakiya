@@ -18,13 +18,27 @@ import com.example.demo.controller.form.EditForm;
 import com.example.demo.entity.Image;
 import com.example.demo.entity.User;
 import com.example.demo.service.CategoryService;
+import com.example.demo.service.DeleteUserService;
+import com.example.demo.service.DownloadService;
+import com.example.demo.service.FavoriteService;
+import com.example.demo.service.FollowService;
 import com.example.demo.service.ImageService;
+import com.example.demo.service.UserService;
 
 @Controller
 public class PostingEditController{
 	@Autowired
 	ImageService imageService;
-
+	@Autowired
+	UserService userService;
+	@Autowired
+	FollowService followService;
+	@Autowired
+	FavoriteService favoriteService;
+	@Autowired
+	DeleteUserService deleteUserService;
+	@Autowired
+	DownloadService downloadService;
 	@Autowired
 	CategoryService categoryService;
 	@Autowired
@@ -47,11 +61,27 @@ public class PostingEditController{
 		image.setId(imageId);		
 		int edit = imageservice.update(image);
 		model.addAttribute("edit", edit);
-			User user = (User) session.getAttribute("user");
-			model.addAttribute("user", user);
-			List<Image> imageList = (List<Image>) imageService.findByUserId(user.getId());
-			model.addAttribute("imageList",imageList);
-			   return "MyPage";
+		User user = (User) session.getAttribute("user");
+		model.addAttribute("user", user);
+		
+		Integer follow  = followService.countFollow(user.getId());
+		model.addAttribute("followCnt", follow);
+		
+		List<User> followUser = (List<User>) followService.findByUserIdFollow(user.getId());
+		model.addAttribute("followUser", followUser);
+		
+		List<Image> imageList = (List<Image>) imageService.findByUserId(user.getId());
+		model.addAttribute("imageList",imageList);
+		
+		List<Image> imageFavList = (List<Image>) favoriteService.findByUserId(user.getId());
+		model.addAttribute("imageFavList",imageFavList);
+		System.out.println(imageFavList);
+		
+		List<Image> imageDlList = (List<Image>) downloadService.findByUserIdList(user.getId());
+		model.addAttribute("imageDlList",imageDlList);
+		System.out.println(imageDlList);
+		
+		return "MyPage";
     
 	}
 	
@@ -61,9 +91,25 @@ public class PostingEditController{
 		int delete = imageservice.delete(imageId);
 		User user = (User) session.getAttribute("user");
 		model.addAttribute("user", user);
+		
+		Integer follow  = followService.countFollow(user.getId());
+		model.addAttribute("followCnt", follow);
+		
+		List<User> followUser = (List<User>) followService.findByUserIdFollow(user.getId());
+		model.addAttribute("followUser", followUser);
+		
 		List<Image> imageList = (List<Image>) imageService.findByUserId(user.getId());
 		model.addAttribute("imageList",imageList);
 		model.addAttribute("delete",delete);
+		
+		List<Image> imageFavList = (List<Image>) favoriteService.findByUserId(user.getId());
+		model.addAttribute("imageFavList",imageFavList);
+		System.out.println(imageFavList);
+		
+		List<Image> imageDlList = (List<Image>) downloadService.findByUserIdList(user.getId());
+		model.addAttribute("imageDlList",imageDlList);
+		System.out.println(imageDlList);
+		
 		return "MyPage";
 	}
 
