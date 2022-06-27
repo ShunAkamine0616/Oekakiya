@@ -79,6 +79,7 @@ public class SearchController {
 	
 	@RequestMapping("/userSearch")
     public String userSearch( Model model) {
+		model.addAttribute("userList",(ArrayList<User>) userService.findByKeyword(""));
 		return "homeUserSearch";
 	}
 	
