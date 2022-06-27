@@ -1,5 +1,13 @@
 @charset "UTF-8";
 
+#upload_label{
+	display:block;
+	height:110px;
+	position:relative;
+	left:-5px;
+	border-radius: 50%;
+}
+
 .upload_form {
 	display: flex;
 	position:relative;
