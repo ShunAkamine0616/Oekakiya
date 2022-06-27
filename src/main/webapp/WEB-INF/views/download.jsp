@@ -73,7 +73,7 @@
 					
 
 					<a href="${fn:escapeXml(image.base64)}"
-						download="${fn:escapeXml(image.imageTitle)}">
+						download="${fn:escapeXml(image.imageTitle)}${fn:escapeXml(image.extention)}">
 						<button class="light_blue_btn" id="download_btn" onclick="showBox()">ダウンロード</button>
 					</a>
 					<br>
@@ -108,7 +108,7 @@
 						</div>
 					</c:if>
 					<a href="${fn:escapeXml(image.base64)}"
-						download="${fn:escapeXml(image.imageTitle)}">
+						download="${fn:escapeXml(image.imageTitle)}${fn:escapeXml(image.extention)}">
 						<button class="light_blue_btn" id="download_btn" onclick="showBox()">ダウンロード</button>
 					</a>
 				</c:if>

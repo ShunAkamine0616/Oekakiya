@@ -103,7 +103,7 @@ public class Image2Controller {
 			}
 			
 			String encodedString = Base64.getEncoder().encodeToString(uploadForm.getFile().getBytes());
-			Image2 image2 = new Image2(uploadForm.getImageTitle(), "data:image/"+ extention +";base64,"+encodedString, uploadForm.getComment(), uploadForm.getCategoryId(), user.getId());
+			Image2 image2 = new Image2(uploadForm.getImageTitle(), "data:image/"+ extention +";base64,"+encodedString, extention,uploadForm.getComment(), uploadForm.getCategoryId(), user.getId());
 			if(image2Service.insert(image2) == 0) {
 				session.setAttribute("imgErrMsg", "投稿できませんでした。");
 				return "imagePosting";

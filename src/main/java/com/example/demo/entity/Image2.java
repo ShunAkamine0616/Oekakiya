@@ -6,6 +6,7 @@ public class Image2 {
 	private Integer id;
 	private String imageTitle;
 	private String base64;
+	private String extention;
 	private String comment;
 	private Integer categoryId;
 	private Integer userId;
@@ -24,15 +25,16 @@ public class Image2 {
 
 	}
 
-	public Image2(String imageTitle, String base64, String comment, 
+	public Image2(String imageTitle, String base64, String extention, String comment, 
 			Integer categoryId, Integer userId) {
 		this.imageTitle = imageTitle;
 		this.base64 = base64;
+		this.extention = extention;
 		this.comment = comment;
 		this.categoryId = categoryId;
 		this.userId = userId;
 	}
-
+	
 
 	public String getBase64() {
 		return base64;
@@ -40,6 +42,13 @@ public class Image2 {
 
 	public void setBase64(String base64) {
 		this.base64 = base64;
+	}
+	public String getExtention() {
+		return extention;
+	}
+
+	public void setExtention(String extention) {
+		this.extention = extention;
 	}
 
 	public Integer getId() {
@@ -56,7 +65,6 @@ public class Image2 {
 	public void setImageTitle(String imageTitle) {
 		this.imageTitle = imageTitle;
 	}
-
 	
 	public String getComment() {
 		return comment;
