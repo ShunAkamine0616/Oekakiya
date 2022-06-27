@@ -14,8 +14,8 @@ import com.example.demo.entity.User;
 @Repository
 public class PgUserDao implements UserDao {
 	
-	private static final String SQL_SELECT_USER_BY_KEYWORD = "SELECT * FROM users WHERE account_id LIKE :keyword OR name LIKE :keyword";
-	private static final String SQL_SELECT_FOLLOW_USER = "SELECT * FROM users WHERE (account_id LIKE :keyword OR name LIKE :keyword) AND id IN (select follow_user_id from follow where user_id = :userId)";
+	private static final String SQL_SELECT_USER_BY_KEYWORD = "SELECT * FROM users WHERE account_id LIKE :keyword OR name LIKE :keyword ORDER BY name";
+	private static final String SQL_SELECT_FOLLOW_USER = "SELECT * FROM users WHERE (account_id LIKE :keyword OR name LIKE :keyword) AND id IN (select follow_user_id from follow where user_id = :userId) ORDER BY name";
 	private static final String SQL_SELECT_USER = "SELECT * FROM users WHERE id = :id";
 	private static final String SQL_LOGIN_USER = "SELECT * FROM users WHERE account_id = :account_id AND password = :password";
 	private static final String SQL_INSERT_USER = "INSERT INTO users(account_id, password, name, role, icon_path) VALUES(:accountId, :password, :name, 2, :icon_path)";
