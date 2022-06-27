@@ -42,14 +42,14 @@
 					<div>
 						<label class="required">アカウントID</label>
 						<form:input type="text" path="accountId" class="base-text"
-							value="${accountId}" />
+							value="${accountId}" pattern="^[0-9a-zA-Z]+$" title="半角英数字で入力してください。" />
 						<span class="error"><form:errors path="accountId"
 								cssStyle="color: red" /> </span>
 					</div>
 					<div>
 						<label class="required">パスワード</label>
 						<form:input type="password" path="password" class="base-text"
-							value="${password}" pattern="^[0-9a-zA-Z]+$" id="Pas" oninput="CheckPassword(this)"/>
+							value="${password}" pattern="^[0-9a-zA-Z]+$" title="半角英数字で入力してください。" id="Pas" oninput="CheckPassword(this)"/>
 							<span onclick="ChangeVisibleStatus()" class="ViewPoint">👁️</span>
 						<span class="error"><form:errors path="password"
 								cssStyle="color: red" /></span>
@@ -57,7 +57,7 @@
 					<div>
 						<label class="required">パスワード再入力</label>
 						<form:input type="password" path="repassword" class="base-text"
-							value="${repassword}" pattern="^[0-9a-zA-Z]+$" id="Pas2" oninput="CheckPassword(this)"/>
+							value="${repassword}" pattern="^[0-9a-zA-Z]+$" title="半角英数字で入力してください。" id="Pas2" oninput="CheckPassword(this)"/>
 							<span onclick="ChangeVisibleStatus2()" class="ViewPoint">👁️</span>
 						<span class="error"><form:errors path="repassword"
 								cssStyle="color: red" /></span>
