@@ -30,8 +30,8 @@
 					<c:when test="${not empty user}">
 
 						<label> <a href="./mypage"> <img id="iconAdd"
-								class="image_circle" src="${user.iconPath}">
-						</a> ${user.name}
+								class="image_circle" src="${fn:escapeXml(user.iconPath)}">
+						</a> ${fn:escapeXml(user.name)}
 
 						</label>
 						<button type="button" onclick="location.href='logout'"
@@ -45,7 +45,7 @@
 		<hr>
 	</header>
 
-	<input id="iconPath" type="hidden" value="${user.iconPath}"></input>
+	<input id="iconPath" type="hidden" value="${fn:escapeXml(user.iconPath)}"></input>
 	<div class="insert">
 		<p class="error">
 			<c:if test="${not empty editMyPageErrMsg}">
