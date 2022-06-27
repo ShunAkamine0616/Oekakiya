@@ -75,6 +75,7 @@ public class OtherMyPageController {
 		if(imageList != null) {
 			model.addAttribute("imageList",imageList);
 		}
+		model.addAttribute("delete","1");
 		return "home";
 	}
 }
