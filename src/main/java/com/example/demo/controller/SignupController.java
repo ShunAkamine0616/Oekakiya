@@ -63,7 +63,7 @@ public class SignupController {
 			return "signup";
 		}
 		User user = new User(signupform.getAccountId(), signupform.getPassword(),signupform.getName());
-		user.setIconPath("images/汎用的な人のシルエットアイコン.png");
+		user.setIconPath("images/silhouette.png");
 		// ユーザー登録失敗
 		if(userService.insert(user) == 0) {
 			String errMsg = "登録に失敗しました。";
