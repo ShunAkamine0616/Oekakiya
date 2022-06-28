@@ -65,7 +65,7 @@
 				<br>
 							<c:if test="${ user.getRole() eq '1' or user.getRole() eq '2'}">
 				<div class="container">
-					<div class="btn" style="text-align: center">
+					<div class="btn" style="text-align: left">
 								<a id="follow" class="basic_btn regist hidden">フォローする</a>
 								<a id="lift" class="basic_btn regist hidden">フォロー解除</a>
 						
@@ -75,6 +75,7 @@
 			<c:if test="${ user.getRole() eq '1' }">
 				<div id="fadeLayer"></div>
 			</c:if>
+			
 			</div>
 			<div class="item2">
 			<div class="flexbox3">
