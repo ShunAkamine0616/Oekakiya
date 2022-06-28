@@ -15,14 +15,14 @@ import com.example.demo.entity.Image;
 @Repository
 public class PgImageDao implements ImageDao {
 
-	String SQL_SELECT_IMAGE_BY_KEYWORD = "SELECT im.id, im.image_title, im.image_path, im.comment, im.category_id, im.user_id, im.created_at, im.updated_at, COALESCE(f.favorite,0) AS favorite, COALESCE(dl.download,0) AS download, CASE WHEN im.id IN (SELECT image_id FROM favorite WHERE user_id = :userId) THEN 1 ELSE 0 END favorite_flag FROM images im "
+	String SQL_SELECT_IMAGE_BY_KEYWORD = "SELECT im.id, im.image_title, im.image_path, im.extention, im.comment, im.category_id, im.user_id, im.created_at, im.updated_at, COALESCE(f.favorite,0) AS favorite, COALESCE(dl.download,0) AS download, CASE WHEN im.id IN (SELECT image_id FROM favorite WHERE user_id = :userId) THEN 1 ELSE 0 END favorite_flag FROM images im "
 			+ "LEFT JOIN (SELECT image_id, count(*) favorite FROM favorite GROUP BY image_id) f "
 			+ "ON im.id = f.image_id "
 			+ "LEFT JOIN (SELECT image_id, count(*) download FROM downloads GROUP BY image_id) dl "
 			+ "ON im.id = dl.image_id "
 			+ "WHERE (im.image_title LIKE :keyword OR im.comment LIKE :keyword) ";
 
-	private static final String SQL_INSERT_IMAGE = "INSERT INTO images(image_title, image_path, comment, category_id, user_id, created_at, updated_at) VALUES(:image_title, :image_path, :comment, :category_id, :user_id, current_timestamp, current_timestamp)";
+	private static final String SQL_INSERT_IMAGE = "INSERT INTO images(image_title, image_path, extention, comment, category_id, user_id, created_at, updated_at) VALUES(:image_title, :image_path, :extention, :comment, :category_id, :user_id, current_timestamp, current_timestamp)";
 	private static final String SQL_DELETE_IMAGE = "DELETE FROM images WHERE id = :id";
 	private static final String SQL_DELETE_IMAGE_BY_USERID = "DELETE FROM images WHERE user_id = :user_id";
 	private static final String SQL_UPDATE_IMAGE = "UPDATE images SET image_title = :image_title,comment = :comment, category_id = :category_id, updated_at = current_timestamp WHERE id = :id;";
@@ -94,6 +94,7 @@ public class PgImageDao implements ImageDao {
         MapSqlParameterSource param = new MapSqlParameterSource();
         param.addValue("image_title", image.getImageTitle());
         param.addValue("image_path", image.getImagePath());
+        param.addValue("extention", image.getExtention());
         param.addValue("comment", image.getComment());
         param.addValue("category_id", image.getCategoryId());
         param.addValue("user_id", image.getUserId());

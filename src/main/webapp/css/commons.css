@@ -427,10 +427,10 @@ textarea {
   display: inline-block;
   width: 20px;
   height: 20px;
-  background-image: url(../images/注意.png);
+  background-image: url(../images/alart.png);
   background-size: contain;
   vertical-align: middle;
-  margin: 10px;
+  margin: 10px
 }
 
 #fadeLayer {

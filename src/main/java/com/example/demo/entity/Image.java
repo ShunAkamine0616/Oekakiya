@@ -6,6 +6,7 @@ public class Image {
 	private Integer id;
 	private String imageTitle;
 	private String imagePath;
+	private String extention;
 	private String comment;
 	private Integer categoryId;
 	private Integer userId;
@@ -24,13 +25,32 @@ public class Image {
 
 	}
 
-	public Image(String imageTitle, String imagePath, String comment, 
+	public Image(String imageTitle, String imagePath, String extention, String comment, 
 			Integer categoryId, Integer userId) {
 		this.imageTitle = imageTitle;
 		this.imagePath = imagePath;
+		this.extention = extention;
 		this.comment = comment;
 		this.categoryId = categoryId;
 		this.userId = userId;
+	}
+	
+
+	
+	public String getImagePath() {
+		return imagePath;
+	}
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
+
+	public String getExtention() {
+		return extention;
+	}
+
+	public void setExtention(String extention) {
+		this.extention = extention;
 	}
 
 	public Integer getId() {
@@ -47,13 +67,7 @@ public class Image {
 	public void setImageTitle(String imageTitle) {
 		this.imageTitle = imageTitle;
 	}
-
-	public String getImagePath() {
-		return imagePath;
-	}
-	public void setImagePath(String imagePath) {
-		this.imagePath = imagePath;
-	}
+	
 	public String getComment() {
 		return comment;
 	}

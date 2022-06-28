@@ -3,13 +3,17 @@ package com.example.demo.controller.form;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.Length;
 import org.springframework.web.multipart.MultipartFile;
 
 public class EditMyPageForm {
-	@NotBlank(message="名前は必須です。")
+	@Length(max=50, message="名前は50文字以内です。  ")
+	@NotBlank(message="名前は必須です。  ")
 	private String name;
+	@Length(max=20, message="アカウントIDは20文字以内です。  ")
 	@NotBlank(message="アカウントIDは必須です。")
 	private String accountId;
+	@Length(max=10, message="パスワードは10文字以内です。  ")
 	@NotBlank(message="パスワードは必須です。")
 	private String password;
 	@NotBlank(message="パスワード確認用は必須です。")

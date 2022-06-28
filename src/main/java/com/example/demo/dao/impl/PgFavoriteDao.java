@@ -23,7 +23,7 @@ public class PgFavoriteDao implements FavoriteDao{
     private static final String SQL_INSERT = "insert into favorite(user_id,image_id) values(:userId,:imageId);";
     private static final String SQL_DELETE = "delete from favorite where user_id = :userId and image_id = :imageId;";
     private static final String SQL_DELETE_USER = "delete from favorite where user_id = :userId;";
-    private static final String SQL_SELECT_IMAGES = "select i.id as images_id,image_title,image_path,i.user_id as image_user_id,created_at,updated_at from images as i inner join favorite as f on i.id = f.image_id where f.user_id =:userId ORDER BY f.id DESC;";
+    private static final String SQL_SELECT_IMAGES = "select i.id as id,image_title,image_path,i.user_id as image_user_id,created_at,updated_at from images as i inner join favorite as f on i.id = f.image_id where f.user_id =:userId ORDER BY f.id DESC;";
     private static final String SQL_SELECT_IMAGES_BY_USERID_AND_IMAGEID = "select i.id as images_id,image_title,image_path,i.user_id as image_user_id,created_at,updated_at from images as i inner join favorite as f on i.user_id = f.user_id where f.user_id =:userId AND f.image_id = :imageId;";
 
     public int countFavorite(Integer imageId) {

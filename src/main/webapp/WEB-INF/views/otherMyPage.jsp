@@ -6,7 +6,7 @@
 <html>
 	<head>
 	<meta charset="UTF-8">
-	<title>${userOther.getName()}のマイページ</title>
+	<title>${fn:escapeXml(userOther.getName())}のマイページ</title>
 	<link href="css/commons.css" rel="stylesheet">
 	<link href="css/home.css" rel="stylesheet">
 	<link href="css/mypage.css" rel="stylesheet">
@@ -53,15 +53,15 @@
 				<div id="app">
 					<div  class="site_logo">
 						<h1>
-							${ userOther.getName() }
+							${ fn:escapeXml(userOther.getName()) }
 						</h1>
-						${ userOther.getAccountId() }<br>
-						${ userOther.getMail() }<br>
+						${ fn:escapeXml(userOther.getAccountId()) }<br>
+						${ fn:escapeXml(userOther.getMail()) }<br>
 				</div>
 			</div>
 			</div>
 			<div class="item2">
-				<img class="icon" src=${ userOther.getIconPath() }>
+				<img class="icon" src=${ fn:escapeXml(userOther.getIconPath()) }>
 				<br>
 							<c:if test="${ user.getRole() eq '1' or user.getRole() eq '2'}">
 				<div class="container">
@@ -79,7 +79,7 @@
 			<div class="item2">
 			<div class="flexbox3">
 			<div class="item3">フォロワー：<span id="followNum">${fn:escapeXml(followCnt)}</span>人</div>
-			<div class="item3"><textarea readonly>${ userOther.getIntroduction() }</textarea></div>
+			<div class="item3"><textarea readonly>${ fn:escapeXml(userOther.getIntroduction()) }</textarea></div>
 			<c:if test="${ user.getRole() eq '1' }">
 				<div class="item3">
 					<div class="btn" style="text-align: right">
@@ -90,7 +90,7 @@
 					<div id="modal">
 						<p class="modal_message">アカウントを削除しますか？</p>
 						<div class="btns">
-							<a href="/deleteAccount?otherId=${ userOther.getId() }" class="basic_btn"> はい </a>
+							<a href="/deleteAccount?otherId=${ fn:escapeXml(userOther.getId()) }" class="basic_btn"> はい </a>
 							<button type="button" onclick="closeModal()" class="cancel_btn">キャンセル</button>
 						</div>
 					</div>
@@ -104,16 +104,16 @@
 		<div class="item">
 			<br>
 			<div class="otherimage">
-			<div class="container">${ userOther.getName() }が投稿した画像</div>
+			<div class="container">${ fn:escapeXml(userOther.getName()) }が投稿した画像</div>
 			<div class="container">
 				<br>
 				<c:forEach var="image" items="${imageList}">
 					<div style="margin: 30px;margin-bottom: 30px;">
 					<div class="box">
-						<a href="detail?id=${ image.getId() }"> 
-							<img src=${ image.getImagePath() } class="post">
+						<a href="detail?id=${ fn:escapeXml(image.getId()) }"> 
+							<img src=${ fn:escapeXml(image.getImagePath()) } class="post">
 						</a>
-						<p>${ image.getImageTitle() }</p>
+						<p>${fn:escapeXml(image.getImageTitle())}</p>
 					</div>
 					</div>
 				</c:forEach>
