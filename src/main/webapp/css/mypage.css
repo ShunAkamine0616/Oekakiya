@@ -3,6 +3,7 @@
 .flexbox2{
 	display:flex;
 	justify-content:space-around;
+	align-items: center;
 }
 .item2{
 width:700px;
