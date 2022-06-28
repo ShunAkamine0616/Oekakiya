@@ -77,7 +77,10 @@
 						<input type="hidden" value="${fn:escapeXml(image.imageTitle)}${fn:escapeXml(image.extention)}"
 							id="download_name">
 						<button class="light_blue_btn" id="download_btn">ダウンロード</button>
-
+<%-- 					<a href="${fn:escapeXml(image.imagePath)}" --%>
+<%-- 						download="${fn:escapeXml(image.imageTitle)}"> --%>
+<!-- 						<button class="light_blue_btn" id="download_btn" onclick="showBox()">ダウンロード</button> -->
+<!-- 					</a> -->
 					<br>
 
 				</c:if>
@@ -109,15 +112,15 @@
 							</div>
 						</div>
 					</c:if>
-					<input type="hidden" value="${fn:escapeXml(image.getImagePath())}"
+					<input type="hidden" value="${fn:escapeXml(image.imagePath)}"
 							id="download">
-<<<<<<< HEAD
-						<input type="hidden" value="${fn:escapeXml(image.getImageTitle())}"
-=======
 						<input type="hidden" value="${fn:escapeXml(image.imageTitle)}${fn:escapeXml(image.extention)}"
->>>>>>> d594f2b480581e054943c154a34c38af29565cc4
 							id="download_name">
 						<button class="light_blue_btn" id="download_btn">ダウンロード</button>
+<%-- 					<a href="${fn:escapeXml(image.imagePath)}" --%>
+<%-- 						download="${fn:escapeXml(image.imageTitle)}"> --%>
+<!-- 						<button class="light_blue_btn" id="download_btn" onclick="showBox()">ダウンロード</button> -->
+<!-- 					</a> -->
 				</c:if>
 			</div>
 		</div>
@@ -127,26 +130,26 @@
 		<div class="rightitem">
 			<label class="postuser">投稿者</label>
 			<div class="postusericon">
-				<a href="./other?id=${fn:escapeXml(imageUser.getId())}"> <img
-					src="${fn:escapeXml(imageUser.getIconPath())}" class="image_circle">
-				</a>${fn:escapeXml(imageUser.getName())}
+				<a href="./other?id=${fn:escapeXml(imageUser.id)}"> <img
+					src="${fn:escapeXml(imageUser.iconPath)}" class="image_circle">
+				</a>${fn:escapeXml(imageUser.name)}
 			</div>
 			<div class="item">
 				<div class="rightitem">
 					<div class="title">
 						<label>タイトル</label> <input type="text"
-							value="${fn:escapeXml(image.getImageTitle())}" disabled />
+							value="${fn:escapeXml(image.imageTitle)}" disabled />
 					</div>
 
 
 
 					<div class="category">
 						<label>カテゴリ</label> <input type="text"
-							value="${categoryName.getCategoryName()}" disabled />
+							value="${fn:escapeXml(categoryName.categoryName)}" disabled />
 					</div>
 					<div class="comment">
 						<label>コメント</label>
-						<textarea disabled>${fn:escapeXml(image.getComment())} </textarea>
+						<textarea disabled>${fn:escapeXml(image.comment)} </textarea>
 					</div>
 
 				</div>
@@ -156,7 +159,20 @@
 	</div>
 </div>
 <div id="fadeLayer"></div>
-
+<script>
+  
+// var timerId;
+// function showBox() {
+// timerId = setTimeout( closeBox , 3000 ); 
+// document.getElementById("download_btn").disabled = true;
+// document.getElementById("download_btn").style.backgroundColor = "#8aa3b9";
+// }
+// function closeBox() {
+// clearTimeout( timerId );
+// document.getElementById("download_btn").disabled = false;
+// document.getElementById("download_btn").style.backgroundColor = "#8ED0FF";
+// }
+  </script>
 </body>
 </html>
 <script src="./js/commons.js">
