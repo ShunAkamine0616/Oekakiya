@@ -138,6 +138,10 @@ public class ImageDetailController {
 			// 画像の投稿者を取得
 			User postingUser = userService.findById(image.getUserId());
 			session.setAttribute("imageUser",postingUser);
+			
+			// 画像の投稿者を取得
+			Category categoryName = categoryService.findByCategoryId(image.getCategoryId());
+			session.setAttribute("categoryName",categoryName);
 			return"download";
 		} else {
 			Integer users = user.getId();
@@ -323,7 +327,7 @@ public class ImageDetailController {
 				Image DlImages =imageService.findByImageId(imageId);
 				// 画像の投稿者を取得
 				User postingUser = userService.findById(DlImages.getUserId());
-				Category categoryName = categoryService.findByCategoryId(DlImages.getUserId());
+				Category categoryName = categoryService.findByCategoryId(DlImages.getCategoryId());
 				Image GetFavoriteUserIdANDImageId =favoriteService.findByUserIdAndImageId(user.getId(),image.getId());
 				session.setAttribute("image",DlImages);
 				session.setAttribute("favoriteUser",GetFavoriteUserIdANDImageId);
