@@ -8,7 +8,7 @@ fetch("checkRole")
 .then(response => response.text())
 .then(data => {
 	console.log(data);
-	//1がフォローしている
+	//1
 	if(data == 1) {
 		assign.className = "basic_btn regist";
 		deprivation.className = "basic_btn regist hidden";
