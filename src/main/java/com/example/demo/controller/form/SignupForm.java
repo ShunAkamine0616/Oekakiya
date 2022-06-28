@@ -13,7 +13,7 @@ public class SignupForm {
 	private String password;
 	@NotBlank(message="パスワードの再入力は必須です。  ")
 	private String repassword;
-	@Length(max=20, message="名前は20文字以内です。  ")
+	@Length(max=50, message="名前は50文字以内です。  ")
 	@NotBlank(message="名前は必須です。  ")
 	private String name;
 	
