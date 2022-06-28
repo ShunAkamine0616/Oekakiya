@@ -3,10 +3,12 @@
 .flexbox2{
 	display:flex;
 	justify-content:space-around;
-	align-items: center;
+
+	 justify-content: center;
 }
 .item2{
 width:700px;
+	 justify-content: center;
 }
 
 .icon{
@@ -62,4 +64,7 @@ width:700px;
 }
 .item3{
 	width:400px;
+}
+.container{
+	margin-right:150px;
 }
