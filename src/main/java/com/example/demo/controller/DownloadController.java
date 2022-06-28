@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -17,6 +18,7 @@ import com.example.demo.entity.Image;
 import com.example.demo.entity.User;
 import com.example.demo.service.CategoryService;
 import com.example.demo.service.DownloadService;
+import com.example.demo.service.FollowService;
 import com.example.demo.service.ImageService;
 import com.example.demo.service.UserService;
 
@@ -35,6 +37,8 @@ public class DownloadController {
 	UserService userService;
 	@Autowired
 	CategoryService categoryService;
+	@Autowired
+	FollowService followService;
 	// 登録画面遷移
 	@RequestMapping(value = "/download", method = RequestMethod.GET)
 	public String download(@ModelAttribute("download") DownloadForm downloadform, Model model) {
@@ -71,7 +75,22 @@ public class DownloadController {
 	@RequestMapping(value="/adminsDelete",method = RequestMethod.GET)
 	public String delete(@ModelAttribute("download") DownloadForm downloadform, Model model) {
 		Image image = (Image)session.getAttribute("image"); 
+		User userOther = userService.findById(image.getUserId());
+		 session.setAttribute("userOther", userOther);
 		imageService.delete(image.getId());
+		
+		session.setAttribute("userOther", userOther);
+		
+		Integer follow  = followService.countFollow(userOther.getId());
+		
+		model.addAttribute("followCnt", follow);
+		
+		
+		List<Image> imageList = (List<Image>) imageService.findByUserId(userOther.getId());
+		if(imageList != null) {
+			model.addAttribute("imageList",imageList);
+			System.out.println(imageList.get(0).getImagePath());
+		}
 		return "otherMyPage";
 	}
 
