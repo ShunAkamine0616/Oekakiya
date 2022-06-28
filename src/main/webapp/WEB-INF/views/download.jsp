@@ -74,7 +74,7 @@
 					<br>
 <input type="hidden" value="${fn:escapeXml(image.imagePath)}"
 							id="download">
-						<input type="hidden" value="${fn:escapeXml(image.imageTitle)}"
+						<input type="hidden" value="${fn:escapeXml(image.imageTitle)}${fn:escapeXml(image.extention)}"
 							id="download_name">
 						<button class="light_blue_btn" id="download_btn">ダウンロード</button>
 
@@ -88,9 +88,9 @@
 			<div class="leftitem">
 				<c:if test="${not empty user}">
 					<span class="iine-box"> <!--いいねしてないとき --> <img
-						src="./images/ハート透過.png" id="nonHurt" class="hidden" title="いいね！"
+						src="./images/blackhurt.png" id="nonHurt" class="hidden" title="いいね！"
 						width=20% height=20%> <!-- いいねしてるとき --> <img
-						src="./images/ピンクハート透過.png" id="yesHurt" class="hidden" width=20%
+						src="./images/hurt.png" id="yesHurt" class="hidden" width=20%
 						height=20%> <span class="iine"> <span
 							id="favoriteNum">${fn:escapeXml(favoritecount)}</span>
 					</span>
@@ -111,7 +111,11 @@
 					</c:if>
 					<input type="hidden" value="${fn:escapeXml(image.getImagePath())}"
 							id="download">
+<<<<<<< HEAD
 						<input type="hidden" value="${fn:escapeXml(image.getImageTitle())}"
+=======
+						<input type="hidden" value="${fn:escapeXml(image.imageTitle)}${fn:escapeXml(image.extention)}"
+>>>>>>> d594f2b480581e054943c154a34c38af29565cc4
 							id="download_name">
 						<button class="light_blue_btn" id="download_btn">ダウンロード</button>
 				</c:if>
