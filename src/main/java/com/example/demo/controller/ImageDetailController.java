@@ -138,7 +138,7 @@ public class ImageDetailController {
 			// 画像の投稿者を取得
 			User postingUser = userService.findById(image.getUserId());
 			session.setAttribute("imageUser",postingUser);
-			
+
 			// 画像の投稿者を取得
 			Category categoryName = categoryService.findByCategoryId(image.getCategoryId());
 			session.setAttribute("categoryName",categoryName);
@@ -191,19 +191,19 @@ public class ImageDetailController {
 	}
 	@RequestMapping(path="/detailmyapage", method = RequestMethod.GET)
 	public String detailMyaPage(@RequestParam("id") Integer imageId,@ModelAttribute("postingEdit") EditForm form, Model model) {
-		
-		
+
+
 		//ユーザー情報を取得
 		User user = (User) session.getAttribute("user");
-		
-		
+
+
 		Image count = new Image();
 		count = imageService.findByIdCount(imageId);
 		int dounladLen = Integer.toString(count.getDownload()).length();
 		int favoriteLen = Integer.toString(count.getFavorite()).length();
 		String downloadcount = "0";
 		String favoritecount = "0";
-		
+
 		//download数桁数判断
 		switch(dounladLen) {
 		case 5:
@@ -243,7 +243,7 @@ public class ImageDetailController {
 			break;
 		}
 		session.setAttribute("downloadcount", downloadcount);
-		
+
 		//favorite数桁数判断
 		switch(favoriteLen) {
 		case 5:
@@ -284,7 +284,7 @@ public class ImageDetailController {
 		}
 		session.setAttribute("favoritecount", favoritecount);
 		session.setAttribute("page", "mypage");
-		
+
 		if(user == null){
 			//imageIdから投稿情報を取得
 			Image image = imageService.findByImageId(imageId);
@@ -297,8 +297,8 @@ public class ImageDetailController {
 			Integer users = user.getId();
 			//ユーザーIDを保存
 			session.setAttribute("UserId", users);
-			
-			
+
+
 			//セッションに保存されたuserIdを取得
 			int userId = (int) session.getAttribute("UserId");
 			//imageIdから投稿情報を取得
@@ -310,10 +310,10 @@ public class ImageDetailController {
 				form.setCategoryId(imageService.findByImageId(imageId).getCategoryId());
 				form.setComment(imageService.findByImageId(imageId).getComment());
 				Image images= imageService.findByImageId(imageId);
-				
-				
-				
-				
+
+
+
+
 				//イメージIDを保存
 				session.setAttribute("imageId",imageId);
 				//categoryを全権取得
@@ -323,7 +323,7 @@ public class ImageDetailController {
 				session.setAttribute("images",images);
 				return "postingEdit";
 			}else{
-				
+
 				Image DlImages =imageService.findByImageId(imageId);
 				// 画像の投稿者を取得
 				User postingUser = userService.findById(DlImages.getUserId());
@@ -334,9 +334,9 @@ public class ImageDetailController {
 				session.setAttribute("imageUser",postingUser);
 				session.setAttribute("categoryName",categoryName);
 				return"download";
-				
+
 			}
 		}
-		
+
 	}
 }
