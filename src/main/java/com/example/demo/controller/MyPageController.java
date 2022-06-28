@@ -138,6 +138,9 @@ public class MyPageController {
 		Integer follow  = followService.countFollow(user.getId());
 		model.addAttribute("followCnt", follow);
 		
+		List<User> followUser = (List<User>) followService.findByUserIdFollow(user.getId());
+		model.addAttribute("followUser", followUser);
+		
 		List<Image> imageList = (List<Image>) imageService.findByUserId(user.getId());
 		model.addAttribute("imageList",imageList);
 		System.out.println(imageList);
