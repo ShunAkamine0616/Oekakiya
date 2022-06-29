@@ -54,6 +54,7 @@
 
 .iine-box {
 	position: relative;
+	cursor:pointer;
 }
 
 .iine {
