@@ -7,7 +7,7 @@ import org.hibernate.validator.constraints.Length;
 import org.springframework.web.multipart.MultipartFile;
 
 public class EditMyPageForm {
-	@Length(max=20, message="名前は50文字以内です。  ")
+	@Length(max=20, message="名前は20文字以内です。  ")
 	@NotBlank(message="名前は必須です。  ")
 	private String name;
 	@Length(max=20, message="アカウントIDは20文字以内です。  ")
