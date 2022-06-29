@@ -75,13 +75,18 @@
 		　　　　<p>フォロワー：${fn:escapeXml(followCnt)}人</p>
             	<textarea readonly>${fn:escapeXml(user.getIntroduction())}</textarea>
 			</div>
-
 		</div>
 	    </div>
 			<div class="item">
+				<div class="itemtitle">
+					<span>投稿</span>
+					<span>いいね</span>
+					<span>ダウンロード</span>
+					<span>フォロー</span>
+				</div>
 				<div class="imagebox">
+				
 					<div class="myimage">
-					<div class="itemtitle"><p>投稿した画像</p></div>
 						<div class="container">
 							<c:forEach var="image" items="${imageList}">
 								<div style="margin: 30px;margin-bottom: 30px;">
@@ -96,7 +101,6 @@
 						</div>
 					</div>
 					<div class="myimage">
-					<div class="itemtitle"><p>いいねした画像</p></div>
 						<div class="container">
 							<c:forEach var="imagefav" items="${imageFavList}">
 								<div style="margin: 30px;margin-bottom: 30px;">
@@ -111,7 +115,6 @@
 						</div>
 					</div>
 					<div class="myimage">
-					<div class="itemtitle"><p>DLした画像</p></div>
 						<div class="container">
 							<c:forEach var="imageDl" items="${imageDlList}">
 								<div style="margin: 30px;margin-bottom: 30px;">
@@ -126,7 +129,6 @@
 						</div>
 					</div>
 					<div class="myfollow">
-					<div class="itemtitle"><p>フォロー</p></div>
 						<div class="container">
 							<c:forEach var="fuser" items="${followUser}">
 								<div style="margin: 30px;margin-bottom: 30px;">

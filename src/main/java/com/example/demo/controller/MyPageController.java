@@ -149,7 +149,7 @@ public class MyPageController {
 		model.addAttribute("imageFavList",imageFavList);
 		System.out.println(imageFavList);
 		
-		List<Image> imageDlList = (List<Image>) favoriteService.findByUserId(user.getId());
+		List<Image> imageDlList = (List<Image>) downloadService.findByUserId(user.getId());
 		model.addAttribute("imageDlList",imageDlList);
 		System.out.println(imageDlList);
 		return "MyPage";
