@@ -37,6 +37,10 @@
 	border: 5px #FFFFFF solid;
 }
 
+img.post:hover {
+    transform: scale(1.1,1.1);
+}
+
 .search_con {
 	display: flex;
 }
