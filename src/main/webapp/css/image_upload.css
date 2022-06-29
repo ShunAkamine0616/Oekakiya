@@ -47,7 +47,6 @@ textarea {
 	/* 空の要素なので、高さの定義が必要です。 */
 	/* 	width:1000px; */
 	background-color: white;
-	
 	/* 	background-image: */
 	/* 		url("/images/icon_001050_256.png"); */
 	/* 	background-size: 40px; */
@@ -55,6 +54,7 @@ textarea {
 	/* 	background-position: 20% 30%; */
 	/*     margin: 0 auto; */
 	/* 	background-color:red; */
+	border: solid 3px #6a6565ae
 }
 
 .iconAdd {
@@ -69,6 +69,8 @@ textarea {
 	height: 100px;
 	border-radius: 50%;
 	object-fit: cover;
+	position:rerative;
+	top:30px;
 }
 
 div.image_border {
