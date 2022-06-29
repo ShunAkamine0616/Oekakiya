@@ -52,7 +52,7 @@
     <div class="item">
     <form action="categoryInsert" method="post">
     <div class="container2">
-       <div class="item2"><input type="text"name="name" pattern="[^<^>]+" style="height: 25px;"></div>
+       <div class="item2"><input type="text"name="name" pattern="[^<^>]+" title=">また<は入力できません。" style="height: 25px;"></div>
         <div class="item2"><button type="submit" class="light_blue_btn2"><div class="pulus"><img src="images/puls.png"></div></button></div>
     </div>
     </form>
@@ -67,7 +67,7 @@
             <c:forEach var="category" items="${category}">
             <div class="item">
                     <input type="checkbox" value="${category.getId()}"name ="deleteId">
-		            <input type="text" value="${fn:escapeXml(category.getCategoryName())}" pattern="[^<^>]+" name ="${category.getId()}" id="${category.getId()}" readOnly>
+		            <input type="text" value="${fn:escapeXml(category.getCategoryName())}" pattern="[^<^>]+" title=">また<は入力できません。"  name ="${category.getId()}" id="${category.getId()}" readOnly>
                     <button type="button" onclick="edit(${category.getId()})" class=""><div class="rogo"><img src="images/pen.png"></div></button>
                     <button type="submit" value="${category.getId()}" name="editId" class=""><div class="rogo"><img src="images/Road.png"></div></button>
              <!--   <button type="button" onclick="openModal()" value="${category.getId()}"name ="deleteId">🚮</button>--> 
