@@ -45,7 +45,8 @@
 		<hr>
 	</header>
 
-	<input id="iconPath" type="hidden" value="${fn:escapeXml(user.iconPath)}"></input>
+	<input id="iconPath" type="hidden"
+		value="${fn:escapeXml(user.iconPath)}"></input>
 	<div class="insert">
 		<p class="error">
 			<c:if test="${not empty editMyPageErrMsg}">
@@ -69,8 +70,13 @@
 						アカウントID：
 
 						<form:input path="accountId"
-							value="${fn:escapeXml(user.accountId)}" pattern="^[0-9a-zA-Z]+$" title="半角英数字で入力してください。"/>
-						<form:errors path="accountId" cssStyle="color: red"/>
+							value="${fn:escapeXml(user.accountId)}" pattern="^[0-9a-zA-Z]+$"
+							title="半角英数字で入力してください。" />
+						<form:errors path="accountId" cssStyle="color: red" />
+						<br>
+						<c:if test="${not empty editAccountIdErrMsg}">
+							<span class="error">${fn:escapeXml(editAccountIdErrMsg)}</span>
+						</c:if>
 					</p>
 				</div>
 				<div>
@@ -79,7 +85,8 @@
 
 						<form:input type="password" path="password" id="Pas"
 							oninput="CheckPassword(this)"
-							value="${fn:escapeXml(user.password)}" pattern="^[0-9a-zA-Z]+$" title="半角英数字で入力してください。"/>
+							value="${fn:escapeXml(user.password)}" pattern="^[0-9a-zA-Z]+$"
+							title="半角英数字で入力してください。" />
 						<span onclick="ChangeVisibleStatus()" class="ViewPoint">👁</span>
 						<form:errors path="password" cssStyle="color: red" />
 					</p>
@@ -90,7 +97,8 @@
 
 						<form:input type="password" path="passConfirmation" id="Pas2"
 							oninput="CheckPassword(this)"
-							value="${fn:escapeXml(user.password)}" pattern="^[0-9a-zA-Z]+$" title="半角英数字で入力してください。"/>
+							value="${fn:escapeXml(user.password)}" pattern="^[0-9a-zA-Z]+$"
+							title="半角英数字で入力してください。" />
 						<span onclick="ChangeVisibleStatus2()" class="ViewPoint">👁</span>
 						<form:errors path="passConfirmation" cssStyle="color: red" />
 					</p>
@@ -105,8 +113,7 @@
 				</div>
 				<div>
 					<div>自己紹介：</div>
-					<textarea name="introduction"
-						placeholder="ここに自己紹介を書いてください。">${fn:escapeXml(user.introduction)}</textarea>
+					<textarea name="introduction" placeholder="ここに自己紹介を書いてください。">${fn:escapeXml(user.introduction)}</textarea>
 					<form:errors path="introduction" cssStyle="color: red" />
 				</div>
 				<p>

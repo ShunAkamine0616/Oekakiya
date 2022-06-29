@@ -123,12 +123,16 @@ public class MyPageController {
 				e.printStackTrace();
 			}
 		}
+		if(!editMyPageFrom.getAccountId().equals(user.getAccountId()) && userService.findByAccountId(editMyPageFrom.getAccountId()) != null) {
+			model.addAttribute("editAccountIdErrMsg", "アカウントIDが重複しています。");
+			return "editMyPage";
 
+		}
 		// ユーザーのidをセット
 		newUser.setId(user.getId());
 		// データベースのユーザー情報をアップデート
 		if(userService.update(newUser) == 0) {
-			model.addAttribute("imgErrMsg", "編集できませんでした。");
+			model.addAttribute("editMyPageErrMsg", "編集できませんでした。");
 			return "editMyPage";
 		}
 
@@ -149,7 +153,7 @@ public class MyPageController {
 		model.addAttribute("imageFavList",imageFavList);
 		System.out.println(imageFavList);
 		
-		List<Image> imageDlList = (List<Image>) downloadService.findByUserId(user.getId());
+		List<Image> imageDlList = (List<Image>) downloadService.findByUserIdList(user.getId());
 		model.addAttribute("imageDlList",imageDlList);
 		System.out.println(imageDlList);
 		return "MyPage";
